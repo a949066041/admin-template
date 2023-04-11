@@ -1,0 +1,13 @@
+node_modules
+.eslintcache
+.turbo
+.stylelintcache
+eslint-results.sarif
+stylelint-results.sarif
+dist
+auto-imports.d.ts
+components.d.ts
+.idea
+.VSCodeCounter
+.scannerwork
+.cache
