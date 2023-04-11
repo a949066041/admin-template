@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@yy-web/project-mobile",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,9 +10,10 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@yy-admin/common-components": "workspace:^",
+    "@yy-admin/common-utils": "workspace:^",
     "@yy-admin/config-vite": "workspace:^",
     "pinia": "^2.0.32",
+    "vant": "^4.1.2",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },

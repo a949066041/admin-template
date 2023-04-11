@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@yy-web/project-web2",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@yy-admin/common-components": "workspace:^",
+    "@yy-admin/common-utils": "workspace:^",
     "@yy-admin/config-vite": "workspace:^",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",

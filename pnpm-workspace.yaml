@@ -1,4 +1,4 @@
 packages:
-  - "common/**"
-  - "projects/**"
-  - "config/**"
+  - 'common/**'
+  - 'projects/**'
+  - 'config/**'

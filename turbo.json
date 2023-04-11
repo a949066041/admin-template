@@ -1,0 +1,9 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "prepare:build": {
+      "inputs": ["src/**/*.ts", "svg/**/*.svg"],
+      "outputs": ["dist/**", "src/**/*.js"]
+    }
+  }
+}
