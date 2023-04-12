@@ -11,7 +11,12 @@
   },
   "dependencies": {
     "@yy-admin/common-components": "workspace:^",
+    "@yy-admin/common-core": "workspace:^",
+    "@yy-admin/common-utils": "workspace:^",
     "@yy-admin/config-vite": "workspace:^",
+    "@yy-web/request": "^1.4.3",
+    "ant-design-vue": "3.2.16",
+    "axios": "^1.3.5",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
