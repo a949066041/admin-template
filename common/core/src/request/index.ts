@@ -24,4 +24,8 @@ service.interceptors.response.use((response: any) => {
   return response.data
 })
 
-export default request(service, { getStore, setStore })
+const yyRequest = request(service, {
+  getStore, setStore,
+})
+
+export default yyRequest

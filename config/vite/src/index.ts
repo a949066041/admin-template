@@ -7,6 +7,15 @@ import AutoImport from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver, VantResolver } from 'unplugin-vue-components/resolvers'
 
 export default (isMobile = false) => defineConfig({
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://eladmin.vip/',
+        rewrite: path => path.replace(/^\/api\//, ''),
+        changeOrigin: true,
+      },
+    },
+  },
   plugins: [
     vue(),
     vueJsx(),

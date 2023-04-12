@@ -13,5 +13,8 @@
   },
   "devDependencies": {
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "jsencrypt": "^3.3.2"
   }
 }
