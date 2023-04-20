@@ -11,7 +11,7 @@ const service = axios.create({
 service.interceptors.request.use((config: InternalAxiosRequestConfig & IAxiosRequestConfig) => {
   const yyToken = getToken()
   if (yyToken && config && config.headers)
-    config.headers.Authorization = config.headers.Authorization || `Bearer ${yyToken}`
+    config.headers.Authorization = config.headers.Authorization || yyToken
 
   return config
 })
