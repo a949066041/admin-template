@@ -58,3 +58,31 @@ interface Dept {
 interface Authority {
   authority: string
 }
+
+export interface MenuList {
+  alwaysShow: boolean
+  children: Child[]
+  component: string
+  hidden: boolean
+  meta: Meta
+  name: string
+  path: string
+  redirect: string
+}
+
+interface Child {
+  alwaysShow?: boolean
+  children?: Child[]
+  component: string
+  hidden: boolean
+  meta: Meta
+  name: string
+  path: string
+  redirect?: string
+}
+
+interface Meta {
+  icon: string
+  noCache: boolean
+  title: string
+}

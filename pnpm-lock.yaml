@@ -168,6 +168,9 @@ importers:
 
   projects/web:
     dependencies:
+      '@vueuse/core':
+        specifier: ^9.13.0
+        version: 9.13.0(vue@3.2.47)
       '@yy-admin/common-components':
         specifier: workspace:^
         version: link:../../common/components
@@ -1846,7 +1849,6 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    dev: true
 
   /@vueuse/metadata@10.0.2:
     resolution: {integrity: sha512-APSjlABrV+Q74c+FR0kFETvcN9W2pAaT3XF3WwqWUuk4srmVxv7DY4WshZxK2KYk1+MVY0Fus6J1Hk/JXVm6Aw==}
@@ -1854,7 +1856,6 @@ packages:
 
   /@vueuse/metadata@9.13.0:
     resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
-    dev: true
 
   /@vueuse/shared@10.0.2(vue@3.2.47):
     resolution: {integrity: sha512-7W2l6qZaFvla3zAeEVo8hNHkNRKCezJa3JjZAKv3K4KsevXobHhVNr+RHaOVNK/6ETpFmtqiK+0pMIADbHjjag==}
@@ -1872,7 +1873,6 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    dev: true
 
   /@yy-web/business-use@1.0.2:
     resolution: {integrity: sha512-Tgee5ORq6YAJf60JNZrKo9mKxhOye5Q6hGeR0+0HTPVr58jGmSTpk90ZfMpoCj8oQswjV/2unbzi5PtbvB3ieQ==}

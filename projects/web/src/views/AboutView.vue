@@ -21,7 +21,7 @@ const columns = [
           <a-input v-model:value="searchForm.filter" placeholder="请输入关键字查询" />
         </a-form-item>
         <a-form-item>
-          <a-button type="primary" @click="searchTable">
+          <a-button type="primary" :loading="loading" @click="searchTable">
             查询
           </a-button>
           <a-button @click="resetTable">

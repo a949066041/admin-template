@@ -9,6 +9,7 @@ import router from './router'
 
 import 'uno.css'
 import 'virtual:unocss-devtools'
+import 'ant-design-vue/es/message/style/index.css'
 
 const app = createApp(App)
 

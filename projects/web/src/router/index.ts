@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { YyLayout } from '@yy-admin/common-components'
-import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/login/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,7 +8,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'home',
-      component: HomeView,
+      component: LoginView,
     },
     {
       path: '/',

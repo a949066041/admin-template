@@ -10,6 +10,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@vueuse/core": "^9.13.0",
     "@yy-admin/common-components": "workspace:^",
     "@yy-admin/common-core": "workspace:^",
     "@yy-admin/common-utils": "workspace:^",

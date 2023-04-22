@@ -1,6 +1,7 @@
 import type { IAxiosRequestConfig } from '@yy-web/request'
 import request, { fileInterceptorsResponseConfig, getStore, setStore } from '@yy-web/request'
 import type { InternalAxiosRequestConfig } from 'axios'
+import { message } from 'ant-design-vue'
 import axios from 'axios'
 import { getToken } from '../utils/token'
 
@@ -22,6 +23,19 @@ service.interceptors.response.use((response: any) => {
     return value
 
   return response.data
+}, (error) => {
+  if (error.response) {
+    switch (error.response.status) {
+      case 401:
+        // 提示用户登录
+        break
+      default: {
+        const errorMsg = error.response.data.message
+        message.error(errorMsg)
+      }
+    }
+  }
+  return Promise.reject(error)
 })
 
 const yyRequest = request(service, {

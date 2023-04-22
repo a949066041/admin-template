@@ -1,25 +1,27 @@
 import { ref } from 'vue-demi'
 import { defineStore } from 'pinia'
 import { setToken } from '../utils/token'
-import { info, login } from '../api/login'
-import type { LoginForm, UserInfo } from '../api/login.type'
+import { buildMenu, info, login } from '../api/login'
+import type { LoginForm, MenuList, UserInfo } from '../api/login.type'
 
 export const useUserStore = defineStore('core-user', () => {
   const userInfo = ref<UserInfo | null>(null)
+  const userMenuList = ref<MenuList[]>([])
 
   async function loginAction(loginForm: LoginForm) {
-    const { token, user } = await login(loginForm)
+    const { token } = await login(loginForm)
     setToken(token)
-    setUserInfo(user)
   }
 
   async function getUserInfo() {
     const user = await info()
-    setUserInfo(user)
+    const menuList = await buildMenu()
+    setUserInfo(user, menuList)
   }
 
-  function setUserInfo(user: UserInfo) {
+  function setUserInfo(user: UserInfo, userMenu: MenuList[]) {
     userInfo.value = user
+    userMenuList.value = userMenu
   }
 
   async function logout() {
