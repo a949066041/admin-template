@@ -1,0 +1,23 @@
+{
+  "name": "@yy-admin/docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@ruabick/md-demo-plugins": "^0.3.3",
+    "@ruabick/vitepress-demo-block": "^0.3.3",
+    "@yy-admin/common-components": "workspace:^",
+    "ant-design-vue": "3.2.16",
+    "vite": "^4.3.1",
+    "vitepress": "1.0.0-alpha.75",
+    "vue": "^3.2.47"
+  }
+}
