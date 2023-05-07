@@ -10,7 +10,7 @@ export default (isMobile = false) => defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://eladmin.vip/',
+        target: 'http://121.4.39.70:8000',
         rewrite: path => path.replace(/^\/api\//, ''),
         changeOrigin: true,
       },
