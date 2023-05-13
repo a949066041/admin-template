@@ -16,12 +16,16 @@ export const useUserStore = defineStore('core-user', () => {
   async function getUserInfo() {
     const user = await info()
     const menuList = await buildMenu()
-    setUserInfo(user, menuList)
+    setUserInfo(user)
+    return menuList
   }
 
-  function setUserInfo(user: UserInfo, userMenu: MenuList[]) {
+  function setUserInfo(user: UserInfo) {
     userInfo.value = user
-    userMenuList.value = userMenu
+  }
+
+  function setRenderMenuList(realMenu: MenuList[]) {
+    userMenuList.value = realMenu
   }
 
   async function logout() {
@@ -29,7 +33,9 @@ export const useUserStore = defineStore('core-user', () => {
   }
 
   return {
+    userMenuList,
     userInfo,
+    setRenderMenuList,
     logout,
     loginAction,
     getUserInfo,

@@ -64,7 +64,7 @@ export default {
 <template>
   <div mx-auto mt20vh rounded-10 w-800px overflow-hidden py8 px10 bg-light-2 shadow-xl>
     <section flex h-400px>
-      <img src="@/assets/login.png" h-full>
+      <img src="./login.png" h-full>
       <a-form flex flex-col justify-evenly layout="vertical" :model="loginForm" ml5 flex-1 @submit="handleLoadingAction">
         <h1 mb0>
           用户登录

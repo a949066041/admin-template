@@ -12,14 +12,13 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^18.15.13",
+    "@types/node": "^18.16.8",
     "@unocss/transformer-directives": "^0.50.8",
-    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
-    "ant-design-vue": "3.2.16",
     "typescript": "^5.0.4",
     "unocss": "^0.50.8",
     "unplugin-vue-components": "^0.24.1",
-    "vite": "^4.3.1"
+    "vite": "^4.3.5"
   }
 }
