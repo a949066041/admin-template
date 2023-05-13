@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useUserStore } from '@yy-admin/common-core'
 import { useGlobalState } from '../../store/useGlobal'
 
