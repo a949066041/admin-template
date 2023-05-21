@@ -14,8 +14,8 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
     "@unocss/transformer-directives": "^0.50.8",
-    "eslint": "^8.40.0",
-    "turbo": "^1.9.4",
+    "eslint": "^8.41.0",
+    "turbo": "^1.9.8",
     "typescript": "^5.0.4",
     "unocss": "^0.50.8"
   }

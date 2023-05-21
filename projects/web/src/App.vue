@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import { AppConfig } from '@yy-admin/common-admin'
-</script>
 
-<script lang="ts">
-export default {
+defineOptions({
   name: 'App',
-}
+})
 </script>
 
 <template>
