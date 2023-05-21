@@ -53,12 +53,10 @@ function handleLoadingAction() {
     }
   })
 }
-</script>
 
-<script lang="ts">
-export default {
+defineOptions({
   name: 'Login',
-}
+})
 </script>
 
 <template>

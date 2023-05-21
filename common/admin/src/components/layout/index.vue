@@ -4,12 +4,10 @@ import { useGlobalState } from '../../store/useGlobal'
 
 const globalState = useGlobalState()
 const userStore = useUserStore()
-</script>
 
-<script lang="ts">
-export default {
+defineOptions({
   name: 'YyLayout',
-}
+})
 </script>
 
 <template>

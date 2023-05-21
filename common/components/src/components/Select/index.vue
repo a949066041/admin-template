@@ -29,12 +29,10 @@ const withList = computed(() => {
     [ofValue]: v,
   }))
 })
-</script>
 
-<script lang="ts">
-export default {
+defineOptions({
   name: 'YySelect',
-}
+})
 </script>
 
 <template>

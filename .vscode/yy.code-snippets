@@ -1,0 +1,19 @@
+{
+  "setup-component": {
+    "scope": "vue",
+    "prefix": "setup-component",
+    "body": [
+      "<script lang=\"ts\" setup>",
+      "defineOptions({",
+      "  name: '$1',",
+      "})",
+      "</script>",
+      "",
+      "<template>",
+      "  <div>$1</div>",
+      "</template>",
+      "",
+    ],
+    "description": "vue page template"
+  },
+}

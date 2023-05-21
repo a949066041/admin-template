@@ -8,12 +8,10 @@ const props = defineProps<{ title?: string }>()
 useTitle(props.title)
 
 dayjs.locale('zh-cn')
-</script>
 
-<script lang="ts">
-export default {
+defineOptions({
   name: 'AppConfig',
-}
+})
 </script>
 
 <template>
