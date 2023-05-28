@@ -17,7 +17,7 @@ export interface Login {
 
 export interface UserInfo {
   authorities: Authority[]
-  dataScopes: any[]
+  dataScopes: string[]
   roles: string[]
   user: User
 }

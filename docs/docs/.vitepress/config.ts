@@ -18,7 +18,7 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      unocss(resolve(__dirname, '../../../unocss.config.ts')) as any,
+      unocss(resolve(__dirname, '../../../unocss.config.ts')),
     ],
   },
   themeConfig: {

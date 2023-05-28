@@ -1,17 +1,6 @@
 <script setup lang="ts">
-import { useUserStore } from '@yy-admin/common-core'
-import { useRouter } from 'vue-router'
-import type { ItemType } from 'ant-design-vue'
-import { useGlobalState } from '../../store/useGlobal'
-
-const globalState = useGlobalState()
-const userStore = useUserStore()
-const router = useRouter()
-
-function handleToRouter(route: ItemType) {
-  if (route && route.key)
-    router.push(route.key as string)
-}
+import YyMenu from './components/menu/index.vue'
+import YyHeader from './components/header/index.vue'
 
 defineOptions({
   name: 'YyLayout',
@@ -20,16 +9,11 @@ defineOptions({
 
 <template>
   <a-layout style="min-height: 100vh">
-    <a-layout-sider v-model:collapsed="globalState.collapsed" collapsible>
-      <div class="logo h-64px bg-white flex items-center justify-center text-8 color-red">
-        logo
-      </div>
-      <a-menu mode="inline" theme="dark" :items="userStore.userMenuList" @click="handleToRouter" />
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header />
-      <a-layout-content>
-        <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
+    <YyMenu />
+    <a-layout class="flex flex-col h-screen">
+      <YyHeader />
+      <a-layout-content class="flex-1 overflow-auto">
+        <div class=" overflow-hidden" :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
           <router-view v-slot="{ Component }">
             <transition name="slide">
               <component :is="Component" />
@@ -44,7 +28,10 @@ defineOptions({
   </a-layout>
 </template>
 
-<style>
+<style scoped>
+:deep(.ant-layout-sider-children) {
+  @apply flex flex-col;
+}
 .slide-enter-active,
 .slide-leave-active {
   transition: all .5s;
