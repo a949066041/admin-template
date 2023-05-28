@@ -7,15 +7,17 @@ defineOptions({
 </script>
 
 <template>
-  <a-form v-bind="$attrs" layout="inline">
+  <a-form v-bind="$attrs" class="px-2 pt-4 bg-white rounded" layout="inline">
     <slot />
     <a-form-item>
-      <a-button type="primary" @click="emit('search')">
-        查询
-      </a-button>
-      <a-button @click="emit('reset')">
-        重置
-      </a-button>
+      <a-space>
+        <a-button type="primary" @click="emit('search')">
+          查询
+        </a-button>
+        <a-button @click="emit('reset')">
+          重置
+        </a-button>
+      </a-space>
     </a-form-item>
   </a-form>
 </template>

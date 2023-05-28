@@ -13,7 +13,7 @@ defineOptions({
     <a-layout class="flex flex-col h-screen">
       <YyHeader />
       <a-layout-content class="flex-1 overflow-auto">
-        <div class=" overflow-hidden" :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
+        <div class=" overflow-hidden p4">
           <router-view v-slot="{ Component }">
             <transition name="slide">
               <component :is="Component" />
