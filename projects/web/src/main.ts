@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import YyUI from '@yy-admin/common-components'
+import BaseUI from '@yy-admin/base-components'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
 import { Layout } from '@yy-admin/common-admin'
@@ -18,6 +19,7 @@ const app = createApp(App)
 setRequest(requestInstance)
 
 app.use(YyUI)
+app.use(BaseUI)
 app.use(createPinia())
 app.use(router)
 app.use(Antd)

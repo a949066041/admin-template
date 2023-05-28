@@ -18,24 +18,33 @@ export function addWebRouter(
   const realRouter = registerRouter(menuList,
     [],
     routerModules || {})
+  const renderRouter = registerRouter(menuList, [], {}, true)
   realRouter.forEach((item) => {
     router.addRoute(item as any)
   })
-  return realRouter
+  return renderRouter
 }
 
 function registerRouter(
   menuList: MenuList[],
   parentPath = [] as string[],
-  mathLayout: Record<string, any>): MenuList[] {
+  mathLayout: Record<string, any> = {},
+  delComponent = false,
+): MenuList[] {
   return menuList.map((item) => {
-    return {
+    const path = parentPath.concat(item.path).join('/')
+    const baseRoute = {
+      key: path,
       ...item,
-      path: parentPath.concat(item.path).join('/'),
+      label: item.meta.title,
+      title: item.meta.title,
+      path,
       component: mathLayout[item.component],
       children: item.children
         ? registerRouter(item.children as MenuList[], parentPath.concat(item.path), mathLayout)
         : null,
     }
+    delComponent && delete baseRoute.component
+    return baseRoute
   }) as MenuList[]
 }

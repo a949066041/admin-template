@@ -60,25 +60,15 @@ interface Authority {
 }
 
 export interface MenuList {
-  alwaysShow: boolean
-  children: Child[]
-  component: string
+  key?: string
+  label?: string
+  title?: string
+  children?: MenuList[]
+  component: any
   hidden: boolean
   meta: Meta
   name: string
   path: string
-  redirect: string
-}
-
-interface Child {
-  alwaysShow?: boolean
-  children?: Child[]
-  component: string
-  hidden: boolean
-  meta: Meta
-  name: string
-  path: string
-  redirect?: string
 }
 
 interface Meta {

@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { useUserStore } from '@yy-admin/common-core'
+import { useRouter } from 'vue-router'
+import type { ItemType } from 'ant-design-vue'
 import { useGlobalState } from '../../store/useGlobal'
 
 const globalState = useGlobalState()
 const userStore = useUserStore()
+const router = useRouter()
+
+function handleToRouter(route: ItemType) {
+  if (route && route.key)
+    router.push(route.key as string)
+}
 
 defineOptions({
   name: 'YyLayout',
@@ -16,28 +24,21 @@ defineOptions({
       <div class="logo h-64px bg-white flex items-center justify-center text-8 color-red">
         logo
       </div>
-      <a-menu mode="inline" theme="dark">
-        <a-sub-menu v-for="item of userStore.userMenuList" :key="item.path">
-          <template #title>
-            {{ item.meta.title }}
-          </template>
-          <a-menu-item v-for="innerChildren of (item.children || [])" :key="innerChildren.path" @click="$router.push(`${innerChildren.path}`)">
-            {{ innerChildren.meta.title }}
-          </a-menu-item>
-        </a-sub-menu>
-      </a-menu>
+      <a-menu mode="inline" theme="dark" :items="userStore.userMenuList" @click="handleToRouter" />
     </a-layout-sider>
     <a-layout>
       <a-layout-header />
       <a-layout-content>
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
-          <Transition name="slide">
-            <router-view />
-          </Transition>
+          <router-view v-slot="{ Component }">
+            <transition name="slide">
+              <component :is="Component" />
+            </transition>
+          </router-view>
         </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
-        Ant Design ©2018 Created by Ant UED
+        Ant Design ©2023 Created by 洋洋得意
       </a-layout-footer>
     </a-layout>
   </a-layout>
@@ -50,12 +51,10 @@ defineOptions({
 }
 
 .slide-enter-to {
-  opacity: 0;
   transform: translateX(20px);
 }
 
 .slide-leave-to {
-  opacity: 1;
   transform: translateX(0);
 }
 </style>

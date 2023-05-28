@@ -8,9 +8,9 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "devDependencies": {
-    "@types/node": "^18.16.13",
+    "@types/node": "^18.16.15",
     "@vueuse/core": "^9.13.0",
-    "ant-design-vue": "4.0.0-beta.4",
+    "ant-design-vue": "4.0.0-rc.4",
     "axios": "^1.4.0",
     "typescript": "^5.0.4",
     "vue": "^3.3.4",

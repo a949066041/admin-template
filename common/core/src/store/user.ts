@@ -1,6 +1,6 @@
 import { ref } from 'vue-demi'
 import { defineStore } from 'pinia'
-import { setToken } from '../utils/token'
+import { clearToken, setToken } from '../utils/token'
 import { buildMenu, info, login } from '../api/login'
 import type { LoginForm, MenuList, UserInfo } from '../api/login.type'
 
@@ -29,7 +29,10 @@ export const useUserStore = defineStore('core-user', () => {
   }
 
   async function logout() {
-    userInfo.value = null
+    logout().then(() => {
+      userInfo.value = null
+      clearToken()
+    })
   }
 
   return {

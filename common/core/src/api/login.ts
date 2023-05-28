@@ -5,6 +5,10 @@ export function login(form: LoginForm) {
   return getRequest()!.setPath('/auth/login').post<Login>(form)
 }
 
+export function logout() {
+  return getRequest()!.setPath('/auth/logout').del()
+}
+
 export function code() {
   return getRequest()!.setPath('/auth/code').get<AuthCode>()
 }

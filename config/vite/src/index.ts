@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 export default (isMobile = false) => defineConfig({
   server: {
@@ -18,6 +19,7 @@ export default (isMobile = false) => defineConfig({
   },
   plugins: [
     vue(),
+    VueDevTools(),
     vueJsx(),
     UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
     AutoImport({

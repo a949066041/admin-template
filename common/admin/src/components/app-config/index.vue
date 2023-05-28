@@ -24,5 +24,6 @@ defineOptions({
     <a-watermark content="@yy-admin">
       <slot />
     </a-watermark>
+    <a-float-button />
   </a-config-provider>
 </template>

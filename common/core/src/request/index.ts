@@ -3,6 +3,7 @@ import request, { fileInterceptorsResponseConfig, getStore, setStore } from '@yy
 import type { InternalAxiosRequestConfig } from 'axios'
 import { message } from 'ant-design-vue'
 import axios from 'axios'
+import { useUserStore } from '../store'
 import { getToken } from '../utils/token'
 
 const service = axios.create({
@@ -25,9 +26,10 @@ service.interceptors.response.use((response: any) => {
   return response.data
 }, (error) => {
   if (error.response) {
+    const user = useUserStore()
     switch (error.response.status) {
       case 401:
-        // 提示用户登录
+        user.logout()
         break
       default: {
         const errorMsg = error.response.data.message
