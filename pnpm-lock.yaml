@@ -23,6 +23,12 @@ importers:
         specifier: ^0.50.8
         version: 0.50.8(postcss@8.4.23)(vite@4.3.9)
 
+  apis:
+    dependencies:
+      '@yy-web/request':
+        specifier: ^1.4.3
+        version: 1.4.3
+
   common/admin:
     dependencies:
       dayjs:
@@ -281,6 +287,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.2.0
         version: 10.2.0(vue@3.3.4)
+      '@yy-admin/apis':
+        specifier: workspace:^
+        version: link:../../apis
       '@yy-admin/base-components':
         specifier: workspace:^
         version: link:../../common/base-components

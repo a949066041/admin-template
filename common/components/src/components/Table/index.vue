@@ -39,10 +39,11 @@ defineOptions({
       />
       <a-pagination
         v-model:current="current"
-        v-model:pageSize="limit"
+        v-model:page-size="limit"
         class="text-right mt-2"
         show-size-changer
         :total="total"
+        :show-total="(total: number) => `总条数 ${total}`"
       />
     </div>
   </div>

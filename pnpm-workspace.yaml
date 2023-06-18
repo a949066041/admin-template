@@ -1,4 +1,5 @@
 packages:
+  - 'apis'
   - 'common/**'
   - 'projects/**'
   - 'config/**'

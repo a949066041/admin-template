@@ -9,5 +9,8 @@
     "encryptor",
     "pinia",
     "unocss"
-  ]
+  ],
+  "explorer.fileNesting.patterns": {
+    "*.api.ts":"${capture}.type.ts"
+},
 }
