@@ -1,4 +1,4 @@
-import { ApiInstance } from '..'
+import { ApiInstance } from '../instance'
 
 class UserApiInstance extends ApiInstance {
 

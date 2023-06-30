@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useToggle } from '@vueuse/core'
-import type { LoginForm } from '@yy-admin/common-core'
-import { code, useUserStore } from '@yy-admin/common-core'
+import type { LoginForm } from '@yy-admin/apis'
+import { AuthApi } from '@yy-admin/apis'
+import { useUserStore } from '@yy-admin/common-core'
 import { Form } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
 import { encrypt } from '@yy-admin/common-utils'
@@ -29,7 +30,7 @@ const loginRules = ref<{ [P in keyof Partial<LoginForm>]: Rule[] }>({
 const codeImg = ref('')
 
 function handleRefreshImg() {
-  code().then(({ img, uuid }) => {
+  AuthApi.code().then(({ img, uuid }) => {
     codeImg.value = img
     loginForm.value.uuid = uuid
   })

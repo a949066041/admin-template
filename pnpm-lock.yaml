@@ -41,6 +41,9 @@ importers:
       '@vueuse/shared':
         specifier: ^10.2.1
         version: 10.2.1(vue@3.3.4)
+      '@yy-admin/apis':
+        specifier: workspace:^
+        version: link:../../apis
       '@yy-admin/common-core':
         specifier: workspace:^
         version: link:../core
@@ -107,6 +110,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.2.1
         version: 10.2.1(vue@3.3.4)
+      '@yy-admin/apis':
+        specifier: workspace:^
+        version: link:../../apis
       '@yy-web/request':
         specifier: ^1.4.3
         version: 1.4.3
@@ -140,6 +146,9 @@ importers:
       jsencrypt:
         specifier: ^3.3.2
         version: 3.3.2
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
     devDependencies:
       typescript:
         specifier: ^5.1.6
@@ -4913,6 +4922,12 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
+  /rxjs@7.8.1:
+    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
+    dependencies:
+      tslib: 2.5.2
+    dev: false
+
   /safe-regex-test@1.0.0:
     resolution: {integrity: sha512-JBUUzyOgEwXQY1NuPtvcj/qcBDbDmEvWufhlnXZIm75DEHp+afM1r1ujJpJsV/gSM4t59tpDyPi1sd6ZaPFfsA==}
     dependencies:
@@ -5215,7 +5230,6 @@ packages:
 
   /tslib@2.5.2:
     resolution: {integrity: sha512-5svOrSA2w3iGFDs1HibEVBGbDrAY82bFQ3HZ3ixB+88nsbsWQoKqDRb5UBYAUPEzbBn6dAp5gRNXglySbx1MlA==}
-    dev: true
 
   /tsutils@3.21.0(typescript@5.1.6):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
