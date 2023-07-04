@@ -28,7 +28,7 @@ defineOptions({
   <a-config-provider :locale="zhCN" :theme="{ algorithm: theme.compactAlgorithm }">
     <template #renderEmpty>
       <div style="text-align: center">
-        <p>Data Not Found</p>
+        <p>暂无数据哦～</p>
       </div>
     </template>
     <a-watermark content="@yy-admin">

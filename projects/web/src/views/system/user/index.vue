@@ -26,7 +26,10 @@ defineOptions({
 
 <template>
   <h1 text-200px>
-    <YyTable v-model:current="current" v-model:limit="limit" :total="total" :loading="loading" :columns="columns" :data-source="dataSource">
+    <YyTable
+      v-model:current="current" v-model:limit="limit" :total="total"
+      :loading="loading" :columns="columns" :data-source="dataSource"
+    >
       <template #search>
         <yy-search :model="searchForm" @search="searchTable" @reset="resetTable">
           <a-form-item>

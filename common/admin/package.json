@@ -17,6 +17,6 @@
     "vue-router": "^4.2.2"
   },
   "dependencies": {
-    "dayjs": "^1.11.8"
+    "dayjs": "^1.11.9"
   }
 }
