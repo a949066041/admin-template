@@ -14,7 +14,7 @@
     "@yy-admin/common-utils": "workspace:^",
     "ant-design-vue": "4.0.0-rc.4",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.2"
+    "vue-router": "^4.2.4"
   },
   "dependencies": {
     "dayjs": "^1.11.9"
