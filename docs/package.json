@@ -15,7 +15,7 @@
     "@ruabick/md-demo-plugins": "^0.3.3",
     "@ruabick/vitepress-demo-block": "^0.3.3",
     "@yy-admin/common-components": "workspace:^",
-    "ant-design-vue": "4.0.0-rc.3",
+    "ant-design-vue": "4.0.0-rc.6",
     "vite": "^4.4.2",
     "vitepress": "1.0.0-alpha.75",
     "vue": "^3.3.4"
