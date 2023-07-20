@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { useVModels } from '@vueuse/core'
+import { computed } from 'vue'
+import { type YyTableColumns } from '../../utils/table'
 
 interface IYyTable {
-  columns: any[]
+  columns: YyTableColumns<string>[]
   dataSource: any[]
   loading: boolean
   current?: number
@@ -19,6 +21,9 @@ const emit = defineEmits<{
   'update:current': [current: number]
   'update:limit': [limit: number]
 }>()
+
+const renderSlotsKeys = computed(() => props.columns.filter(item => item.slots).map(item => item.dataIndex))
+
 const { limit, current } = useVModels(props, emit)
 
 defineOptions({
@@ -36,7 +41,13 @@ defineOptions({
         :columns="columns"
         :data-source="dataSource"
         :pagination="false"
-      />
+      >
+        <template #bodyCell="{ column, record, index, text }">
+          <template v-if="renderSlotsKeys.includes(column.key)">
+            <slot v-bind="{ column, record, index, text }" :name="column.key" />
+          </template>
+        </template>
+      </a-table>
       <a-pagination
         v-model:current="current"
         v-model:page-size="limit"

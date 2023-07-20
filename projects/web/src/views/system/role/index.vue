@@ -1,21 +1,24 @@
 <script setup lang="ts">
-import type { IRole } from '@yy-admin/apis'
+import { type IRole, RoleApi } from '@yy-admin/apis'
 import { useTable } from '@yy-web/business-use'
+import type { YyTableColumns } from '@yy-admin/common-components'
+import { createColumns as cT } from '@yy-admin/common-components'
 import { computed } from 'vue'
 
 const {
   searchForm, dataSource, total,
   current, loading, limit, resetTable, searchTable,
-} = useTable<{ blurry: string; a: string }>({
-  api: '/api/roles',
+} = useTable<{ blurry: string }>({
+  api: RoleApi.pageApi,
 })
 
-const columns = computed<{ title: string; dataIndex: keyof IRole }[]>(() => [
-  { title: '名称', dataIndex: 'name' },
-  { title: '数据权限', dataIndex: 'dataScope' },
-  { title: '角色级别', dataIndex: 'level' },
-  { title: '描述', dataIndex: 'description' },
-  { title: '创建日期', dataIndex: 'createTime' },
+const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
+  cT('name', '名称'),
+  cT('dataScope', '数据权限'),
+  cT('level', '角色级别'),
+  cT('description', '描述'),
+  cT('createTime', '创建日期'),
+  cT('action', '操作', true),
 ])
 
 defineOptions({
@@ -24,15 +27,22 @@ defineOptions({
 </script>
 
 <template>
-  <h1 text-200px>
-    <YyTable v-model:current="current" v-model:limit="limit" :total="total" :loading="loading" :columns="columns" :data-source="dataSource">
-      <template #search>
-        <yy-search :model="searchForm" @search="searchTable" @reset="resetTable">
-          <a-form-item>
-            <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-          </a-form-item>
-        </yy-search>
-      </template>
-    </YyTable>
-  </h1>
+  <YyTable
+    v-model:current="current"
+    v-model:limit="limit"
+    :total="total" :loading="loading"
+    :columns="columns" :data-source="dataSource"
+  >
+    <template #search>
+      <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
+        <a-form-item>
+          <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+        </a-form-item>
+      </yy-search>
+    </template>
+
+    <template #action>
+      <a-button>修改</a-button>
+    </template>
+  </YyTable>
 </template>

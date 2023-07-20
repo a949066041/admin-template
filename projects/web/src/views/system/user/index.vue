@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { useTable } from '@yy-web/business-use'
+import { useToggle } from '@vueuse/core'
+import { UserApi } from '@yy-admin/apis'
+import EditUser from './components/edit-user.vue'
 
 const {
   searchForm, dataSource, total,
   current, loading, limit, resetTable, searchTable,
 } = useTable<{ blurry: string; a: string }>({
-  api: '/api/users',
+  api: UserApi.pageApi,
 })
+
+const [open, toggleOpen] = useToggle()
 
 const columns = [
   { title: '用户名', dataIndex: 'username' },
@@ -25,18 +30,20 @@ defineOptions({
 </script>
 
 <template>
-  <h1 text-200px>
-    <YyTable
-      v-model:current="current" v-model:limit="limit" :total="total"
-      :loading="loading" :columns="columns" :data-source="dataSource"
-    >
-      <template #search>
-        <yy-search :model="searchForm" @search="searchTable" @reset="resetTable">
-          <a-form-item>
-            <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-          </a-form-item>
-        </yy-search>
-      </template>
-    </YyTable>
-  </h1>
+  <a-button @click="() => toggleOpen()">
+    open
+  </a-button>
+  <YyTable
+    v-model:current="current" v-model:limit="limit" :total="total"
+    :loading="loading" :columns="columns" :data-source="dataSource"
+  >
+    <template #search>
+      <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
+        <a-form-item>
+          <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+        </a-form-item>
+      </yy-search>
+    </template>
+  </YyTable>
+  <EditUser v-model:open="open" />
 </template>
