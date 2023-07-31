@@ -2,6 +2,7 @@
 import { useVModels } from '@vueuse/core'
 import { computed } from 'vue'
 import { type YyTableColumns } from '../../utils/table'
+import S2Table from './s2/index.vue'
 
 interface IYyTable {
   columns: YyTableColumns<string>[]
@@ -10,11 +11,13 @@ interface IYyTable {
   current?: number
   limit?: number
   total?: number
+  s2?: boolean
 }
 
 const props = withDefaults(defineProps<IYyTable>(), {
   page: 1,
   limit: 10,
+  s2: false,
 })
 
 const emit = defineEmits<{
@@ -34,8 +37,11 @@ defineOptions({
 <template>
   <div class="yy-table">
     <slot name="search" />
-    <div class="px-2 py-4 mt-2 bg-white">
+    <slot name="tools" />
+    <div class="px-2 py-4 mt-2 bg-white dark:bg-[#001529]">
+      <S2Table v-if="s2" class="w-full" :columns="columns" :data-source="dataSource" />
       <a-table
+        v-else
         bordered
         :loading="loading"
         :columns="columns"

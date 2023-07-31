@@ -7,7 +7,7 @@ defineOptions({
 </script>
 
 <template>
-  <a-form v-bind="$attrs" class="px-2 pt-4 bg-white rounded" layout="inline">
+  <a-form v-bind="$attrs" class="px-2 pt-4 bg-white rounded dark:bg-[#001529]" layout="inline">
     <slot />
     <a-form-item>
       <a-space>

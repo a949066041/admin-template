@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useTitle } from '@vueuse/core'
+import { useDark, useTitle } from '@vueuse/core'
 import { theme } from 'ant-design-vue'
 import { computed } from 'vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
@@ -11,8 +11,10 @@ const props = defineProps<{ title?: string }>()
 const globalState = useGlobalState()
 
 const algorithm = computed(() => globalState.value.theme === 'light' ? theme.defaultAlgorithm : theme.darkAlgorithm)
+const dark = useDark()
 
 function toggleTheme() {
+  dark.value = globalState.value.theme !== 'dark'
   globalState.value.theme = globalState.value.theme === 'dark' ? 'light' : 'dark'
 }
 useTitle(props.title)
@@ -25,7 +27,7 @@ defineOptions({
 </script>
 
 <template>
-  <a-config-provider :locale="zhCN" :theme="{ algorithm: theme.compactAlgorithm }">
+  <a-config-provider :locale="zhCN" :theme="{ algorithm }">
     <template #renderEmpty>
       <div style="text-align: center">
         <p>暂无数据哦～</p>
@@ -39,7 +41,7 @@ defineOptions({
         Hi
       </template>
       <a-button @click="toggleTheme">
-        dark
+        {{ globalState.theme === 'dark' ? 'light' : 'dark' }}
       </a-button>
     </a-float-button-group>
   </a-config-provider>

@@ -1,15 +1,31 @@
 <script setup lang="ts">
 import { type IRole, RoleApi } from '@yy-admin/apis'
 import { useTable } from '@yy-web/business-use'
-import type { YyTableColumns } from '@yy-admin/common-components'
-import { createColumns as cT } from '@yy-admin/common-components'
+import { type YyTableColumns, createColumns as cT } from '@yy-admin/common-components'
 import { computed } from 'vue'
+import { useCurdForm } from './useCurdForm'
 
 const {
-  searchForm, dataSource, total,
+  searchForm, dataSource, total, delDataRow,
   current, loading, limit, resetTable, searchTable,
 } = useTable<{ blurry: string }>({
-  api: RoleApi.pageApi,
+  api: RoleApi.baseApi,
+  delApi: RoleApi.baseApi,
+})
+
+const {
+  modelRef, visible, modalTitle, handleOpenDialog,
+  validateInfos, saveLoading, handleSaveForm,
+} = useCurdForm<IRole>({
+  baseApi: RoleApi.baseApi,
+  formRule: {
+    name: [
+      { required: true, message: '请输入角色名称', trigger: 'blur' },
+    ],
+  },
+  afterSave() {
+    searchTable()
+  },
 })
 
 const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
@@ -41,8 +57,36 @@ defineOptions({
       </yy-search>
     </template>
 
-    <template #action>
-      <a-button>修改</a-button>
+    <template #tools>
+      <a-button type="primary" @click="handleOpenDialog()">
+        新增
+      </a-button>
+    </template>
+
+    <template #action="{ record }">
+      <a-button type="link" @click="handleOpenDialog(record)">
+        修改
+      </a-button>
+      <a-button type="link" @click="delDataRow(record.id)">
+        删除
+      </a-button>
     </template>
   </YyTable>
+
+  <a-modal v-model:open="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
+    <a-form>
+      <a-form-item v-bind="validateInfos.name" label="角色名称">
+        <a-input v-model:value="modelRef.name" placeholder="请输入角色名称" />
+      </a-form-item>
+      <a-form-item v-bind="validateInfos.level" label="角色级别">
+        <a-input-number v-model:value="modelRef.level" placeholder="请输入角色级别" />
+      </a-form-item>
+      <a-form-item v-bind="validateInfos.dataScope" label="数据范围">
+        <a-input v-model:value="modelRef.dataScope" placeholder="请输入角色" />
+      </a-form-item>
+      <a-form-item v-bind="validateInfos.description" label="描述信息">
+        <a-textarea v-model:value="modelRef.description" placeholder="请输入描述信息" />
+      </a-form-item>
+    </a-form>
+  </a-modal>
 </template>
