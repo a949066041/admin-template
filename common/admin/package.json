@@ -7,8 +7,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@vueuse/core": "^10.2.1",
-    "@vueuse/shared": "^10.2.1",
+    "@vueuse/core": "^10.3.0",
+    "@vueuse/shared": "^10.3.0",
     "@yy-admin/apis": "workspace:^",
     "@yy-admin/common-core": "workspace:^",
     "@yy-admin/common-utils": "workspace:^",

@@ -1,6 +1,11 @@
-import type { IRequest } from '@yy-web/request'
 import { getRequest } from '@yy-web/request'
 
-export abstract class ApiInstance {
-  public $request = getRequest as () => IRequest
+export abstract class ApiInstance<T extends object = object> {
+  get $request() {
+    return getRequest()!
+  }
+
+  public save(data: T) {
+    return this.$request.setPath('xxx')
+  }
 }

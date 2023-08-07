@@ -1,17 +1,15 @@
-import { type MaybeRefOrGetter, toValue, useToggle } from '@vueuse/core'
+import { type MaybeRefOrGetter, useToggle } from '@vueuse/core'
 import { computed, ref } from 'vue'
 import { Form, message } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
-import { getRequest as useRequest } from '@yy-web/request'
 
 const useForm = Form.useForm
 export interface IUseCurdFormOptions<T extends object, EditId extends string = 'id'> {
   tableId?: string
   formRule?: MaybeRefOrGetter<Partial<Record<keyof T, Rule | Rule[]>>>
-  baseApi: MaybeRefOrGetter<string>
-  saveUrl?: MaybeRefOrGetter<string>
-  putUrl?: MaybeRefOrGetter<string>
-  afterSave?: (model?: Partial<AppendToObject<T, EditId, string>>) => void
+  saveAction: (data: T) => Promise<void>
+  putAction?: (data: IFormEntity<T, EditId>) => Promise<void>
+  afterSave?: (model?: IFormEntity<T, EditId>) => void
 }
 
 type basicKeyType = string | number | symbol
@@ -19,17 +17,17 @@ type AppendToObject<T, K extends basicKeyType, V> = {
   [P in keyof T | K]: P extends keyof T ? T[P] : V
 }
 
+type IFormEntity<T, EditId extends string> = Partial<AppendToObject<T, EditId, string>>
+
 export function useCurdForm<T extends object, EditId extends string = 'id'>(options: IUseCurdFormOptions<T>) {
   const {
     tableId,
     formRule,
-    baseApi,
-    saveUrl,
-    putUrl,
+    saveAction,
+    putAction,
     afterSave,
   } = Object.assign(options, { tableId: 'id', formRule: {} })
-  const request = useRequest()!
-  const modelRef = ref<Partial<AppendToObject<T, EditId, string>>>({})
+  const modelRef = ref<IFormEntity<T, EditId>>({})
   const [visible, toggleVisible] = useToggle()
   const [saveLoading, toggleSaveLoading] = useToggle()
   const editId = ref<IUseCurdFormOptions<T>['tableId']>('')
@@ -38,7 +36,7 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
 
   const { resetFields, validate, validateInfos } = useForm(modelRef, formRule, {})
 
-  function handleOpenDialog(row: Partial<AppendToObject<T, EditId, string>> = {}) {
+  function handleOpenDialog(row: IFormEntity<T, EditId> = {}) {
     toggleSaveLoading(false)
     resetFields()
     editId.value = (row[tableId as EditId] || '') as string
@@ -49,8 +47,8 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
   function handleSaveForm() {
     validate().then(() => {
       toggleSaveLoading(true)
-      request
-        .setPath(toValue((isAdd.value ? saveUrl : putUrl) || baseApi))[isAdd.value ? 'post' : 'put'](modelRef.value!)
+      const requestSave = isAdd.value ? saveAction : (saveAction || putAction)
+      requestSave(modelRef.value!)
         .then(() => {
           message.success('操作成功')
           toggleVisible(false)

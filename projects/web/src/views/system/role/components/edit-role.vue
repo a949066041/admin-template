@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { useVModel } from '@vueuse/core'
 
-const props = defineProps<{ open: boolean }>()
-
-const visible = useVModel(props, 'open')
-
 defineOptions({
   name: 'EditRole',
 })
+
+const props = defineProps<{ open: boolean }>()
+
+const visible = useVModel(props, 'open')
 </script>
 
 <template>

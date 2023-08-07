@@ -12,11 +12,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@vueuse/core": "^10.2.1",
+    "@vueuse/core": "^10.3.0",
     "@yy-admin/common-core": "workspace:^",
     "typescript": "^5.1.6",
     "vue": "^3.3.4",
-    "vue-demi": "^0.13.11"
+    "vue-demi": "^0.14.5"
   },
   "dependencies": {
     "vue-virtual-scroller": "2.0.0-beta.8"

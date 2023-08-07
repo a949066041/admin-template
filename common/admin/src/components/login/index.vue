@@ -9,6 +9,9 @@ import type { Rule } from 'ant-design-vue/es/form'
 import { encrypt } from '@yy-admin/common-utils'
 import { useRouter } from 'vue-router'
 
+defineOptions({
+  name: 'Login',
+})
 const router = useRouter()
 const loginForm = ref<LoginForm>({
   username: '',
@@ -54,10 +57,6 @@ function handleLoadingAction() {
     }
   })
 }
-
-defineOptions({
-  name: 'Login',
-})
 </script>
 
 <template>

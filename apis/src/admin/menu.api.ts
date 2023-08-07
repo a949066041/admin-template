@@ -3,7 +3,7 @@ import type { MenuList } from './menu.type'
 
 class MenuApiInstance extends ApiInstance {
   public buildMenu() {
-    return this.$request().setPath('/api/menus/build').get<MenuList[]>()
+    return this.$request.setPath('/api/menus/build').get<MenuList[]>()
   }
 }
 

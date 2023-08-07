@@ -12,14 +12,14 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^18.17.1",
-    "@unocss/transformer-directives": "^0.50.8",
+    "@types/node": "^18.17.3",
+    "@unocss/transformer-directives": "^0.54.2",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "typescript": "^5.1.6",
-    "unocss": "^0.50.8",
-    "unplugin-vue-components": "^0.24.1",
-    "vite": "^4.4.7",
-    "vite-plugin-vue-devtools": "^0.0.22"
+    "unocss": "^0.54.1",
+    "unplugin-vue-components": "^0.25.1",
+    "vite": "^4.4.9",
+    "vite-plugin-vue-devtools": "^0.5.1"
   }
 }

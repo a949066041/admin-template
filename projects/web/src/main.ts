@@ -15,7 +15,6 @@ import 'uno.css'
 import 'virtual:unocss-devtools'
 
 const app = createApp(App)
-
 setRequest(requestInstance)
 
 app.use(YyUI)

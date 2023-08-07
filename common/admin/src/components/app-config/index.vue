@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useDark, useTitle } from '@vueuse/core'
+import { useTitle } from '@vueuse/core'
 import { theme } from 'ant-design-vue'
 import { computed } from 'vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
@@ -7,23 +7,17 @@ import dayjs from 'dayjs'
 import { useGlobalState } from '../../store/useGlobal'
 import 'dayjs/locale/zh-cn'
 
-const props = defineProps<{ title?: string }>()
-const globalState = useGlobalState()
-
-const algorithm = computed(() => globalState.value.theme === 'light' ? theme.defaultAlgorithm : theme.darkAlgorithm)
-const dark = useDark()
-
-function toggleTheme() {
-  dark.value = globalState.value.theme !== 'dark'
-  globalState.value.theme = globalState.value.theme === 'dark' ? 'light' : 'dark'
-}
-useTitle(props.title)
-
-dayjs.locale('zh-cn')
-
 defineOptions({
   name: 'AppConfig',
 })
+const props = defineProps<{ title?: string }>()
+const { globStore, toggleTheme } = useGlobalState()
+
+const algorithm = computed(() => globStore.value.theme === 'light' ? theme.defaultAlgorithm : theme.darkAlgorithm)
+
+useTitle(props.title)
+
+dayjs.locale('zh-cn')
 </script>
 
 <template>
@@ -41,7 +35,7 @@ defineOptions({
         Hi
       </template>
       <a-button @click="toggleTheme">
-        {{ globalState.theme === 'dark' ? 'light' : 'dark' }}
+        {{ globStore.theme === 'dark' ? 'light' : 'dark' }}
       </a-button>
     </a-float-button-group>
   </a-config-provider>

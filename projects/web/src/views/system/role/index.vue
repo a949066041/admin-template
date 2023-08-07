@@ -5,6 +5,10 @@ import { type YyTableColumns, createColumns as cT } from '@yy-admin/common-compo
 import { computed } from 'vue'
 import { useCurdForm } from './useCurdForm'
 
+defineOptions({
+  name: 'SystemRole',
+})
+
 const {
   searchForm, dataSource, total, delDataRow,
   current, loading, limit, resetTable, searchTable,
@@ -17,11 +21,16 @@ const {
   modelRef, visible, modalTitle, handleOpenDialog,
   validateInfos, saveLoading, handleSaveForm,
 } = useCurdForm<IRole>({
-  baseApi: RoleApi.baseApi,
   formRule: {
     name: [
       { required: true, message: '请输入角色名称', trigger: 'blur' },
     ],
+  },
+  saveAction(data) {
+    return RoleApi.saveRole(data)
+  },
+  putAction(data) {
+    return RoleApi.putRole(data)
   },
   afterSave() {
     searchTable()
@@ -36,10 +45,6 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
   cT('createTime', '创建日期'),
   cT('action', '操作', true),
 ])
-
-defineOptions({
-  name: 'SystemRole',
-})
 </script>
 
 <template>
