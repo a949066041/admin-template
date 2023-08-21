@@ -16,7 +16,7 @@
     "@types/js-cookie": "^3.0.3",
     "@vueuse/core": "^10.3.0",
     "@yy-admin/apis": "workspace:^",
-    "@yy-web/request": "^1.5.3",
+    "@yy-web/request": "^1.5.4",
     "ant-design-vue": "4.0.0",
     "axios": "^1.4.0",
     "js-cookie": "^3.0.5",

@@ -27,10 +27,10 @@ const {
     ],
   },
   saveAction(data) {
-    return RoleApi.saveRole(data)
+    return RoleApi.save(data)
   },
   putAction(data) {
-    return RoleApi.putRole(data)
+    return RoleApi.put(data)
   },
   afterSave() {
     searchTable()
