@@ -10,6 +10,7 @@ export interface IUseCurdFormOptions<T extends object, EditId extends string = '
   saveAction: (data: IFormEntity<T, EditId>) => Promise<void>
   putAction?: (data: IFormEntity<T, EditId>) => Promise<void>
   afterSave?: (model?: IFormEntity<T, EditId>) => void
+  beforeSave?: (saveData?: Partial<IFormEntity<T, EditId>> & { [key: string]: any }) => { [key: string]: any }
 }
 
 type basicKeyType = string | number | symbol
@@ -26,7 +27,8 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
     saveAction,
     putAction,
     afterSave,
-  } = Object.assign(options, { tableId: 'id', formRule: {} })
+    beforeSave,
+  } = Object.assign(options, { tableId: 'id', formRule: {}, beforeSave: () => ({}) })
   const modelRef = ref<IFormEntity<T, EditId>>({})
   const [visible, toggleVisible] = useToggle()
   const [saveLoading, toggleSaveLoading] = useToggle()
@@ -48,7 +50,11 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
     validate().then(() => {
       toggleSaveLoading(true)
       const requestSave = isAdd.value ? saveAction : (putAction || saveAction)
-      requestSave(modelRef.value!)
+      const saveParams = {
+        tableId: editId.value || '',
+        ...modelRef.value as unknown as any
+      }
+      requestSave({ ...saveParams, ...beforeSave(saveParams) })
         .then(() => {
           message.success('操作成功')
           toggleVisible(false)
