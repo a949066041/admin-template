@@ -5,7 +5,7 @@ import type { Rule } from 'ant-design-vue/es/form'
 
 const useForm = Form.useForm
 export interface IUseCurdFormOptions<T extends object, EditId extends string = 'id'> {
-  tableId?: string
+  formKey?: string
   formRule?: MaybeRefOrGetter<Partial<Record<keyof T, Rule | Rule[]>>>
   saveAction: (data: IFormEntity<T, EditId>) => Promise<void>
   putAction?: (data: IFormEntity<T, EditId>) => Promise<void>
@@ -22,17 +22,17 @@ type IFormEntity<T, EditId extends string> = Partial<AppendToObject<T, EditId, s
 
 export function useCurdForm<T extends object, EditId extends string = 'id'>(options: IUseCurdFormOptions<T>) {
   const {
-    tableId,
+    formKey,
     formRule,
     saveAction,
     putAction,
     afterSave,
     beforeSave,
-  } = Object.assign(options, { tableId: 'id', formRule: {}, beforeSave: () => ({}) })
+  } = Object.assign(options, { formKey: 'id', formRule: {}, beforeSave: () => ({}) })
   const modelRef = ref<IFormEntity<T, EditId>>({})
   const [visible, toggleVisible] = useToggle()
   const [saveLoading, toggleSaveLoading] = useToggle()
-  const editId = ref<IUseCurdFormOptions<T>['tableId']>('')
+  const editId = ref<IUseCurdFormOptions<T>['formKey']>('')
   const isAdd = computed(() => !editId.value)
   const modalTitle = computed(() => isAdd.value ? '添加' : '编辑')
 
@@ -41,7 +41,7 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
   function handleOpenDialog(row: IFormEntity<T, EditId> = {}) {
     toggleSaveLoading(false)
     resetFields()
-    editId.value = (row[tableId as EditId] || '') as string
+    editId.value = (row[formKey as EditId] || '') as string
     modelRef.value = JSON.parse(JSON.stringify(row))
     toggleVisible(true)
   }
@@ -51,8 +51,8 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
       toggleSaveLoading(true)
       const requestSave = isAdd.value ? saveAction : (putAction || saveAction)
       const saveParams = {
-        tableId: editId.value || '',
-        ...modelRef.value as unknown as any
+        [formKey]: editId.value || '',
+        ...modelRef.value as unknown as any,
       }
       requestSave({ ...saveParams, ...beforeSave(saveParams) })
         .then(() => {

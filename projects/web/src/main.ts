@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import YyUI from '@yy-admin/common-components'
 import BaseUI from '@yy-admin/base-components'
-import Antd from 'ant-design-vue'
+import Antd, { App as AntdApp } from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
 import { Layout } from '@yy-admin/common-admin'
 import { setRequest } from '@yy-web/request'
@@ -28,6 +28,26 @@ confBusiness(app, {
     totalKey: 'totalElements',
     listKey: 'content',
     pageOffset: 1,
+  },
+  confirmTip(content: string, callback, cancelFn) {
+    const { modal } = AntdApp.useApp()
+    modal.confirm({
+      title: '提示',
+      content,
+      okText: '确定',
+      cancelText: '取消',
+      async onOk() {
+        try {
+          await callback()
+        }
+        catch (error) {
+          return Promise.reject(error)
+        }
+      },
+      onCancel() {
+        typeof cancelFn === 'function' && cancelFn()
+      },
+    })
   },
 })
 authRoute(router, ['/login'], {

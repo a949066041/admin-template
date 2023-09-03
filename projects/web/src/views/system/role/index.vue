@@ -13,8 +13,8 @@ const {
   searchForm, dataSource, total, delDataRow,
   current, loading, limit, resetTable, searchTable,
 } = useTable<{ blurry: string }>({
-  api: RoleApi.baseApi,
-  delApi: RoleApi.baseApi,
+  apiAction: RoleApi.page,
+  delAction: RoleApi.del,
 })
 
 const {

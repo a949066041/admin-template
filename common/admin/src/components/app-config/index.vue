@@ -22,21 +22,23 @@ dayjs.locale('zh-cn')
 
 <template>
   <a-config-provider :locale="zhCN" :theme="{ algorithm }">
+    <a-app :modal="{ centered: true }">
+      <a-watermark content="@yy-admin">
+        <slot />
+      </a-watermark>
+      <a-float-button-group trigger="click" type="primary" :style="{ right: '24px' }">
+        <template #icon>
+          Hi
+        </template>
+        <a-button @click="toggleTheme">
+          {{ globStore.theme === 'dark' ? 'light' : 'dark' }}
+        </a-button>
+      </a-float-button-group>
+    </a-app>
     <template #renderEmpty>
       <div style="text-align: center">
         <p>暂无数据哦～</p>
       </div>
     </template>
-    <a-watermark content="@yy-admin">
-      <slot />
-    </a-watermark>
-    <a-float-button-group trigger="click" type="primary" :style="{ right: '24px' }">
-      <template #icon>
-        Hi
-      </template>
-      <a-button @click="toggleTheme">
-        {{ globStore.theme === 'dark' ? 'light' : 'dark' }}
-      </a-button>
-    </a-float-button-group>
   </a-config-provider>
 </template>

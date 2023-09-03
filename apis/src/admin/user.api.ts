@@ -1,8 +1,7 @@
 import { ApiInstance } from '../instance'
 
-const baseApi = '/api/users'
 class UserApiInstance extends ApiInstance {
-  pageApi = baseApi
+  baseApi = '/api/users'
 }
 
 export const UserApi = new UserApiInstance()

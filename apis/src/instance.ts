@@ -12,11 +12,26 @@ export abstract class ApiInstance<T extends object = object, K extends string = 
     return getRequest()!
   }
 
+  constructor() {
+    this.page = this.page.bind(this)
+    this.save = this.save.bind(this)
+    this.put = this.put.bind(this)
+    this.del = this.del.bind(this)
+  }
+
+  public page(params: Record<string, any>) {
+    return this.$request.setPath(this.baseApi).get<void>(params)
+  }
+
   public save(data: Partial<AppendToObject<T, K, string>>) {
     return this.$request.setPath(this.baseApi).post<void>(data)
   }
 
   public put(data: Partial<AppendToObject<T, K, string>>) {
     return this.$request.setPath(this.baseApi).put<void>(data)
+  }
+
+  public del(id: string | number) {
+    return this.$request.setPath(this.baseApi).del<boolean>([id])
   }
 }

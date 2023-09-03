@@ -4,11 +4,15 @@ import { useToggle } from '@vueuse/core'
 import { UserApi } from '@yy-admin/apis'
 import EditUser from './components/edit-user.vue'
 
+defineOptions({
+  name: 'SystemUser',
+})
+
 const {
   searchForm, dataSource, total,
   current, loading, limit, resetTable, searchTable,
 } = useTable<{ blurry: string; a: string }>({
-  api: UserApi.pageApi,
+  apiAction: UserApi.page,
 })
 
 const [open, toggleOpen] = useToggle()
@@ -23,10 +27,6 @@ const columns = [
   { title: '状态', dataIndex: 'enabled' },
   { title: '创建日期', dataIndex: 'createTime' },
 ]
-
-defineOptions({
-  name: 'SystemUser',
-})
 </script>
 
 <template>

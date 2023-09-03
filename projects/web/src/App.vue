@@ -2,11 +2,11 @@
 import { AppConfig } from '@yy-admin/common-admin'
 import { testRxjs } from '@yy-admin/common-utils'
 
-testRxjs()
-
 defineOptions({
   name: 'App',
 })
+
+testRxjs()
 </script>
 
 <template>

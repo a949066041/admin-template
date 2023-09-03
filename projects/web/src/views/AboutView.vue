@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useTable } from '@yy-web/business-use'
+import { OnLineApi } from '@yy-admin/apis'
 
 const { searchForm, dataSource, total, current, loading, limit, resetTable, searchTable } = useTable<{ filter: string }>({
-  api: '/auth/online',
+  apiAction: OnLineApi.page,
 })
 
 const columns = [
