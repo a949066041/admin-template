@@ -14,6 +14,10 @@ interface IYyTable {
   s2?: boolean
 }
 
+defineOptions({
+  name: 'YyTable',
+})
+
 const props = withDefaults(defineProps<IYyTable>(), {
   page: 1,
   limit: 10,
@@ -28,10 +32,6 @@ const emit = defineEmits<{
 const renderSlotsKeys = computed(() => props.columns.filter(item => item.slots).map(item => item.dataIndex))
 
 const { limit, current } = useVModels(props, emit)
-
-defineOptions({
-  name: 'YyTable',
-})
 </script>
 
 <template>

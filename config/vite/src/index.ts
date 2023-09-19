@@ -11,7 +11,7 @@ export default (isMobile = false) => defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://el-admin.wangsh.cc',
+        target: 'http://110.41.161.81/',
         rewrite: path => path.replace(/^\/api\//, ''),
         changeOrigin: true,
       },

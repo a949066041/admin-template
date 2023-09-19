@@ -1,47 +1,16 @@
-<script setup lang="ts">
-import { useTable } from '@yy-web/business-use'
-import { OnLineApi } from '@yy-admin/apis'
+<script lang="ts" setup>
+import { example1 } from '@yy-admin/common-three'
+import { onMounted, ref } from 'vue'
 
-const { searchForm, dataSource, total, current, loading, limit, resetTable, searchTable } = useTable<{ filter: string }>({
-  apiAction: OnLineApi.page,
+defineOptions({
+  name: 'Home',
 })
-
-const columns = [
-  { title: '用户名', dataIndex: 'userName' },
-  { title: '用户昵称', dataIndex: 'nickName' },
-  { title: '部门', dataIndex: 'dept' },
-  { title: '登录IP', dataIndex: 'ip' },
-] as { title: string; dataIndex: string }[]
+const canvas = ref<HTMLCanvasElement | null>(null)
+onMounted(() => {
+  example1(canvas.value!)
+})
 </script>
 
 <template>
-  <yy-layout class="about">
-    <h1 text-200px>
-      <a-form layout="inline" :model="searchForm">
-        <a-form-item>
-          <a-input v-model:value="searchForm.filter" placeholder="请输入关键字查询" />
-        </a-form-item>
-        <a-form-item>
-          <a-button type="primary" :loading="loading" @click="searchTable">
-            查询
-          </a-button>
-          <a-button @click="resetTable">
-            重置
-          </a-button>
-        </a-form-item>
-      </a-form>
-      <a-table
-        :loading="loading"
-        :columns="columns"
-        :data-source="dataSource"
-        :pagination="false"
-      />
-      <a-pagination
-        v-model:current="current"
-        v-model:pageSize="limit"
-        show-size-changer
-        :total="total"
-      />
-    </h1>
-  </yy-layout>
+  <canvas ref="canvas" class="w-full h-[800px]" />
 </template>
