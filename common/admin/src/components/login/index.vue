@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useToggle } from '@vueuse/core'
+import { useAnimate, useToggle } from '@vueuse/core'
 import type { LoginForm } from '@yy-admin/apis'
 import { AuthApi } from '@yy-admin/apis'
 import { useUserStore } from '@yy-admin/common-core'
@@ -12,6 +12,14 @@ import { useRouter } from 'vue-router'
 defineOptions({
   name: 'Login',
 })
+
+const keyframes = ref([
+  { transform: 'translateX(-100%) scale(0.1)' },
+  { transform: 'translateX(0) scale(1)' },
+])
+
+const section = ref<HTMLElement | null>(null)
+useAnimate(section, keyframes, 800)
 const router = useRouter()
 const loginForm = ref<LoginForm>({
   username: '',
@@ -60,7 +68,7 @@ function handleLoadingAction() {
 </script>
 
 <template>
-  <div mx-auto mt20vh rounded-10 w-800px overflow-hidden py8 px10 bg-light-2 shadow-xl>
+  <div ref="section" mx-auto mt20vh rounded-10 w-800px overflow-hidden py8 px10 bg-light-2 shadow-xl>
     <section flex h-400px>
       <img src="./login.png" h-full>
       <a-form flex flex-col justify-evenly layout="vertical" :model="loginForm" ml5 flex-1 @submit="handleLoadingAction">
