@@ -63,5 +63,6 @@ const { limit, current } = useVModels(props, emit)
         :show-total="(total: number) => `总条数 ${total}`"
       />
     </div>
+    <slot />
   </div>
 </template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useAnimate } from '@vueuse/core'
+import { useRoute } from 'vue-router'
 import YyMenu from './components/menu/index.vue'
 import YyHeader from './components/header/index.vue'
 
@@ -9,6 +10,8 @@ defineOptions({
 })
 const menu = ref<HTMLElement | null>(null)
 const top = ref<HTMLElement | null>(null)
+const content = ref<HTMLElement | null>(null)
+const route = useRoute()
 
 useAnimate(top, [
   { transform: 'translateY(-100%)' },
@@ -21,6 +24,13 @@ useAnimate(menu, [
   { transform: 'translateX(10px)' },
   { transform: 'translateX(0)' },
 ], 800)
+
+const { play } = useAnimate(content, [
+  { opacity: '0.5' },
+  { opacity: '1' },
+], 800)
+
+watch(route, play, { immediate: true })
 </script>
 
 <template>
@@ -29,11 +39,9 @@ useAnimate(menu, [
     <a-layout class="flex flex-col h-screen">
       <YyHeader ref="top" />
       <a-layout-content class="flex-1 overflow-auto">
-        <div class=" overflow-hidden p4">
+        <div ref="content" class=" overflow-hidden p4">
           <router-view v-slot="{ Component }">
-            <transition name="slide">
-              <component :is="Component" />
-            </transition>
+            <component :is="Component" />
           </router-view>
         </div>
       </a-layout-content>

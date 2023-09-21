@@ -12,12 +12,12 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.42.1",
-    "@unocss/transformer-directives": "^0.55.7",
+    "@antfu/eslint-config": "^0.43.0",
+    "@unocss/transformer-directives": "^0.56.0",
     "eslint": "^8.49.0",
     "taze": "^0.11.2",
     "turbo": "^1.10.14",
     "typescript": "^5.2.2",
-    "unocss": "^0.55.7"
+    "unocss": "^0.56.0"
   }
 }

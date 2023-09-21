@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import YyUI from '@yy-admin/common-components'
 import BaseUI from '@yy-admin/base-components'
-import Antd, { App as AntdApp } from 'ant-design-vue'
+import Antd, { Modal } from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
 import { Layout } from '@yy-admin/common-admin'
 import { setRequest } from '@yy-web/request'
@@ -30,8 +30,7 @@ confBusiness(app, {
     pageOffset: 1,
   },
   confirmTip(content: string, callback, cancelFn) {
-    const { modal } = AntdApp.useApp()
-    modal.confirm({
+    Modal.confirm({
       title: '提示',
       content,
       okText: '确定',
