@@ -12,5 +12,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvas" class="w-full h-[800px]" />
+  <canvas ref="canvas" class="!w-full h-[800px] box-border" />
 </template>

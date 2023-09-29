@@ -11,6 +11,7 @@ export interface IUseCurdFormOptions<T extends object, EditId extends string = '
   putAction?: (data: IFormEntity<T, EditId>) => Promise<void>
   afterSave?: (model?: IFormEntity<T, EditId>) => void
   beforeSave?: (saveData?: Partial<IFormEntity<T, EditId>> & { [key: string]: any }) => { [key: string]: any }
+  afterDetail?: () => void
 }
 
 type basicKeyType = string | number | symbol
@@ -28,6 +29,7 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
     putAction,
     afterSave,
     beforeSave,
+    afterDetail,
   } = Object.assign(options, { formKey: 'id', formRule: {}, beforeSave: () => ({}) })
   const modelRef = ref<IFormEntity<T, EditId>>({})
   const [visible, toggleVisible] = useToggle()
@@ -43,6 +45,7 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
     resetFields()
     editId.value = (row[formKey as EditId] || '') as string
     modelRef.value = JSON.parse(JSON.stringify(row))
+    afterDetail && afterDetail()
     toggleVisible(true)
   }
 

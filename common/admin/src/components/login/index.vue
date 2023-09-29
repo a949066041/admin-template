@@ -22,8 +22,8 @@ const section = ref<HTMLElement | null>(null)
 useAnimate(section, keyframes, 800)
 const router = useRouter()
 const loginForm = ref<LoginForm>({
-  username: '',
-  password: '',
+  username: 'admin',
+  password: '123456',
   code: '',
   uuid: '',
 })
@@ -79,7 +79,7 @@ function handleLoadingAction() {
           <a-input v-model:value="loginForm.username" placeholder="请输入用户名" />
         </a-form-item>
         <a-form-item v-bind="validateInfos.password" label="密码">
-          <a-input v-model:value="loginForm.password" type="password" placeholder="请输入密码" />
+          <a-input-password v-model:value="loginForm.password" type="password" placeholder="请输入密码" />
         </a-form-item>
         <a-form-item v-bind="validateInfos.code" label="验证码">
           <a-row :gutter="10">

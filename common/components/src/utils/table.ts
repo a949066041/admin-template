@@ -1,16 +1,72 @@
 import type { TableColumnProps } from 'ant-design-vue'
 
-export function createColumns<T extends string | string[]>(
-  dataIndex: T | 'action',
+export interface IColumnType<T extends string | string[] = string> extends TableColumnProps {
+  dataIndex: T
+  width?: number | string
+  children?: IColumnType[]
+  renderSlot: boolean
+}
+
+function normalizeTableArgs(baseConfig: any, baseWidth: any) {
+  let width = baseWidth
+  let config = baseConfig
+  if (typeof baseConfig === 'number') {
+    width = config
+    config = {}
+  }
+  else if (typeof baseConfig === 'boolean') {
+    config = {}
+  }
+  return { width, config }
+}
+
+export function createColumn<T extends string | string[]>(
+  dataIndex: T,
+  title: string,
+  slots?: boolean
+): IColumnType<T>
+
+export function createColumn<T extends string | string[]>(
+  dataIndex: T,
+  title: string,
+  width: number,
+  slots?: boolean
+): IColumnType<T>
+
+export function createColumn<T extends string | string[]>(
+  dataIndex: T,
+  title: string,
+  config: TableColumnProps,
+  slots?: boolean
+): IColumnType<T>
+
+export function createColumn<T extends string | string[]>(
+  dataIndex: T,
+  title: string,
+  config: TableColumnProps,
+  width: number,
+  slots?: boolean
+): IColumnType<T>
+
+export function createColumn<T extends string | string[] = string>(
+  dataIndex: T,
   title: TableColumnProps['title'],
-  slots = false,
-) {
+  ...args: any[]
+): IColumnType<T> {
+  let [config = {}, width] = args
+  const column = {} as IColumnType<T>
+  const normalizeArg = normalizeTableArgs(config, width)
+  config = normalizeArg.config
+  width = normalizeArg.width
+
+  Object.assign(column, config || {})
   return {
-    key: dataIndex,
+    ...column,
+    key: `${dataIndex}`,
     dataIndex,
     title,
-    slots,
+    renderSlot: !!args.at(-1),
   }
 }
 
-export type YyTableColumns<T extends string | string[]> = ReturnType<typeof createColumns<T>>
+export type YyTableColumns<T extends string | string[]> = ReturnType<typeof createColumn<T | 'action' | string[]>>

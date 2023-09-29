@@ -10,4 +10,5 @@ export interface IDept extends IBaseEntity {
   name: string
   pid: number
   subCount: number
+  children: IDept[]
 }

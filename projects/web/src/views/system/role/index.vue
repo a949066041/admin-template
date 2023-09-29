@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type IRole, RoleApi } from '@yy-admin/apis'
 import { useTable } from '@yy-web/business-use'
-import { type YyTableColumns, createColumns as cT } from '@yy-admin/common-components'
+import { type YyTableColumns, createColumn as cT } from '@yy-admin/common-components'
 import { computed } from 'vue'
 import { useCurdForm } from './useCurdForm'
 

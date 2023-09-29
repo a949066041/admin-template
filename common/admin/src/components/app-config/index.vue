@@ -21,7 +21,14 @@ dayjs.locale('zh-cn')
 </script>
 
 <template>
-  <a-config-provider :locale="zhCN" :theme="{ algorithm }">
+  <a-config-provider
+    :locale="zhCN" :theme="{
+      algorithm,
+      token: {
+        colorPrimary: '#00b96b',
+      },
+    }"
+  >
     <a-app :modal="{ centered: true }">
       <a-watermark content="@yy-admin">
         <slot />

@@ -29,7 +29,7 @@ const emit = defineEmits<{
   'update:limit': [limit: number]
 }>()
 
-const renderSlotsKeys = computed(() => props.columns.filter(item => item.slots).map(item => item.dataIndex))
+const renderSlotsKeys = computed(() => props.columns.filter(item => item.renderSlot).map(item => item.dataIndex))
 
 const { limit, current } = useVModels(props, emit)
 </script>
@@ -47,6 +47,7 @@ const { limit, current } = useVModels(props, emit)
         :columns="columns"
         :data-source="dataSource"
         :pagination="false"
+        size="small"
       >
         <template #bodyCell="{ column, record, index, text }">
           <template v-if="renderSlotsKeys.includes(column.key)">
