@@ -30,7 +30,7 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
     afterSave,
     beforeSave,
     afterDetail,
-  } = Object.assign(options, { formKey: 'id', formRule: {}, beforeSave: () => ({}) })
+  } = Object.assign({ formKey: 'id', formRule: {}, beforeSave: () => ({}) }, options)
   const modelRef = ref<IFormEntity<T, EditId>>({})
   const [visible, toggleVisible] = useToggle()
   const [saveLoading, toggleSaveLoading] = useToggle()

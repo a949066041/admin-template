@@ -20,7 +20,7 @@ export abstract class ApiInstance<T extends object = object, K extends string = 
   }
 
   public page(params: Record<string, any>) {
-    return this.$request.setPath(this.baseApi).get<void>(params)
+    return this.$request.setPath(this.baseApi).get<{ totalElements: number; content: T[] }>(params)
   }
 
   public save(data: Partial<AppendToObject<T, K, string>>) {

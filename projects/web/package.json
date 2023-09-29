@@ -15,7 +15,7 @@
     "@yy-admin/common-three": "workspace:^",
     "@yy-admin/common-utils": "workspace:^",
     "@yy-admin/config-vite": "workspace:^",
-    "@yy-web/business-use": "^2.0.0",
+    "@yy-web/business-use": "^2.0.3",
     "@yy-web/request": "^1.5.5",
     "ant-design-vue": "4.0.3",
     "axios": "^1.5.1",

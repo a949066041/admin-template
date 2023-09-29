@@ -1,10 +1,8 @@
 import { ApiInstance } from '../instance'
-import type { IDept } from './dept.type'
+import type { IJob } from './job.type'
 
-class DeptApiInstance extends ApiInstance {
-  public getDeptTree(pid?: number) {
-    return this.$request.setPath('/api/dept').get<{ content: IDept[] }>({ pid }, true)
-  }
+class JobApiInstance extends ApiInstance<IJob> {
+  baseApi = '/api/job'
 }
 
-export const DeptApi = new DeptApiInstance()
+export const JobApi = new JobApiInstance()

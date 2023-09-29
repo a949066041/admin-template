@@ -4,3 +4,4 @@ export function add(num1: number, num2: number) {
 
 export * from './rsaEncrypt'
 export * from './rxUtils'
+export * from './validate'
