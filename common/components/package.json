@@ -8,7 +8,7 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "devDependencies": {
-    "@types/node": "^20.7.1",
+    "@types/node": "^20.8.2",
     "@vueuse/core": "^10.4.1",
     "ant-design-vue": "4.0.3",
     "axios": "^1.5.1",

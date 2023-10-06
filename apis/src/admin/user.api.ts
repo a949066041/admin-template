@@ -1,7 +1,7 @@
 import { ApiInstance } from '../instance'
-import type { IUser } from './user.type'
+import type { ISaveUserData, IWithPageUserData } from './user.type'
 
-class UserApiInstance extends ApiInstance<IUser> {
+class UserApiInstance extends ApiInstance<IWithPageUserData, 'id', ISaveUserData> {
   baseApi = '/api/users'
 }
 

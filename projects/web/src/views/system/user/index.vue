@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTable } from '@yy-web/business-use'
-import { DictDetailApi, type IDictDetail, type IJob, type IRole, type IUser, JobApi, RoleApi, UserApi } from '@yy-admin/apis'
+import { DictDetailApi, JobApi, RoleApi, UserApi } from '@yy-admin/apis'
+import type { IDictDetail, IJob, IRole, IUser, IWithPageUserData, Merge } from '@yy-admin/apis'
 import { computed, ref, watch } from 'vue'
 import { createColumn as cT } from '@yy-admin/common-components'
 import type { YyTableColumns } from '@yy-admin/common-components'
@@ -27,7 +28,7 @@ const { selectedDeps, handleGetDeptTree, deptTree, fieldNames, handleGetSuperior
 const {
   modelRef, visible, modalTitle, handleOpenDialog,
   validateInfos, saveLoading, handleSaveForm,
-} = useCurdForm<IUser>({
+} = useCurdForm<IWithPageUserData>({
   formRule: {
     username: [
       { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -41,15 +42,20 @@ const {
       { required: true, message: '请输入邮箱地址', trigger: 'blur' },
       { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' },
     ],
+    deptId: [{
+      required: true, message: '请输入', trigger: 'blur',
+    }],
     phone: [
       {
         required: true,
-        trigger: 'blur',
+        trigger: 'change',
         validator: (_rule: Rule, value) => {
           if (!value)
+            // eslint-disable-next-line prefer-promise-reject-errors
             return Promise.reject('请输入电话号码')
 
           else if (!isValidPhone(value))
+            // eslint-disable-next-line prefer-promise-reject-errors
             return Promise.reject('请输入正确的11位手机号码')
 
           else
@@ -59,18 +65,29 @@ const {
     ],
   },
   saveAction(data) {
-    return UserApi.save(data)
+    return UserApi.save({
+      ...data,
+      jobs: (data.jobs || []).map(item => ({ id: item })),
+      roles: (data.roles || []).map(item => ({ id: item })),
+      dept: { id: data.deptId! },
+    })
   },
-  afterDetail() {
+  afterDetail(rowData: IUser) {
     if (modelRef.value.deptId)
       handleGetSuperior(modelRef.value.deptId)
 
-    modelRef.value.jobs = modelRef.value.jobs?.map(item => item.id!) as any
-    modelRef.value.roles = modelRef.value.roles?.map(item => item.id!) as any
-    modelRef.value.enabled = `${modelRef.value.enabled}` as any
+    modelRef.value.jobs = (rowData.jobs || []).map(item => item.id)
+    modelRef.value.roles = (rowData.roles || []).map(item => item.id)
+    modelRef.value.enabled = `${modelRef.value.enabled}`
+    modelRef.value.deptId = undefined
   },
   putAction(data) {
-    return UserApi.put(data)
+    return UserApi.put({
+      ...data,
+      jobs: (data.jobs || []).map(item => ({ id: item })),
+      roles: (data.roles || []).map(item => ({ id: item })),
+      dept: { id: data.deptId! },
+    })
   },
   afterSave() {
     searchTable()
@@ -103,7 +120,7 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
   cT(['dept', 'name'], '部门'),
   cT('enabled', '状态', true),
   cT('createTime', '创建日期'),
-  cT('action', '操作', true),
+  cT('action', '操作', { fixed: 'right' }, true),
 ])
 </script>
 
@@ -130,8 +147,14 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
           </yy-search>
         </template>
 
-        <template #enabled="{ value }">
-          <a-switch />
+        <template #tools>
+          <a-button type="primary" @click="handleOpenDialog()">
+            新增
+          </a-button>
+        </template>
+
+        <template #enabled="{ text }">
+          <a-switch :checked="`${text}`" un-checked-value="false" checked-value="true" />
         </template>
 
         <template #action="{ record }">
@@ -146,7 +169,7 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
             <a-input v-model:value="modelRef.username" placeholder="请输入用户名" />
           </a-form-item>
           <a-form-item v-bind="validateInfos.phone" label="电话">
-            <a-input v-model:value="modelRef.phone" placeholder="请输入电话" />
+            <a-input v-model:value="modelRef.phone" type="number" placeholder="请输入电话" />
           </a-form-item>
           <a-form-item v-bind="validateInfos.nickName" label="昵称">
             <a-input v-model:value="modelRef.nickName" placeholder="请输入昵称" />
@@ -154,7 +177,7 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
           <a-form-item v-bind="validateInfos.email" label="邮箱">
             <a-input v-model:value="modelRef.email" placeholder="请输入邮箱" />
           </a-form-item>
-          <a-form-item v-bind="validateInfos.dept" label="部门">
+          <a-form-item v-bind="validateInfos.deptId" label="部门">
             <a-tree-select
               v-model:value="modelRef.deptId"
               :tree-data="deptAllTree"

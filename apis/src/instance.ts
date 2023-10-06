@@ -1,12 +1,7 @@
 import { getRequest } from '@yy-web/request'
+import type { AppendToObject, Merge } from './utils/index'
 
-type basicKeyType = string | number | symbol
-
-type AppendToObject<T, K extends basicKeyType, V> = {
-  [P in keyof T | K]: P extends keyof T ? T[P] : V
-}
-
-export abstract class ApiInstance<T extends object = object, K extends string = 'id'> {
+export abstract class ApiInstance<T extends object = object, K extends string = 'id', U extends object = object> {
   baseApi = ''
   get $request() {
     return getRequest()!
@@ -23,11 +18,11 @@ export abstract class ApiInstance<T extends object = object, K extends string = 
     return this.$request.setPath(this.baseApi).get<{ totalElements: number; content: T[] }>(params)
   }
 
-  public save(data: Partial<AppendToObject<T, K, string>>) {
+  public save(data: Partial<Merge<AppendToObject<T, K, string>, U>>) {
     return this.$request.setPath(this.baseApi).post<void>(data)
   }
 
-  public put(data: Partial<AppendToObject<T, K, string>>) {
+  public put(data: Partial<Merge<AppendToObject<T, K, string>, U>>) {
     return this.$request.setPath(this.baseApi).put<void>(data)
   }
 

@@ -57,7 +57,7 @@ export function createColumn<T extends string | string[] = string>(
   const column = {} as IColumnType<T>
   const normalizeArg = normalizeTableArgs(config, width)
   config = normalizeArg.config
-  width = normalizeArg.width
+  width = normalizeArg.width || 120
 
   Object.assign(column, config || {})
   return {
@@ -65,6 +65,7 @@ export function createColumn<T extends string | string[] = string>(
     key: `${dataIndex}`,
     dataIndex,
     title,
+    minWidth: width,
     renderSlot: !!args.at(-1),
   }
 }
