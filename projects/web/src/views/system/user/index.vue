@@ -24,39 +24,57 @@ const {
   apiAction: UserApi.page,
 })
 
+function initFormObj<
+  T extends readonly string[],
+  U extends Partial<Record<T[number], U[T[number]]>>,
+>(keys: T, aliasObj: U) {
+  return keys.reduce((base, item) => {
+    const value: U[T[number]] | undefined = aliasObj[item as T[number]]
+    base[item as T[number]] = value || undefined
+    return base
+  }, {} as Record<T[number], U[T[number]] | undefined>)
+}
+
+function initUserForm() {
+  return initFormObj(['username', 'phone', 'nickName', 'email', 'deptId', 'jobs'] as const, {
+    jobs: [] as string[],
+  })
+}
+
 const { selectedDeps, handleGetDeptTree, deptTree, fieldNames, handleGetSuperior, deptAllTree } = useDept()
 const {
   modelRef, visible, modalTitle, handleOpenDialog,
   validateInfos, saveLoading, handleSaveForm,
 } = useCurdForm<IWithPageUserData>({
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  formInitForm: initUserForm,
   formRule: {
     username: [
-      { required: true, message: '请输入用户名', trigger: 'blur' },
-      { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' },
+      { required: true, message: '请输入用户名', trigger: 'change' },
+      { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'change' },
     ],
     nickName: [
-      { required: true, message: '请输入用户昵称', trigger: 'blur' },
-      { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' },
+      { required: true, message: '请输入用户昵称', trigger: 'change' },
+      { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'change' },
     ],
     email: [
-      { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-      { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' },
+      { required: true, message: '请输入邮箱地址', trigger: 'change' },
+      { type: 'email', message: '请输入正确的邮箱地址', trigger: 'change' },
     ],
     deptId: [{
-      required: true, message: '请输入', trigger: 'blur',
+      required: true, message: '请输入', trigger: 'change',
     }],
     phone: [
       {
         required: true,
         trigger: 'change',
-        validator: (_rule: Rule, value) => {
+        validator: (_rule: Rule, value, callback) => {
           if (!value)
-            // eslint-disable-next-line prefer-promise-reject-errors
-            return Promise.reject('请输入电话号码')
+            return callback('请输入电话号码')
 
           else if (!isValidPhone(value))
-            // eslint-disable-next-line prefer-promise-reject-errors
-            return Promise.reject('请输入正确的11位手机号码')
+            return callback('请输入正确的11位手机号码')
 
           else
             return Promise.resolve()
@@ -76,10 +94,12 @@ const {
     if (modelRef.value.deptId)
       handleGetSuperior(modelRef.value.deptId)
 
+    else
+      modelRef.value.deptId = undefined
+
     modelRef.value.jobs = (rowData.jobs || []).map(item => item.id)
     modelRef.value.roles = (rowData.roles || []).map(item => item.id)
     modelRef.value.enabled = `${modelRef.value.enabled}`
-    modelRef.value.deptId = undefined
   },
   putAction(data) {
     return UserApi.put({

@@ -11,6 +11,7 @@ export type KeyMapRule<T extends object> =
   }
 
 export interface IUseCurdFormOptions<T extends object, EditId extends string = 'id'> {
+  formInitForm: () => Partial<IFormEntity<T, EditId>>
   formKey?: string
   formRule?: MaybeRefOrGetter<Partial<KeyMapRule<T>>>
   saveAction: (data: IFormEntity<T, EditId>) => Promise<void>
@@ -30,6 +31,7 @@ type IFormEntity<T, EditId extends string> = Partial<AppendToObject<T, EditId, s
 export function useCurdForm<T extends object, EditId extends string = 'id'>(options: IUseCurdFormOptions<T>) {
   const {
     formKey,
+    formInitForm,
     formRule,
     saveAction,
     putAction,
@@ -51,7 +53,7 @@ export function useCurdForm<T extends object, EditId extends string = 'id'>(opti
     toggleSaveLoading(false)
     resetFields()
     editId.value = (row[formKey as EditId] || '') as string
-    modelRef.value = JSON.parse(JSON.stringify(row))
+    modelRef.value = JSON.parse(JSON.stringify(row)) || formInitForm()
     afterDetail && afterDetail(modelRef.value)
     toggleVisible(true)
   }
