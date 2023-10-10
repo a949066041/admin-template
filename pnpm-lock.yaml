@@ -36,6 +36,168 @@ importers:
         specifier: ^1.5.5
         version: 1.5.5
 
+  app/mobile:
+    dependencies:
+      '@yy-admin/common-utils':
+        specifier: workspace:^
+        version: link:../../common/utils
+      '@yy-admin/config-vite':
+        specifier: workspace:^
+        version: link:../../config/vite
+      pinia:
+        specifier: ^2.1.6
+        version: 2.1.6(typescript@5.2.2)(vue@3.3.4)
+      vant:
+        specifier: ^4.7.1
+        version: 4.7.1(vue@3.3.4)
+      vue:
+        specifier: ^3.3.4
+        version: 3.3.4
+      vue-router:
+        specifier: ^4.2.5
+        version: 4.2.5(vue@3.3.4)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.8.4
+        version: 20.8.4
+      '@vue/tsconfig':
+        specifier: ^0.4.0
+        version: 0.4.0
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
+      typescript:
+        specifier: ~5.2.2
+        version: 5.2.2
+      unocss:
+        specifier: ^0.56.5
+        version: 0.56.5(postcss@8.4.27)(vite@4.4.11)
+      vite:
+        specifier: ^4.4.11
+        version: 4.4.11(@types/node@20.8.4)(less@4.2.0)
+      vue-tsc:
+        specifier: ^1.8.18
+        version: 1.8.18(typescript@5.2.2)
+
+  app/web:
+    dependencies:
+      '@yy-admin/common-admin':
+        specifier: workspace:^
+        version: link:../../common/admin
+      '@yy-admin/common-core':
+        specifier: workspace:^
+        version: link:../../common/core
+      '@yy-admin/common-three':
+        specifier: workspace:^
+        version: link:../../common/threejs
+      '@yy-admin/common-utils':
+        specifier: workspace:^
+        version: link:../../common/utils
+      '@yy-admin/config-vite':
+        specifier: workspace:^
+        version: link:../../config/vite
+      '@yy-web/business-use':
+        specifier: ^2.0.3
+        version: 2.0.3
+      '@yy-web/request':
+        specifier: ^1.5.5
+        version: 1.5.5
+      ant-design-vue:
+        specifier: 4.0.3
+        version: 4.0.3(vue@3.3.4)
+      axios:
+        specifier: ^1.5.1
+        version: 1.5.1
+      pinia:
+        specifier: ^2.1.6
+        version: 2.1.6(typescript@5.2.2)(vue@3.3.4)
+      vue:
+        specifier: ^3.3.4
+        version: 3.3.4
+      vue-router:
+        specifier: ^4.2.5
+        version: 4.2.5(vue@3.3.4)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.8.4
+        version: 20.8.4
+      '@vue/tsconfig':
+        specifier: ^0.4.0
+        version: 0.4.0
+      '@vueuse/core':
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.4)
+      '@yy-admin/apis':
+        specifier: workspace:^
+        version: link:../../apis
+      '@yy-admin/base-components':
+        specifier: workspace:^
+        version: link:../../common/base-components
+      '@yy-admin/common-components':
+        specifier: workspace:^
+        version: link:../../common/components
+      less:
+        specifier: ^4.2.0
+        version: 4.2.0
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
+      typescript:
+        specifier: ~5.2.2
+        version: 5.2.2
+      unocss:
+        specifier: ^0.56.5
+        version: 0.56.5(postcss@8.4.27)(vite@4.4.11)
+      vite:
+        specifier: ^4.4.11
+        version: 4.4.11(@types/node@20.8.4)(less@4.2.0)
+      vue-tsc:
+        specifier: ^1.8.18
+        version: 1.8.18(typescript@5.2.2)
+
+  app/web2:
+    dependencies:
+      '@yy-admin/common-components':
+        specifier: workspace:^
+        version: link:../../common/components
+      '@yy-admin/common-utils':
+        specifier: workspace:^
+        version: link:../../common/utils
+      '@yy-admin/config-vite':
+        specifier: workspace:^
+        version: link:../../config/vite
+      pinia:
+        specifier: ^2.1.6
+        version: 2.1.6(typescript@5.2.2)(vue@3.3.4)
+      vue:
+        specifier: ^3.3.4
+        version: 3.3.4
+      vue-router:
+        specifier: ^4.2.5
+        version: 4.2.5(vue@3.3.4)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.8.4
+        version: 20.8.4
+      '@vue/tsconfig':
+        specifier: ^0.4.0
+        version: 0.4.0
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
+      typescript:
+        specifier: ~5.2.2
+        version: 5.2.2
+      unocss:
+        specifier: ^0.56.5
+        version: 0.56.5(postcss@8.4.27)(vite@4.4.11)
+      vite:
+        specifier: ^4.4.11
+        version: 4.4.11(@types/node@20.8.4)(less@4.2.0)
+      vue-tsc:
+        specifier: ^1.8.18
+        version: 1.8.18(typescript@5.2.2)
+
   common/admin:
     dependencies:
       dayjs:
@@ -96,8 +258,8 @@ importers:
         version: 1.51.0(@antv/g-base@0.4.7)
     devDependencies:
       '@types/node':
-        specifier: ^20.8.3
-        version: 20.8.3
+        specifier: ^20.8.4
+        version: 20.8.4
       '@vueuse/core':
         specifier: ^10.5.0
         version: 10.5.0(vue@3.3.4)
@@ -166,8 +328,8 @@ importers:
         version: 0.157.0
     devDependencies:
       '@types/three':
-        specifier: ^0.156.0
-        version: 0.156.0
+        specifier: ^0.157.0
+        version: 0.157.0
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -194,8 +356,8 @@ importers:
   config/vite:
     devDependencies:
       '@types/node':
-        specifier: ^20.8.3
-        version: 20.8.3
+        specifier: ^20.8.4
+        version: 20.8.4
       '@unocss/transformer-directives':
         specifier: ^0.56.5
         version: 0.56.5
@@ -216,10 +378,10 @@ importers:
         version: 0.25.2(vue@3.3.4)
       vite:
         specifier: ^4.4.11
-        version: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+        version: 4.4.11(@types/node@20.8.4)(less@4.2.0)
       vite-plugin-vue-devtools:
         specifier: ^0.5.1
-        version: 0.5.1(@types/node@20.8.3)(pug@3.0.2)(vite@4.4.11)(vue@3.3.4)
+        version: 0.5.1(@types/node@20.8.4)(pug@3.0.2)(vite@4.4.11)(vue@3.3.4)
 
   docs:
     devDependencies:
@@ -237,175 +399,13 @@ importers:
         version: 4.0.3(vue@3.3.4)
       vite:
         specifier: ^4.4.11
-        version: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+        version: 4.4.11(@types/node@20.8.4)(less@4.2.0)
       vitepress:
         specifier: 1.0.0-rc.20
         version: 1.0.0-rc.20(@algolia/client-search@4.19.1)(postcss@8.4.27)(search-insights@2.7.0)
       vue:
         specifier: ^3.3.4
         version: 3.3.4
-
-  projects/mobile:
-    dependencies:
-      '@yy-admin/common-utils':
-        specifier: workspace:^
-        version: link:../../common/utils
-      '@yy-admin/config-vite':
-        specifier: workspace:^
-        version: link:../../config/vite
-      pinia:
-        specifier: ^2.1.6
-        version: 2.1.6(typescript@5.2.2)(vue@3.3.4)
-      vant:
-        specifier: ^4.7.1
-        version: 4.7.1(vue@3.3.4)
-      vue:
-        specifier: ^3.3.4
-        version: 3.3.4
-      vue-router:
-        specifier: ^4.2.5
-        version: 4.2.5(vue@3.3.4)
-    devDependencies:
-      '@types/node':
-        specifier: ^20.8.3
-        version: 20.8.3
-      '@vue/tsconfig':
-        specifier: ^0.4.0
-        version: 0.4.0
-      npm-run-all:
-        specifier: ^4.1.5
-        version: 4.1.5
-      typescript:
-        specifier: ~5.2.2
-        version: 5.2.2
-      unocss:
-        specifier: ^0.56.5
-        version: 0.56.5(postcss@8.4.27)(vite@4.4.11)
-      vite:
-        specifier: ^4.4.11
-        version: 4.4.11(@types/node@20.8.3)(less@4.2.0)
-      vue-tsc:
-        specifier: ^1.8.18
-        version: 1.8.18(typescript@5.2.2)
-
-  projects/web:
-    dependencies:
-      '@yy-admin/common-admin':
-        specifier: workspace:^
-        version: link:../../common/admin
-      '@yy-admin/common-core':
-        specifier: workspace:^
-        version: link:../../common/core
-      '@yy-admin/common-three':
-        specifier: workspace:^
-        version: link:../../common/threejs
-      '@yy-admin/common-utils':
-        specifier: workspace:^
-        version: link:../../common/utils
-      '@yy-admin/config-vite':
-        specifier: workspace:^
-        version: link:../../config/vite
-      '@yy-web/business-use':
-        specifier: ^2.0.3
-        version: 2.0.3
-      '@yy-web/request':
-        specifier: ^1.5.5
-        version: 1.5.5
-      ant-design-vue:
-        specifier: 4.0.3
-        version: 4.0.3(vue@3.3.4)
-      axios:
-        specifier: ^1.5.1
-        version: 1.5.1
-      pinia:
-        specifier: ^2.1.6
-        version: 2.1.6(typescript@5.2.2)(vue@3.3.4)
-      vue:
-        specifier: ^3.3.4
-        version: 3.3.4
-      vue-router:
-        specifier: ^4.2.5
-        version: 4.2.5(vue@3.3.4)
-    devDependencies:
-      '@types/node':
-        specifier: ^20.8.3
-        version: 20.8.3
-      '@vue/tsconfig':
-        specifier: ^0.4.0
-        version: 0.4.0
-      '@vueuse/core':
-        specifier: ^10.5.0
-        version: 10.5.0(vue@3.3.4)
-      '@yy-admin/apis':
-        specifier: workspace:^
-        version: link:../../apis
-      '@yy-admin/base-components':
-        specifier: workspace:^
-        version: link:../../common/base-components
-      '@yy-admin/common-components':
-        specifier: workspace:^
-        version: link:../../common/components
-      less:
-        specifier: ^4.2.0
-        version: 4.2.0
-      npm-run-all:
-        specifier: ^4.1.5
-        version: 4.1.5
-      typescript:
-        specifier: ~5.2.2
-        version: 5.2.2
-      unocss:
-        specifier: ^0.56.5
-        version: 0.56.5(postcss@8.4.27)(vite@4.4.11)
-      vite:
-        specifier: ^4.4.11
-        version: 4.4.11(@types/node@20.8.3)(less@4.2.0)
-      vue-tsc:
-        specifier: ^1.8.18
-        version: 1.8.18(typescript@5.2.2)
-
-  projects/web2:
-    dependencies:
-      '@yy-admin/common-components':
-        specifier: workspace:^
-        version: link:../../common/components
-      '@yy-admin/common-utils':
-        specifier: workspace:^
-        version: link:../../common/utils
-      '@yy-admin/config-vite':
-        specifier: workspace:^
-        version: link:../../config/vite
-      pinia:
-        specifier: ^2.1.6
-        version: 2.1.6(typescript@5.2.2)(vue@3.3.4)
-      vue:
-        specifier: ^3.3.4
-        version: 3.3.4
-      vue-router:
-        specifier: ^4.2.5
-        version: 4.2.5(vue@3.3.4)
-    devDependencies:
-      '@types/node':
-        specifier: ^20.8.3
-        version: 20.8.3
-      '@vue/tsconfig':
-        specifier: ^0.4.0
-        version: 0.4.0
-      npm-run-all:
-        specifier: ^4.1.5
-        version: 4.1.5
-      typescript:
-        specifier: ~5.2.2
-        version: 5.2.2
-      unocss:
-        specifier: ^0.56.5
-        version: 0.56.5(postcss@8.4.27)(vite@4.4.11)
-      vite:
-        specifier: ^4.4.11
-        version: 4.4.11(@types/node@20.8.3)(less@4.2.0)
-      vue-tsc:
-        specifier: ^1.8.18
-        version: 1.8.18(typescript@5.2.2)
 
 packages:
 
@@ -840,7 +840,7 @@ packages:
       debug: 4.3.4
       gensync: 1.0.0-beta.2
       json5: 2.2.3
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2338,8 +2338,10 @@ packages:
     resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
     dev: true
 
-  /@types/node@20.8.3:
-    resolution: {integrity: sha512-jxiZQFpb+NlH5kjW49vXxvxTjeeqlbsnTAdBTKpzEdPs9itay7MscYXz3Fo9VYFEsfQ6LJFitHad3faerLAjCw==}
+  /@types/node@20.8.4:
+    resolution: {integrity: sha512-ZVPnqU58giiCjSxjVUESDtdPk4QR5WQhhINbc9UBrKLU68MX5BF6kbQzTrkwbolyr0X8ChBpXfavr5mZFKZQ5A==}
+    dependencies:
+      undici-types: 5.25.3
     dev: true
 
   /@types/normalize-package-data@2.4.1:
@@ -2354,8 +2356,8 @@ packages:
     resolution: {integrity: sha512-9w+a7bR8PeB0dCT/HBULU2fMqf6BAzvKbxFboYhmDtDkKPiyXYbjoe2auwsXlEFI7CFNMF1dCv3dFH5Poy9R1w==}
     dev: true
 
-  /@types/three@0.156.0:
-    resolution: {integrity: sha512-733bXDSRdlrxqOmQuOmfC1UBRuJ2pREPk8sWnx9MtIJEVDQMx8U0NQO5MVVaOrjzDPyLI+cFPim2X/ss9v0+LQ==}
+  /@types/three@0.157.0:
+    resolution: {integrity: sha512-+BG+wqEyH506w23tKpwXnCTJb/MeyeQ/wcFlSFQ26Z9hS5Qde2vc7o+aqd+z98b38PVGuHa5GYxg/3CY7qrxFw==}
     dependencies:
       '@types/stats.js': 0.17.0
       '@types/webxr': 0.5.4
@@ -2586,7 +2588,7 @@ packages:
       '@unocss/core': 0.56.5
       '@unocss/reset': 0.56.5
       '@unocss/vite': 0.56.5(vite@4.4.11)
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -2777,7 +2779,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.3.1
       magic-string: 0.30.3
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -2804,7 +2806,7 @@ packages:
       '@babel/core': 7.22.10
       '@babel/plugin-transform-typescript': 7.22.10(@babel/core@7.22.10)
       '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.22.10)
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
       vue: 3.3.4
     transitivePeerDependencies:
       - supports-color
@@ -2828,7 +2830,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
       vue: 3.3.4
     dev: true
 
@@ -3198,7 +3200,7 @@ packages:
       - vue
     dev: true
 
-  /@webfansplz/vuedoc-parser@0.0.3(@types/node@20.8.3)(pug@3.0.2):
+  /@webfansplz/vuedoc-parser@0.0.3(@types/node@20.8.4)(pug@3.0.2):
     resolution: {integrity: sha512-7Ocz5C7GBwc33yrp8US4WZHG7U+kpBex7jtOEsm3f1414A/r5D4O3/cPsb6dEV6aO/4Sx6YWRcubcAuKL79+ig==}
     engines: {node: '>=16.6'}
     peerDependencies:
@@ -3207,7 +3209,7 @@ packages:
     dependencies:
       '@babel/parser': 7.21.8
       '@babel/traverse': 7.21.5
-      '@types/node': 20.8.3
+      '@types/node': 20.8.4
       pug: 3.0.2
       resolve: 1.22.3
       vue-template-compiler: 2.7.14
@@ -6309,7 +6311,7 @@ packages:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}
     dependencies:
       hosted-git-info: 2.8.9
-      resolve: 1.22.2
+      resolve: 1.22.3
       semver: 5.7.1
       validate-npm-package-license: 3.0.4
     dev: true
@@ -7014,15 +7016,6 @@ packages:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
     dev: true
 
-  /resolve@1.22.2:
-    resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
-    hasBin: true
-    dependencies:
-      is-core-module: 2.12.1
-      path-parse: 1.0.7
-      supports-preserve-symlinks-flag: 1.0.0
-    dev: true
-
   /resolve@1.22.3:
     resolution: {integrity: sha512-P8ur/gp/AmbEzjr729bZnLjXK5Z+4P0zhIJgBgzqRih7hL7BOukHGtSTA3ACMY467GRFz3duQsi0bDZdR7DKdw==}
     hasBin: true
@@ -7120,11 +7113,6 @@ packages:
 
   /semver@5.7.1:
     resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==}
-    hasBin: true
-    dev: true
-
-  /semver@6.3.0:
-    resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
     dev: true
 
@@ -7702,6 +7690,10 @@ packages:
       mlly: 1.4.0
     dev: true
 
+  /undici-types@5.25.3:
+    resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
+    dev: true
+
   /unique-filename@3.0.0:
     resolution: {integrity: sha512-afXhuC55wkAmZ0P18QsVE6kp8JaxrEokN2HGIoIVv2ijHQd419H0+6EigAFcIzXeMIkcIkNBpB3L/DXB3cTS/g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
@@ -7759,7 +7751,7 @@ packages:
       '@unocss/transformer-directives': 0.56.5
       '@unocss/transformer-variant-group': 0.56.5
       '@unocss/vite': 0.56.5(vite@4.4.11)
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -7875,7 +7867,7 @@ packages:
     peerDependencies:
       vite: ^2.6.0 || ^3.0.0 || ^4.0.0
     dependencies:
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
     dev: true
 
   /vite-plugin-inspect@0.7.35(vite@4.4.11):
@@ -7895,13 +7887,13 @@ packages:
       open: 9.1.0
       picocolors: 1.0.0
       sirv: 2.0.3
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
     dev: true
 
-  /vite-plugin-vue-devtools@0.5.1(@types/node@20.8.3)(pug@3.0.2)(vite@4.4.11)(vue@3.3.4):
+  /vite-plugin-vue-devtools@0.5.1(@types/node@20.8.4)(pug@3.0.2)(vite@4.4.11)(vue@3.3.4):
     resolution: {integrity: sha512-z6wzaRxvmQVF1A8iNPIrCrpgJWbFC8bQpCG18yTSHFzRYTkFrqTZ37JjrKysPP0EvLitI1PYru0Odqt2ICfCbQ==}
     engines: {node: '>=v14'}
     peerDependencies:
@@ -7909,7 +7901,7 @@ packages:
     dependencies:
       '@vueuse/core': 10.5.0(vue@3.3.4)
       '@vueuse/integrations': 10.3.0(vue@3.3.4)
-      '@webfansplz/vuedoc-parser': 0.0.3(@types/node@20.8.3)(pug@3.0.2)
+      '@webfansplz/vuedoc-parser': 0.0.3(@types/node@20.8.4)(pug@3.0.2)
       algoliasearch: 4.19.1
       birpc: 0.2.12
       execa: 7.1.1
@@ -7919,7 +7911,7 @@ packages:
       sirv: 2.0.3
       splitpanes: 3.1.5
       vanilla-jsoneditor: 0.17.8
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
       vite-hot-client: 0.2.1(vite@4.4.11)
       vite-plugin-inspect: 0.7.35(vite@4.4.11)
       vite-plugin-vue-inspector: 3.4.2(vite@4.4.11)
@@ -7963,7 +7955,7 @@ packages:
       kolorist: 1.8.0
       magic-string: 0.30.2
       shell-quote: 1.8.1
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8001,7 +7993,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite@4.4.11(@types/node@20.8.3)(less@4.2.0):
+  /vite@4.4.11(@types/node@20.8.4)(less@4.2.0):
     resolution: {integrity: sha512-ksNZJlkcU9b0lBwAGZGGaZHCMqHsc8OpgtoYhsQ4/I2v5cnpmmmqe5pM4nv/4Hn6G/2GhTdj0DhZh2e+Er1q5A==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -8029,7 +8021,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.8.3
+      '@types/node': 20.8.4
       esbuild: 0.18.11
       less: 4.2.0
       postcss: 8.4.27
@@ -8089,7 +8081,7 @@ packages:
       minisearch: 6.1.0
       postcss: 8.4.27
       shiki: 0.14.4
-      vite: 4.4.11(@types/node@20.8.3)(less@4.2.0)
+      vite: 4.4.11(@types/node@20.8.4)(less@4.2.0)
       vue: 3.3.4
     transitivePeerDependencies:
       - '@algolia/client-search'

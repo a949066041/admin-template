@@ -1,6 +1,6 @@
 packages:
   - 'apis'
   - 'common/**'
-  - 'projects/**'
+  - 'app/**'
   - 'config/**'
   - 'docs'
