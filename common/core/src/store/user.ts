@@ -29,13 +29,8 @@ export const useUserStore = defineStore('core-user', () => {
   }
 
   async function logout() {
-    try {
-      await AuthApi.logout()
-    }
-    finally {
-      userInfo.value = null
-      clearToken()
-    }
+    userInfo.value = null
+    clearToken()
   }
 
   return {

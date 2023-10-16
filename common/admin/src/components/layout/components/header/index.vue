@@ -3,6 +3,9 @@ import { useUserStore } from '@yy-admin/common-core'
 import { message } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 
+defineOptions({
+  name: 'YyHeader',
+})
 const userStore = useUserStore()
 const router = useRouter()
 function handelLogoutUser() {
@@ -11,10 +14,6 @@ function handelLogoutUser() {
     router.push('/login')
   })
 }
-
-defineOptions({
-  name: 'YyHeader',
-})
 </script>
 
 <template>

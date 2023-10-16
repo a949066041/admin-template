@@ -19,7 +19,7 @@ export interface IUser extends IBaseEntity {
   username: string
 }
 
-export type IWithPageUserData = Merge<IUser, IOtherUserData>
+export type IUserParams = Merge<Omit<IUser, 'isAdmin' | keyof IBaseEntity>, ISaveUserData>
 
 export interface IOtherUserData {
   jobs: IJob['id'][]

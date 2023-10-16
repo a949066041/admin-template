@@ -8,17 +8,22 @@ export abstract class ApiInstance<T extends object = object, K extends string = 
   }
 
   constructor() {
+    this.findId = this.findId.bind(this)
     this.page = this.page.bind(this)
     this.save = this.save.bind(this)
     this.put = this.put.bind(this)
     this.del = this.del.bind(this)
   }
 
+  public findId(id: number) {
+    return this.$request.setPath(`${this.baseApi}/{id}`).carry(id).get<T>()
+  }
+
   public page(params: Record<string, any>) {
     return this.$request.setPath(this.baseApi).get<{ totalElements: number; content: T[] }>(params)
   }
 
-  public save(data: Partial<Merge<AppendToObject<T, K, string>, U>>) {
+  public save(data: Partial<Merge<AppendToObject<T, K, number>, U>>) {
     return this.$request.setPath(this.baseApi).post<void>(data)
   }
 
