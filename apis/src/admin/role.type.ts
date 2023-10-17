@@ -1,4 +1,5 @@
 import type { IBaseEntity } from '../base'
+import type { Merge } from '../utils'
 import type { IDept } from './dept.type'
 
 export interface IRole extends IBaseEntity {
@@ -10,3 +11,5 @@ export interface IRole extends IBaseEntity {
   menus: any[]
   name: string
 }
+
+export type IRoleParams = Omit<IRole, 'menus' | 'depts' | keyof IBaseEntity>

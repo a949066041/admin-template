@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { type IRole, RoleApi } from '@yy-admin/apis'
+import { type IRole, type IRoleParams, RoleApi } from '@yy-admin/apis'
 import { useTable } from '@yy-web/business-use'
 import { type YyTableColumns, createColumn as cT } from '@yy-admin/common-components'
-import { computed } from 'vue'
-import { useCurdForm } from './useCurdForm'
+import { computed, ref } from 'vue'
+import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import type { Rule } from 'ant-design-vue/es/form'
 
 defineOptions({
   name: 'SystemRole',
@@ -17,24 +18,23 @@ const {
   delAction: RoleApi.del,
 })
 
-const {
-  modelRef, visible, modalTitle, handleOpenDialog,
-  validateInfos, saveLoading, handleSaveForm,
-} = useCurdForm<IRole>({
-  formRule: {
-    name: [
-      { required: true, message: '请输入角色名称', trigger: 'blur' },
-    ],
-  },
-  saveAction(data) {
-    return RoleApi.save(data)
-  },
-  putAction(data) {
-    return RoleApi.put(data)
-  },
-  afterSave() {
-    searchTable()
-  },
+function initUserForm() {
+  return initFormObj(['name', 'level', 'dataScope', 'description'], {
+  }) as IRoleParams
+}
+
+const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, findLoading, formRef } = useCurdForm<IRoleParams>({
+  initFormFn: initUserForm,
+  saveAction: RoleApi.save,
+  putAction: RoleApi.put,
+  findIdAction: RoleApi.findId,
+  afterSave: searchTable,
+})
+
+const rules = ref<Partial<Record<keyof IRoleParams, Rule[] | Rule>>>({
+  name: [
+    { required: true, message: '请输入角色名称', trigger: 'change' },
+  ],
 })
 
 const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
@@ -63,13 +63,13 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
     </template>
 
     <template #tools>
-      <a-button type="primary" @click="handleOpenDialog()">
+      <a-button type="primary" @click="handleInitForm()">
         新增
       </a-button>
     </template>
 
     <template #action="{ record }">
-      <a-button type="link" @click="handleOpenDialog(record)">
+      <a-button type="link" @click="handleInitForm(record.id)">
         修改
       </a-button>
       <a-button type="link" @click="delDataRow(record.id)">
@@ -78,18 +78,18 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
     </template>
 
     <a-modal v-model:open="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
-      <a-form>
-        <a-form-item v-bind="validateInfos.name" label="角色名称">
-          <a-input v-model:value="modelRef.name" placeholder="请输入角色名称" />
+      <a-form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
+        <a-form-item name="name" label="角色名称">
+          <a-input v-model:value="formModel.name" placeholder="请输入角色名称" />
         </a-form-item>
-        <a-form-item v-bind="validateInfos.level" label="角色级别">
-          <a-input-number v-model:value="modelRef.level" placeholder="请输入角色级别" />
+        <a-form-item name="level" label="角色级别">
+          <a-input-number v-model:value="formModel.level" placeholder="请输入角色级别" />
         </a-form-item>
-        <a-form-item v-bind="validateInfos.dataScope" label="数据范围">
-          <a-input v-model:value="modelRef.dataScope" placeholder="请输入角色" />
+        <a-form-item name="dataScope" label="数据范围">
+          <a-input v-model:value="formModel.dataScope" placeholder="请输入角色" />
         </a-form-item>
-        <a-form-item v-bind="validateInfos.description" label="描述信息">
-          <a-textarea v-model:value="modelRef.description" placeholder="请输入描述信息" />
+        <a-form-item name="description" label="描述信息">
+          <a-textarea v-model:value="formModel.description" placeholder="请输入描述信息" />
         </a-form-item>
       </a-form>
     </a-modal>

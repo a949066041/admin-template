@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 import { AppConfig } from '@yy-admin/common-admin'
-import { testRxjs } from '@yy-admin/common-utils'
 
 defineOptions({
   name: 'App',
 })
-
-testRxjs()
 </script>
 
 <template>

@@ -3,6 +3,15 @@ import type { FormInstance } from 'ant-design-vue'
 import type { Ref } from 'vue'
 import { computed, nextTick, ref } from 'vue'
 
+export function initFormObj(keys: string[], aliasObj?: Record<string, any>) {
+  return keys.reduce((base, item) => {
+    const value = (aliasObj || {})[item] || undefined
+    return {
+      ...base,
+      item: value,
+    }
+  }, {} as Record<string, unknown>)
+}
 export interface IUseCurdOptions<T, Key extends string | number> {
   formKey?: string
   initFormFn: () => T
@@ -64,6 +73,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
       }
 
       formModel.value = initFormFn()
+      afterDetail && afterDetail(formModel.value)
     })
   }
 

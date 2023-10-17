@@ -1,4 +1,4 @@
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { DeptApi, type IDept } from '@yy-admin/apis'
 
 export function useDept() {
@@ -16,12 +16,19 @@ export function useDept() {
       DeptApi.getDeptTree(treeNode.dataRef.id).then((res) => {
         treeNode.dataRef.children = res.content
         deptTree.value = [...deptTree.value]
+        deptAllTree.value = [...deptAllTree.value]
         resolve()
       })
     })
   }
 
-  function handleGetSuperior(depId: number) {
+  function handleGetSuperior(depId?: number) {
+    if (!depId) {
+      DeptApi.getDeptTree().then((res) => {
+        deptAllTree.value = res.content
+      })
+      return
+    }
     DeptApi.superior(depId).then((res) => {
       deptAllTree.value = res.content
     })

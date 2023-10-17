@@ -103,8 +103,8 @@ importers:
         specifier: ^1.5.6
         version: 1.5.6
       ant-design-vue:
-        specifier: 4.0.4
-        version: 4.0.4(vue@3.3.4)
+        specifier: 4.0.5
+        version: 4.0.5(vue@3.3.4)
       axios:
         specifier: ^1.5.1
         version: 1.5.1
@@ -238,8 +238,8 @@ importers:
         specifier: workspace:^
         version: link:../utils
       ant-design-vue:
-        specifier: 4.0.4
-        version: 4.0.4(vue@3.3.4)
+        specifier: 4.0.5
+        version: 4.0.5(vue@3.3.4)
       vue:
         specifier: ^3.3.4
         version: 3.3.4
@@ -285,8 +285,8 @@ importers:
         specifier: workspace:^
         version: link:../../config/vite-lib
       ant-design-vue:
-        specifier: 4.0.4
-        version: 4.0.4(vue@3.3.4)
+        specifier: 4.0.5
+        version: 4.0.5(vue@3.3.4)
       axios:
         specifier: ^1.5.1
         version: 1.5.1
@@ -321,8 +321,8 @@ importers:
         specifier: ^1.5.6
         version: 1.5.6
       ant-design-vue:
-        specifier: 4.0.4
-        version: 4.0.4(vue@3.3.4)
+        specifier: 4.0.5
+        version: 4.0.5(vue@3.3.4)
       axios:
         specifier: ^1.5.1
         version: 1.5.1
@@ -455,8 +455,8 @@ importers:
         specifier: workspace:^
         version: link:../common/components
       ant-design-vue:
-        specifier: 4.0.4
-        version: 4.0.4(vue@3.3.4)
+        specifier: 4.0.5
+        version: 4.0.5(vue@3.3.4)
       vite:
         specifier: ^4.4.11
         version: 4.4.11(@types/node@20.8.6)(less@4.2.0)
@@ -4486,8 +4486,8 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /ant-design-vue@4.0.4(vue@3.3.4):
-    resolution: {integrity: sha512-AtGoIylQAU3bw4s3dKgYGrsI+CFobzGultkHiBEEoqmWLBVlblLlcSHagIjWpSqWwYLzJchwsIUgD6f5zXVeig==}
+  /ant-design-vue@4.0.5(vue@3.3.4):
+    resolution: {integrity: sha512-wZnT+on4fHWuoCABZ3f0ASN36nothzYsZ5Nn7ICwdwl/tJF/DmMnAqkverXqi98GVO1DQArfUs7jwNcR3b8DNA==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       vue: '>=3.2.0'

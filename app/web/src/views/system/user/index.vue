@@ -6,8 +6,7 @@ import { computed, ref, watch } from 'vue'
 import { type YyTableColumns, createColumn as cT } from '@yy-admin/common-components'
 import { isValidPhone } from '@yy-admin/common-utils'
 import type { Rule } from 'ant-design-vue/es/form'
-import { useCurdForm } from '@yy-admin/common-core'
-import { initFormObj } from '../role/useCurdForm'
+import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import { useDept } from './useDept'
 
 defineOptions({
@@ -39,8 +38,7 @@ const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveF
   findIdAction: UserApi.findId,
   afterSave: searchTable,
   afterDetail(result) {
-    if (result?.deptId)
-      handleGetSuperior(result.deptId)
+    handleGetSuperior(result?.deptId)
   },
 })
 
@@ -172,6 +170,7 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
               <a-tree-select
                 v-model:value="formModel.deptId"
                 :tree-data="deptAllTree"
+                :load-data="handleGetDeptTree"
                 placeholder="请选择部门"
                 tree-default-expand-all
                 :field-names="fieldNames"
