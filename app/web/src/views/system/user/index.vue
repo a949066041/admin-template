@@ -19,7 +19,7 @@ const roleList = ref<IRole[]>([])
 const {
   searchForm, dataSource, total, initForm, confirmTable, getTable,
   current, loading, limit, resetTable, searchTable,
-} = useTable<{ blurry: string }, { deptId: string }>({
+} = useTable<IUserParams & { blurry: string }, { deptId: string }>({
   apiAction: UserApi.page,
 })
 

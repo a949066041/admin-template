@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" generic="T extends Record<string, any>" setup>
 import { useVModels } from '@vueuse/core'
 import { computed } from 'vue'
 import { type YyTableColumns } from '../../utils/table'
@@ -6,7 +6,7 @@ import S2Table from './s2/index.vue'
 
 interface IYyTable {
   columns: YyTableColumns<string>[]
-  dataSource: any[]
+  dataSource: T[]
   loading: boolean
   current?: number
   limit?: number
@@ -50,8 +50,8 @@ const { limit, current } = useVModels(props, emit)
         size="small"
       >
         <template #bodyCell="{ column, record, index, text }">
-          <template v-if="renderSlotsKeys.includes(column.key)">
-            <slot v-bind="{ column, record, index, text }" :name="column.key" />
+          <template v-if="renderSlotsKeys.includes(column.key as string)">
+            <slot v-bind="{ column, record, index, text } as { column: YyTableColumns<string>; record: T; index: number; text: T[typeof text] }" :name="column.key" />
           </template>
         </template>
       </a-table>
