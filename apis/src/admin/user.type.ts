@@ -29,7 +29,6 @@ export interface IOtherUserData {
 }
 
 export interface ISaveUserData {
-  jobs: Pick<IJob, 'id'>[]
-  roles: Pick<IRole, 'id'>[]
-  dept: Pick<IDept, 'id'>
+  jobs: number[]
+  roles: number[]
 }

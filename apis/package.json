@@ -12,6 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@yy-web/request": "^1.5.5"
+    "@yy-web/request": "^1.5.6"
   }
 }

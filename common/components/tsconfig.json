@@ -1,22 +1,13 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
     "jsx": "preserve",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
+    "strict": true,
+    "target": "ES2015",
+    "module": "ESNext",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "declaration": true,
-    "outDir": "dist",
-    "lib": ["DOM.Iterable", "Dom"]
-  },
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
-  "exclude": ["node_modules"]
+    "moduleResolution": "Node",
+    "lib": ["esnext", "dom"],
+    "types": ["./auto-imports.d.ts", "./components.d.ts"]
+  }
 }

@@ -16,7 +16,7 @@
     "@yy-admin/common-utils": "workspace:^",
     "@yy-admin/config-vite": "workspace:^",
     "@yy-web/business-use": "^2.0.3",
-    "@yy-web/request": "^1.5.5",
+    "@yy-web/request": "^1.5.6",
     "ant-design-vue": "4.0.4",
     "axios": "^1.5.1",
     "pinia": "^2.1.7",
