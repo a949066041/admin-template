@@ -3,10 +3,13 @@ import { h } from 'vue'
 import Theme from 'vitepress/theme'
 import './style.css'
 import Antd from 'ant-design-vue'
-import YyUI from '@yy-admin/common-components'
+
+import { YySelect } from '@yy-admin/common-components'
 import 'uno.css'
 import 'virtual:unocss-devtools'
-import DemoBlock from '@ruabick/vitepress-demo-block'
+import DemoBlock from './DemoBlock.vue'
+
+// import DemoBlock from '@ruabick/vitepress-demo-block'
 import '@ruabick/vitepress-demo-block/dist/style.css'
 
 export default {
@@ -17,8 +20,8 @@ export default {
     })
   },
   enhanceApp({ app }) {
-    app.component('Demo', DemoBlock)
+    app.component('YyDemo', DemoBlock)
     app.use(Antd)
-    app.use(YyUI)
+    app.component(YySelect.name, YySelect)
   },
 }

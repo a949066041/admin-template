@@ -11,7 +11,8 @@
     "depts",
     "encryptor",
     "pinia",
-    "unocss"
+    "unocss",
+    "vitepress"
   ],
   "explorer.fileNesting.patterns": {
     "*.api.ts":"${capture}.type.ts"

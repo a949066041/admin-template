@@ -13,7 +13,7 @@ defineOptions({
 const {
   searchForm, dataSource, total, delDataRow,
   current, loading, limit, resetTable, searchTable,
-} = useTable<{ blurry: string }>({
+} = useTable<{ blurry: string; id: string }>({
   apiAction: RoleApi.page,
   delAction: RoleApi.del,
 })

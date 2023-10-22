@@ -1,7 +1,8 @@
 import { resolve } from 'node:path'
-import { defineConfig } from 'vitepress'
-import { applyPlugins } from '@ruabick/md-demo-plugins'
+
 import unocss from 'unocss/vite'
+import { defineConfig } from 'vitepress'
+import { applyMdPlugins } from '../../../config/md-vue/src/index'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -9,7 +10,7 @@ export default defineConfig({
   description: '文档简介',
   markdown: {
     config: (md) => {
-      applyPlugins(md)
+      applyMdPlugins(md)
     },
     theme: {
       light: 'github-light',

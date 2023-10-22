@@ -27,7 +27,7 @@ dayjs.locale('zh-cn')
     }"
   >
     <a-app :modal="{ centered: true }">
-      <a-watermark content="@yy-admin">
+      <a-watermark content="@yy-test">
         <slot />
       </a-watermark>
       <a-float-button-group trigger="click" type="primary" :style="{ right: '24px' }">

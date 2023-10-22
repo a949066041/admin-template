@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "moduleResolution": "NodeNext"
+  },
+  "ts-node": {
+    "esm": true
+  }
+}

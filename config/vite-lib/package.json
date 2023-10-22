@@ -5,6 +5,7 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +13,7 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.8.6",
+    "@types/node": "^20.8.7",
     "@unocss/transformer-directives": "^0.56.5",
     "@vitejs/plugin-vue": "^4.4.0",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
@@ -20,7 +21,7 @@
     "typescript": "^5.2.2",
     "unocss": "^0.56.5",
     "unplugin-vue-components": "^0.25.2",
-    "vite": "^4.4.11",
+    "vite": "^4.5.0",
     "vite-plugin-dts": "^3.6.0",
     "vite-plugin-vue-devtools": "^0.5.1"
   }
