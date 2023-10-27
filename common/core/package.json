@@ -18,11 +18,11 @@
     "@yy-admin/apis": "workspace:^",
     "@yy-web/request": "^1.5.6",
     "ant-design-vue": "4.0.6",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "js-cookie": "^3.0.5",
     "pinia": "^2.1.7",
     "typescript": "^5.2.2",
-    "vue": "^3.3.6",
+    "vue": "^3.3.7",
     "vue-demi": "^0.14.6",
     "vue-router": "^4.2.5"
   }

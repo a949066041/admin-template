@@ -18,13 +18,13 @@
     "@yy-web/business-use": "^2.0.3",
     "@yy-web/request": "^1.5.6",
     "ant-design-vue": "4.0.6",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "pinia": "^2.1.7",
-    "vue": "^3.3.6",
+    "vue": "^3.3.7",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@types/node": "^20.8.7",
+    "@types/node": "^20.8.9",
     "@vue/tsconfig": "^0.4.0",
     "@vueuse/core": "^10.5.0",
     "@yy-admin/apis": "workspace:^",
@@ -35,6 +35,6 @@
     "typescript": "~5.2.2",
     "unocss": "^0.56.5",
     "vite": "^4.5.0",
-    "vue-tsc": "^1.8.19"
+    "vue-tsc": "^1.8.22"
   }
 }
