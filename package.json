@@ -13,11 +13,11 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.43.1",
-    "@unocss/transformer-directives": "^0.56.5",
+    "@unocss/transformer-directives": "^0.57.1",
     "eslint": "^8.52.0",
-    "taze": "^0.11.4",
+    "taze": "^0.12.0",
     "turbo": "^1.10.16",
     "typescript": "^5.2.2",
-    "unocss": "^0.56.5"
+    "unocss": "^0.57.1"
   }
 }

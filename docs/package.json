@@ -18,7 +18,7 @@
     "@yy-admin/config-md-vue": "workspace:^",
     "ant-design-vue": "4.0.6",
     "vite": "^4.5.0",
-    "vitepress": "1.0.0-rc.22",
+    "vitepress": "1.0.0-rc.24",
     "vue": "^3.3.7"
   }
 }
