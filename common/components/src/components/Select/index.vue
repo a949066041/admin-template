@@ -9,6 +9,10 @@ export interface Props {
   list?: any[] | { [k: string]: string }
 }
 
+defineOptions({
+  name: 'YySelect',
+})
+
 const props = withDefaults(defineProps<Props>(), {
   ofKey: 'id',
   ofValue: 'name',
@@ -28,10 +32,6 @@ const withList = computed(() => {
     [ofKey]: k,
     [ofValue]: v,
   }))
-})
-
-defineOptions({
-  name: 'YySelect',
 })
 </script>
 

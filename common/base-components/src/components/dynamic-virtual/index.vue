@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+defineOptions({
+  name: 'DynamicVirtual',
+})
+
 withDefaults(defineProps<{
   depKey: string
   wrapperClass?: string
@@ -7,10 +11,6 @@ withDefaults(defineProps<{
   depKey: 'id',
   minItemSize: 20,
   wrapperClass: '',
-})
-
-defineOptions({
-  name: 'DynamicVirtual',
 })
 </script>
 
