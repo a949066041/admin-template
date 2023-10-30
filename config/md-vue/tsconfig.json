@@ -17,8 +17,5 @@
     "outDir": "dist"
   },
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
-  "exclude": ["node_modules"],
-  "ts-node": {
-    "esm": true
-  }
+  "exclude": ["node_modules"]
 }

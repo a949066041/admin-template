@@ -6,11 +6,8 @@ import Antd from 'ant-design-vue'
 
 import { YySelect } from '@yy-admin/common-components'
 import 'uno.css'
-import 'virtual:unocss-devtools'
-import DemoBlock from './DemoBlock.vue'
 
-// import DemoBlock from '@ruabick/vitepress-demo-block'
-import '@ruabick/vitepress-demo-block/dist/style.css'
+import YyDemo from '../../../../config/md-vue/src/demo/yy-demo.vue'
 
 export default {
   ...Theme,
@@ -20,7 +17,7 @@ export default {
     })
   },
   enhanceApp({ app }) {
-    app.component('YyDemo', DemoBlock)
+    app.component('YyDemo', YyDemo)
     app.use(Antd)
     app.component(YySelect.name, YySelect)
   },
