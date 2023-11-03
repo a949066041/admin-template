@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["DOM", "ESNext"],
     "jsx": "preserve",
+    "lib": ["DOM", "ESNext"],
     "experimentalDecorators": true,
+    "baseUrl": "./",
     "module": "ESNext",
     "moduleResolution": "node",
-    "baseUrl": "./",
     "allowJs": true,
+    "strict": true,
+    "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "strict": true,
     "skipLibCheck": true
   }
 }

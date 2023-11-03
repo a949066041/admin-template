@@ -1,16 +1,60 @@
 <script lang="ts" setup>
-import { example1 } from '@yy-admin/common-three'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue';
 
 defineOptions({
-  name: 'Home',
+  name: "Home",
 })
-const canvas = ref<HTMLCanvasElement | null>(null)
-onMounted(() => {
-  example1(canvas.value!)
-})
+
+const data = ref(1);
+
+function handleRender(key: string) {
+  console.log(key + '' + '');
+}
+
 </script>
 
 <template>
-  <canvas ref="canvas" class="!w-full h-[800px] box-border" />
+  <a-button class=" fixed top-0" @click="data++">test</a-button>
+  <a-row :gutter="[20, 20]">
+    <a-col :span="12">
+      <lazy-box :height="800" title="测试" @render="handleRender" :effect-data="data" name="1">
+        hello
+      </lazy-box>
+    </a-col>
+    <a-col :span="12">
+      <lazy-box :height="800" title="测试" @render="handleRender" :effect-data="data" name="2">
+        hello
+      </lazy-box>
+    </a-col>
+    <a-col :span="12">
+      <lazy-box :height="800" title="测试" @render="handleRender" :effect-data="data" name="3">
+        hello
+      </lazy-box>
+    </a-col>
+    <a-col :span="12">
+      <lazy-box :height="800" title="测试" @render="handleRender" :effect-data="data" name="4">
+        hello
+      </lazy-box>
+    </a-col>
+    <a-col :span="12">
+      <lazy-box :height="800" title="测试" @render="handleRender" :effect-data="data" name="5">
+        hello
+      </lazy-box>
+    </a-col>
+    <a-col :span="12">
+      <lazy-box :height="800" title="测试" @render="handleRender" :effect-data="data" name="6">
+        hello
+      </lazy-box>
+    </a-col>
+    <a-col :span="12">
+      <lazy-box :height="800" title="测试" @render="handleRender" :effect-data="data" name="7">
+        hello
+      </lazy-box>
+    </a-col>
+    <a-col :span="12">
+      <lazy-box :height="800" title="测试" @render="handleRender"  :effect-data="data" name="8">
+        hello
+      </lazy-box>
+    </a-col>
+  </a-row>
 </template>

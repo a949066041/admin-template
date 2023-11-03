@@ -3,9 +3,9 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "CommonJS",
+    "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
-    "esModuleInterop": true,
-    "moduleResolution": "NodeNext"
+    "esModuleInterop": true
   },
   "ts-node": {
     "esm": true

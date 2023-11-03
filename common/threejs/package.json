@@ -11,11 +11,11 @@
   "scripts": {
     "prepare:build": "tsc"
   },
-  "devDependencies": {
-    "@types/three": "^0.158.0",
-    "typescript": "^5.2.2"
-  },
   "dependencies": {
     "three": "^0.158.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.158.1",
+    "typescript": "^5.2.2"
   }
 }

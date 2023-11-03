@@ -13,12 +13,12 @@
     "@yy-admin/common-utils": "workspace:^",
     "@yy-admin/config-vite": "workspace:^",
     "pinia": "^2.1.7",
-    "vant": "^4.7.2",
+    "vant": "^4.7.3",
     "vue": "^3.3.7",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@types/node": "^20.8.9",
+    "@types/node": "^20.8.10",
     "@vue/tsconfig": "^0.4.0",
     "npm-run-all": "^4.1.5",
     "typescript": "~5.2.2",

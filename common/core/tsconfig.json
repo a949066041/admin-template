@@ -1,21 +1,21 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
-    "strict": true,
     "jsx": "preserve",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "useDefineForClassFields": true,
-    "sourceMap": true,
+    "experimentalDecorators": true,
     "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
     "declaration": true,
     "outDir": "dist",
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": ["./src"],
   "exclude": ["node_modules"]

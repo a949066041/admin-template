@@ -1,5 +1,5 @@
 {
-  "name": "@yy-admin/base-components",
+  "name": "@yy-admin/common-chart",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -12,11 +12,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "vue-virtual-scroller": "2.0.0-beta.8"
+    "echarts": "^5.4.3"
   },
   "devDependencies": {
     "@vueuse/core": "^10.5.0",
-    "@yy-admin/common-core": "workspace:^",
     "typescript": "^5.2.2",
     "vue": "^3.3.7",
     "vue-demi": "^0.14.6"

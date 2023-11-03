@@ -1,6 +1,8 @@
 import {
-  defineConfig, presetAttributify,
-  presetUno, transformerDirectives,
+  defineConfig,
+  presetAttributify,
+  presetUno,
+  transformerDirectives,
 } from 'unocss'
 
 export default defineConfig({

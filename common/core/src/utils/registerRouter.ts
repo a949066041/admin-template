@@ -15,9 +15,7 @@ export function addWebRouter(
   menuList: MenuList[],
   routerModules?: AsyncRouters,
 ) {
-  const realRouter = registerRouter(menuList,
-    [],
-    routerModules || {})
+  const realRouter = registerRouter(menuList, [], routerModules || {})
   const renderRouter = registerRouter(menuList, [], {}, true)
   realRouter.forEach((item) => {
     router.addRoute(item as any)

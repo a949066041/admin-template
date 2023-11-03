@@ -10,9 +10,12 @@
   "scripts": {
     "build": "vite build"
   },
+  "dependencies": {
+    "@vueuse/core": "^10.5.0"
+  },
   "devDependencies": {
     "@types/fs-extra": "^11.0.3",
-    "@types/node": "^20.8.9",
+    "@types/node": "^20.8.10",
     "@vue/compiler-core": "^3.3.7",
     "@vue/runtime-core": "^3.3.7",
     "@vue/runtime-dom": "^3.3.7",
@@ -23,8 +26,5 @@
     "typescript": "^5.2.2",
     "vitepress": "1.0.0-rc.24",
     "vue": "^3.3.7"
-  },
-  "dependencies": {
-    "@vueuse/core": "^10.5.0"
   }
 }

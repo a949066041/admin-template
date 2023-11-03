@@ -2,10 +2,13 @@
   "name": "@yy-admin/common-admin",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
-  "keywords": [],
   "author": "",
   "license": "ISC",
+  "keywords": [],
+  "main": "src/index.ts",
+  "dependencies": {
+    "dayjs": "^1.11.10"
+  },
   "devDependencies": {
     "@vueuse/core": "^10.5.0",
     "@vueuse/shared": "^10.5.0",
@@ -15,8 +18,5 @@
     "ant-design-vue": "4.0.6",
     "vue": "^3.3.7",
     "vue-router": "^4.2.5"
-  },
-  "dependencies": {
-    "dayjs": "^1.11.10"
   }
 }

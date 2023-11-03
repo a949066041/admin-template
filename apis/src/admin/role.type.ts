@@ -1,5 +1,4 @@
 import type { IBaseEntity } from '../base'
-import type { Merge } from '../utils'
 import type { IDept } from './dept.type'
 
 export interface IRole extends IBaseEntity {

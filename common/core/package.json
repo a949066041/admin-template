@@ -1,5 +1,6 @@
 {
   "name": "@yy-admin/common-core",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -8,7 +9,6 @@
   "main": "src/index.ts",
   "module": "src/index.ts",
   "types": "src/index.ts",
-  "type": "module",
   "scripts": {
     "prepare:build": "tsc"
   },

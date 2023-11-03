@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
-    "strict": true,
     "target": "ES2015",
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "moduleResolution": "Node",
+    "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "types": ["./auto-imports.d.ts", "./components.d.ts"]
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "types": ["./auto-imports.d.ts", "./components.d.ts"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
   }
 }

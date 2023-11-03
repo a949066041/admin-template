@@ -12,7 +12,7 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.8.9",
+    "@types/node": "^20.8.10",
     "@unocss/transformer-directives": "^0.57.1",
     "@vitejs/plugin-vue": "^4.4.0",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
