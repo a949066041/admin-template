@@ -19,7 +19,7 @@ function handleToRouter(route: ItemType) {
 
 <template>
   <a-layout-sider v-model:collapsed="globStore.collapsed" class="h-screen overflow-hidden flex flex-col">
-    <div class="logo h-64px bg-white flex items-center justify-center text-8" @click="$router.push('/')">
+    <div class="logo h-64px  flex items-center bg-white justify-center text-8" @click="$router.push('/')">
       logo
     </div>
     <a-menu class="flex-1 overflow-auto" mode="inline" theme="dark" :items="userStore.userMenuList" @click="handleToRouter" />

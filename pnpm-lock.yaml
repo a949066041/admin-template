@@ -447,6 +447,9 @@ importers:
 
   config/vite:
     devDependencies:
+      '@iconify/json':
+        specifier: ^2.2.137
+        version: 2.2.137
       '@types/node':
         specifier: ^20.8.10
         version: 20.8.10
@@ -465,6 +468,9 @@ importers:
       unocss:
         specifier: ^0.57.2
         version: 0.57.2(@unocss/webpack@0.57.2)(postcss@8.4.31)(vite@4.5.0)
+      unplugin-icons:
+        specifier: ^0.17.3
+        version: 0.17.3
       unplugin-vue-components:
         specifier: ^0.25.2
         version: 0.25.2(vue@3.3.7)
@@ -2079,6 +2085,13 @@ packages:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
 
+  /@iconify/json@2.2.137:
+    resolution: {integrity: sha512-3FGpECgBVywCUoYwGP192fo50QiNynUnVEKRiiIFTtMyY6bCFAJP/ra/uJeiqwXQm4qBDIuUqKBDe5odFCSUfg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 1.1.1
+    dev: true
+
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
     dev: true
@@ -2211,7 +2224,7 @@ packages:
       '@rushstack/ts-command-line': 4.16.1
       colors: 1.2.5
       lodash: 4.17.21
-      resolve: 1.22.3
+      resolve: 1.22.8
       semver: 7.5.4
       source-map: 0.6.1
       typescript: 5.0.4
@@ -11243,6 +11256,37 @@ packages:
     transitivePeerDependencies:
       - postcss
       - rollup
+      - supports-color
+    dev: true
+
+  /unplugin-icons@0.17.3:
+    resolution: {integrity: sha512-uvopA4I6QYWYpwAyRvG/4NNvR1Cd4GnF/mtOkybgP2YPkHjRX02l/ALm20VUla31Jt9eZHxHyODtNf/Upx5uaw==}
+    peerDependencies:
+      '@svgr/core': '>=7.0.0'
+      '@svgx/core': ^1.0.1
+      '@vue/compiler-sfc': ^3.0.2 || ^2.7.0
+      vue-template-compiler: ^2.6.12
+      vue-template-es2015-compiler: ^1.9.0
+    peerDependenciesMeta:
+      '@svgr/core':
+        optional: true
+      '@svgx/core':
+        optional: true
+      '@vue/compiler-sfc':
+        optional: true
+      vue-template-compiler:
+        optional: true
+      vue-template-es2015-compiler:
+        optional: true
+    dependencies:
+      '@antfu/install-pkg': 0.1.1
+      '@antfu/utils': 0.7.6
+      '@iconify/utils': 2.1.11
+      debug: 4.3.4
+      kolorist: 1.8.0
+      local-pkg: 0.5.0
+      unplugin: 1.5.0
+    transitivePeerDependencies:
       - supports-color
     dev: true
 
