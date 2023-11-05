@@ -6,6 +6,8 @@ import Loading from './components/loading/index.vue'
 import DynamicVirtual from './components/dynamic-virtual/index.vue'
 import { LazyBox } from './components/lazy'
 
+export * from './components/lazy'
+
 export default function install(app: App) {
   app.use(VueVirtualScroller)
   app.component(DynamicVirtual.name, DynamicVirtual)

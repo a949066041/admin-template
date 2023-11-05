@@ -1,24 +1,27 @@
 <script lang="ts" setup>
-import { computed, watch } from 'vue';
-import { useIntersectionObserver, useToggle } from '@vueuse/core'
-import { useCurrentElement } from '@vueuse/core';
+import { computed, ref, useSlots, watch } from 'vue'
+import { useCurrentElement, useIntersectionObserver, useToggle } from '@vueuse/core'
 
-
-const props = withDefaults(defineProps<{ title: string; height: string | number; name: string; effectData?: any }>(), {
-  effectData: () => ({})
+defineOptions({
+  name: 'LazyBox',
 })
 
-const contentHeight = computed(() => {
-  return typeof props.height === 'number'? `${props.height}px` : props.height;
-});
+const props = withDefaults(defineProps<{ title: string; height: string | number; name: string; effectData?: any; loading?: boolean }>(), {
+  effectData: () => ({}),
+  loading: false,
+})
 
-const content = useCurrentElement<HTMLElement>()
-const [render, toggleRender] = useToggle<boolean>()
-const [intersecting, toggleIntersecting] = useToggle()
 const emits = defineEmits<{
   render: [string]
 }>()
 
+const contentHeight = computed(() => {
+  return typeof props.height === 'number' ? `${props.height}px` : props.height
+})
+
+const content = useCurrentElement<HTMLElement>()
+const [render, toggleRender] = useToggle<boolean>()
+const [intersecting, toggleIntersecting] = useToggle()
 useIntersectionObserver(content, (entry) => {
   const [{ isIntersecting }] = entry
   toggleIntersecting(isIntersecting)
@@ -30,18 +33,13 @@ useIntersectionObserver(content, (entry) => {
 
 watch(() => props.effectData, () => {
   toggleRender(intersecting.value)
-  if (intersecting.value) {
+  if (intersecting.value)
     emits('render', props.name)
-  }
-})
-
-defineOptions({
-  name: 'LazyBox',
 })
 </script>
 
 <template>
-  <div class=" flex flex-col bg-white rounded">
+  <div v-loading="loading" class="flex flex-col bg-white rounded">
     <div class=" px-4 py-2 border-b border-b-solid border-b-orange-400">
       {{ title }}
     </div>
