@@ -16,6 +16,10 @@ const router = createRouter({
       children: [
         {
           path: '/',
+          meta: {
+            title: '首页',
+            affix: true,
+          },
           component: () => import('../views/AboutView.vue'),
         },
       ],

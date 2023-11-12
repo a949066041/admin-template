@@ -44,6 +44,7 @@ const yyRequest = request(service, {
   getStore,
   setStore,
   cancelRepeat: true,
+  maxConcurrentNum: 5,
 })
 
 export default yyRequest

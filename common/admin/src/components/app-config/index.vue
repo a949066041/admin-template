@@ -24,6 +24,11 @@ dayjs.locale('zh-cn')
   <a-config-provider
     :locale="zhCN" :theme="{
       algorithm,
+      token: {
+        colorPrimary: '#00b96b',
+        colorLink: '#00b96b',
+      },
+      inherit: false,
     }"
   >
     <a-app :modal="{ centered: true }">

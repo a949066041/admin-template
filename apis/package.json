@@ -12,6 +12,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@yy-web/request": "^1.5.6"
+    "@yy-web/request": "^1.5.8"
   }
 }

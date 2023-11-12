@@ -12,13 +12,17 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "devDependencies": {
-    "@antfu/eslint-config": "^1.1.0",
-    "@unocss/transformer-directives": "^0.57.2",
+    "@antfu/eslint-config": "^1.1.1",
+    "@types/lodash": "^4.14.201",
+    "@unocss/transformer-directives": "^0.57.3",
     "eslint": "^8.53.0",
     "taze": "^0.12.0",
     "turbo": "^1.10.16",
     "typescript": "^5.2.2",
-    "unocss": "^0.57.2"
+    "unocss": "^0.57.3"
   }
 }

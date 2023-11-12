@@ -1,7 +1,7 @@
 <script lang="ts" generic="T extends Record<string, any>" setup>
 import { useVModels } from '@vueuse/core'
 import { computed } from 'vue'
-import { type YyTableColumns } from '../../utils/table'
+import type { YyTableColumns } from '../../utils/table'
 import S2Table from './s2/index.vue'
 
 interface IYyTable {

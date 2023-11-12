@@ -26,8 +26,6 @@ onMounted(async () => {
     fontSize: 14,
   })
 
-  console.log('code', props.code)
-
   const codeModel = monaco.editor.createModel(
     props.code,
     'html',

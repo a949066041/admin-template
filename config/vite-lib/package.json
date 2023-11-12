@@ -1,9 +1,9 @@
 {
   "name": "@yy-admin/config-vite-lib",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "author": "",
+  "type": "module",
   "license": "ISC",
   "keywords": [],
   "main": "dist/index.js",
@@ -13,13 +13,13 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.8.10",
-    "@unocss/transformer-directives": "^0.57.2",
-    "@vitejs/plugin-vue": "^4.4.0",
+    "@types/node": "^20.9.0",
+    "@unocss/transformer-directives": "^0.57.3",
+    "@vitejs/plugin-vue": "^4.4.1",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "autoprefixer": "^10.4.16",
     "typescript": "^5.2.2",
-    "unocss": "^0.57.2",
+    "unocss": "^0.57.3",
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.5.0",
     "vite-plugin-dts": "^3.6.3",

@@ -13,16 +13,16 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/js-cookie": "^3.0.5",
-    "@vueuse/core": "^10.5.0",
+    "@types/js-cookie": "^3.0.6",
+    "@vueuse/core": "^10.6.0",
     "@yy-admin/apis": "workspace:^",
-    "@yy-web/request": "^1.5.6",
+    "@yy-web/request": "^1.5.8",
     "ant-design-vue": "4.0.6",
-    "axios": "^1.6.0",
+    "axios": "^1.6.1",
     "js-cookie": "^3.0.5",
     "pinia": "^2.1.7",
     "typescript": "^5.2.2",
-    "vue": "^3.3.7",
+    "vue": "^3.3.8",
     "vue-demi": "^0.14.6",
     "vue-router": "^4.2.5"
   }

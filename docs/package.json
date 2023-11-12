@@ -12,6 +12,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
+    "@guolao/vue-monaco-editor": "^1.4.0",
     "@ruabick/md-demo-plugins": "^0.3.3",
     "@ruabick/vitepress-demo-block": "^0.3.3",
     "@yy-admin/common-components": "workspace:^",
@@ -19,6 +20,6 @@
     "ant-design-vue": "4.0.6",
     "vite": "^4.5.0",
     "vitepress": "1.0.0-rc.24",
-    "vue": "^3.3.7"
+    "vue": "^3.3.8"
   }
 }

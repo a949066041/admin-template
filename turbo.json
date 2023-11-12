@@ -2,6 +2,7 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "prepare:build": {
+      "dependsOn": ["^prepare:build"],
       "inputs": ["src/**/*.ts", "svg/**/*.svg"],
       "outputs": ["dist/**", "src/**/*.js"]
     }

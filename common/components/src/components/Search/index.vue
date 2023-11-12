@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-const emit = defineEmits(['search', 'reset'])
-
 defineOptions({
   name: 'YySearch',
 })
+
+const emit = defineEmits(['search', 'reset'])
 </script>
 
 <template>

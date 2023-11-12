@@ -3,10 +3,12 @@ import { useUserStore } from '@yy-admin/common-core'
 import { message } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 import { useGlobalState } from '../../../../store/useGlobal'
+import { useBreadcrumb } from './useBreadcrumb'
 
 defineOptions({
   name: 'YyHeader',
 })
+
 const { globStore } = useGlobalState()
 const userStore = useUserStore()
 const router = useRouter()
@@ -16,16 +18,33 @@ function handelLogoutUser() {
     router.push('/login')
   })
 }
+const { breadcrumbList } = useBreadcrumb()
 </script>
 
 <template>
-  <a-layout-header class=" flex  justify-between items-center">
+  <a-layout-header class=" flex justify-between items-center !bg-white">
     <div class=" flex items-center">
       <i-iconoir:sidebar-collapse
-        class=" text-white text-lg cursor-pointer"
+        class=" text-lg cursor-pointer"
         :class="{ 'rotate-180': globStore.collapsed }"
         @click="globStore.collapsed = !globStore.collapsed"
       />
+      <a-breadcrumb class=" ml-4">
+        <a-breadcrumb-item v-for="item of breadcrumbList" :key="item.path">
+          <a type="link">
+            {{ item.name }}
+          </a>
+          <template v-if="item.children && item.children.length > 0" #overlay>
+            <a-menu>
+              <a-menu-item v-for="innerItem of item.children" :key="innerItem.path">
+                <router-link :to="innerItem.path">
+                  {{ innerItem.name }}
+                </router-link>
+              </a-menu-item>
+            </a-menu>
+          </template>
+        </a-breadcrumb-item>
+      </a-breadcrumb>
     </div>
     <a-dropdown>
       <a-avatar class="bg-white text-#000">

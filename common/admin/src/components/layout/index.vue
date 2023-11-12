@@ -4,6 +4,7 @@ import { useAnimate } from '@vueuse/core'
 import { useRoute } from 'vue-router'
 import YyMenu from './components/menu/index.vue'
 import YyHeader from './components/header/index.vue'
+import RouteTags from './components/tag/index.vue'
 
 defineOptions({
   name: 'YyLayout',
@@ -38,6 +39,7 @@ watch(route, play, { immediate: true })
     <YyMenu ref="menu" />
     <a-layout class="flex flex-col h-screen">
       <YyHeader ref="top" />
+      <RouteTags />
       <a-layout-content class="flex-1 overflow-auto">
         <div ref="content" class=" overflow-hidden p4">
           <router-view v-slot="{ Component }">

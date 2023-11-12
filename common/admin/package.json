@@ -10,13 +10,13 @@
     "dayjs": "^1.11.10"
   },
   "devDependencies": {
-    "@vueuse/core": "^10.5.0",
-    "@vueuse/shared": "^10.5.0",
+    "@vueuse/core": "^10.6.0",
+    "@vueuse/shared": "^10.6.0",
     "@yy-admin/apis": "workspace:^",
     "@yy-admin/common-core": "workspace:^",
     "@yy-admin/common-utils": "workspace:^",
     "ant-design-vue": "4.0.6",
-    "vue": "^3.3.7",
+    "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   }
 }

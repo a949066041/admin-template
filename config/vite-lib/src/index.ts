@@ -1,4 +1,6 @@
 import { resolve } from 'node:path'
+import path from 'path';
+
 
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -8,26 +10,28 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import autoprefixer from 'autoprefixer'
 import UnoCSS from 'unocss/vite'
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 interface LibConfigOption {
   lib_name: string
 }
 
 export default function configLib(options: LibConfigOption) {
-  // eslint-disable-next-line n/prefer-global/process
-  const _cwd = process.cwd()
   return defineConfig({
     mode: 'production',
     build: {
       emptyOutDir: true,
       lib: {
-        entry: resolve(_cwd, 'src/index.ts'),
+        entry: resolve(process.cwd(), 'src/index.ts'),
         name: options.lib_name,
         fileName: 'index',
         formats: ['es', 'umd', 'cjs'],
       },
       rollupOptions: {
-        external: ['vue'],
+        external: ['vue', 'ant-design-vue'],
         output: {
           exports: 'named',
           globals: {
