@@ -138,8 +138,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0
       '@vueuse/core':
-        specifier: ^10.6.0
-        version: 10.6.0(vue@3.3.8)
+        specifier: ^10.6.1
+        version: 10.6.1(vue@3.3.8)
       '@yy-admin/apis':
         specifier: workspace:^
         version: link:../../apis
@@ -236,11 +236,11 @@ importers:
         version: 1.11.10
     devDependencies:
       '@vueuse/core':
-        specifier: ^10.6.0
-        version: 10.6.0(vue@3.3.8)
+        specifier: ^10.6.1
+        version: 10.6.1(vue@3.3.8)
       '@vueuse/shared':
-        specifier: ^10.6.0
-        version: 10.6.0(vue@3.3.8)
+        specifier: ^10.6.1
+        version: 10.6.1(vue@3.3.8)
       '@yy-admin/apis':
         specifier: workspace:^
         version: link:../../apis
@@ -267,8 +267,8 @@ importers:
         version: 2.0.0-beta.8(vue@3.3.8)
     devDependencies:
       '@vueuse/core':
-        specifier: ^10.6.0
-        version: 10.6.0(vue@3.3.8)
+        specifier: ^10.6.1
+        version: 10.6.1(vue@3.3.8)
       '@yy-admin/common-core':
         specifier: workspace:^
         version: link:../core
@@ -289,8 +289,8 @@ importers:
         version: 5.4.3
     devDependencies:
       '@vueuse/core':
-        specifier: ^10.6.0
-        version: 10.6.0(vue@3.3.8)
+        specifier: ^10.6.1
+        version: 10.6.1(vue@3.3.8)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -311,8 +311,8 @@ importers:
         specifier: ^20.9.0
         version: 20.9.0
       '@vueuse/core':
-        specifier: ^10.6.0
-        version: 10.6.0(vue@3.3.8)
+        specifier: ^10.6.1
+        version: 10.6.1(vue@3.3.8)
       '@yy-admin/config-vite-lib':
         specifier: workspace:^
         version: link:../../config/vite-lib
@@ -344,8 +344,8 @@ importers:
         specifier: ^3.0.6
         version: 3.0.6
       '@vueuse/core':
-        specifier: ^10.6.0
-        version: 10.6.0(vue@3.3.8)
+        specifier: ^10.6.1
+        version: 10.6.1(vue@3.3.8)
       '@yy-admin/apis':
         specifier: workspace:^
         version: link:../../apis
@@ -412,8 +412,8 @@ importers:
   config/md-vue:
     dependencies:
       '@vueuse/core':
-        specifier: ^10.6.0
-        version: 10.6.0(vue@3.3.8)
+        specifier: ^10.6.1
+        version: 10.6.1(vue@3.3.8)
     devDependencies:
       '@types/fs-extra':
         specifier: ^11.0.4
@@ -455,8 +455,8 @@ importers:
   config/vite:
     devDependencies:
       '@iconify/json':
-        specifier: ^2.2.140
-        version: 2.2.140
+        specifier: ^2.2.141
+        version: 2.2.141
       '@types/node':
         specifier: ^20.9.0
         version: 20.9.0
@@ -476,8 +476,8 @@ importers:
         specifier: ^0.57.3
         version: 0.57.3(@unocss/webpack@0.57.3)(postcss@8.4.31)(vite@4.5.0)
       unplugin-icons:
-        specifier: ^0.17.3
-        version: 0.17.3
+        specifier: ^0.17.4
+        version: 0.17.4
       unplugin-vue-components:
         specifier: ^0.25.2
         version: 0.25.2(vue@3.3.8)
@@ -2133,8 +2133,8 @@ packages:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
 
-  /@iconify/json@2.2.140:
-    resolution: {integrity: sha512-pEDLyUe39vZy15C0LT3UrnTzAWq1xkZ+F8+u9XfcHzqC7W9IwsocVMzWBGtXUn+pCmLpksfwHlzVycbbz7eMvw==}
+  /@iconify/json@2.2.141:
+    resolution: {integrity: sha512-EmHsjVngGE7K9ykKkkGczXTW5552h/dDp7SicHT3SaQD1Krb/GvIVCff9jRgBDFu9QxhcqVdVk+kDHfbzJXT8Q==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.1
@@ -4148,12 +4148,12 @@ packages:
       - vue
     dev: true
 
-  /@vueuse/core@10.6.0(vue@3.3.8):
-    resolution: {integrity: sha512-+Yee+g9+9BEbvkyGdn4Bf4yZx9EfocAytpV2ZlrlP7xcz+qznLmZIDqDroTvc5vtMkWZicisgEv8dt3+jL+HQg==}
+  /@vueuse/core@10.6.1(vue@3.3.8):
+    resolution: {integrity: sha512-Pc26IJbqgC9VG1u6VY/xrXXfxD33hnvxBnKrLlA2LJlyHII+BSrRoTPJgGYq7qZOu61itITFUnm6QbacwZ4H8Q==}
     dependencies:
       '@types/web-bluetooth': 0.0.20
-      '@vueuse/metadata': 10.6.0
-      '@vueuse/shared': 10.6.0(vue@3.3.8)
+      '@vueuse/metadata': 10.6.1
+      '@vueuse/shared': 10.6.1(vue@3.3.8)
       vue-demi: 0.14.6(vue@3.3.8)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -4278,8 +4278,8 @@ packages:
     resolution: {integrity: sha512-fEbElR+MaIYyCkeM0SzWkdoMtOpIwO72x8WsZHRE7IggiOlILttqttM69AS13nrDxosnDBYdyy3C5mR1LCxHsw==}
     dev: true
 
-  /@vueuse/metadata@10.6.0:
-    resolution: {integrity: sha512-mzKHkHoiK6xVz01VzQjM2l6ofUanEaofgEGPgDHcAzlvOTccPRTIdEuzneOUTYxgfm1vkDikS6rtrEw/NYlaTQ==}
+  /@vueuse/metadata@10.6.1:
+    resolution: {integrity: sha512-qhdwPI65Bgcj23e5lpGfQsxcy0bMjCAsUGoXkJ7DsoeDUdasbZ2DBa4dinFCOER3lF4gwUv+UD2AlA11zdzMFw==}
 
   /@vueuse/metadata@9.13.0:
     resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
@@ -4303,8 +4303,8 @@ packages:
       - vue
     dev: true
 
-  /@vueuse/shared@10.6.0(vue@3.3.8):
-    resolution: {integrity: sha512-0t4MVE18sO+/4Gh0jfeOXBTjKeV4606N9kIrDOLPjFl8Rwnlodn+QC5A4LfJuysK7aOsTMjF3KnzNeueaI0xlQ==}
+  /@vueuse/shared@10.6.1(vue@3.3.8):
+    resolution: {integrity: sha512-TECVDTIedFlL0NUfHWncf3zF9Gc4VfdxfQc8JFwoVZQmxpONhLxFrlm0eHQeidHj4rdTPL3KXJa0TZCk1wnc5Q==}
     dependencies:
       vue-demi: 0.14.6(vue@3.3.8)
     transitivePeerDependencies:
@@ -4454,7 +4454,7 @@ packages:
   /@yy-web/business-use@2.0.3(typescript@5.2.2):
     resolution: {integrity: sha512-b+4am9AHkakTXqKxE+oC5aEhh0M/Lj6J0aygJD9iO6OEfHQrT5TVR94WvBb2Ywrghj4WJuhAvpG7l217t0wrwg==}
     dependencies:
-      '@vueuse/core': 10.6.0(vue@3.3.8)
+      '@vueuse/core': 10.6.1(vue@3.3.8)
       axios: 1.6.1
       vue: 3.3.8(typescript@5.2.2)
       vue-demi: 0.14.6(vue@3.3.8)
@@ -11225,8 +11225,8 @@ packages:
       - supports-color
     dev: true
 
-  /unplugin-icons@0.17.3:
-    resolution: {integrity: sha512-uvopA4I6QYWYpwAyRvG/4NNvR1Cd4GnF/mtOkybgP2YPkHjRX02l/ALm20VUla31Jt9eZHxHyODtNf/Upx5uaw==}
+  /unplugin-icons@0.17.4:
+    resolution: {integrity: sha512-PHLxjBx3ZV8RUBvfMafFl8uWH88jHeZgOijcRpkwgne7y2Ovx7WI0Ltzzw3fjZQ7dGaDhB8udyKVdm9N2S6BIw==}
     peerDependencies:
       '@svgr/core': '>=7.0.0'
       '@svgx/core': ^1.0.1
@@ -11660,7 +11660,7 @@ packages:
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0-0
     dependencies:
-      '@vueuse/core': 10.6.0(vue@3.3.8)
+      '@vueuse/core': 10.6.1(vue@3.3.8)
       '@vueuse/integrations': 10.3.0(vue@3.3.8)
       '@webfansplz/vuedoc-parser': 0.0.3(@types/node@20.9.0)(pug@3.0.2)
       algoliasearch: 4.19.1
@@ -11856,7 +11856,7 @@ packages:
       '@types/markdown-it': 13.0.4
       '@vitejs/plugin-vue': 4.3.1(vite@4.5.0)(vue@3.3.8)
       '@vue/devtools-api': 6.5.1
-      '@vueuse/core': 10.6.0(vue@3.3.8)
+      '@vueuse/core': 10.6.1(vue@3.3.8)
       '@vueuse/integrations': 10.5.0(focus-trap@7.5.4)(vue@3.3.8)
       focus-trap: 7.5.4
       mark.js: 8.11.1

@@ -15,7 +15,7 @@
     "echarts": "^5.4.3"
   },
   "devDependencies": {
-    "@vueuse/core": "^10.6.0",
+    "@vueuse/core": "^10.6.1",
     "typescript": "^5.2.2",
     "vue": "^3.3.8",
     "vue-demi": "^0.14.6"

@@ -11,7 +11,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@vueuse/core": "^10.6.0"
+    "@vueuse/core": "^10.6.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
