@@ -1,6 +1,4 @@
 import { resolve } from 'node:path'
-import path from 'path';
-
 
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -10,14 +8,17 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import autoprefixer from 'autoprefixer'
 import UnoCSS from 'unocss/vite'
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { visualizer } from "rollup-plugin-visualizer";
 
 interface LibConfigOption {
   lib_name: string
 }
+
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default function configLib(options: LibConfigOption) {
   return defineConfig({
@@ -31,7 +32,7 @@ export default function configLib(options: LibConfigOption) {
         formats: ['es', 'umd', 'cjs'],
       },
       rollupOptions: {
-        external: ['vue', 'ant-design-vue'],
+        external: ['vue', 'ant-design-vue', 'ant-design-vue/es'],
         output: {
           exports: 'named',
           globals: {
@@ -53,6 +54,16 @@ export default function configLib(options: LibConfigOption) {
         resolvers: [
           AntDesignVueResolver({ importStyle: false }),
         ],
+      }),
+      // viteExternalsPlugin({
+      //   vue: 'Vue',
+      //   'ant-design-vue': 'ant-design-vue'
+      // }),
+      visualizer({
+        gzipSize: true,
+        brotliSize: true,
+        emitFile: false,
+        filename: "test.html", //分析图生成的文件名
       }),
     ],
     css: {

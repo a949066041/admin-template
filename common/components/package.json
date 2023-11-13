@@ -5,10 +5,15 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "@antv/s2": "^1.52.0"
+  },
+  "scripts": {
+    "prepare:build": "vite build"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",

@@ -8,6 +8,7 @@
     "types": ["./auto-imports.d.ts", "./components.d.ts"],
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "preserveSymlinks": true 
   }
 }

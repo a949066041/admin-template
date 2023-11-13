@@ -27,8 +27,7 @@ dayjs.locale('zh-cn')
       token: {
         colorPrimary: '#00b96b',
         colorLink: '#00b96b',
-      },
-      inherit: false,
+      }
     }"
   >
     <a-app :modal="{ centered: true }">
