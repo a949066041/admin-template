@@ -1,5 +1,5 @@
 import type { MenuList } from '@yy-admin/apis'
-import { first } from 'lodash'
+import { first } from 'lodash-es'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 

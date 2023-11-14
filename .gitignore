@@ -28,3 +28,4 @@ docs/docs/.vitepress/cache
 *.sln
 *.sw?
 components.d.ts
+report.html

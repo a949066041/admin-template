@@ -11,6 +11,9 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^1.1.1
@@ -18,9 +21,15 @@ importers:
       '@types/lodash':
         specifier: ^4.14.201
         version: 4.14.201
+      '@types/lodash-es':
+        specifier: ^4.17.11
+        version: 4.17.11
       '@unocss/transformer-directives':
         specifier: ^0.57.3
         version: 0.57.3
+      '@vue/tsconfig':
+        specifier: ^0.4.0
+        version: 0.4.0
       eslint:
         specifier: ^8.53.0
         version: 8.53.0
@@ -3240,6 +3249,12 @@ packages:
 
   /@types/linkify-it@3.0.3:
     resolution: {integrity: sha512-pTjcqY9E4nOI55Wgpz7eiI8+LzdYnw3qxXCfHyBDdPbYvbyLgWLJGh8EdPvqawwMK1Uo1794AUkkR38Fr0g+2g==}
+    dev: true
+
+  /@types/lodash-es@4.17.11:
+    resolution: {integrity: sha512-eCw8FYAWHt2DDl77s+AMLLzPn310LKohruumpucZI4oOFJkIgnlaJcy23OKMJxx4r9PeTF13Gv6w+jqjWQaYUg==}
+    dependencies:
+      '@types/lodash': 4.14.201
     dev: true
 
   /@types/lodash@4.14.201:

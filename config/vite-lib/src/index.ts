@@ -55,15 +55,11 @@ export default function configLib(options: LibConfigOption) {
           AntDesignVueResolver({ importStyle: false }),
         ],
       }),
-      // viteExternalsPlugin({
-      //   vue: 'Vue',
-      //   'ant-design-vue': 'ant-design-vue'
-      // }),
       visualizer({
         gzipSize: true,
         brotliSize: true,
         emitFile: false,
-        filename: "test.html", //分析图生成的文件名
+        filename: "report.html", //分析图生成的文件名
       }),
     ],
     css: {

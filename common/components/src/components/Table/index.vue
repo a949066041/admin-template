@@ -2,7 +2,6 @@
 import { useVModels } from '@vueuse/core'
 import { computed } from 'vue'
 import type { YyTableColumns } from '../../utils/table'
-import S2Table from './s2/index.vue'
 
 interface IYyTable {
   columns: YyTableColumns<string>[]
@@ -39,9 +38,7 @@ const { limit, current } = useVModels(props, emit)
     <slot name="search" />
     <slot name="tools" />
     <div class="px-2 py-4 mt-2 bg-white dark:bg-[#001529]">
-      <S2Table v-if="s2" class="w-full" :columns="columns" :data-source="dataSource" />
       <a-table
-        v-else
         bordered
         :loading="loading"
         :columns="columns"

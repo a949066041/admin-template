@@ -1,4 +1,5 @@
 import type { TableColumnProps } from 'ant-design-vue'
+import { last  } from 'lodash-es'
 
 export interface IColumnType<T extends string | string[] = string> extends TableColumnProps {
   dataIndex: T
@@ -66,7 +67,7 @@ export function createColumn<T extends string | string[] = string>(
     dataIndex,
     title,
     minWidth: width,
-    renderSlot: !!args.at(-1),
+    renderSlot: !!last(args),
   }
 }
 
