@@ -27,7 +27,6 @@
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^20.9.0",
-    "@vue/tsconfig": "^0.4.0",
     "@vueuse/core": "^10.6.1",
     "@yy-admin/apis": "workspace:^",
     "@yy-admin/base-components": "workspace:^",
