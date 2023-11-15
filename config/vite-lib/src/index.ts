@@ -9,6 +9,7 @@ import dts from 'vite-plugin-dts'
 import autoprefixer from 'autoprefixer'
 import UnoCSS from 'unocss/vite'
 import { visualizer } from "rollup-plugin-visualizer";
+import Icons from 'unplugin-icons/vite'
 
 interface LibConfigOption {
   lib_name: string
@@ -60,6 +61,9 @@ export default function configLib(options: LibConfigOption) {
         brotliSize: true,
         emitFile: false,
         filename: "report.html", //分析图生成的文件名
+      }),
+      Icons({
+        autoInstall: true,
       }),
     ],
     css: {

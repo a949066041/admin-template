@@ -12,13 +12,12 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.141",
     "@types/node": "^20.9.0",
-    "@unocss/transformer-directives": "^0.57.3",
+    "@unocss/transformer-directives": "^0.57.4",
     "@vitejs/plugin-vue": "^4.4.1",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "typescript": "^5.2.2",
-    "unocss": "^0.57.3",
+    "unocss": "^0.57.4",
     "unplugin-icons": "^0.17.4",
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.5.0",
