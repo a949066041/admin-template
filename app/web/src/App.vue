@@ -8,7 +8,6 @@ defineOptions({
 
 <template>
   <AppConfig title="web1">
-    <i-ic:baseline-search />
     <RouterView />
   </AppConfig>
 </template>

@@ -21,7 +21,6 @@
     "autoprefixer": "^10.4.16",
     "rollup-plugin-visualizer": "^5.9.2",
     "typescript": "^5.2.2",
-    "unocss": "^0.57.4",
     "unplugin-icons": "^0.17.4",
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.5.0",
