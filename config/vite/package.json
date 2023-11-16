@@ -2,24 +2,21 @@
   "name": "@yy-admin/config-vite",
   "version": "1.0.0",
   "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare:build": "tsc"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.9.0",
-    "@unocss/transformer-directives": "^0.57.4",
     "@vitejs/plugin-vue": "^4.4.1",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
-    "typescript": "^5.2.2",
     "unplugin-icons": "^0.17.4",
     "unplugin-vue-components": "^0.25.2",
-    "vite": "^5.0.0",
-    "vite-plugin-vue-devtools": "^0.5.1"
+    "vite": "^5.0.0"
   }
 }

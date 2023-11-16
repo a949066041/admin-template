@@ -1,0 +1,22 @@
+{
+  "name": "@yy-admin/config-vite-app",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare:build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@yy-admin/config-vite": "workspace:^",
+    "typescript": "^5.2.2",
+    "unplugin-vue-components": "^0.25.2",
+    "vite": "^5.0.0",
+    "vite-plugin-vue-devtools": "^0.5.1"
+  }
+}

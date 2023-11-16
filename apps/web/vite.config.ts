@@ -1,6 +1,6 @@
 import { URL, fileURLToPath } from 'node:url'
 import { mergeConfig } from 'vite'
-import defaultConfig from '@yy-admin/config-vite'
+import defaultConfig from '@yy-admin/config-vite-app'
 
 export default mergeConfig(defaultConfig(), {
   resolve: {

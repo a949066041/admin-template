@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@yy-admin/common-utils": "workspace:^",
-    "@yy-admin/config-vite": "workspace:^",
+    "@yy-admin/config-vite-app": "workspace:^",
     "vant": "^4.7.3"
   },
   "devDependencies": {
