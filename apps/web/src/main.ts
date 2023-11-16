@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import '@yy-admin/common-css'
 import { createPinia } from 'pinia'
 import BaseUI from '@yy-admin/components-base'
-import Antd, { Modal } from 'ant-design-vue'
+import { Modal } from 'ant-design-vue'
 import { Layout } from '@yy-admin/components-admin'
 import { setRequest } from '@yy-web/request'
 import { confBusiness } from '@yy-web/business-use'
@@ -18,7 +18,6 @@ setRequest(requestInstance)
 app.use(BaseUI)
 app.use(createPinia())
 app.use(router)
-app.use(Antd)
 confBusiness(app, {
   table: {
     pageKey: 'page',

@@ -10,7 +10,6 @@ export function YyAntdComponents(): ComponentResolver {
   return {
     type: 'component',
     resolve(componentName: string) {
-      console.log(componentName)
       if (customComponent.has(componentName))
         return { name: componentName, from: '@yy-admin/components-antdv', sideEffects: '@yy-admin/components-antdv/dist/style.css' }
     },

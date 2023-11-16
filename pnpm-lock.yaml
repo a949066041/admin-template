@@ -118,6 +118,9 @@ importers:
       axios:
         specifier: ^1.6.2
         version: 1.6.2
+      echarts:
+        specifier: ^5.4.3
+        version: 5.4.3
     devDependencies:
       '@tsconfig/node18':
         specifier: ^18.2.2
@@ -363,12 +366,18 @@ importers:
       '@types/node':
         specifier: ^20.9.0
         version: 20.9.0
+      '@types/rollup-plugin-visualizer':
+        specifier: ^4.2.3
+        version: 4.2.3
       '@vitejs/plugin-vue':
         specifier: ^4.4.1
         version: 4.4.1(vite@5.0.0)(vue@3.3.8)
       '@vitejs/plugin-vue-jsx':
         specifier: ^3.0.2
         version: 3.0.2(vite@5.0.0)(vue@3.3.8)
+      rollup-plugin-visualizer:
+        specifier: ^5.9.2
+        version: 5.9.2(rollup@3.29.4)
       unplugin-icons:
         specifier: ^0.17.4
         version: 0.17.4
