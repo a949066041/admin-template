@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "composite": true,
-    "types": ["node"]
-  },
-  "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"]
-}

@@ -1,5 +1,5 @@
 import type { Router } from 'vue-router'
-import type { MenuList } from '@yy-admin/apis'
+import type { MenuList } from '@yy-admin/common-apis'
 
 export type AsyncRouters = Record<string, (() => Promise<unknown>) | unknown>
 

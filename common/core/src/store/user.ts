@@ -1,7 +1,7 @@
 import { ref } from 'vue-demi'
 import { defineStore } from 'pinia'
-import { AuthApi, MenuApi } from '@yy-admin/apis'
-import type { LoginForm, MenuList, UserInfo } from '@yy-admin/apis'
+import { AuthApi, MenuApi } from '@yy-admin/common-apis'
+import type { LoginForm, MenuList, UserInfo } from '@yy-admin/common-apis'
 import { clearToken, setToken } from '../utils/token'
 
 export const useUserStore = defineStore('core-user', () => {

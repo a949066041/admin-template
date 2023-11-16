@@ -1,6 +1,5 @@
 {
-  "name": "@yy-admin/common-core",
-  "type": "module",
+  "name": "@yy-admin/components-base",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -10,16 +9,14 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepare:build": "tsc"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "vue-virtual-scroller": "2.0.0-beta.8"
   },
   "devDependencies": {
-    "@types/js-cookie": "^3.0.6",
     "@vueuse/core": "^10.6.1",
-    "@yy-admin/common-apis": "workspace:^",
-    "@yy-web/request": "^1.5.8",
-    "ant-design-vue": "4.0.6",
-    "axios": "^1.6.2",
-    "js-cookie": "^3.0.5",
+    "@yy-admin/common-core": "workspace:^",
     "typescript": "^5.2.2",
     "vue-demi": "^0.14.6"
   }

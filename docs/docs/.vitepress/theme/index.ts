@@ -4,7 +4,7 @@ import Theme from 'vitepress/theme'
 import './style.css'
 import Antd from 'ant-design-vue'
 
-import { YySelect } from '@yy-admin/common-components'
+import { YySelect } from '@yy-admin/components-antdv'
 import 'uno.css'
 import { install as VueMonacoEditorPlugin, loader } from '@guolao/vue-monaco-editor'
 

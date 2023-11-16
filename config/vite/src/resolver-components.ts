@@ -11,7 +11,7 @@ export function YyAntdComponents(): ComponentResolver {
     type: 'component',
     resolve(componentName: string) {
       if (customComponent.has(componentName))
-        return { name: componentName, from: '@yy-admin/common-components', sideEffects: '@yy-admin/common-components/dist/style.css' }
+        return { name: componentName, from: '@yy-admin/components-antdv', sideEffects: '@yy-admin/components-antdv/dist/style.css' }
     },
   }
 }

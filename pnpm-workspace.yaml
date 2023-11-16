@@ -1,6 +1,7 @@
 packages:
   - apis
   - 'common/**'
-  - 'app/**'
+  - 'components/**'
+  - 'apps/**'
   - 'config/**'
   - docs

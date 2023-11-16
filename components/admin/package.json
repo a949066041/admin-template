@@ -1,0 +1,20 @@
+{
+  "name": "@yy-admin/components-admin",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "src/index.ts",
+  "dependencies": {
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "@vueuse/core": "^10.6.1",
+    "@vueuse/shared": "^10.6.1",
+    "@yy-admin/common-apis": "workspace:^",
+    "@yy-admin/common-core": "workspace:^",
+    "@yy-admin/common-utils": "workspace:^",
+    "ant-design-vue": "4.0.6"
+  }
+}
