@@ -39,7 +39,7 @@ watch(() => props.effectData, () => {
 </script>
 
 <template>
-  <div v-loading="loading" class="flex flex-col bg-white rounded">
+  <div v-loading="loading" class="flex flex-col bg-white rounded dark:bg-gray-900">
     <div class=" px-4 py-2 border-b border-b-solid border-b-orange-400">
       {{ title }}
     </div>

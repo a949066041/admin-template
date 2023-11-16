@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import '@yy-admin/common-css'
 import { createPinia } from 'pinia'
 import BaseUI from '@yy-admin/components-base'
 import Antd, { Modal } from 'ant-design-vue'
@@ -10,7 +11,6 @@ import App from './App.vue'
 import router from './router'
 
 import 'uno.css'
-import 'virtual:unocss-devtools'
 
 const app = createApp(App)
 setRequest(requestInstance)

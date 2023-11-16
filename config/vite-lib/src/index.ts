@@ -33,7 +33,7 @@ export default function configLib(options: LibConfigOption) {
         formats: ['es', 'umd', 'cjs'],
       },
       rollupOptions: {
-        external: ['vue', 'ant-design-vue', 'ant-design-vue/es'],
+        external: ['vue', 'ant-design-vue', 'ant-design-vue/es', '@yy-admin/common-apis', '@yy-admin/common-core', '@yy-admin/common-utils'],
         output: {
           exports: 'named',
           globals: {

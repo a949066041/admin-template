@@ -131,6 +131,9 @@ importers:
       '@yy-admin/common-apis':
         specifier: workspace:^
         version: link:../../common/apis
+      '@yy-admin/common-css':
+        specifier: workspace:^
+        version: link:../../common/css
       '@yy-admin/components-antdv':
         specifier: workspace:^
         version: link:../../components/antdv
@@ -197,15 +200,12 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
-      vue-demi:
-        specifier: ^0.14.6
-        version: 0.14.6(vue@3.3.8)
 
-  common/types:
+  common/css:
     devDependencies:
-      typescript:
-        specifier: ^5.2.2
-        version: 5.2.2
+      '@unocss/reset':
+        specifier: ^0.57.4
+        version: 0.57.4
 
   common/utils:
     dependencies:
@@ -272,9 +272,6 @@ importers:
       vite:
         specifier: ^5.0.0
         version: 5.0.0(@types/node@20.9.0)(less@4.2.0)
-      vue-demi:
-        specifier: ^0.14.6
-        version: 0.14.6(vue@3.3.8)
       vue-tsc:
         specifier: ^1.8.22
         version: 1.8.22(typescript@5.2.2)
@@ -294,9 +291,6 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
-      vue-demi:
-        specifier: ^0.14.6
-        version: 0.14.6(vue@3.3.8)
 
   components/chart:
     dependencies:
@@ -310,9 +304,6 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
-      vue-demi:
-        specifier: ^0.14.6
-        version: 0.14.6(vue@3.3.8)
 
   components/threejs:
     dependencies:
@@ -3818,9 +3809,9 @@ packages:
       vite: ^4.0.0
       vue: ^3.0.0
     dependencies:
-      '@babel/core': 7.23.0
-      '@babel/plugin-transform-typescript': 7.22.15(@babel/core@7.23.0)
-      '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.23.0)
+      '@babel/core': 7.22.10
+      '@babel/plugin-transform-typescript': 7.22.10(@babel/core@7.22.10)
+      '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.22.10)
       vite: 4.5.0(@types/node@20.9.0)
       vue: 3.3.8(typescript@5.2.2)
     transitivePeerDependencies:
