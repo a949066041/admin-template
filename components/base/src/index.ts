@@ -1,4 +1,4 @@
-import type { App } from 'vue-demi'
+import type { App } from 'vue'
 import { createVNodeDirectives } from '@yy-admin/common-core'
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'

@@ -17,7 +17,6 @@
   "devDependencies": {
     "@vueuse/core": "^10.6.1",
     "@yy-admin/common-core": "workspace:^",
-    "typescript": "^5.2.2",
-    "vue-demi": "^0.14.6"
+    "typescript": "^5.2.2"
   }
 }

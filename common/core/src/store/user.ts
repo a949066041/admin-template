@@ -1,4 +1,4 @@
-import { ref } from 'vue-demi'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { AuthApi, MenuApi } from '@yy-admin/common-apis'
 import type { LoginForm, MenuList, UserInfo } from '@yy-admin/common-apis'
