@@ -4,10 +4,10 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ComponentResolver } from 'unplugin-vue-components/types'
+import type { ComponentResolver } from 'unplugin-vue-components/types'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
-import { visualizer } from "rollup-plugin-visualizer";
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export interface ICommonViteConfig {
   resolvers?: ComponentResolver[]
@@ -18,7 +18,7 @@ export default (_config?: ICommonViteConfig) => {
   const config = {
     resolvers: [],
     report: false,
-    ..._config
+    ..._config,
   } as Required<ICommonViteConfig>
   return defineConfig({
     plugins: [
@@ -36,7 +36,7 @@ export default (_config?: ICommonViteConfig) => {
         gzipSize: true,
         brotliSize: true,
         emitFile: false,
-        filename: "report.html", //分析图生成的文件名
+        filename: 'report.html', // 分析图生成的文件名
       }) : () => {},
     ],
   })

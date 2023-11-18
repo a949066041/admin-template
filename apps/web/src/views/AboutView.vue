@@ -23,10 +23,10 @@ const { config, handleRenderCb } = useLazyBox({
         { value: Math.random() * 100, name: 'rose 1' },
         { value: Math.random() * 100, name: 'rose 2' },
         { value: Math.random() * 100, name: 'rose 3' },
-        { value: Math.random() * 100, name: 'rose 4' },
         { value: Math.random() * 100, name: 'rose 5' },
         { value: Math.random() * 100, name: 'rose 6' },
         { value: Math.random() * 100, name: 'rose 7' },
+        { value: Math.random() * 100, name: 'rose 4' },
         { value: Math.random() * 100, name: 'rose 8' },
       ]))
     },

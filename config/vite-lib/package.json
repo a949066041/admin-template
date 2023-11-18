@@ -2,7 +2,6 @@
   "name": "@yy-admin/config-vite-lib",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "author": "",
   "license": "ISC",
   "keywords": [],
@@ -13,19 +12,14 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.9.0",
+    "@types/node": "^20.9.1",
     "@types/rollup-plugin-visualizer": "^4.2.3",
-    "@unocss/transformer-directives": "^0.57.4",
-    "@vitejs/plugin-vue": "^4.4.1",
-    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "@yy-admin/config-vite": "workspace:^",
     "autoprefixer": "^10.4.16",
     "rollup-plugin-visualizer": "^5.9.2",
     "typescript": "^5.2.2",
-    "unplugin-icons": "^0.17.4",
     "unplugin-vue-components": "^0.25.2",
     "vite": "^5.0.0",
-    "vite-plugin-dts": "^3.6.3",
-    "vite-plugin-externals": "^0.6.2",
-    "vite-plugin-vue-devtools": "^0.5.1"
+    "vite-plugin-dts": "^3.6.3"
   }
 }

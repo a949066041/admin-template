@@ -1,75 +1,51 @@
+/* eslint-disable node/prefer-global/process */
 import { resolve } from 'node:path'
-
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
-import Components from 'unplugin-vue-components/vite'
-import { defineConfig } from 'vite'
+import { defineConfig, mergeConfig } from 'vite'
+import commonViteConfig from '@yy-admin/config-vite'
 import dts from 'vite-plugin-dts'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import autoprefixer from 'autoprefixer'
-import UnoCSS from 'unocss/vite'
-import { visualizer } from "rollup-plugin-visualizer";
-import Icons from 'unplugin-icons/vite'
 
 interface LibConfigOption {
   lib_name: string
 }
 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-export default function configLib(options: LibConfigOption) {
-  return defineConfig({
-    mode: 'production',
-    build: {
-      emptyOutDir: true,
-      lib: {
-        entry: resolve(process.cwd(), 'src/index.ts'),
-        name: options.lib_name,
-        fileName: 'index',
-        formats: ['es', 'umd', 'cjs'],
-      },
-      rollupOptions: {
-        external: ['vue', 'ant-design-vue', 'ant-design-vue/es', '@yy-admin/common-apis', '@yy-admin/common-core', '@yy-admin/common-utils'],
-        output: {
-          exports: 'named',
-          globals: {
-            vue: 'Vue',
-          },
+export default (options: LibConfigOption) => mergeConfig(commonViteConfig({
+  resolvers: [AntDesignVueResolver({ importStyle: false })],
+}), defineConfig({
+  mode: 'production',
+  build: {
+    emptyOutDir: true,
+    lib: {
+      entry: resolve(process.cwd(), 'src/index.ts'),
+      name: options.lib_name,
+      fileName: 'index',
+      formats: ['es', 'umd', 'cjs'],
+    },
+    rollupOptions: {
+      external: ['vue', 'ant-design-vue', 'ant-design-vue/es', '@yy-admin/common-apis', '@yy-admin/common-core', '@yy-admin/common-utils', 'vue-router'],
+      output: {
+        exports: 'named',
+        globals: {
+          'vue': 'Vue',
+          'ant-design-vue': 'antd',
+          'ant-design-vue/es': 'antd',
+          '@yy-admin/common-apis': 'yy-admin-common-apis',
+          '@yy-admin/common-core': 'yy-admin-common-core',
+          '@yy-admin/common-utils': 'yy-admin-common-utils',
+          'vue-router': 'vue-router',
         },
       },
     },
-    plugins: [
-      vue(),
-      vueJsx(),
-      UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
-      dts({
-        rollupTypes: true,
-      }),
-      Components({
-        dts: true,
-        extensions: ['vue', 'tsx'],
-        resolvers: [
-          AntDesignVueResolver({ importStyle: false }),
-        ],
-      }),
-      visualizer({
-        gzipSize: true,
-        brotliSize: true,
-        emitFile: false,
-        filename: "report.html", //分析图生成的文件名
-      }),
-      Icons({
-        autoInstall: true,
-      }),
-    ],
-    css: {
-      postcss: {
-        plugins: [autoprefixer as any],
-      },
+  },
+  plugins: [
+    dts({
+      rollupTypes: true,
+    }),
+  ],
+  css: {
+    postcss: {
+      plugins: [autoprefixer as any],
     },
-  })
-}
+  },
+}))

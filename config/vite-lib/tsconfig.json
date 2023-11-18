@@ -2,20 +2,20 @@
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["ESNext"],
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
-    "declaration": true,
-    "outDir": "dist",
     "resolveJsonModule": true,
     "types": [
       "node",
-      "vite/client",
+      "vite/client"
     ],
     "strict": true,
     "strictNullChecks": true,
+    "declaration": true,
+    "outDir": "dist",
     "esModuleInterop": true,
+    "preserveSymlinks": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "preserveSymlinks": true 
+    "skipLibCheck": true
   }
 }

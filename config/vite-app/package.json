@@ -12,11 +12,11 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.9.0",
+    "@types/node": "^20.9.1",
     "@yy-admin/config-vite": "workspace:^",
     "typescript": "^5.2.2",
     "unplugin-vue-components": "^0.25.2",
     "vite": "^5.0.0",
-    "vite-plugin-vue-devtools": "^0.5.1"
+    "vite-plugin-vue-devtools": "^1.0.0-rc.5"
   }
 }

@@ -13,33 +13,33 @@
   "explorer.fileNesting.patterns": {
     "*.api.ts": "${capture}.type.ts"
   },
-  // Enable the flat config support
+  // Enable the ESlint flat config support
   "eslint.experimental.useFlatConfig": true,
 
-  // Disable the default formatter
+  // Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": false,
 
   // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": false
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "never"
   },
 
   // Silent the stylistic rules in you IDE, but still auto fix them
-  // "eslint.rules.customizations": [
-  //   { "rule": "@stylistic/*", "severity": "off" },
-  //   { "rule": "style*", "severity": "off" },
-  //   { "rule": "*-indent", "severity": "off" },
-  //   { "rule": "*-spacing", "severity": "off" },
-  //   { "rule": "*-spaces", "severity": "off" },
-  //   { "rule": "*-order", "severity": "off" },
-  //   { "rule": "*-dangle", "severity": "off" },
-  //   { "rule": "*-newline", "severity": "off" },
-  //   { "rule": "*quotes", "severity": "off" },
-  //   { "rule": "*semi", "severity": "off" }
-  // ],
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off" },
+    { "rule": "*-indent", "severity": "off" },
+    { "rule": "*-spacing", "severity": "off" },
+    { "rule": "*-spaces", "severity": "off" },
+    { "rule": "*-order", "severity": "off" },
+    { "rule": "*-dangle", "severity": "off" },
+    { "rule": "*-newline", "severity": "off" },
+    { "rule": "*quotes", "severity": "off" },
+    { "rule": "*semi", "severity": "off" }
+  ],
 
+  // Enable eslint for all supported languages
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -51,5 +51,10 @@
     "json",
     "jsonc",
     "yaml"
-  ]
+  ],
+
+  "powermode.enabled": true,
+  "powermode.presets": "flames",
+  "powermode.shake.enabled": false,
+  "powermode.shake.intensity": 1
 }

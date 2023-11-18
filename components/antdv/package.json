@@ -5,18 +5,17 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "@antv/s2": "^1.52.0"
-  },
   "scripts": {
     "prepare:build": "vite build"
   },
+  "dependencies": {
+    "@antv/s2": "^1.52.0"
+  },
   "devDependencies": {
-    "@types/node": "^20.9.0",
+    "@types/node": "^20.9.1",
     "@vueuse/core": "^10.6.1",
     "@yy-admin/config-vite-lib": "workspace:^",
     "ant-design-vue": "4.0.6",
