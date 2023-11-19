@@ -3,14 +3,11 @@ import '@yy-admin/common-css'
 import 'uno.css'
 
 import { setupAdmin } from '@yy-admin/components-admin'
-import { pageList } from '@yy-admin/web-monitor'
 import App from './App.vue'
 import router from './router'
-import { setupApp } from './setup'
 
 const app = createApp(App)
 
-setupApp(app)
-setupAdmin(app, router, { ...import.meta.glob('@/views/**/*.vue'), ...pageList() })
+setupAdmin(app, router, import.meta.glob('@/views/**/*.vue'))
 
 app.mount('#app')

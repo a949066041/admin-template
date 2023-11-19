@@ -86,6 +86,76 @@ importers:
         specifier: ^1.8.22
         version: 1.8.22(typescript@5.2.2)
 
+  apps/monitor:
+    dependencies:
+      '@yy-admin/common-core':
+        specifier: workspace:^
+        version: link:../../common/core
+      '@yy-admin/common-utils':
+        specifier: workspace:^
+        version: link:../../common/utils
+      '@yy-admin/components-admin':
+        specifier: workspace:^
+        version: link:../../components/admin
+      '@yy-admin/components-chart':
+        specifier: workspace:^
+        version: link:../../components/chart
+      '@yy-admin/config-vite-app':
+        specifier: workspace:^
+        version: link:../../config/vite-app
+      '@yy-web/business-use':
+        specifier: ^2.0.3
+        version: 2.0.3(typescript@5.2.2)
+      '@yy-web/request':
+        specifier: ^1.5.8
+        version: 1.5.8
+      ant-design-vue:
+        specifier: 4.0.6
+        version: 4.0.6(vue@3.3.8)
+      axios:
+        specifier: ^1.6.2
+        version: 1.6.2
+      echarts:
+        specifier: ^5.4.3
+        version: 5.4.3
+    devDependencies:
+      '@tsconfig/node18':
+        specifier: ^18.2.2
+        version: 18.2.2
+      '@types/node':
+        specifier: ^20.9.2
+        version: 20.9.2
+      '@vueuse/core':
+        specifier: ^10.6.1
+        version: 10.6.1(vue@3.3.8)
+      '@yy-admin/common-apis':
+        specifier: workspace:^
+        version: link:../../common/apis
+      '@yy-admin/common-css':
+        specifier: workspace:^
+        version: link:../../common/css
+      '@yy-admin/components-antdv':
+        specifier: workspace:^
+        version: link:../../components/antdv
+      '@yy-admin/components-base':
+        specifier: workspace:^
+        version: link:../../components/base
+      less:
+        specifier: ^4.2.0
+        version: 4.2.0
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
+      typescript:
+        specifier: ~5.2.2
+        version: 5.2.2
+      vite:
+        specifier: ^5.0.0
+        version: 5.0.0(@types/node@20.9.2)(less@4.2.0)
+      vue-tsc:
+        specifier: ^1.8.22
+        version: 1.8.22(typescript@5.2.2)
+
   apps/web:
     dependencies:
       '@yy-admin/common-core':
@@ -106,6 +176,9 @@ importers:
       '@yy-admin/config-vite-app':
         specifier: workspace:^
         version: link:../../config/vite-app
+      '@yy-admin/web-monitor':
+        specifier: workspace:^
+        version: link:../monitor
       '@yy-web/business-use':
         specifier: ^2.0.3
         version: 2.0.3(typescript@5.2.2)

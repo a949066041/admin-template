@@ -5,7 +5,7 @@ export type AsyncRouters = Record<string, (() => Promise<unknown>) | unknown>
 
 export function withSrcViewModules(routers: AsyncRouters) {
   return Object.entries(routers).reduce((base, [k, v]) => {
-    base[k.replace('/src/views/', '').replace('.vue', '')] = v
+    base[k.replace('/src/views/', '').replace('./views/', '').replace('.vue', '')] = v
     return base
   }, {} as AsyncRouters)
 }
