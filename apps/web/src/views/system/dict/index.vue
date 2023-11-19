@@ -2,9 +2,7 @@
 import type { IDict } from '@yy-admin/common-apis'
 import { DictApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import type { YyTableColumns } from '@yy-admin/components-antdv'
 import { createColumn as cT } from '@yy-admin/components-antdv'
-import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import { computed } from 'vue'
 
 defineOptions({

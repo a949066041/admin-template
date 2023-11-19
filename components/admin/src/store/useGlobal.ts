@@ -4,7 +4,7 @@ import { watch } from 'vue'
 
 export const useGlobalState = createGlobalState(
   () => {
-    const globStore = useStorage<{ theme: 'light' | 'dark'; collapsed: boolean }>('yy-glob', {
+    const globStore = useStorage<{ theme: 'light' | 'dark', collapsed: boolean }>('yy-glob', {
       theme: 'light',
       collapsed: false,
     })

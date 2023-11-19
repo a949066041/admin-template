@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
+import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -25,6 +26,10 @@ export default (_config?: ICommonViteConfig) => {
       vue(),
       vueJsx(),
       UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
+      AutoImport({
+        imports: ['vue', 'vue-router', '@vueuse/core'],
+        dts: './auto-imports.d.ts',
+      }),
       Components({
         dts: true,
         resolvers: [IconsResolver(), ...config.resolvers],

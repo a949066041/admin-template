@@ -16,6 +16,7 @@ const router = createRouter({
       children: [
         {
           path: '/',
+          name: 'Home',
           meta: {
             title: '首页',
             affix: true,

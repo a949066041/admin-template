@@ -6,7 +6,7 @@ import Antd from 'ant-design-vue'
 
 import { YySelect } from '@yy-admin/components-antdv'
 import 'uno.css'
-import { install as VueMonacoEditorPlugin, loader } from '@guolao/vue-monaco-editor'
+import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 
 import YyDemo from '../../../../config/md-vue/src/demo/yy-demo.vue'
 

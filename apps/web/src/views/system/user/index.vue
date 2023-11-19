@@ -7,18 +7,27 @@ import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-an
 import { isValidPhone } from '@yy-admin/common-utils'
 import type { Rule } from 'ant-design-vue/es/form'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
-import { useDept } from './useDept'
+import { useTreeDept } from './useTreeDept'
 
 defineOptions({
   name: 'SystemUser',
 })
 
 const jobList = ref<IJob[]>([])
-const statusList = ref<{ label: string; value: boolean }[]>([])
+const statusList = ref<{ label: string, value: boolean }[]>([])
 const roleList = ref<IRole[]>([])
 const {
-  searchForm, dataSource, total, initForm, confirmTable, getTable,
-  current, loading, limit, resetTable, searchTable,
+  searchForm,
+  dataSource,
+  total,
+  initForm,
+  confirmTable,
+  getTable,
+  current,
+  loading,
+  limit,
+  resetTable,
+  searchTable,
 } = useTable<IUserParams & { blurry: string }, { deptId: string }>({
   apiAction: UserApi.page,
 })
@@ -30,15 +39,15 @@ function initUserForm() {
   }) as IUserParams
 }
 
-const { selectedDeps, handleGetDeptTree, deptTree, fieldNames, handleGetSuperior, deptAllTree } = useDept()
+const { selectedDeps, userDeptTree, handleGetLeftTree, userFormDeptTree } = useTreeDept()
 const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, findLoading, formRef } = useCurdForm<IUserParams>({
   initFormFn: initUserForm,
   saveAction: UserApi.save,
   putAction: UserApi.put,
   findIdAction: UserApi.findId,
   afterSave: searchTable,
-  afterDetail(result) {
-    handleGetSuperior(result?.deptId)
+  afterDetail() {
+    // handleGetSuperior(result?.deptId)
   },
 })
 
@@ -56,7 +65,9 @@ const rules = ref<Partial<Record<keyof IUserParams, Rule[] | Rule>>>({
     { type: 'email', message: '请输入正确的邮箱地址', trigger: 'change' },
   ],
   deptId: [{
-    required: true, message: '请输入', trigger: 'change',
+    required: true,
+    message: '请输入',
+    trigger: 'change',
   }],
   phone: [
     {
@@ -117,9 +128,8 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
     <a-col :span="6">
       <a-tree
         v-model:selectedKeys="selectedDeps"
-        :load-data="handleGetDeptTree"
-        :tree-data="deptTree"
-        :field-names="fieldNames"
+        :load-data="handleGetLeftTree"
+        :tree-data="userDeptTree"
       />
     </a-col>
     <a-col :span="18">
@@ -169,11 +179,9 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
             <a-form-item name="deptId" label="部门">
               <a-tree-select
                 v-model:value="formModel.deptId"
-                :tree-data="deptAllTree"
-                :load-data="handleGetDeptTree"
+                :tree-data="userFormDeptTree"
                 placeholder="请选择部门"
                 tree-default-expand-all
-                :field-names="fieldNames"
               />
             </a-form-item>
             <a-form-item name="jobs" label="岗位">

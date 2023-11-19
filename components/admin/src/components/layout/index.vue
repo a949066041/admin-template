@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue'
 import { useAnimate } from '@vueuse/core'
 import { useRoute } from 'vue-router'
+import { useTagStore } from '../../store/tag.store'
 import YyMenu from './components/menu/index.vue'
 import YyHeader from './components/header/index.vue'
 import RouteTags from './components/tag/index.vue'
@@ -13,18 +14,7 @@ const menu = ref<HTMLElement | null>(null)
 const top = ref<HTMLElement | null>(null)
 const content = ref<HTMLElement | null>(null)
 const route = useRoute()
-
-useAnimate(top, [
-  { transform: 'translateY(-100%)' },
-  { transform: 'translateY(10px)' },
-  { transform: 'translateX(0)' },
-], 800)
-
-useAnimate(menu, [
-  { transform: 'translateX(-100%)' },
-  { transform: 'translateX(10px)' },
-  { transform: 'translateX(0)' },
-], 800)
+const tagStore = useTagStore()
 
 const { play } = useAnimate(content, [
   { opacity: '0.5' },
@@ -43,7 +33,11 @@ watch(route, play, { immediate: true })
       <a-layout-content class="flex-1 overflow-auto">
         <div ref="content" class=" overflow-hidden p4">
           <router-view v-slot="{ Component }">
-            <component :is="Component" />
+            <transition>
+              <keep-alive :include="tagStore.keepAliveNames">
+                <component :is="Component" />
+              </keep-alive>
+            </transition>
           </router-view>
         </div>
       </a-layout-content>

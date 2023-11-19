@@ -8,7 +8,7 @@ defineOptions({
   name: DEMO_TAG,
 })
 
-defineProps<{ code: string; title: string; desc: string;highlightedCode: string }>()
+defineProps<{ code: string, title: string, desc: string, highlightedCode: string }>()
 
 const MONACO_EDITOR_OPTIONS = {
   minimap: {

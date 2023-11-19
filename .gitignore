@@ -27,5 +27,6 @@ docs/docs/.vitepress/cache
 *.njsproj
 *.sln
 *.sw?
+auto-imports.d.ts
 components.d.ts
 report.html

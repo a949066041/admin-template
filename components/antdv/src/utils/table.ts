@@ -1,5 +1,5 @@
 import type { TableColumnProps } from 'ant-design-vue'
-import { last  } from 'lodash-es'
+import { last } from 'lodash-es'
 
 export interface IColumnType<T extends string | string[] = string> extends TableColumnProps {
   dataIndex: T

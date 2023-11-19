@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { computed, ref, useSlots, watch } from 'vue'
+import { computed, watch } from 'vue'
 import { useCurrentElement, useIntersectionObserver, useToggle } from '@vueuse/core'
 
 defineOptions({
   name: 'LazyBox',
 })
 
-const props = withDefaults(defineProps<{ title: string; height: string | number; name: string; effectData?: any; loading?: boolean }>(), {
+const props = withDefaults(defineProps<{ title: string, height: string | number, name: string, effectData?: any, loading?: boolean }>(), {
   effectData: () => ({}),
   loading: false,
 })

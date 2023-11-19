@@ -15,6 +15,13 @@ const { globStore, toggleTheme } = useGlobalState()
 
 const algorithm = computed(() => globStore.value.theme === 'light' ? theme.defaultAlgorithm : theme.darkAlgorithm)
 
+const themeToken = {
+  token: {
+    colorPrimary: '#00b96b',
+    colorLink: '#00b96b',
+  },
+}
+
 useTitle(props.title)
 
 dayjs.locale('zh-cn')
@@ -23,7 +30,8 @@ dayjs.locale('zh-cn')
 <template>
   <a-config-provider
     :locale="zhCN" :theme="{
-      algorithm
+      algorithm,
+      ...themeToken,
     }"
   >
     <a-app :modal="{ centered: true }">

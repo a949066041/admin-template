@@ -14,16 +14,16 @@ export default (isMobile = false) => mergeConfig(commonViteConfig({
         // manualChunks 配置
         manualChunks: {
           // 将 React 相关库打包成单独的 chunk 中
-          'antdv': ['ant-design-vue'],
+          antdv: ['ant-design-vue'],
           // 将 Lodash 库的代码单独打包
-          'lodash': ['lodash-es'],
+          lodash: ['lodash-es'],
           // 将组件库的代码打包
-          'echarts': ['echarts'],
+          echarts: ['echarts'],
           // vue
-          'vue': ['vue', 'vue-router', 'pinia'],
-        }
-      }
-    }
+          vue: ['vue', 'vue-router', 'pinia'],
+        },
+      },
+    },
   },
   server: {
     proxy: {
@@ -35,6 +35,6 @@ export default (isMobile = false) => mergeConfig(commonViteConfig({
     },
   },
   plugins: [
-    VueDevTools()
+    VueDevTools(),
   ],
 }))

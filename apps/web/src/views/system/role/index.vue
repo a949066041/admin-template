@@ -5,15 +5,23 @@ import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-an
 import { computed, ref } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import type { Rule } from 'ant-design-vue/es/form'
+import MenuTree from './menu-tree.vue'
 
 defineOptions({
   name: 'SystemRole',
 })
 
 const {
-  searchForm, dataSource, total, delDataRow,
-  current, loading, limit, resetTable, searchTable,
-} = useTable<{ blurry: string; id: string }>({
+  searchForm,
+  dataSource,
+  total,
+  delDataRow,
+  current,
+  loading,
+  limit,
+  resetTable,
+  searchTable,
+} = useTable<{ blurry: string, id: string }>({
   apiAction: RoleApi.page,
   delAction: RoleApi.del,
 })
@@ -48,50 +56,57 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
 </script>
 
 <template>
-  <YyTable
-    v-model:current="current"
-    v-model:limit="limit"
-    :total="total" :loading="loading"
-    :columns="columns" :data-source="dataSource"
-  >
-    <template #search>
-      <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
-        <a-form-item>
-          <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-        </a-form-item>
-      </yy-search>
-    </template>
+  <a-row :gutter="20">
+    <a-col :span="18">
+      <YyTable
+        v-model:current="current"
+        v-model:limit="limit"
+        :total="total" :loading="loading"
+        :columns="columns" :data-source="dataSource"
+      >
+        <template #search>
+          <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
+            <a-form-item>
+              <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+            </a-form-item>
+          </yy-search>
+        </template>
 
-    <template #tools>
-      <a-button type="primary" @click="handleInitForm()">
-        新增
-      </a-button>
-    </template>
+        <template #tools>
+          <a-button type="primary" @click="handleInitForm()">
+            新增
+          </a-button>
+        </template>
 
-    <template #action="{ record }">
-      <a-button type="link" @click="handleInitForm(record.id)">
-        修改
-      </a-button>
-      <a-button type="link" @click="delDataRow(record.id)">
-        删除
-      </a-button>
-    </template>
+        <template #action="{ record }">
+          <a-button type="link" @click="handleInitForm(record.id)">
+            修改
+          </a-button>
+          <a-button type="link" @click="delDataRow(record.id)">
+            删除
+          </a-button>
+        </template>
 
-    <a-modal v-model:open="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
-      <a-form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
-        <a-form-item name="name" label="角色名称">
-          <a-input v-model:value="formModel.name" placeholder="请输入角色名称" />
-        </a-form-item>
-        <a-form-item name="level" label="角色级别">
-          <a-input-number v-model:value="formModel.level" placeholder="请输入角色级别" />
-        </a-form-item>
-        <a-form-item name="dataScope" label="数据范围">
-          <a-input v-model:value="formModel.dataScope" placeholder="请输入角色" />
-        </a-form-item>
-        <a-form-item name="description" label="描述信息">
-          <a-textarea v-model:value="formModel.description" placeholder="请输入描述信息" />
-        </a-form-item>
-      </a-form>
-    </a-modal>
-  </YyTable>
+        <a-modal v-model:open="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
+          <a-form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
+            <a-form-item name="name" label="角色名称">
+              <a-input v-model:value="formModel.name" placeholder="请输入角色名称" />
+            </a-form-item>
+            <a-form-item name="level" label="角色级别">
+              <a-input-number v-model:value="formModel.level" placeholder="请输入角色级别" />
+            </a-form-item>
+            <a-form-item name="dataScope" label="数据范围">
+              <a-input v-model:value="formModel.dataScope" placeholder="请输入角色" />
+            </a-form-item>
+            <a-form-item name="description" label="描述信息">
+              <a-textarea v-model:value="formModel.description" placeholder="请输入描述信息" />
+            </a-form-item>
+          </a-form>
+        </a-modal>
+      </YyTable>
+    </a-col>
+    <a-col :span="6">
+      <MenuTree />
+    </a-col>
+  </a-row>
 </template>

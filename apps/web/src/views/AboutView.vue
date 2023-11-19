@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { EchartsView, pieOption } from '@yy-admin/components-chart'
-import { type IUserParams, UserApi } from '@yy-admin/common-apis'
+import { UserApi } from '@yy-admin/common-apis'
 import { useLazyBox } from '@yy-admin/components-base'
 
 defineOptions({

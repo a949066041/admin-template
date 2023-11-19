@@ -15,7 +15,7 @@
     "@antv/s2": "^1.52.0"
   },
   "devDependencies": {
-    "@types/node": "^20.9.1",
+    "@types/node": "^20.9.2",
     "@vueuse/core": "^10.6.1",
     "@yy-admin/config-vite-lib": "workspace:^",
     "ant-design-vue": "4.0.6",

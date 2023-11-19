@@ -1,8 +1,8 @@
 {
   "name": "@yy-admin/common-css",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "author": "",
   "license": "ISC",
   "keywords": [],
@@ -10,6 +10,6 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "devDependencies": {
-    "@unocss/reset": "^0.57.5"
+    "@unocss/reset": "^0.57.6"
   }
 }

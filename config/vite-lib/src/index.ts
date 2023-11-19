@@ -11,6 +11,7 @@ interface LibConfigOption {
 }
 
 export default (options: LibConfigOption) => mergeConfig(commonViteConfig({
+  report: true,
   resolvers: [AntDesignVueResolver({ importStyle: false })],
 }), defineConfig({
   mode: 'production',
