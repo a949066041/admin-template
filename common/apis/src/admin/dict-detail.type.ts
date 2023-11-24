@@ -1,7 +1,10 @@
+import type { IBaseEntity } from '../base'
+
 export interface IDictDetail {
-  createTime: string
   dictSort: number
   id: number
   label: string
   value: string
 }
+
+export type IDictDetailParams = Omit<IDictDetail, keyof IBaseEntity>

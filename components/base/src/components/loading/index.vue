@@ -10,10 +10,10 @@ withDefaults(defineProps<{ size: string, background: string }>(), { size: '40px'
 
 <style scoped lang="less">
 .lds-facebook {
-  @apply inline-block relative w-20 h-20 scale-200;
+  @apply inline-block relative w-20 h-20;
 
   > div {
-    @apply absolute inline-block left-2 w-4 bg-[#1677ff] rounded;
+    @apply absolute inline-block left-2 w-4 base-bg rounded;
     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 
     &:nth-child(1) {

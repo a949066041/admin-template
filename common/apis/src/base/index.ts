@@ -4,3 +4,5 @@ export interface IBaseEntity {
   updateBy: string
   updateTime: string
 }
+
+export type IEntity<T> = T & IBaseEntity

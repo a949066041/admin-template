@@ -2,15 +2,20 @@
 import { ref } from 'vue'
 import type { TreeProps } from 'ant-design-vue'
 import { MenuApi } from '@yy-admin/common-apis'
+import { useVModel } from '@vueuse/core'
 
 defineOptions({
   name: 'MenuTree',
 })
 
+const props = defineProps<{ checked: number[] }>()
+
+const bindValue = useVModel(props, 'checked')
+
 const menuTree = ref<(TreeProps['treeData'])>([])
 
 async function handleLazyMenu(pid: number) {
-  const menuList = await MenuApi.menuLazy(pid)
+  const menuList = await MenuApi.list()
   const covertList = menuList.map(item => ({ key: item.id!, title: item.title, isLeaf: !item.hasChildren }))
   if (pid === 0)
     menuTree.value = covertList
@@ -32,17 +37,14 @@ const onLoadData: TreeProps['loadData'] = (treeNode) => {
 }
 
 handleLazyMenu(0)
-
-const checkedKeys = ref<TreeProps['checkedKeys']>({ checked: [44, 45], halfChecked: [2, 1] })
 </script>
 
 <template>
-  {{ checkedKeys }}
+  {{ bindValue }}
   <a-tree
-    v-model:checkedKeys="checkedKeys"
+    v-model:checkedKeys="bindValue"
     show-line
     :show-icon="false"
-    check-strictly
     :load-data="onLoadData"
     checkable
     :tree-data="menuTree"

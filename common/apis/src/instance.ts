@@ -15,6 +15,10 @@ export abstract class ApiInstance<T extends object = object, K extends string = 
     this.del = this.del.bind(this)
   }
 
+  public download(params: Record<string, any>) {
+    return this.$request.setPath(`${this.baseApi}/download`).downLoad(params)
+  }
+
   public findId(id: number) {
     return this.$request.setPath(`${this.baseApi}/{id}`).carry(id).get<T>()
   }

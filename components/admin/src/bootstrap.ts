@@ -2,7 +2,7 @@ import { setRequest } from '@yy-web/request'
 import type { AsyncRouters } from '@yy-admin/common-core'
 import { authRoute, requestInstance, withSrcViewModules } from '@yy-admin/common-core'
 import { confBusiness } from '@yy-web/business-use'
-import { Modal } from 'ant-design-vue'
+import { Modal, message } from 'ant-design-vue'
 import type { App } from 'vue'
 import type { Router } from 'vue-router'
 import { createPinia } from 'pinia'
@@ -14,6 +14,7 @@ export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
   setRequest(requestInstance)
 
   confBusiness(app, {
+    successTip: (msg: string) => message.success(msg),
     table: {
       pageKey: 'page',
       totalKey: 'totalElements',

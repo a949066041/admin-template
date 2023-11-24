@@ -11,6 +11,12 @@ defineOptions({
   name: 'SystemRole',
 })
 
+interface IRoleSearch {
+  blurry: string
+  id: string
+  menus: { id: number }[]
+}
+
 const {
   searchForm,
   dataSource,
@@ -21,7 +27,7 @@ const {
   limit,
   resetTable,
   searchTable,
-} = useTable<{ blurry: string, id: string }>({
+} = useTable<IRoleSearch>({
   apiAction: RoleApi.page,
   delAction: RoleApi.del,
 })
@@ -44,6 +50,11 @@ const rules = ref<Partial<Record<keyof IRoleParams, Rule[] | Rule>>>({
     { required: true, message: '请输入角色名称', trigger: 'change' },
   ],
 })
+
+const checkMenu = ref<number[]>([])
+function handleSetMenuCheck(val: IRoleSearch['menus']) {
+  checkMenu.value = val.map(item => item.id)
+}
 
 const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
   cT('name', '名称'),
@@ -82,6 +93,9 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
           <a-button type="link" @click="handleInitForm(record.id)">
             修改
           </a-button>
+          <a-button type="link" @click="handleSetMenuCheck(record.menus)">
+            权限
+          </a-button>
           <a-button type="link" @click="delDataRow(record.id)">
             删除
           </a-button>
@@ -106,7 +120,7 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
       </YyTable>
     </a-col>
     <a-col :span="6">
-      <MenuTree />
+      <MenuTree v-model:checked="checkMenu" />
     </a-col>
   </a-row>
 </template>

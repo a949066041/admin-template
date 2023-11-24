@@ -21,7 +21,6 @@ export default (options: LibConfigOption) => mergeConfig(commonViteConfig({
       entry: resolve(process.cwd(), 'src/index.ts'),
       name: options.lib_name,
       fileName: 'index',
-      formats: ['es', 'umd', 'cjs'],
     },
     rollupOptions: {
       external: ['vue', 'ant-design-vue', 'ant-design-vue/es', '@yy-admin/common-apis', '@yy-admin/common-core', '@yy-admin/common-utils', 'vue-router'],

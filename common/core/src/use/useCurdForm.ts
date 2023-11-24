@@ -1,16 +1,23 @@
 import { useToggle } from '@vueuse/core'
 import type { FormInstance } from 'ant-design-vue'
+import { extend } from 'lodash'
 import type { Ref } from 'vue'
 import { computed, nextTick, ref } from 'vue'
 
-export function initFormObj(keys: string[], aliasObj?: Record<string, any>) {
+/**
+ * 初始化表单对象的函数
+ * @param keys 字段数组
+ * @param aliasObj 可选的别名对象
+ * @returns 新的表单对象
+ */
+export function initFormObj<T extends readonly string[]>(keys: T, aliasObj = {} as Partial<Record<T[number], unknown>>) {
   return keys.reduce((base, item) => {
-    const value = (aliasObj || {})[item] || undefined
+    const value = typeof aliasObj[item as T[number]] !== 'undefined' ? aliasObj[item as T[number]] : undefined
     return {
       ...base,
-      item: value,
+      [item]: value,
     }
-  }, {} as Record<string, unknown>)
+  }, {} as Record<T[number], typeof aliasObj[T[number]] extends undefined ? undefined : typeof aliasObj[T[number]]>)
 }
 export interface IUseCurdOptions<T, Key extends string | number> {
   formKey?: string

@@ -8,11 +8,11 @@ class MenuApiInstance extends ApiInstance {
   }
 
   public menuLazy(pid?: number) {
-    return this.$request.setPath(`${this.baseApi}/lazy`).get<MenuList[]>({ pid })
+    return this.$request.setPath(`${this.baseApi}/lazy`).get<MenuList[]>({ pid }, true)
   }
 
   public list() {
-    return this.$request.setPath(`${this.baseApi}`).get<MenuList[]>()
+    return this.$request.setPath(`${this.baseApi}`).get<MenuList[]>({ pidIsNull: true })
   }
 }
 

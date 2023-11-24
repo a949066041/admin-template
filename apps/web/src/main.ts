@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import '@yy-admin/common-css'
-import 'uno.css'
 
 import { setupAdmin } from '@yy-admin/components-admin'
 import { pageList } from '@yy-admin/web-monitor'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTable } from '@yy-web/business-use'
 import { DictDetailApi, JobApi, RoleApi, UserApi } from '@yy-admin/common-apis'
-import type { IJob, IRole, IUser, IUserParams } from '@yy-admin/common-apis'
+import type { IJobEntity, IRole, IUser, IUserParams } from '@yy-admin/common-apis'
 import { computed, ref, watch } from 'vue'
 import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-antdv'
 import { isValidPhone } from '@yy-admin/common-utils'
@@ -13,7 +13,7 @@ defineOptions({
   name: 'SystemUser',
 })
 
-const jobList = ref<IJob[]>([])
+const jobList = ref<IJobEntity[]>([])
 const statusList = ref<{ label: string, value: boolean }[]>([])
 const roleList = ref<IRole[]>([])
 const {

@@ -1,6 +1,10 @@
-import type { IBaseEntity } from '../base'
-
-export interface IJob extends IBaseEntity {
+export interface IJobEntity {
   id: number
   name: string
+  enabled: boolean
+  jobSort: number
+}
+
+export interface IJobPageParams {
+  blurry: string
 }

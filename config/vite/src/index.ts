@@ -28,7 +28,7 @@ export default (_config?: ICommonViteConfig) => {
       UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
       AutoImport({
         imports: ['vue', 'vue-router', '@vueuse/core'],
-        dts: './auto-imports.d.ts',
+        vueTemplate: true,
       }),
       Components({
         dts: true,
