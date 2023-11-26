@@ -33,7 +33,7 @@ watch(route, play, { immediate: true })
       <a-layout-content class="flex-1 overflow-auto">
         <div ref="content" class=" overflow-hidden p4">
           <router-view v-slot="{ Component }">
-            <transition>
+            <transition name="fade">
               <keep-alive :include="tagStore.keepAliveNames">
                 <component :is="Component" />
               </keep-alive>

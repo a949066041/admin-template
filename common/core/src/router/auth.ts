@@ -21,7 +21,7 @@ export function authRoute(router: Router, whiteList?: string[], mathRules?: Asyn
         return
       }
       const menuList = await userStore.getUserInfo()
-      userStore.setRenderMenuList(addWebRouter(router, menuList, mathRules))
+      userStore.setRenderMenuList(addWebRouter(router, menuList, mathRules), router)
       next({ ...to, replace: true })
       return
     }

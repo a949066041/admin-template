@@ -1,12 +1,16 @@
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { AuthApi, MenuApi } from '@yy-admin/common-apis'
 import type { LoginForm, MenuList, UserInfo } from '@yy-admin/common-apis'
+import type { Router } from 'vue-router'
 import { clearToken, setToken } from '../utils/token'
+import { flatChildrenArr } from '../utils/array.util'
 
 export const useUserStore = defineStore('core-user', () => {
   const userInfo = ref<UserInfo | null>(null)
   const userMenuList = ref<MenuList[]>([])
+  const flatMenuList = computed(() => flatChildrenArr(userMenuList.value))
+  let currentRouter: Router | null = null
 
   async function loginAction(loginForm: LoginForm) {
     const { token } = await AuthApi.login(loginForm)
@@ -24,16 +28,25 @@ export const useUserStore = defineStore('core-user', () => {
     userInfo.value = user
   }
 
-  function setRenderMenuList(realMenu: MenuList[]) {
+  function setRenderMenuList(realMenu: MenuList[], router: Router) {
     userMenuList.value = realMenu
+    currentRouter = router
   }
 
   async function logout() {
     userInfo.value = null
+    // remove currentRoute
+    if (currentRouter) {
+      userMenuList.value.forEach((item) => {
+        currentRouter!.removeRoute(item.name)
+      })
+    }
+    userMenuList.value = []
     clearToken()
   }
 
   return {
+    flatMenuList,
     userMenuList,
     userInfo,
     setRenderMenuList,

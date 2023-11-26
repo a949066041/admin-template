@@ -19,6 +19,7 @@ const themeToken = {
   token: {
     colorPrimary: '#00b96b',
     colorLink: '#00b96b',
+    colorLinkHover: '#00b96b',
   },
 }
 

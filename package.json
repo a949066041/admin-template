@@ -13,12 +13,12 @@
   "dependencies": {
     "lodash-es": "^4.17.21",
     "pinia": "^2.1.7",
-    "vue": "^3.3.8",
+    "vue": "^3.3.9",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^1.2.1",
-    "@iconify/json": "^2.2.146",
+    "@iconify/json": "^2.2.147",
     "@types/lodash": "^4.14.202",
     "@types/lodash-es": "^4.17.12",
     "@unocss/transformer-directives": "^0.57.7",
