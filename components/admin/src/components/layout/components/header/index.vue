@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useUserStore } from '@yy-admin/common-core'
-import { message } from 'ant-design-vue'
+import { Message } from 'vexip-ui'
 import { useRouter } from 'vue-router'
 import { useGlobalState } from '../../../../store/useGlobal'
 import { useBreadcrumb } from './useBreadcrumb'
@@ -14,7 +14,7 @@ const userStore = useUserStore()
 const router = useRouter()
 function handelLogoutUser() {
   userStore.logout().then(() => {
-    message.success('退出成功！')
+    Message.success('退出成功！')
     router.push('/login')
   })
 }
@@ -22,7 +22,7 @@ const { breadcrumbList } = useBreadcrumb()
 </script>
 
 <template>
-  <a-layout-header class=" flex justify-between items-center !bg-white">
+  <a-layout-header class=" flex justify-between items-center">
     <div class=" flex items-center">
       <i-iconoir:sidebar-collapse
         class=" text-lg cursor-pointer"

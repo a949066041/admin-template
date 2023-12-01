@@ -12,14 +12,15 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
+    "@types/node": "^20.10.1",
     "@types/rollup-plugin-visualizer": "^4.2.3",
-    "@vitejs/plugin-vue": "^4.5.0",
+    "@vexip-ui/plugins": "^1.5.1",
+    "@vitejs/plugin-vue": "^4.5.1",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "rollup-plugin-visualizer": "^5.9.3",
-    "unplugin-auto-import": "^0.16.7",
-    "unplugin-icons": "^0.17.4",
+    "unplugin-auto-import": "^0.17.1",
+    "unplugin-icons": "^0.18.0",
     "unplugin-vue-components": "^0.25.2",
-    "vite": "^5.0.2"
+    "vite": "^5.0.4"
   }
 }

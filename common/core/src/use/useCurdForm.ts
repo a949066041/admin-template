@@ -1,6 +1,5 @@
 import { useToggle } from '@vueuse/core'
-import type { FormInstance } from 'ant-design-vue'
-import { extend } from 'lodash'
+import type { Form } from 'vexip-ui'
 import type { Ref } from 'vue'
 import { computed, nextTick, ref } from 'vue'
 
@@ -40,7 +39,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
     afterDetail,
   } = options
 
-  const formRef = ref<FormInstance | null>(null)
+  const formRef = ref<typeof Form | null>(null)
   const formModel = ref<T>(initFormFn()) as Ref<T>
   const [visible, toggleVisible] = useToggle()
   const [findLoading, toggleFindLoading] = useToggle()

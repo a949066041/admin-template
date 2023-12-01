@@ -1,12 +1,12 @@
 import { defineConfig, mergeConfig } from 'vite'
-import { AntDesignVueResolver, VantResolver } from 'unplugin-vue-components/resolvers'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import commonViteConfig from '@yy-admin/config-vite'
 import { YyAntdComponents } from './resolver-components'
 
-export default (isMobile = false) => mergeConfig(commonViteConfig({
+export default () => mergeConfig(commonViteConfig({
   report: true,
-  resolvers: [VantResolver(), YyAntdComponents(), AntDesignVueResolver({ importStyle: false })],
+  resolvers: [VantResolver(), YyAntdComponents()],
 }), defineConfig({
   build: {
     rollupOptions: {

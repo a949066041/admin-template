@@ -3,8 +3,9 @@ import { JobApi } from '@yy-admin/common-apis'
 import type { IEntity, IJobEntity, IJobPageParams } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { createColumn as cT } from '@yy-admin/components-antdv'
+import { YyDictSelect } from '@yy-admin/components-admin'
 import type { AntdFormRules, YyTableColumns } from '@yy-admin/components-antdv'
-import { YyDict, initFormObj, useCurdForm } from '@yy-admin/common-core'
+import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 
 defineOptions({
   name: 'JobPage',
@@ -123,15 +124,7 @@ const columns = computed<YyTableColumns<keyof IEntity<IJobEntity>>[]>(() => ([
           <a-input-number v-model:value="formModel.jobSort" placeholder="请输入" />
         </a-form-item>
         <a-form-item name="enabled" label="开启">
-          <YyDict dict="job_status" transform="boolean">
-            <template #default="{ loading: testLoading, dictValue }">
-              <a-radio-group v-model:value="formModel.enabled" v-loading="testLoading">
-                <a-radio v-for="item in dictValue" :key="item.value" :value="item.value">
-                  {{ item.label }}
-                </a-radio>
-              </a-radio-group>
-            </template>
-          </YyDict>
+          <YyDictSelect v-model:value="formModel.enabled" type="radio" dict="job_status" transform="boolean" />
         </a-form-item>
       </a-form>
     </a-modal>

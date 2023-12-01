@@ -1,7 +1,7 @@
 import type { IAxiosRequestConfig } from '@yy-web/request'
 import request, { fileInterceptorsResponseConfig, getStore, setStore } from '@yy-web/request'
 import type { InternalAxiosRequestConfig } from 'axios'
-import { message } from 'ant-design-vue'
+import { Message } from 'vexip-ui'
 import axios from 'axios'
 import { useUserStore } from '../store'
 import { getToken } from '../utils/token'
@@ -33,7 +33,7 @@ service.interceptors.response.use((response: any) => {
         break
       default: {
         const errorMsg = error.response.data.message
-        message.error(errorMsg)
+        Message.error(errorMsg)
       }
     }
   }

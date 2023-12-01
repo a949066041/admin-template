@@ -3,7 +3,6 @@ import { resolve } from 'node:path'
 import { defineConfig, mergeConfig } from 'vite'
 import commonViteConfig from '@yy-admin/config-vite'
 import dts from 'vite-plugin-dts'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import autoprefixer from 'autoprefixer'
 
 interface LibConfigOption {
@@ -12,7 +11,6 @@ interface LibConfigOption {
 
 export default (options: LibConfigOption) => mergeConfig(commonViteConfig({
   report: true,
-  resolvers: [AntDesignVueResolver({ importStyle: false })],
 }), defineConfig({
   mode: 'production',
   build: {

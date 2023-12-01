@@ -13,18 +13,19 @@
   "dependencies": {
     "lodash-es": "^4.17.21",
     "pinia": "^2.1.7",
+    "vexip-ui": "^2.2.17",
     "vue": "^3.3.9",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^1.2.1",
-    "@iconify/json": "^2.2.147",
+    "@antfu/eslint-config": "^2.1.2",
+    "@iconify/json": "^2.2.150",
     "@types/lodash": "^4.14.202",
     "@types/lodash-es": "^4.17.12",
     "@unocss/transformer-directives": "^0.57.7",
     "@vue/tsconfig": "^0.4.0",
     "eslint": "^8.54.0",
-    "taze": "^0.12.1",
+    "taze": "^0.13.0",
     "turbo": "^1.10.16",
     "type-fest": "^4.8.2",
     "typescript": "^5.3.2",

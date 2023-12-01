@@ -5,10 +5,12 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { visualizer } from 'rollup-plugin-visualizer'
+import { VexipUIResolver } from '@vexip-ui/plugins'
 
 export interface ICommonViteConfig {
   resolvers?: ComponentResolver[]
@@ -27,12 +29,15 @@ export default (_config?: ICommonViteConfig) => {
       vueJsx(),
       UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
       AutoImport({
+        resolvers: [
+          VexipUIResolver({ fullStyle: true }),
+        ],
         imports: ['vue', 'vue-router', '@vueuse/core'],
         vueTemplate: true,
       }),
       Components({
         dts: true,
-        resolvers: [IconsResolver(), ...config.resolvers],
+        resolvers: [IconsResolver(), AntDesignVueResolver({ importStyle: false }), VexipUIResolver({ fullStyle: true }), ...config.resolvers],
       }),
       Icons({
         autoInstall: true,

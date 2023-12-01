@@ -11,7 +11,7 @@ export default defineComponent({
       type: String as PropType<string>,
     },
     transform: {
-      type: String as PropType<'boolean' | 'number'>,
+      type: String as PropType<'boolean' | 'number' | ''>,
       validate(val: string) {
         return ['boolean', 'number'].includes(val)
       },
@@ -62,7 +62,7 @@ export default defineComponent({
     }, { immediate: true })
 
     return () => (
-      slots?.default?.({ loading: loading.value, dictValue: transformDict.value })
+      slots?.default?.({ loading: loading.value, data: transformDict.value })
     )
   },
 })

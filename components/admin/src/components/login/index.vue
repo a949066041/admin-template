@@ -91,9 +91,9 @@ function handleLoadingAction() {
             </a-col>
           </a-row>
         </a-form-item>
-        <a-button type="primary" :loading="loginLoading" block @click="handleLoadingAction">
+        <Button type="primary" :loading="loginLoading" block @click="handleLoadingAction">
           登录
-        </a-button>
+        </Button>
       </a-form>
     </section>
   </div>

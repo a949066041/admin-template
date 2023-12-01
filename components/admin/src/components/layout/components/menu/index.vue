@@ -33,6 +33,9 @@ const currentRoute = computed(() => {
     <div class="logo h-64px  flex items-center bg-white justify-center text-8" @click="$router.push('/')">
       logo
     </div>
-    <a-menu v-model:openKeys="openMenuKeys" :selected-keys="currentRoute" class="flex-1 overflow-auto" mode="inline" theme="dark" :items="userStore.userMenuList" @click="handleToRouter" />
+    <a-menu
+      v-model:openKeys="openMenuKeys" :selected-keys="currentRoute"
+      class="flex-1 overflow-auto" mode="inline" :items="userStore.userMenuList" @click="handleToRouter"
+    />
   </a-layout-sider>
 </template>
