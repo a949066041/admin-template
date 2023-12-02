@@ -3,6 +3,9 @@ import { watchOnce } from '@vueuse/shared'
 import { watch } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
+import { Contextmenu } from 'vexip-ui'
+import { first } from 'lodash-es'
+import type { IRouteTag } from '../../../../store/tag.store'
 import { useTagStore } from '../../../../store/tag.store'
 
 defineOptions({
@@ -22,42 +25,46 @@ function handleAddTag(routeInfo: RouteLocationNormalizedLoaded) {
   tagStore.addTag({ path: routeInfo.path, title: routeInfo.meta.title as string, affix: !!routeInfo.meta.affix, name: routeInfo.name as string })
 }
 
+async function handleContextTag(event: MouseEvent, tag: IRouteTag) {
+  const selectedKeys = await Contextmenu.open({
+    clientX: event.clientX,
+    clientY: event.clientY,
+    appear: true,
+    configs: [{ key: 'closeAll', label: '关闭全部' }, { key: 'close', label: '关闭' }],
+  })
+
+  const action = first(selectedKeys)
+  if (action) {
+    if (action === 'refresh')
+      tagStore.refresh(tag.name)
+    else if (action === 'closeAll')
+      tagStore.closeAll()
+    else if (action === 'close')
+      tagStore.closeTag(tag.path)
+  }
+}
+
 watchOnce(() => route, handleAddTag, { immediate: true })
 router.afterEach(handleAddTag)
 </script>
 
 <template>
-  <a-tabs
-    v-model:activeKey="tagStore.activeTag"
+  <Tabs
+    v-model:active="tagStore.activeTag"
     type="card" class="!mb-0"
     @tab-click="tagStore.switchTag"
   >
-    <a-tab-pane v-for="item of tagStore.tagList" :key="item.path">
-      <template #tab>
-        <a-dropdown :trigger="['contextmenu']">
-          <div class="router-tab flex items-center">
-            <span>
-              {{ item.title }}
-            </span>
-            <i-carbon:close-outline v-if="!item.affix" class="router-tab__icon" @click.stop="tagStore.closeTag(item.path)" />
-          </div>
-          <template #overlay>
-            <a-menu>
-              <a-menu-item v-if="item.path === tagStore.activeTag" @click="tagStore.refresh(item.name)">
-                刷新
-              </a-menu-item>
-              <a-menu-item @click="tagStore.closeAll">
-                关闭全部
-              </a-menu-item>
-              <a-menu-item @click="tagStore.closeTag(item.path)">
-                关闭
-              </a-menu-item>
-            </a-menu>
-          </template>
-        </a-dropdown>
+    <TabPanel v-for="item of tagStore.tagList" :key="item.path" :label="item.path">
+      <template #label>
+        <div class="router-tab flex items-center" @contextmenu.prevent="($event) => handleContextTag($event, item)">
+          <span>
+            {{ item.title }}
+          </span>
+          <i-carbon:close-outline v-if="!item.affix" class="router-tab__icon" @click.stop="tagStore.closeTag(item.path)" />
+        </div>
       </template>
-    </a-tab-pane>
-  </a-tabs>
+    </TabPanel>
+  </Tabs>
 </template>
 
 <style scoped lang="less">

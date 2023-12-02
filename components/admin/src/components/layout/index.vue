@@ -1,67 +1,74 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useAnimate } from '@vueuse/core'
-import { useRoute } from 'vue-router'
+import { computed, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '@yy-admin/common-core'
+import { Message } from 'vexip-ui'
 import { useTagStore } from '../../store/tag.store'
-import YyMenu from './components/menu/index.vue'
 import YyHeader from './components/header/index.vue'
 import RouteTags from './components/tag/index.vue'
 
 defineOptions({
   name: 'YyLayout',
 })
-const menu = ref<HTMLElement | null>(null)
-const top = ref<HTMLElement | null>(null)
-const content = ref<HTMLElement | null>(null)
-const route = useRoute()
 const tagStore = useTagStore()
+const userStore = useUserStore()
 
-const { play } = useAnimate(content, [
-  { opacity: '0.5' },
-  { opacity: '1' },
-], 800)
+const router = useRouter()
+const route = useRoute()
+const active = ref('')
 
-watch(route, play, { immediate: true })
+watch(route, (val) => {
+  active.value = val.meta.title as string
+}, { immediate: true })
+
+function handleToRouter(_: string, meta: { key: string }) {
+  if (meta && meta.key)
+    router.push(meta.key)
+}
+
+const showAside = ref(false)
+
+function handleUserAction(label: string) {
+  if (label === 'signOut') {
+    userStore.logout().then(() => {
+      Message.success('退出成功！')
+      router.push('/login')
+    })
+  }
+}
 </script>
 
 <template>
-  <a-layout style="min-height: 100vh">
-    <YyMenu ref="menu" />
-    <a-layout class="flex flex-col h-screen">
-      <YyHeader ref="top" />
+  <Layout
+    logo="https://www.vexipui.com/vexip-ui.svg"
+    sign-name="Vexip UI"
+    :no-aside="!showAside"
+    :menus="userStore.userMenuList"
+    :config="['color']"
+    :actions="[{
+      label: 'signOut',
+      name: '退出登录',
+    }]"
+    copyright="©2023 Created by 洋洋得意"
+    :menu-props="{ active }"
+    fit-window
+    @menu-select="handleToRouter"
+    @user-action="handleUserAction"
+  >
+    <template #header-right>
+      <YyHeader v-model:showAside="showAside" />
+    </template>
+    <template #main>
       <RouteTags />
-      <a-layout-content class="flex-1 overflow-auto">
-        <div ref="content" class=" overflow-hidden p4">
-          <router-view v-slot="{ Component }">
-            <transition name="fade">
-              <keep-alive :include="tagStore.keepAliveNames">
-                <component :is="Component" />
-              </keep-alive>
-            </transition>
-          </router-view>
-        </div>
-      </a-layout-content>
-      <a-layout-footer style="text-align: center">
-        Ant Design ©2023 Created by 洋洋得意
-      </a-layout-footer>
-    </a-layout>
-  </a-layout>
+      <div class=" overflow-hidden p4">
+        <router-view v-slot="{ Component }">
+          <transition name="fade">
+            <keep-alive :include="tagStore.keepAliveNames">
+              <component :is="Component" />
+            </keep-alive>
+          </transition>
+        </router-view>
+      </div>
+    </template>
+  </Layout>
 </template>
-
-<style scoped>
-:deep(.ant-layout-sider-children) {
-  @apply flex flex-col;
-}
-.slide-enter-active,
-.slide-leave-active {
-  transition: all .5s;
-}
-
-.slide-enter-to {
-  transform: translateX(20px);
-}
-
-.slide-leave-to {
-  transform: translateX(0);
-}
-</style>

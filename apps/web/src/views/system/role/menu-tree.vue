@@ -15,11 +15,12 @@ const bindValue = useVModel(props, 'checked')
 const menuTree = ref<(TreeProps['treeData'])>([])
 
 async function handleLazyMenu(pid: number) {
-  const menuList = await MenuApi.list()
-  const covertList = menuList.map(item => ({ key: item.id!, title: item.title, isLeaf: !item.hasChildren }))
-  if (pid === 0)
-    menuTree.value = covertList
-  return covertList
+  return []
+  // const menuList = await MenuApi.list()
+  // const covertList = menuList.map(item => ({ key: item.id!, title: item.title, isLeaf: !item.hasChildren }))
+  // if (pid === 0)
+  //   menuTree.value = covertList
+  // return covertList
 }
 
 const onLoadData: TreeProps['loadData'] = (treeNode) => {

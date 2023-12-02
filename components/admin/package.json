@@ -16,7 +16,6 @@
     "@vueuse/shared": "^10.6.1",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-core": "workspace:^",
-    "@yy-admin/common-utils": "workspace:^",
-    "ant-design-vue": "4.0.6"
+    "@yy-admin/common-utils": "workspace:^"
   }
 }

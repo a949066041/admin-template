@@ -37,9 +37,11 @@ function registerRouter(
       label: item.meta.title,
       title: item.meta.title,
       path,
+      name: delComponent ? item.meta.title : item.name,
+      meta: { ...item.meta, key: path },
       component: mathLayout[item.component],
       children: item.children
-        ? registerRouter(item.children as MenuList[], parentPath.concat(item.path), mathLayout)
+        ? registerRouter(item.children as MenuList[], parentPath.concat(item.path), mathLayout, delComponent)
         : null,
     }
     delComponent && delete baseRoute.component
