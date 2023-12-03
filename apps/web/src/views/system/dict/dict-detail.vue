@@ -2,7 +2,7 @@
 import type { IDictDetail, IDictDetailParams } from '@yy-admin/common-apis'
 import { DictDetailApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-antdv'
+import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
 import { computed, watch } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import { useVModel } from '@vueuse/core'

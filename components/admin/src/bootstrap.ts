@@ -7,6 +7,7 @@ import type { Router } from 'vue-router'
 import { createPinia } from 'pinia'
 import { Confirm, Contextmenu, Loading, Message, Notice, Toast } from 'vexip-ui'
 import Layout from './components/layout/index.vue'
+import 'vexip-ui/css/dark/index.css'
 
 export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
   app.use(createPinia())

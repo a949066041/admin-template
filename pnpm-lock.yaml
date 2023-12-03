@@ -179,6 +179,9 @@ importers:
       '@yy-admin/components-three':
         specifier: workspace:^
         version: link:../../components/threejs
+      '@yy-admin/components-vexip':
+        specifier: workspace:^
+        version: link:../../components/vexip
       '@yy-admin/config-vite-app':
         specifier: workspace:^
         version: link:../../config/vite-app
@@ -216,9 +219,6 @@ importers:
       '@yy-admin/common-css':
         specifier: workspace:^
         version: link:../../common/css
-      '@yy-admin/components-antdv':
-        specifier: workspace:^
-        version: link:../../components/antdv
       '@yy-admin/components-base':
         specifier: workspace:^
         version: link:../../components/base

@@ -2,9 +2,9 @@
 import { JobApi } from '@yy-admin/common-apis'
 import type { IEntity, IJobEntity, IJobPageParams } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { createColumn as cT } from '@yy-admin/components-antdv'
+import { createColumn as cT } from '@yy-admin/components-vexip'
 import { YyDictSelect } from '@yy-admin/components-admin'
-import type { AntdFormRules, YyTableColumns } from '@yy-admin/components-antdv'
+import type { VexipFormRules, YyTableColumns } from '@yy-admin/components-vexip'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 
 defineOptions({
@@ -35,12 +35,12 @@ function initJobForm() {
   }) as IJobEntity
 }
 
-const rules = ref<AntdFormRules<IJobEntity>>({
+const rules = ref<VexipFormRules<IJobEntity>>({
   name: [
-    { required: true, message: '请输入名称', trigger: 'blur' },
+    { required: true, message: '请输入名称' },
   ],
   jobSort: [
-    { required: true, message: '请输入排序', trigger: 'blur' },
+    { required: true, message: '请输入排序' },
   ],
 })
 
@@ -69,11 +69,11 @@ function handleUpdateEnabled(entity: IJobEntity) {
 }
 
 const columns = computed<YyTableColumns<keyof IEntity<IJobEntity>>[]>(() => ([
-  cT('name', '名称', 100),
+  cT('name', '名称'),
   cT('jobSort', '序号'),
   cT('enabled', '是否开启', true),
-  cT('createTime', '创建时间', 100),
-  cT('action', '操作', { fixed: 'right' }, true),
+  cT('createTime', '创建时间'),
+  cT('action', '操作', { fixed: 'right' }, 300, true),
 ]))
 </script>
 
@@ -86,47 +86,47 @@ const columns = computed<YyTableColumns<keyof IEntity<IJobEntity>>[]>(() => ([
   >
     <template #search>
       <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
-        <a-form-item>
-          <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-        </a-form-item>
+        <FormItem>
+          <Input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+        </FormItem>
       </yy-search>
     </template>
 
     <template #tools>
-      <a-button type="primary" @click="handleInitForm()">
+      <Button type="primary" @click="handleInitForm()">
         新增
-      </a-button>
-      <a-button type="primary" @click="JobApi.download({})">
+      </Button>
+      <Button type="primary" @click="JobApi.download({})">
         导出
-      </a-button>
+      </Button>
     </template>
 
     <template #action="{ record }">
-      <a-button type="link" @click="handleInitForm(record.id)">
+      <Linker @click="handleInitForm(record.id)">
         修改
-      </a-button>
+      </Linker>
 
-      <a-button type="link" @click="delDataRow(record.id)">
+      <Linker @click="delDataRow(record.id)">
         删除
-      </a-button>
+      </Linker>
     </template>
 
     <template #enabled="{ text, record }">
-      <a-switch :checked="text" @change="handleUpdateEnabled(record)" />
+      <Switch :value="text" @change="handleUpdateEnabled(record)" />
     </template>
 
-    <a-modal v-model:open="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
-      <a-form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
-        <a-form-item name="name" label="名称">
-          <a-input v-model:value="formModel.name" placeholder="请输入" />
-        </a-form-item>
-        <a-form-item name="jobSort" label="排序">
-          <a-input-number v-model:value="formModel.jobSort" placeholder="请输入" />
-        </a-form-item>
-        <a-form-item name="enabled" label="开启">
+    <Modal v-model:active="visible" :title="modalTitle" :loading="saveLoading" @confirm="handleSaveForm">
+      <Form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
+        <FormItem prop="name" label="名称">
+          <Input v-model:value="formModel.name" placeholder="请输入" />
+        </FormItem>
+        <FormItem prop="jobSort" label="排序">
+          <NumberInput v-model:value="formModel.jobSort" placeholder="请输入" />
+        </FormItem>
+        <FormItem prop="enabled" label="开启">
           <YyDictSelect v-model:value="formModel.enabled" type="radio" dict="job_status" transform="boolean" />
-        </a-form-item>
-      </a-form>
-    </a-modal>
+        </FormItem>
+      </Form>
+    </Modal>
   </YyTable>
 </template>

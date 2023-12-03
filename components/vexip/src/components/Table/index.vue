@@ -28,7 +28,23 @@ const emit = defineEmits<{
   'update:limit': [limit: number]
 }>()
 
-const renderSlotsKeys = computed(() => props.columns.filter(item => item.renderSlot).map(item => item.dataIndex))
+const reColumns = computed(() => {
+  return props.columns.map((item, order) => {
+    return {
+      ...item,
+      order,
+      renderSlot: item.renderSlot,
+    }
+  }).filter(item => !item.renderSlot)
+})
+
+const renderSlotsKeys = computed(() => {
+  return props.columns.map((item, index) => ({
+    ...item,
+    renderSlot: item.renderSlot,
+    index,
+  })).filter(item => item.renderSlot)
+})
 
 const { limit, current } = useVModels(props, emit)
 </script>
@@ -39,16 +55,14 @@ const { limit, current } = useVModels(props, emit)
     <slot name="tools" />
     <div class="px-2 py-4 mt-2 bg-white dark:bg-[#001529]">
       <Table
-        bordered
-        :loading="loading"
-        :columns="columns"
-        :data-source="dataSource"
-        :pagination="false"
-        size="small"
+        v-loading="loading"
+        :columns="reColumns"
+        :data="dataSource"
+        col-resizable
       >
-        <TableColumn v-for="item of renderSlotsKeys" :key="item" :id-key="item">
+        <TableColumn v-for="item of renderSlotsKeys" v-bind="item" :key="item.name" :id-key="item.name" :name="item.name" :order="item.index">
           <template #default="{ row, column, rowIndex }">
-            <slot v-bind="{ record: row, column, index: rowIndex, text: dataSource[rowIndex][`${item}`] }" :name="item" />
+            <slot v-bind="{ record: row, column, index: rowIndex, text: dataSource[rowIndex][`${item.key}`] }" :name="item.key" />
           </template>
         </TableColumn>
       </Table>

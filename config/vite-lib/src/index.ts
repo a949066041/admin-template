@@ -32,6 +32,7 @@ export default (options: LibConfigOption) => mergeConfig(commonViteConfig({
           '@yy-admin/common-core': 'yy-admin-common-core',
           '@yy-admin/common-utils': 'yy-admin-common-utils',
           'vue-router': 'vue-router',
+          'vexip-ui': 'vexipUi',
         },
       },
     },

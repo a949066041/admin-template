@@ -44,7 +44,7 @@ function handleUserAction(label: string) {
     sign-name="Vexip UI"
     :no-aside="!showAside"
     :menus="userStore.userMenuList"
-    :config="['color']"
+    :config="['color', 'theme']"
     :actions="[{
       label: 'signOut',
       name: '退出登录',
@@ -62,7 +62,7 @@ function handleUserAction(label: string) {
       <RouteTags />
       <div class=" overflow-hidden p4">
         <router-view v-slot="{ Component }">
-          <transition name="fade">
+          <transition name="vxp-move-bottom">
             <keep-alive :include="tagStore.keepAliveNames">
               <component :is="Component" />
             </keep-alive>
