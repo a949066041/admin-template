@@ -2,7 +2,6 @@ import type { ComponentResolver } from 'unplugin-vue-components/types'
 
 export function YyAntdComponents(): ComponentResolver {
   const customComponent = new Set([
-    'YySelect',
     'YySearch',
     'YyTable',
   ])

@@ -9,6 +9,7 @@
     "encryptor",
     "pinia",
     "unocss",
+    "vexip",
     "vitepress"
   ],
   "explorer.fileNesting.patterns": {
