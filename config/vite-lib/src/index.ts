@@ -21,7 +21,7 @@ export default (options: LibConfigOption) => mergeConfig(commonViteConfig({
       fileName: 'index',
     },
     rollupOptions: {
-      external: ['vue', 'ant-design-vue', 'ant-design-vue/es', '@yy-admin/common-apis', '@yy-admin/common-core', '@yy-admin/common-utils', 'vue-router'],
+      external: ['vue', 'ant-design-vue', 'ant-design-vue/es', '@yy-admin/common-apis', '@yy-admin/common-core', '@yy-admin/common-utils', 'vue-router', 'vexip-ui'],
       output: {
         exports: 'named',
         globals: {

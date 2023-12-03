@@ -14,7 +14,7 @@ export default () => mergeConfig(commonViteConfig({
         // manualChunks 配置
         manualChunks: {
           // 将 React 相关库打包成单独的 chunk 中
-          antdv: ['ant-design-vue'],
+          antdv: ['ant-design-vue', 'vexip-ui'],
           // 将 Lodash 库的代码单独打包
           lodash: ['lodash-es'],
           // 将组件库的代码打包
