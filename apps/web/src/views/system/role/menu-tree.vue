@@ -1,53 +1,36 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { TreeProps } from 'ant-design-vue'
-import { MenuApi } from '@yy-admin/common-apis'
-import { useVModel } from '@vueuse/core'
+import { MenuApi, type MenuList } from '@yy-admin/common-apis'
+import { Tree } from 'vexip-ui'
+import { flatChildrenArr } from '@yy-admin/common-core'
 
 defineOptions({
   name: 'MenuTree',
 })
 
 const props = defineProps<{ checked: number[] }>()
+const menuTreeRef = ref<InstanceType<typeof Tree>>()
 
-const bindValue = useVModel(props, 'checked')
+const menuTree = ref<MenuList[]>([])
+watch(() => props.checked, (val) => {
+  const checked = menuTree.value.filter(item => val.includes(item.id!))
 
-const menuTree = ref<(TreeProps['treeData'])>([])
+  handleSetTreeChecked(menuTree.value, false)
+  handleSetTreeChecked(checked)
+})
 
-async function handleLazyMenu(pid: number) {
-  return []
-  // const menuList = await MenuApi.list()
-  // const covertList = menuList.map(item => ({ key: item.id!, title: item.title, isLeaf: !item.hasChildren }))
-  // if (pid === 0)
-  //   menuTree.value = covertList
-  // return covertList
-}
-
-const onLoadData: TreeProps['loadData'] = (treeNode) => {
-  return new Promise<void>((resolve) => {
-    if (treeNode.dataRef!.children) {
-      resolve()
-      return
-    }
-    handleLazyMenu(treeNode.dataRef!.key as number).then((res) => {
-      treeNode.dataRef!.children = res
-      menuTree.value = [...menuTree.value as any]
-      resolve()
-    })
+function handleSetTreeChecked(checked: MenuList[], checkFlag = true) {
+  checked.forEach((item) => {
+    menuTreeRef.value?.checkNodeByData(item, checkFlag)
   })
 }
 
-handleLazyMenu(0)
+onMounted(async () => {
+  const menuList = await MenuApi.list()
+  menuTree.value = flatChildrenArr(menuList).map(item => ({ ...item, parent: item.pid }))
+})
 </script>
 
 <template>
-  {{ bindValue }}
-  <a-tree
-    v-model:checkedKeys="bindValue"
-    show-line
-    :show-icon="false"
-    :load-data="onLoadData"
-    checkable
-    :tree-data="menuTree"
-  />
+  <Tree ref="menuTreeRef" checkbox :data="menuTree" />
 </template>

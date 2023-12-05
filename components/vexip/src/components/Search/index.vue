@@ -9,7 +9,7 @@ const emit = defineEmits(['search', 'reset'])
 <template>
   <Form v-bind="$attrs" class="px-2 pt-4 rounded" inline>
     <slot />
-    <FormItemItem>
+    <FormItem>
       <Space>
         <Button type="primary" @click="emit('search')">
           查询
@@ -18,6 +18,6 @@ const emit = defineEmits(['search', 'reset'])
           重置
         </Button>
       </Space>
-    </FormItemItem>
+    </FormItem>
   </Form>
 </template>

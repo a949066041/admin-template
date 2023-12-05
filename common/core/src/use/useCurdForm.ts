@@ -39,7 +39,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
     afterDetail,
   } = options
 
-  const formRef = ref<typeof Form | null>(null)
+  const formRef = ref<InstanceType<typeof Form>>()
   const formModel = ref<T>(initFormFn()) as Ref<T>
   const [visible, toggleVisible] = useToggle()
   const [findLoading, toggleFindLoading] = useToggle()
@@ -57,7 +57,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
     toggleSaveLoading(false)
     toggleVisible()
     nextTick(async () => {
-      formRef.value?.resetFields()
+      formRef.value?.reset()
       if (['string', 'number'].includes(typeof values)) {
         editId.value = values
         toggleFindLoading(true)
@@ -84,15 +84,17 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
   }
 
   function handleSaveForm() {
-    formRef.value?.validate().then(() => {
-      toggleSaveLoading(true)
-      const requestSave = isAdd.value ? saveAction : (putAction || saveAction)
-      requestSave({ ...formModel.value, [formKey]: editId.value })
-        .then((result) => {
-          toggleVisible(false)
-          afterSave && afterSave(result)
-        })
-        .catch(() => toggleSaveLoading(false))
+    formRef.value?.validate().then((res) => {
+      if (!res.length) {
+        toggleSaveLoading(true)
+        const requestSave = isAdd.value ? saveAction : (putAction || saveAction)
+        requestSave({ ...formModel.value, [formKey]: editId.value })
+          .then((result) => {
+            toggleVisible(false)
+            afterSave && afterSave(result)
+          })
+          .catch(() => toggleSaveLoading(false))
+      }
     })
   }
 

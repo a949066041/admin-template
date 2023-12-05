@@ -22,7 +22,7 @@ function normalizeTableArgs(baseConfig: any, baseWidth: any) {
   else if (typeof baseConfig === 'boolean') {
     config = {}
   }
-  return { width, config }
+  return { width: typeof width === 'boolean' ? undefined : width, config }
 }
 
 export function createColumn<T extends string>(
@@ -70,7 +70,7 @@ export function createColumn<T extends string = string>(
     key: key as T,
     name,
     width,
-    renderSlot: !!last(args),
+    renderSlot: typeof last(args) === 'boolean' ? last(args) : false,
   }
 }
 

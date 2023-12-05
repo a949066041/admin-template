@@ -20,9 +20,6 @@ const configPropsProvider: PropsOptions = {
     labelAlign: 'left',
   },
   formItem: {
-    labelWidth: 80,
-    span: 24,
-    lg: 12,
   },
 }
 

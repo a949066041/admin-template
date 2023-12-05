@@ -48,10 +48,10 @@ watch(bindDictKey, (val) => {
 })
 
 const columns = computed<YyTableColumns<keyof IDictDetail | 'dictName'>[]>(() => ([
-  cT(['dict', 'name'], '所属字典', 100),
-  cT('label', '字典标签', 100),
-  cT('value', '字典值', 100),
-  cT('dictSort', '排序值', 100),
+  cT('dictName', '所属字典', { accessor: () => props.dictKey }),
+  cT('label', '字典标签'),
+  cT('value', '字典值'),
+  cT('dictSort', '排序值'),
   cT('action', '操作', { fixed: 'right' }, true),
 ]))
 </script>
@@ -65,40 +65,40 @@ const columns = computed<YyTableColumns<keyof IDictDetail | 'dictName'>[]>(() =>
   >
     <template #search>
       <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
-        <a-form-item>
-          <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-        </a-form-item>
+        <FormItem label="关键字查询">
+          <Input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+        </FormItem>
       </yy-search>
     </template>
 
     <template #tools>
-      <a-button type="primary" @click="handleInitForm()">
+      <Button type="primary" @click="handleInitForm()">
         新增
-      </a-button>
+      </Button>
     </template>
 
     <template #action="{ record }">
-      <a-button type="link" @click="handleInitForm(record.id)">
+      <Linker @click="handleInitForm(record.id)">
         修改
-      </a-button>
+      </Linker>
 
-      <a-button type="link" @click="delDataRow(record.id)">
+      <Linker @click="delDataRow(record.id)">
         删除
-      </a-button>
+      </Linker>
     </template>
 
-    <a-modal v-model:open="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
-      <a-form ref="formRef" v-loading="findLoading" :rules="{}" :model="formModel">
-        <a-form-item name="label" label="字典名称">
-          <a-input v-model:value="formModel.label" placeholder="请输入角字典名称" />
-        </a-form-item>
-        <a-form-item name="value" label="描述">
-          <a-input v-model:value="formModel.value" placeholder="请输入描述" />
-        </a-form-item>
-        <a-form-item name="value" label="描述">
-          <a-input-number v-model:value="formModel.dictSort" placeholder="请输入排序值" />
-        </a-form-item>
-      </a-form>
-    </a-modal>
+    <Modal v-model:active="visible" :title="modalTitle" :loading="saveLoading" @confirm="handleSaveForm">
+      <Form ref="formRef" v-loading="findLoading" :rules="{}" :model="formModel">
+        <FormItem name="label" label="字典名称">
+          <Input v-model:value="formModel.label" placeholder="请输入角字典名称" />
+        </FormItem>
+        <FormItem name="value" label="描述">
+          <Input v-model:value="formModel.value" placeholder="请输入描述" />
+        </FormItem>
+        <FormItem name="value" label="描述">
+          <NumberInput v-model:value="formModel.dictSort" placeholder="请输入排序值" />
+        </FormItem>
+      </Form>
+    </Modal>
   </YyTable>
 </template>

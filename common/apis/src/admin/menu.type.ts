@@ -1,5 +1,5 @@
 export interface MenuList {
-  id?: string
+  id?: number
   key?: string
   label?: string
   title?: string
@@ -10,6 +10,7 @@ export interface MenuList {
   meta: Meta
   name: string
   path: string
+  pid?: string
 }
 
 interface Meta {

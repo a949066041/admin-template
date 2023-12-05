@@ -12,7 +12,7 @@ class MenuApiInstance extends ApiInstance {
   }
 
   public list() {
-    return this.$request.setPath(`${this.baseApi}`).get<MenuList[]>({ pidIsNull: true })
+    return this.$request.setPath(`${this.baseApi}/menuAll`).get<MenuList[]>()
   }
 }
 

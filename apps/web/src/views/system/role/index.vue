@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type IRole, type IRoleParams, RoleApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
+import { type VexipFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
 import { computed, ref } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import type { Rule } from 'ant-design-vue/es/form'
@@ -45,7 +45,7 @@ const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveF
   afterSave: searchTable,
 })
 
-const rules = ref<Partial<Record<keyof IRoleParams, Rule[] | Rule>>>({
+const rules = ref<VexipFormRules<IRoleParams>>({
   name: [
     { required: true, message: '请输入角色名称', trigger: 'change' },
   ],
@@ -67,8 +67,8 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
 </script>
 
 <template>
-  <a-row :gutter="20">
-    <a-col :span="18">
+  <Row :gap="20">
+    <Column :span="18">
       <YyTable
         v-model:current="current"
         v-model:limit="limit"
@@ -77,50 +77,50 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
       >
         <template #search>
           <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
-            <a-form-item>
+            <FormItem label="关键字">
               <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-            </a-form-item>
+            </FormItem>
           </yy-search>
         </template>
 
         <template #tools>
-          <a-button type="primary" @click="handleInitForm()">
+          <Button type="primary" @click="handleInitForm()">
             新增
-          </a-button>
+          </Button>
         </template>
 
         <template #action="{ record }">
-          <a-button type="link" @click="handleInitForm(record.id)">
+          <Linker @click="handleInitForm(record.id)">
             修改
-          </a-button>
-          <a-button type="link" @click="handleSetMenuCheck(record.menus)">
+          </Linker>
+          <Linker @click="handleSetMenuCheck(record.menus)">
             权限
-          </a-button>
-          <a-button type="link" @click="delDataRow(record.id)">
+          </Linker>
+          <Linker @click="delDataRow(record.id)">
             删除
-          </a-button>
+          </Linker>
         </template>
 
-        <a-modal v-model:open="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
-          <a-form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
-            <a-form-item name="name" label="角色名称">
-              <a-input v-model:value="formModel.name" placeholder="请输入角色名称" />
-            </a-form-item>
-            <a-form-item name="level" label="角色级别">
-              <a-input-number v-model:value="formModel.level" placeholder="请输入角色级别" />
-            </a-form-item>
-            <a-form-item name="dataScope" label="数据范围">
-              <a-input v-model:value="formModel.dataScope" placeholder="请输入角色" />
-            </a-form-item>
-            <a-form-item name="description" label="描述信息">
-              <a-textarea v-model:value="formModel.description" placeholder="请输入描述信息" />
-            </a-form-item>
-          </a-form>
-        </a-modal>
+        <Modal v-model:active="visible" :title="modalTitle" :loading="saveLoading" @confirm="handleSaveForm">
+          <Form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
+            <FormItem prop="name" label="角色名称">
+              <Input v-model:value="formModel.name" placeholder="请输入角色名称" />
+            </FormItem>
+            <FormItem prop="level" label="角色级别">
+              <NumberInput v-model:value="formModel.level" placeholder="请输入角色级别" />
+            </FormItem>
+            <FormItem prop="dataScope" label="数据范围">
+              <Input v-model:value="formModel.dataScope" placeholder="请输入角色" />
+            </FormItem>
+            <FormItem prop="description" label="描述信息">
+              <Textarea v-model:value="formModel.description" placeholder="请输入描述信息" />
+            </FormItem>
+          </Form>
+        </Modal>
       </YyTable>
-    </a-col>
+    </Column>
     <a-col :span="6">
-      <MenuTree v-model:checked="checkMenu" />
+      <MenuTree :checked="checkMenu" />
     </a-col>
-  </a-row>
+  </Row>
 </template>

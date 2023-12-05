@@ -1,10 +1,9 @@
-export function flatChildrenArr(children: any[]) {
+export function flatChildrenArr<T extends any[]>(children: T): T {
   return children.reduce((acc, child) => {
     if (child.children)
       acc.push(...flatChildrenArr(child.children))
 
-    else
-      acc.push(child)
+    acc.push(child)
 
     return acc
   }, [])
