@@ -1,45 +1,45 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useUserStore } from '@yy-admin/common-core'
-import { Message } from 'vexip-ui'
 import { useTagStore } from '../../store/tag.store'
 import YyHeader from './components/header/index.vue'
+import YySider from './components/sider/index.vue'
 import RouteTags from './components/tag/index.vue'
 
 defineOptions({
   name: 'YyLayout',
 })
 const tagStore = useTagStore()
-const userStore = useUserStore()
 
-const router = useRouter()
 const route = useRoute()
 const active = ref('')
 
 watch(route, (val) => {
   active.value = val.meta.title as string
 }, { immediate: true })
-
-function handleToRouter(_: string, meta: { key: string }) {
-  if (meta && meta.key)
-    router.push(meta.key)
-}
-
-const showAside = ref(false)
-
-function handleUserAction(label: string) {
-  if (label === 'signOut') {
-    userStore.logout().then(() => {
-      Message.success('退出成功！')
-      router.push('/login')
-    })
-  }
-}
 </script>
 
 <template>
-  <Layout
+  <n-layout>
+    <YyHeader />
+    <n-layout has-sider>
+      <YySider />
+      <n-layout-content>
+        <RouteTags />
+        <div class=" overflow-hidden p4">
+          <router-view v-slot="{ Component }">
+            <transition name="vxp-move-bottom">
+              <keep-alive :include="tagStore.keepAliveNames">
+                <component :is="Component" />
+              </keep-alive>
+            </transition>
+          </router-view>
+        </div>
+        <n-layout-footer>©2023 Created by 洋洋得意</n-layout-footer>
+      </n-layout-content>
+    </n-layout>
+  </n-layout>
+  <!-- <Layout
     logo="https://www.vexipui.com/vexip-ui.svg"
     sign-name="Vexip UI"
     :no-aside="!showAside"
@@ -70,5 +70,5 @@ function handleUserAction(label: string) {
         </router-view>
       </div>
     </template>
-  </Layout>
+  </Layout> -->
 </template>

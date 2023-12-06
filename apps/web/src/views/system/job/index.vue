@@ -112,7 +112,7 @@ const columns = computed<YyTableColumns<keyof IEntity<IJobEntity>>[]>(() => ([
     </template>
 
     <template #enabled="{ text, record }">
-      <Switch v-model:value="record.enabled" @change="handleUpdateEnabled(record)" />
+      <u-switch :value="text" @change="handleUpdateEnabled(record)" />
     </template>
 
     <Modal v-model:active="visible" :title="modalTitle" :loading="saveLoading" @confirm="handleSaveForm">

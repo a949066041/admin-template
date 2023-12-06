@@ -1,33 +1,19 @@
 <script lang="ts" setup>
 import { useTitle } from '@vueuse/core'
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
-import type { PropsOptions } from 'vexip-ui'
+import { useAppConfigStore } from '@yy-admin/common-core'
 
 defineOptions({
   name: 'AppConfig',
 })
 const props = defineProps<{ title?: string }>()
-
+const { configProps } = useAppConfigStore()
 useTitle(props.title)
-
-const configPropsProvider: PropsOptions = {
-  default: { clearable: true },
-  linker: {
-    type: 'primary',
-  },
-  form: {
-    labelAlign: 'left',
-  },
-  formItem: {
-  },
-}
-
-dayjs.locale('zh-cn')
 </script>
 
 <template>
-  <ConfigProvider :props="configPropsProvider">
-    <slot />
-  </ConfigProvider>
+  <n-config-provider v-bind="configProps">
+    <n-message-provider>
+      <slot />
+    </n-message-provider>
+  </n-config-provider>
 </template>

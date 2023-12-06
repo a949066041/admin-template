@@ -1,5 +1,5 @@
 import { useToggle } from '@vueuse/core'
-import type { Form } from 'vexip-ui'
+import type { FormInst } from 'naive-ui'
 import type { Ref } from 'vue'
 import { computed, nextTick, ref } from 'vue'
 
@@ -39,7 +39,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
     afterDetail,
   } = options
 
-  const formRef = ref<InstanceType<typeof Form>>()
+  const formRef = ref<FormInst | null>(null)
   const formModel = ref<T>(initFormFn()) as Ref<T>
   const [visible, toggleVisible] = useToggle()
   const [findLoading, toggleFindLoading] = useToggle()
@@ -57,7 +57,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
     toggleSaveLoading(false)
     toggleVisible()
     nextTick(async () => {
-      formRef.value?.reset()
+      formRef.value?.restoreValidation()
       if (['string', 'number'].includes(typeof values)) {
         editId.value = values
         toggleFindLoading(true)
@@ -84,8 +84,8 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
   }
 
   function handleSaveForm() {
-    formRef.value?.validate().then((res) => {
-      if (!res.length) {
+    formRef.value?.validate((res) => {
+      if (!res) {
         toggleSaveLoading(true)
         const requestSave = isAdd.value ? saveAction : (putAction || saveAction)
         requestSave({ ...formModel.value, [formKey]: editId.value })
