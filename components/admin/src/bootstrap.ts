@@ -24,10 +24,15 @@ export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
       const d = dialog.create({
         title: '提示',
         content,
+        positiveText: '确定',
+        negativeText: '取消',
         onPositiveClick() {
           d.loading = true
-          callback().then(() => {
-            d.loading = false
+          return new Promise<void>((resolve) => {
+            callback().then(() => {
+              d.loading = false
+              resolve()
+            })
           })
         },
         onNegativeClick() {
