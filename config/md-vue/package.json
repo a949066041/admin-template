@@ -11,19 +11,19 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@vueuse/core": "^10.6.1"
+    "@vueuse/core": "^10.7.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.10.3",
-    "@vue/compiler-core": "^3.3.9",
-    "@vue/runtime-core": "^3.3.9",
-    "@vue/runtime-dom": "^3.3.9",
+    "@types/node": "^20.10.4",
+    "@vue/compiler-core": "^3.3.10",
+    "@vue/runtime-core": "^3.3.10",
+    "@vue/runtime-dom": "^3.3.10",
     "@yy-admin/config-vite-lib": "workspace:^",
     "fs-extra": "^11.2.0",
     "markdown-it": "^13.0.2",
     "monaco-editor": "^0.44.0",
-    "typescript": "^5.3.2",
+    "typescript": "^5.3.3",
     "vitepress": "1.0.0-rc.24"
   }
 }

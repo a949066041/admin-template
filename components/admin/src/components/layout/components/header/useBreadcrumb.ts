@@ -4,11 +4,11 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 export interface IRouteBreadcrumbItem {
-  path: string
-  name: string
+  key: string
+  label: string
   children?: IRouteBreadcrumbItem[]
 }
-const homePage = { path: '/', name: '首页' }
+const homePage = { key: '/', label: '首页' } as IRouteBreadcrumbItem
 
 export function useBreadcrumb() {
   const route = useRoute()
@@ -18,11 +18,11 @@ export function useBreadcrumb() {
     if (!parentRoute || route.path === '/')
       return [homePage]
     const parentRoutes = {
-      path: parentRoute.path,
-      name: parentRoute.name,
-      children: parentRoute.children!.map(item => ({ path: item.path, name: item.meta.title })),
+      key: parentRoute.path,
+      label: parentRoute.name,
+      children: parentRoute.children!.map(item => ({ key: item.path, label: item.meta.title })),
     }
-    return [homePage, parentRoutes, { path: route.path, name: route.meta.title as string }]
+    return [homePage, parentRoutes, { key: route.path, label: route.meta.title as string }]
   })
 
   return {

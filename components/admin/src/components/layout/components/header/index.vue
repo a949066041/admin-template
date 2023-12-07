@@ -28,25 +28,20 @@ function handleSelectAction(key: string) {
 }
 
 const { breadcrumbList } = useBreadcrumb()
+
+function handleSelectMenu(key: string) {
+  router.push(key)
+}
 </script>
 
 <template>
   <n-layout-header class=" flex justify-between">
     <n-breadcrumb class=" ml-4">
-      <n-breadcrumb-item v-for="item of breadcrumbList" :key="item.path">
-        <n-dropdown>
+      <n-breadcrumb-item v-for="item of breadcrumbList" :key="item.key">
+        <n-dropdown :options="item.children" @select="handleSelectMenu">
           <a type="link">
-            {{ item.name }}
+            {{ item.label }}
           </a>
-          <template v-if="item.children && item.children.length > 0" #drop>
-            <DropdownList>
-              <DropdownItem v-for="innerItem of item.children" :key="innerItem.path" :name="innerItem.path">
-                <a @click="$router.push(innerItem.path)">
-                  {{ innerItem.name }}
-                </a>
-              </DropdownItem>
-            </DropdownList>
-          </template>
         </n-dropdown>
       </n-breadcrumb-item>
     </n-breadcrumb>
