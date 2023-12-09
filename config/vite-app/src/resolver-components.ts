@@ -4,6 +4,7 @@ export function YyAntdComponents(): ComponentResolver {
   const customComponent = new Set([
     'YySearch',
     'YyTable',
+    'YyModal',
   ])
 
   return {

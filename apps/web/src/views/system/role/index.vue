@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { type IRole, type IRoleParams, RoleApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { type VexipFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
+import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
 import { computed, ref } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
-import type { Rule } from 'ant-design-vue/es/form'
 import MenuTree from './menu-tree.vue'
 
 defineOptions({
@@ -45,7 +44,7 @@ const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveF
   afterSave: searchTable,
 })
 
-const rules = ref<VexipFormRules<IRoleParams>>({
+const rules = ref<NaiveFormRules<IRoleParams>>({
   name: [
     { required: true, message: '请输入角色名称', trigger: 'change' },
   ],
@@ -62,13 +61,13 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
   cT('level', '角色级别'),
   cT('description', '描述'),
   cT('createTime', '创建日期'),
-  cT('action', '操作', true),
+  cT('action', '操作', { fixed: 'right' }, 220, true),
 ])
 </script>
 
 <template>
-  <Row :gap="20">
-    <Column :span="18">
+  <n-grid :x-gap="20">
+    <n-gi :span="18">
       <YyTable
         v-model:current="current"
         v-model:limit="limit"
@@ -77,50 +76,50 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
       >
         <template #search>
           <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
-            <FormItem label="关键字">
-              <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-            </FormItem>
+            <n-form-item>
+              <n-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+            </n-form-item>
           </yy-search>
         </template>
 
         <template #tools>
-          <Button type="primary" @click="handleInitForm()">
+          <n-button type="primary" @click="handleInitForm()">
             新增
-          </Button>
+          </n-button>
         </template>
 
         <template #action="{ record }">
-          <Linker @click="handleInitForm(record.id)">
+          <n-button type="primary" quaternary @click="handleInitForm(record.id)">
             修改
-          </Linker>
-          <Linker @click="handleSetMenuCheck(record.menus)">
+          </n-button>
+          <n-button type="info" quaternary @click="handleSetMenuCheck(record.menus)">
             权限
-          </Linker>
-          <Linker @click="delDataRow(record.id)">
+          </n-button>
+          <n-button type="error" quaternary @click="delDataRow(record.id)">
             删除
-          </Linker>
+          </n-button>
         </template>
 
-        <Modal v-model:active="visible" :title="modalTitle" :loading="saveLoading" @confirm="handleSaveForm">
-          <Form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
-            <FormItem prop="name" label="角色名称">
-              <Input v-model:value="formModel.name" placeholder="请输入角色名称" />
-            </FormItem>
-            <FormItem prop="level" label="角色级别">
-              <NumberInput v-model:value="formModel.level" placeholder="请输入角色级别" />
-            </FormItem>
-            <FormItem prop="dataScope" label="数据范围">
-              <Input v-model:value="formModel.dataScope" placeholder="请输入角色" />
-            </FormItem>
-            <FormItem prop="description" label="描述信息">
-              <Textarea v-model:value="formModel.description" placeholder="请输入描述信息" />
-            </FormItem>
-          </Form>
-        </Modal>
+        <YyModal v-model:visible="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
+          <n-form ref="formRef" :loading="findLoading" :rules="rules" :model="formModel">
+            <n-form-item prop="name" label="角色名称">
+              <n-input v-model:value="formModel.name" placeholder="请输入角色名称" />
+            </n-form-item>
+            <n-form-item prop="level" label="角色级别">
+              <n-input-number v-model:value="formModel.level" placeholder="请输入角色级别" />
+            </n-form-item>
+            <n-form-item prop="dataScope" label="数据范围">
+              <n-input v-model:value="formModel.dataScope" placeholder="请输入角色" />
+            </n-form-item>
+            <n-form-item prop="description" label="描述信息">
+              <n-input v-model:value="formModel.description" type="textarea" placeholder="请输入描述信息" />
+            </n-form-item>
+          </n-form>
+        </YyModal>
       </YyTable>
-    </Column>
-    <a-col :span="6">
-      <MenuTree :checked="checkMenu" />
-    </a-col>
-  </Row>
+    </n-gi>
+    <n-gi :span="6">
+      <MenuTree v-model:checked="checkMenu" />
+    </n-gi>
+  </n-grid>
 </template>

@@ -2,7 +2,7 @@
 import type { IDict, IDictParams } from '@yy-admin/common-apis'
 import { DictApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { type VexipFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
+import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
 import { computed, ref } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import DictDetail from './dict-detail.vue'
@@ -20,9 +20,10 @@ function iniDictForm() {
   }) as IDictParams
 }
 
-const rules = ref<VexipFormRules<IDict>>({
+const rules = ref<NaiveFormRules<IDict>>({
   name: [
-    { required: true, message: '请输入名称' },
+    { required: true, message: '请输入名称', trigger: 'blur' },
+    { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'change' },
   ],
 })
 
@@ -44,8 +45,8 @@ const columns = computed<YyTableColumns<keyof IDict>[]>(() => ([
 </script>
 
 <template>
-  <Row :gap="16">
-    <Column :span="10">
+  <n-grid :gap="16">
+    <n-gi :span="10">
       <YyTable
         v-model:current="current"
         v-model:limit="limit"
@@ -54,46 +55,46 @@ const columns = computed<YyTableColumns<keyof IDict>[]>(() => ([
       >
         <template #search>
           <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
-            <FormItem label="关键字查询">
-              <Input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-            </FormItem>
+            <n-form-item>
+              <n-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+            </n-form-item>
           </yy-search>
         </template>
 
         <template #tools>
-          <Button type="primary" @click="handleInitForm()">
+          <n-button type="primary" @click="handleInitForm()">
             新增
-          </Button>
+          </n-button>
         </template>
 
         <template #action="{ record }">
-          <Linker @click="handleInitForm(record.id)">
+          <n-button type="primary" quaternary @click="handleInitForm(record.id)">
             修改
-          </Linker>
+          </n-button>
 
-          <Linker @click="dictName = record.name">
+          <n-button type="info" quaternary @click="dictName = record.name">
             配置
-          </Linker>
+          </n-button>
 
-          <Linker @click="delDataRow(record.id)">
+          <n-button type="error" quaternary @click="delDataRow(record.id)">
             删除
-          </Linker>
+          </n-button>
         </template>
 
-        <Modal v-model:active="visible" :title="modalTitle" :loading="saveLoading" @confirm="handleSaveForm">
-          <Form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
-            <FormItem prop="name" label="字典名称">
-              <Input v-model:value="formModel.name" placeholder="请输入角字典名称" />
-            </FormItem>
-            <FormItem prop="level" label="描述">
-              <Textarea v-model:value="formModel.description" placeholder="请输入描述" />
-            </FormItem>
-          </Form>
-        </Modal>
+        <YyModal v-model:visible="visible" class=" w-100" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
+          <n-form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
+            <n-form-item prop="name" label="字典名称">
+              <n-input v-model:value="formModel.name" placeholder="请输入角字典名称" />
+            </n-form-item>
+            <n-form-item prop="level" label="描述">
+              <n-input v-model:value="formModel.description" type="textarea" placeholder="请输入描述" />
+            </n-form-item>
+          </n-form>
+        </YyModal>
       </YyTable>
-    </Column>
-    <a-col :span="14">
+    </n-gi>
+    <n-gi :span="14">
       <DictDetail v-model:dictKey="dictName" />
-    </a-col>
-  </Row>
+    </n-gi>
+  </n-grid>
 </template>

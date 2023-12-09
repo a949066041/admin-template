@@ -116,30 +116,18 @@ const columns = computed<YyTableColumns<keyof IEntity<IJobEntity>>[]>(() => ([
       <n-switch :value="text" @update-value="handleUpdateEnabled(record)" />
     </template>
 
-    <n-modal v-model:show="visible" :title="modalTitle" class=" w-[600px]" :loading="saveLoading" preset="card" @confirm="handleSaveForm">
-      <div>
-        <n-form ref="formRef" :rules="rules" :model="formModel">
-          <n-form-item path="name" label="名称">
-            <n-input v-model:value="formModel.name" placeholder="请输入" />
-          </n-form-item>
-          <n-form-item path="jobSort" label="排序">
-            <n-input-number v-model:value="formModel.jobSort" placeholder="请输入" />
-          </n-form-item>
-          <n-form-item path="enabled" label="开启">
-            <YyDictSelect v-model:value="formModel.enabled" type="radio" dict="job_status" transform="boolean" />
-          </n-form-item>
-        </n-form>
-      </div>
-      <template #action>
-        <div class=" flex justify-end">
-          <n-button @click="visible = false">
-            取消
-          </n-button>
-          <n-button type="primary" @click="handleSaveForm">
-            确定
-          </n-button>
-        </div>
-      </template>
-    </n-modal>
+    <YyModal v-model:visible="visible" :title="modalTitle" class=" w-[600px]" :confirm-loading="saveLoading" @ok="handleSaveForm">
+      <n-form ref="formRef" :rules="rules" :model="formModel">
+        <n-form-item path="name" label="名称">
+          <n-input v-model:value="formModel.name" placeholder="请输入" />
+        </n-form-item>
+        <n-form-item path="jobSort" label="排序">
+          <n-input-number v-model:value="formModel.jobSort" placeholder="请输入" />
+        </n-form-item>
+        <n-form-item path="enabled" label="开启">
+          <YyDictSelect v-model:value="formModel.enabled" type="radio" dict="job_status" transform="boolean" />
+        </n-form-item>
+      </n-form>
+    </YyModal>
   </YyTable>
 </template>
