@@ -10,7 +10,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { VexipUIResolver } from '@vexip-ui/plugins'
 
 export interface ICommonViteConfig {
   resolvers?: ComponentResolver[]
@@ -30,7 +29,6 @@ export default (_config?: ICommonViteConfig) => {
       UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
       AutoImport({
         resolvers: [
-          VexipUIResolver({ fullStyle: true }),
         ],
         imports: ['vue', 'vue-router', '@vueuse/core', {
           'naive-ui': [
@@ -44,7 +42,7 @@ export default (_config?: ICommonViteConfig) => {
       }),
       Components({
         dts: true,
-        resolvers: [IconsResolver(), AntDesignVueResolver({ importStyle: false }), VexipUIResolver({ fullStyle: true }), NaiveUiResolver(), ...config.resolvers],
+        resolvers: [IconsResolver(), AntDesignVueResolver({ importStyle: false }), NaiveUiResolver(), ...config.resolvers],
       }),
       Icons({
         autoInstall: true,

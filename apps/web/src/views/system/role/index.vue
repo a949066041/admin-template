@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type IRole, type IRoleParams, RoleApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
+import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
 import { computed, ref } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import MenuTree from './menu-tree.vue'

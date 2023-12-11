@@ -1,40 +1,40 @@
 import { onMounted, ref } from 'vue'
-import { DeptApi } from '@yy-admin/common-apis'
-import type { TreeProps, TreeSelectProps } from 'ant-design-vue'
+import { DeptApi, type IDept } from '@yy-admin/common-apis'
+import type { TreeOption, TreeProps } from 'naive-ui'
+
+function withDeptTree(tree: IDept[]) {
+  return tree.map(item => ({ id: item.id, name: item.label, isLeaf: item.leaf }))
+}
 
 export function useTreeDept() {
   const selectedDeps = ref<string[]>([])
-  const userDeptTree = ref<TreeProps['treeData']>([])
-  const userFormDeptTree = ref<TreeSelectProps['treeData']>([])
+  const userDeptTree = ref<TreeProps['data']>([])
+  const userFormDeptTree = ref<TreeProps['data']>([])
 
-  const handleGetLeftTree: TreeProps['loadData'] = (treeNode) => {
+  function handleGetLeftTree(node: TreeOption) {
     return new Promise<void>((resolve) => {
-      if (treeNode.dataRef!.children) {
-        resolve()
-        return
-      }
-      handleGetTree(treeNode.key as number).then((res) => {
-        treeNode.dataRef!.children = res
-        userDeptTree.value = [...userDeptTree.value as any]
+      handleGetTree(node.id as number).then((res) => {
+        node.children = res
         resolve()
       })
     })
   }
 
-  // const onLoadData = (treeNode: TreeSelectProps['treeData'][number]) => {
-  //   return new Promise(resolve => {
-  //     const { id } = treeNode.dataRef;
-  //     setTimeout(() => {
-  //       userFormDeptTree.value = userFormDeptTree.value.concat([
-  //       ]);
-  //       resolve(true);
-  //     }, 300);
-  //   });
-  // }
+  function handleGetUserFormTreeDept(isAdd: boolean, pid?: number) {
+    if (isAdd) {
+      DeptApi.getDeptTree().then((res) => {
+        userFormDeptTree.value = withDeptTree(res.content)
+      })
+      return
+    }
+    DeptApi.superior(pid!).then((res) => {
+      userFormDeptTree.value = withDeptTree(res.content)
+    })
+  }
 
   async function handleGetTree(pid?: number) {
     const deptTree = await DeptApi.getDeptTree(pid)
-    return deptTree.content.map(item => ({ key: item.id, title: item.label, isLeaf: !item.hasChildren }))
+    return withDeptTree(deptTree.content)
   }
 
   onMounted(() => {
@@ -44,6 +44,7 @@ export function useTreeDept() {
   })
 
   return {
+    handleGetUserFormTreeDept,
     userFormDeptTree,
     selectedDeps,
     userDeptTree,

@@ -12,8 +12,7 @@
     "prepare:build": "vite build"
   },
   "dependencies": {
-    "@antv/s2": "^1.53.0",
-    "vexip-ui": "^2.2.19"
+    "@antv/s2": "^1.53.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",

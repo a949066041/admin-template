@@ -2,9 +2,9 @@
 import { JobApi } from '@yy-admin/common-apis'
 import type { IEntity, IJobEntity, IJobPageParams } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { createColumn as cT } from '@yy-admin/components-vexip'
+import { createColumn as cT } from '@yy-admin/components-naive'
 import { YyDictSelect } from '@yy-admin/components-admin'
-import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-vexip'
+import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 
 defineOptions({

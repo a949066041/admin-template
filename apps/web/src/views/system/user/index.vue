@@ -3,9 +3,9 @@ import { useTable } from '@yy-web/business-use'
 import { DictDetailApi, JobApi, RoleApi, UserApi } from '@yy-admin/common-apis'
 import type { IJobEntity, IRole, IUser, IUserParams } from '@yy-admin/common-apis'
 import { computed, ref, watch } from 'vue'
-import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
+import { YyDictSelect } from '@yy-admin/components-admin'
+import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
 import { isValidPhone } from '@yy-admin/common-utils'
-import type { Rule } from 'ant-design-vue/es/form'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import { useTreeDept } from './useTreeDept'
 
@@ -28,7 +28,7 @@ const {
   limit,
   resetTable,
   searchTable,
-} = useTable<IUserParams & { blurry: string }, { deptId: string }>({
+} = useTable<IUserParams & { blurry: string, dept: { name: string } }, { deptId: string }>({
   apiAction: UserApi.page,
 })
 
@@ -39,19 +39,19 @@ function initUserForm() {
   }) as IUserParams
 }
 
-const { selectedDeps, userDeptTree, handleGetLeftTree, userFormDeptTree } = useTreeDept()
-const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, findLoading, formRef } = useCurdForm<IUserParams>({
+const { selectedDeps, userDeptTree, handleGetLeftTree, userFormDeptTree, handleGetUserFormTreeDept } = useTreeDept()
+const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, formRef } = useCurdForm<IUserParams>({
   initFormFn: initUserForm,
   saveAction: UserApi.save,
   putAction: UserApi.put,
   findIdAction: UserApi.findId,
   afterSave: searchTable,
-  afterDetail() {
-    // handleGetSuperior(result?.deptId)
+  afterDetail(result, isAdd) {
+    handleGetUserFormTreeDept(!!isAdd, result?.deptId)
   },
 })
 
-const rules = ref<Partial<Record<keyof IUserParams, Rule[] | Rule>>>({
+const rules = ref<NaiveFormRules<IUserParams>>({
   username: [
     { required: true, message: '请输入用户名', trigger: 'change' },
     { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'change' },
@@ -73,15 +73,15 @@ const rules = ref<Partial<Record<keyof IUserParams, Rule[] | Rule>>>({
     {
       required: true,
       trigger: 'change',
-      validator: (_rule: Rule, value, callback) => {
+      validator(rule, value) {
         if (!value)
-          return callback('请输入电话号码')
+          return new Error('请输入电话号码')
 
         else if (!isValidPhone(value))
-          return callback('请输入正确的11位手机号码')
+          return new Error('请输入正确的11位手机号码')
 
         else
-          return Promise.resolve()
+          return true
       },
     },
   ],
@@ -116,7 +116,7 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
   cT('gender', '性别'),
   cT('phone', '电话'),
   cT('email', '邮箱'),
-  cT(['dept', 'name'], '部门'),
+  cT('dept', '部门', true),
   cT('enabled', '状态', true),
   cT('createTime', '创建日期'),
   cT('action', '操作', { fixed: 'right' }, true),
@@ -124,81 +124,87 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
 </script>
 
 <template>
-  <a-row :gutter="20">
-    <a-col :span="6">
-      <a-tree
-        v-model:selectedKeys="selectedDeps"
-        :load-data="handleGetLeftTree"
-        :tree-data="userDeptTree"
+  <n-grid :x-gap="20">
+    <n-gi :span="6">
+      <n-tree
+        v-model:selected-keys="selectedDeps"
+        selectable
+        label-field="name"
+        key-field="id"
+        :data="userDeptTree"
+        :on-load="handleGetLeftTree"
+        block-line
       />
-    </a-col>
-    <a-col :span="18">
+    </n-gi>
+    <n-gi :span="18">
       <YyTable
         v-model:current="current" v-model:limit="limit" :total="total"
         :loading="loading" :columns="columns" :data-source="dataSource"
       >
         <template #search>
           <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
-            <a-form-item>
-              <a-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-            </a-form-item>
+            <n-form-item>
+              <n-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+            </n-form-item>
           </yy-search>
         </template>
 
         <template #tools>
-          <a-button type="primary" @click="handleInitForm()">
+          <n-button type="primary" @click="handleInitForm()">
             新增
-          </a-button>
+          </n-button>
+        </template>
+
+        <template #dept="{ record }">
+          {{ record.dept?.name }}
         </template>
 
         <template #enabled="{ text, record }">
-          <a-switch :checked="text" @change="handleChangeStatus(record.id)" />
+          <n-switch :value="text" @update:value="handleChangeStatus(record.id)" />
         </template>
 
         <template #action="{ record }">
-          <a-button type="link" @click="handleInitForm(record.id)">
+          <n-button type="primary" quaternary @click="handleInitForm(record.id)">
             修改
-          </a-button>
+          </n-button>
         </template>
       </YyTable>
-      <a-modal v-model:open="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
-        <a-spin :spinning="findLoading">
-          <a-form ref="formRef" :model="formModel" :rules="rules">
-            <a-form-item name="username" label="用户名">
-              <a-input v-model:value="formModel.username" placeholder="请输入用户名" />
-            </a-form-item>
-            <a-form-item name="phone" label="电话">
-              <a-input v-model:value="formModel.phone" type="number" placeholder="请输入电话" />
-            </a-form-item>
-            <a-form-item name="nickName" label="昵称">
-              <a-input v-model:value="formModel.nickName" placeholder="请输入昵称" />
-            </a-form-item>
-            <a-form-item name="email" label="邮箱">
-              <a-input v-model:value="formModel.email" placeholder="请输入邮箱" />
-            </a-form-item>
-            <a-form-item name="deptId" label="部门">
-              <a-tree-select
-                v-model:value="formModel.deptId"
-                :tree-data="userFormDeptTree"
-                placeholder="请选择部门"
-                tree-default-expand-all
-              />
-            </a-form-item>
-            <a-form-item name="jobs" label="岗位">
-              <a-select v-model:value="formModel.jobs" :field-names="{ label: 'name', value: 'id' }" :options="jobList" mode="multiple" />
-            </a-form-item>
-            <a-form-item name="gender" label="性别">
-              <a-radio-group v-model:value="formModel.gender" :options="[{ label: '男', value: '男' }, { label: '女', value: '女' }]" />
-            </a-form-item>
-            <a-form-item name="enabled" label="状态">
-              <a-radio-group v-model:value="formModel.enabled" :options="statusList" :field-names="{ label: 'label', value: 'value' }" />
-            </a-form-item>
-            <a-form-item name="roles" label="角色">
-              <a-select v-model:value="formModel.roles" :field-names="{ label: 'name', value: 'id' }" :options="roleList" mode="multiple" />
-            </a-form-item>
-          </a-form>
-        </a-spin>
-      </a-modal>
-    </a-col>
-  </a-row>
+      <YyModal v-model:visible="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
+        <n-form ref="formRef" :model="formModel" :rules="rules">
+          <n-form-item props="username" label="用户名">
+            <n-input v-model:value="formModel.username" placeholder="请输入用户名" />
+          </n-form-item>
+          <n-form-item props="phone" label="电话">
+            <n-input v-model:value="formModel.phone" placeholder="请输入电话" />
+          </n-form-item>
+          <n-form-item props="nickName" label="昵称">
+            <n-input v-model:value="formModel.nickName" placeholder="请输入昵称" />
+          </n-form-item>
+          <n-form-item props="email" label="邮箱">
+            <n-input v-model:value="formModel.email" placeholder="请输入邮箱" />
+          </n-form-item>
+          <n-form-item props="deptId" label="部门">
+            <yy-tree-select
+              v-model:value="formModel.deptId"
+              :options="userFormDeptTree"
+              :on-load="handleGetLeftTree"
+              placeholder="请选择部门"
+            />
+          </n-form-item>
+          <n-form-item props="jobs" label="岗位">
+            <yy-select v-model:value="formModel.jobs" :options="jobList" multiple />
+          </n-form-item>
+          <n-form-item props="gender" label="性别">
+            <YyDictSelect v-model:value="formModel.gender" type="radio" dict="sex_status" />
+          </n-form-item>
+          <n-form-item props="enabled" label="状态">
+            <YyDictSelect v-model:value="formModel.enabled" type="radio" dict="user_status" transform="boolean" />
+          </n-form-item>
+          <n-form-item props="roles" label="角色">
+            <yy-select v-model:value="formModel.roles" :options="roleList" multiple />
+          </n-form-item>
+        </n-form>
+      </YyModal>
+    </n-gi>
+  </n-grid>
 </template>

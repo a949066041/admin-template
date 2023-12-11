@@ -2,7 +2,7 @@
 import type { IDictDetail, IDictDetailParams } from '@yy-admin/common-apis'
 import { DictDetailApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
+import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
 import { computed, watch } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import { useVModel } from '@vueuse/core'
@@ -11,7 +11,7 @@ defineOptions({
   name: 'DictDetail',
 })
 
-const props = withDefaults(defineProps<{ dictKey: string }>(), {})
+const props = withDefaults(defineProps<{ dictKey: string, dictId?: number }>(), {})
 
 const bindDictKey = useVModel(props, 'dictKey')
 const { dataSource, limit, current, total, loading, searchForm, searchTable, resetTable, delDataRow } = useTable<
@@ -40,6 +40,11 @@ const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveF
   putAction: DictDetailApi.put,
   findIdAction: DictDetailApi.findId,
   afterSave: searchTable,
+  beforeSave() {
+    return {
+      dict: { id: props.dictId! },
+    }
+  },
 })
 
 watch(bindDictKey, (val) => {
@@ -99,7 +104,7 @@ const columns = computed<YyTableColumns<keyof IDictDetail | 'dictName'>[]>(() =>
         <n-form-item name="value" label="描述">
           <n-input v-model:value="formModel.value" placeholder="请输入描述" />
         </n-form-item>
-        <n-form-item name="value" label="描述">
+        <n-form-item name="value" label="排序">
           <n-input-number v-model:value="formModel.dictSort" placeholder="请输入排序值" />
         </n-form-item>
       </n-form>

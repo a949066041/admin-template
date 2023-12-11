@@ -2,7 +2,7 @@
 import type { IDict, IDictParams } from '@yy-admin/common-apis'
 import { DictApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-vexip'
+import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
 import { computed, ref } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import DictDetail from './dict-detail.vue'
@@ -36,6 +36,7 @@ const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveF
 })
 
 const dictName = ref<string>('')
+const dictId = ref<number | null>(null)
 
 const columns = computed<YyTableColumns<keyof IDict>[]>(() => ([
   cT('name', '名称'),
@@ -72,7 +73,7 @@ const columns = computed<YyTableColumns<keyof IDict>[]>(() => ([
             修改
           </n-button>
 
-          <n-button type="info" quaternary @click="dictName = record.name">
+          <n-button type="info" quaternary @click="dictName = record.name; dictId = record.id">
             配置
           </n-button>
 
@@ -94,7 +95,7 @@ const columns = computed<YyTableColumns<keyof IDict>[]>(() => ([
       </YyTable>
     </n-gi>
     <n-gi :span="14">
-      <DictDetail v-model:dictKey="dictName" />
+      <DictDetail v-if="dictId" v-model:dictKey="dictName" :dict-id="dictId" />
     </n-gi>
   </n-grid>
 </template>

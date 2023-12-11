@@ -12,7 +12,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "@guolao/vue-monaco-editor": "^1.4.0",
+    "@guolao/vue-monaco-editor": "^1.4.1",
     "@ruabick/md-demo-plugins": "^0.3.3",
     "@ruabick/vitepress-demo-block": "^0.3.3",
     "@yy-admin/components-antdv": "workspace:^",

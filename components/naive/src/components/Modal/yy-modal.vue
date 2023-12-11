@@ -31,7 +31,7 @@ function handleCancelModal() {
 </script>
 
 <template>
-  <n-modal v-model:show="bindVisible" :title="title" preset="card">
+  <n-modal v-model:show="bindVisible" class=" w-200" :title="title" preset="card">
     <slot />
     <template #action>
       <div class=" flex justify-end">

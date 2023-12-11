@@ -14,13 +14,12 @@
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.35.0",
     "pinia": "^2.1.7",
-    "vexip-ui": "^2.2.19",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.4.3",
-    "@iconify/json": "^2.2.154",
+    "@antfu/eslint-config": "^2.4.4",
+    "@iconify/json": "^2.2.155",
     "@types/lodash": "^4.14.202",
     "@types/lodash-es": "^4.17.12",
     "@unocss/transformer-directives": "^0.58.0",
