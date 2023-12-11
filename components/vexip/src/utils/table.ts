@@ -1,4 +1,4 @@
-import type { TableBaseColumn } from 'vexip-ui'
+import type { DataTableBaseColumn } from 'naive-ui'
 import { last } from 'lodash-es'
 
 export type IColumnType<T extends string = string> = {
@@ -6,11 +6,7 @@ export type IColumnType<T extends string = string> = {
   width?: number | string
   children?: IColumnType[]
   renderSlot: boolean
-} & Omit<TableBaseColumn, 'key'>
-
-export interface IConfigTable extends TableBaseColumn {
-  [key: string]: any
-}
+} & Omit<DataTableBaseColumn, 'key'>
 
 function normalizeTableArgs(baseConfig: any, baseWidth: any) {
   let width = baseWidth
@@ -41,35 +37,37 @@ export function createColumn<T extends string>(
 export function createColumn<T extends string>(
   dataIndex: T,
   title: string,
-  config: Omit<TableBaseColumn, 'key'>,
+  config: Omit<DataTableBaseColumn, 'key'>,
   slots?: boolean
 ): IColumnType<T>
 
 export function createColumn<T extends string>(
   dataIndex: T,
   title: string,
-  config: Omit<TableBaseColumn, 'key'>,
+  config: Omit<DataTableBaseColumn, 'key'>,
   width: number,
   slots?: boolean
 ): IColumnType<T>
 
 export function createColumn<T extends string = string>(
-  key: TableBaseColumn['key'],
-  name: TableBaseColumn['name'],
+  key: T,
+  name: DataTableBaseColumn['title'],
   ...args: any[]
 ): IColumnType<T> {
   let [config = {}, width] = args
   const column = {} as IColumnType<T>
   const normalizeArg = normalizeTableArgs(config, width)
   config = normalizeArg.config
-  width = normalizeArg.width || undefined
+  width = normalizeArg.width || 110
 
   Object.assign(column, config || {})
   return {
+    resizable: true,
+    minWidth: width,
+    width,
+    title: name,
     ...column,
     key: key as T,
-    name,
-    width,
     renderSlot: typeof last(args) === 'boolean' ? last(args) : false,
   }
 }

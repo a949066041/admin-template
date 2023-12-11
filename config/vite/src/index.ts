@@ -5,7 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { AntDesignVueResolver, NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -32,12 +32,19 @@ export default (_config?: ICommonViteConfig) => {
         resolvers: [
           VexipUIResolver({ fullStyle: true }),
         ],
-        imports: ['vue', 'vue-router', '@vueuse/core'],
+        imports: ['vue', 'vue-router', '@vueuse/core', {
+          'naive-ui': [
+            'useDialog',
+            'useMessage',
+            'useNotification',
+            'useLoadingBar',
+          ],
+        }],
         vueTemplate: true,
       }),
       Components({
         dts: true,
-        resolvers: [IconsResolver(), AntDesignVueResolver({ importStyle: false }), VexipUIResolver({ fullStyle: true }), ...config.resolvers],
+        resolvers: [IconsResolver(), AntDesignVueResolver({ importStyle: false }), VexipUIResolver({ fullStyle: true }), NaiveUiResolver(), ...config.resolvers],
       }),
       Icons({
         autoInstall: true,

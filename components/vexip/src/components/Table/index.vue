@@ -28,22 +28,37 @@ const emit = defineEmits<{
   'update:limit': [limit: number]
 }>()
 
-const reColumns = computed(() => {
-  return props.columns.map((item, order) => {
-    return {
-      ...item,
-      order,
-      renderSlot: item.renderSlot,
-    }
-  }).filter(item => !item.renderSlot)
+const slots = defineSlots<{
+  default: any
+  search: any
+  tools: any
+  [key: string]: (props: { record: T, $index: number, column: any, text: any }) => any
+}>()
+
+const renderPageCount = computed(() => {
+  if (props.total === undefined)
+    return 1
+
+  return Math.ceil(props.total / props.limit)
 })
 
-const renderSlotsKeys = computed(() => {
-  return props.columns.map((item, index) => ({
-    ...item,
-    renderSlot: item.renderSlot,
-    index,
-  })).filter(item => item.renderSlot)
+const reColumns = computed(() => {
+  return props.columns.map((item) => {
+    const baseItem = item
+
+    if (item.renderSlot) {
+      baseItem.render = (row, index) =>
+        slots[item.key]?.({ record: row as T, $index: index, column: item, text: props.dataSource[index][`${item.key}`] })
+    }
+
+    return baseItem
+  })
+})
+
+const totalWidth = computed(() => {
+  return reColumns.value.reduce((prev, cur) => {
+    return prev + ((cur.width || cur.minWidth || 0) as number)
+  }, 0)
 })
 
 const { limit, current } = useVModels(props, emit)
@@ -54,25 +69,14 @@ const { limit, current } = useVModels(props, emit)
     <slot name="search" />
     <slot name="tools" />
     <div class="px-2 py-4 mt-2 bg-white dark:bg-[#001529]">
-      <Table
-        v-loading="loading"
+      <n-data-table
+        :loading="loading"
         :columns="reColumns"
+        :pagination="false"
         :data="dataSource"
-        col-resizable
-      >
-        <TableColumn v-for="item of renderSlotsKeys" v-bind="item" :key="item.name" :id-key="item.name" :name="item.name" :order="item.index">
-          <template #default="{ row, column, rowIndex }">
-            <slot v-bind="{ record: row, column, index: rowIndex, text: dataSource[rowIndex][`${item.key}`] }" :name="item.key" />
-          </template>
-        </TableColumn>
-      </Table>
-      <Pagination
-        v-model:active="current"
-        v-model:page-size="limit"
-        class="text-right mt-2"
-        :plugins="['total', 'size', 'jump']"
-        :total="total"
+        :scroll-x="totalWidth"
       />
+      <n-pagination v-model:page="current" v-model:page-size="limit" :page-count="renderPageCount" show-quick-jumper />
     </div>
     <slot />
   </div>

@@ -4,7 +4,7 @@ import type { IEntity, IJobEntity, IJobPageParams } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { createColumn as cT } from '@yy-admin/components-vexip'
 import { YyDictSelect } from '@yy-admin/components-admin'
-import type { VexipFormRules, YyTableColumns } from '@yy-admin/components-vexip'
+import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-vexip'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 
 defineOptions({
@@ -35,12 +35,12 @@ function initJobForm() {
   }) as IJobEntity
 }
 
-const rules = ref<VexipFormRules<IJobEntity>>({
+const rules = ref<NaiveFormRules<IJobEntity>>({
   name: [
-    { required: true, message: '请输入名称' },
+    { required: true, message: '请输入名称', trigger: 'change' },
   ],
   jobSort: [
-    { required: true, message: '请输入排序' },
+    { required: true, message: '请输入排序', trigger: 'blur', type: 'number' },
   ],
 })
 
@@ -51,7 +51,6 @@ const {
   handleInitForm,
   saveLoading,
   handleSaveForm,
-  findLoading,
   formRef,
 } = useCurdForm<IJobEntity>({
   initFormFn: initJobForm,
@@ -86,47 +85,49 @@ const columns = computed<YyTableColumns<keyof IEntity<IJobEntity>>[]>(() => ([
   >
     <template #search>
       <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
-        <FormItem>
-          <Input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
-        </FormItem>
+        <n-form-item>
+          <n-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+        </n-form-item>
       </yy-search>
     </template>
 
     <template #tools>
-      <Button type="primary" @click="handleInitForm()">
-        新增
-      </Button>
-      <Button type="primary" @click="JobApi.download({})">
-        导出
-      </Button>
+      <n-space>
+        <n-button type="primary" @click="handleInitForm()">
+          新增
+        </n-button>
+        <n-button type="primary" @click="JobApi.download({})">
+          导出
+        </n-button>
+      </n-space>
     </template>
 
     <template #action="{ record }">
-      <Linker @click="handleInitForm(record.id)">
+      <n-button quaternary type="primary" @click="handleInitForm(record.id)">
         修改
-      </Linker>
+      </n-button>
 
-      <Linker @click="delDataRow(record.id)">
+      <n-button quaternary type="error" @click="delDataRow(record.id)">
         删除
-      </Linker>
+      </n-button>
     </template>
 
     <template #enabled="{ text, record }">
-      <Switch v-model:value="record.enabled" @change="handleUpdateEnabled(record)" />
+      <n-switch :value="text" @update-value="handleUpdateEnabled(record)" />
     </template>
 
-    <Modal v-model:active="visible" :title="modalTitle" :loading="saveLoading" @confirm="handleSaveForm">
-      <Form ref="formRef" v-loading="findLoading" :rules="rules" :model="formModel">
-        <FormItem prop="name" label="名称">
-          <Input v-model:value="formModel.name" placeholder="请输入" />
-        </FormItem>
-        <FormItem prop="jobSort" label="排序">
-          <NumberInput v-model:value="formModel.jobSort" placeholder="请输入" />
-        </FormItem>
-        <FormItem prop="enabled" label="开启">
+    <YyModal v-model:visible="visible" :title="modalTitle" class=" w-[600px]" :confirm-loading="saveLoading" @ok="handleSaveForm">
+      <n-form ref="formRef" :rules="rules" :model="formModel">
+        <n-form-item path="name" label="名称">
+          <n-input v-model:value="formModel.name" placeholder="请输入" />
+        </n-form-item>
+        <n-form-item path="jobSort" label="排序">
+          <n-input-number v-model:value="formModel.jobSort" placeholder="请输入" />
+        </n-form-item>
+        <n-form-item path="enabled" label="开启">
           <YyDictSelect v-model:value="formModel.enabled" type="radio" dict="job_status" transform="boolean" />
-        </FormItem>
-      </Form>
-    </Modal>
+        </n-form-item>
+      </n-form>
+    </YyModal>
   </YyTable>
 </template>

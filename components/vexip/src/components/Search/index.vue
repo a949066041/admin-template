@@ -7,17 +7,17 @@ const emit = defineEmits(['search', 'reset'])
 </script>
 
 <template>
-  <Form v-bind="$attrs" class="px-2 pt-4 rounded" inline>
+  <n-form v-bind="$attrs" class="px-2 pt-4 rounded" inline>
     <slot />
-    <FormItem>
-      <Space>
-        <Button type="primary" @click="emit('search')">
+    <n-form-item>
+      <n-space>
+        <n-button type="primary" @click="emit('search')">
           查询
-        </Button>
-        <Button @click="emit('reset')">
+        </n-button>
+        <n-button @click="emit('reset')">
           重置
-        </Button>
-      </Space>
-    </FormItem>
-  </Form>
+        </n-button>
+      </n-space>
+    </n-form-item>
+  </n-form>
 </template>
