@@ -119,7 +119,7 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
       </YyTable>
     </n-gi>
     <n-gi :span="6">
-      <MenuTree v-model:checked="checkMenu" />
+      <MenuTree v-if="checkMenu.length" v-model:checked="checkMenu" />
     </n-gi>
   </n-grid>
 </template>

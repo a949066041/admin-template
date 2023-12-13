@@ -10,7 +10,17 @@ import DictDetail from './dict-detail.vue'
 defineOptions({
   name: 'DictPage',
 })
-const { dataSource, limit, current, total, loading, searchForm, searchTable, resetTable, delDataRow } = useTable<{ blurry: string } & IDict>({
+const {
+  dataSource,
+  limit,
+  current,
+  total,
+  loading,
+  searchForm,
+  searchTable,
+  resetTable,
+  delDataRow,
+} = useTable<{ blurry: string } & IDict>({
   apiAction: DictApi.page,
   delAction: DictApi.del,
 })
@@ -46,7 +56,7 @@ const columns = computed<YyTableColumns<keyof IDict>[]>(() => ([
 </script>
 
 <template>
-  <n-grid :gap="16">
+  <n-grid :x-gap="16">
     <n-gi :span="10">
       <YyTable
         v-model:current="current"

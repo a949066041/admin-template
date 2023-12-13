@@ -87,35 +87,35 @@ const { config, handleRenderCb } = useLazyBox({
 
 <template>
   <div class=" flex flex-col h-full overflow-hidden">
-    <a-button
+    <n-button
       :key="1"
       @click="data++"
     >
       test
-    </a-button>
+    </n-button>
     <div class=" flex-1 overflow-hidden">
-      <a-row :gutter="[20, 20]">
-        <a-col :span="12">
+      <n-grid :x-gap="20">
+        <n-gi :span="12">
           <lazy-box :height="800" title="测试" v-bind="config.test" @render="handleRenderCb">
             <EchartsView ref="chart1" />
           </lazy-box>
-        </a-col>
-        <a-col :span="12">
+        </n-gi>
+        <n-gi :span="12">
           <lazy-box :height="800" title="测试" v-bind="config.test2" @render="handleRenderCb">
             <EchartsView ref="chart2" />
           </lazy-box>
-        </a-col>
-        <a-col :span="12">
+        </n-gi>
+        <n-gi :span="12">
           <lazy-box :height="800" title="测试" v-bind="config.test3" @render="handleRenderCb">
             <EchartsView ref="chart3" />
           </lazy-box>
-        </a-col>
-        <a-col :span="12">
+        </n-gi>
+        <n-gi :span="12">
           <lazy-box :height="800" title="测试" v-bind="config.test4" @render="handleRenderCb">
             <EchartsView ref="chart4" />
           </lazy-box>
-        </a-col>
-      </a-row>
+        </n-gi>
+      </n-grid>
     </div>
   </div>
 </template>

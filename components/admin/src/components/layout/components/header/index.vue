@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useUserStore } from '@yy-admin/common-core'
+import { useConfigStore, useUserStore } from '@yy-admin/common-core'
 import { useMessage } from 'naive-ui'
 import { useRouter } from 'vue-router'
 import { useBreadcrumb } from './useBreadcrumb'
@@ -8,6 +8,7 @@ defineOptions({
   name: 'YyHeader',
 })
 
+const { theme, handleSwitchTheme } = useConfigStore()
 const router = useRouter()
 const message = useMessage()
 const userStore = useUserStore()
@@ -45,6 +46,10 @@ function handleSelectMenu(key: string) {
         </n-dropdown>
       </n-breadcrumb-item>
     </n-breadcrumb>
+    <span @click="handleSwitchTheme">
+      <i-tdesign:mode-dark v-if="theme !== 'dark'" />
+      <i-tdesign:mode-light v-else />
+    </span>
     <n-dropdown :options="options" @select="handleSelectAction">
       <n-button>用户资料</n-button>
     </n-dropdown>

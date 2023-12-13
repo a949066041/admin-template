@@ -67,16 +67,20 @@ const { limit, current } = useVModels(props, emit)
 <template>
   <div class="yy-table">
     <slot name="search" />
-    <slot name="tools" />
-    <div class="px-2 py-4 mt-2 bg-white dark:bg-[#001529]">
+    <div class=" flex justify-end">
+      <slot name="tools" />
+    </div>
+    <div :class="[$slots && ' mt-2']">
       <n-data-table
         :loading="loading"
+        size="small"
+        :bordered="false"
         :columns="reColumns"
         :pagination="false"
         :data="dataSource"
         :scroll-x="totalWidth"
       />
-      <n-pagination v-model:page="current" v-model:page-size="limit" :page-count="renderPageCount" show-quick-jumper />
+      <n-pagination v-model:page="current" v-model:page-size="limit" class="mt-2 flex justify-end" :page-count="renderPageCount" show-quick-jumper />
     </div>
     <slot />
   </div>

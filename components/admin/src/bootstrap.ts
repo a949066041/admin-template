@@ -1,11 +1,12 @@
 import { setRequest } from '@yy-web/request'
 import type { AsyncRouters } from '@yy-admin/common-core'
-import { authRoute, requestInstance, useAppConfigStore, withSrcViewModules } from '@yy-admin/common-core'
+import { authRoute, requestInstance, withSrcViewModules } from '@yy-admin/common-core'
 import { confBusiness } from '@yy-web/business-use'
 import type { App } from 'vue'
 import type { Router } from 'vue-router'
 import { createPinia } from 'pinia'
 import Layout from './components/layout/index.vue'
+import { useAppConfigStore } from './components/app-config/config'
 
 export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
   const { message, dialog } = useAppConfigStore()
@@ -13,6 +14,7 @@ export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
   app.use(router)
   setRequest(requestInstance)
   confBusiness(app, {
+    resetType: '',
     successTip: (msg: string) => message.success(msg),
     table: {
       pageKey: 'page',

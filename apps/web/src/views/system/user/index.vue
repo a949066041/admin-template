@@ -27,9 +27,11 @@ const {
   loading,
   limit,
   resetTable,
+  delDataRow,
   searchTable,
 } = useTable<IUserParams & { blurry: string, dept: { name: string } }, { deptId: string }>({
   apiAction: UserApi.page,
+  delAction: UserApi.del,
 })
 
 function initUserForm() {
@@ -119,7 +121,7 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
   cT('dept', '部门', true),
   cT('enabled', '状态', true),
   cT('createTime', '创建日期'),
-  cT('action', '操作', { fixed: 'right' }, true),
+  cT('action', '操作', { fixed: 'right' }, 200, true),
 ])
 </script>
 
@@ -166,6 +168,9 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
         <template #action="{ record }">
           <n-button type="primary" quaternary @click="handleInitForm(record.id)">
             修改
+          </n-button>
+          <n-button type="error" quaternary @click="delDataRow(record.id)">
+            删除
           </n-button>
         </template>
       </YyTable>

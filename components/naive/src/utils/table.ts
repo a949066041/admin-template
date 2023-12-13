@@ -68,6 +68,9 @@ export function createColumn<T extends string = string>(
     title: name,
     ...column,
     key: key as T,
+    ellipsis: {
+      tooltip: true,
+    },
     renderSlot: typeof last(args) === 'boolean' ? last(args) : false,
   }
 }

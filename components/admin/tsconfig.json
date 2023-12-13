@@ -9,7 +9,6 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "declaration": true,
     "outDir": "dist",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,

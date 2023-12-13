@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useTitle } from '@vueuse/core'
-import { useAppConfigStore } from '@yy-admin/common-core'
+import { useAppConfigStore } from './config'
 
 defineOptions({
   name: 'AppConfig',
