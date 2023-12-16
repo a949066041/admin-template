@@ -11,6 +11,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "dayjs": "^1.11.10",
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.35.0",
     "pinia": "^2.1.7",

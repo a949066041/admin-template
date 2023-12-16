@@ -28,6 +28,12 @@ export interface IOtherUserData {
   enabled: string
 }
 
+export interface IUserSearchParams {
+  blurry: string
+  createTime: [string, string]
+  enabled: string
+}
+
 export interface ISaveUserData {
   jobs: number[]
   roles: number[]

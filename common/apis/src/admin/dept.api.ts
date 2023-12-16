@@ -2,8 +2,8 @@ import { ApiInstance } from '../instance'
 import type { IDept } from './dept.type'
 
 class DeptApiInstance extends ApiInstance {
-  public getDeptTree(pid?: number, enabled: boolean = true) {
-    return this.$request.setPath('/api/dept').get<{ content: IDept[] }>({ pid, enabled }, true)
+  public getDeptTree(params: { pid?: number, enabled?: boolean, name?: string }) {
+    return this.$request.setPath('/api/dept').get<{ content: IDept[] }>(params)
   }
 
   public superior(deptId: number, exclude = false) {

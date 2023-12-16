@@ -7,6 +7,8 @@ export function YyAntdComponents(): ComponentResolver {
     'YyModal',
     'YySelect',
     'YyTreeSelect',
+    'YyRangeDatePicker',
+    'YyDatePicker',
   ])
 
   return {

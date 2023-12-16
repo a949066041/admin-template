@@ -11,7 +11,7 @@ useTitle(props.title)
 </script>
 
 <template>
-  <n-config-provider v-bind="configProps">
+  <n-config-provider v-bind="configProps" preflight-style-disabled>
     <n-message-provider>
       <slot />
     </n-message-provider>

@@ -1,21 +1,20 @@
 <script setup lang="ts">
 import { useTable } from '@yy-web/business-use'
-import { DictDetailApi, JobApi, RoleApi, UserApi } from '@yy-admin/common-apis'
-import type { IJobEntity, IRole, IUser, IUserParams } from '@yy-admin/common-apis'
-import { computed, ref, watch } from 'vue'
+import { UserApi } from '@yy-admin/common-apis'
+import type { IUser, IUserParams, IUserSearchParams } from '@yy-admin/common-apis'
 import { YyDictSelect } from '@yy-admin/components-admin'
 import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
 import { isValidPhone } from '@yy-admin/common-utils'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import type { Merge } from 'type-fest'
 import { useTreeDept } from './useTreeDept'
+import { useInitUserPage } from './useInitUserPage'
 
 defineOptions({
   name: 'SystemUser',
 })
 
-const jobList = ref<IJobEntity[]>([])
-const statusList = ref<{ label: string, value: boolean }[]>([])
-const roleList = ref<IRole[]>([])
+const { jobList, roleList } = useInitUserPage()
 const {
   searchForm,
   dataSource,
@@ -29,7 +28,7 @@ const {
   resetTable,
   delDataRow,
   searchTable,
-} = useTable<IUserParams & { blurry: string, dept: { name: string } }, { deptId: string }>({
+} = useTable<Merge<IUser, IUserSearchParams>, { deptId: string }>({
   apiAction: UserApi.page,
   delAction: UserApi.del,
 })
@@ -41,7 +40,7 @@ function initUserForm() {
   }) as IUserParams
 }
 
-const { selectedDeps, userDeptTree, handleGetLeftTree, userFormDeptTree, handleGetUserFormTreeDept } = useTreeDept()
+const { selectedDeps, userDeptTree, handleGetLeftTree, userFormDeptTree, handleGetUserFormTreeDept, filterLeftTree } = useTreeDept()
 const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, formRef } = useCurdForm<IUserParams>({
   initFormFn: initUserForm,
   saveAction: UserApi.save,
@@ -95,18 +94,6 @@ function handleChangeStatus(id: number) {
   })
 }
 
-DictDetailApi.getDictList('user_status').then((res) => {
-  statusList.value = res.map(({ label, value }) => ({ label, value: value === 'true' }))
-})
-
-JobApi.page({ page: 0, size: 999, enabled: true }).then((res) => {
-  jobList.value = res.content
-})
-
-RoleApi.all().then((res) => {
-  roleList.value = res
-})
-
 watch(selectedDeps, ([depId]) => {
   initForm.value.deptId = depId
   searchTable()
@@ -127,7 +114,12 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
 
 <template>
   <n-grid :x-gap="20">
-    <n-gi :span="6">
+    <n-gi :span="4">
+      <n-input v-model:value="filterLeftTree" class=" mb-3" placeholder="输入部门名称搜索">
+        <template #prefix>
+          <i-icon-park-outline:search />
+        </template>
+      </n-input>
       <n-tree
         v-model:selected-keys="selectedDeps"
         selectable
@@ -138,7 +130,7 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
         block-line
       />
     </n-gi>
-    <n-gi :span="18">
+    <n-gi :span="20">
       <YyTable
         v-model:current="current" v-model:limit="limit" :total="total"
         :loading="loading" :columns="columns" :data-source="dataSource"
@@ -146,7 +138,13 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
         <template #search>
           <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
             <n-form-item>
-              <n-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+              <n-input v-model:value="searchForm.blurry" placeholder="输入名称或者邮箱搜索" />
+            </n-form-item>
+            <n-form-item>
+              <YyRangeDatePicker v-model:range="searchForm.createTime" merge-range type="daterange" />
+            </n-form-item>
+            <n-form-item>
+              <YyDictSelect v-model:value="searchForm.enabled" dict="user_status" placeholder="请选择状态" />
             </n-form-item>
           </yy-search>
         </template>

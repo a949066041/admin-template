@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -307,9 +310,6 @@ importers:
       '@yy-web/request':
         specifier: ^1.5.9
         version: 1.5.9
-      dayjs:
-        specifier: ^1.11.10
-        version: 1.11.10
     devDependencies:
       '@vueuse/core':
         specifier: ^10.7.0
