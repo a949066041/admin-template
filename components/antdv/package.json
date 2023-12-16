@@ -12,7 +12,7 @@
     "prepare:build": "vite build"
   },
   "dependencies": {
-    "@antv/s2": "^1.53.0"
+    "@antv/s2": "^1.54.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",
@@ -21,7 +21,7 @@
     "ant-design-vue": "4.0.6",
     "axios": "^1.6.2",
     "typescript": "^5.3.3",
-    "vite": "^5.0.8",
+    "vite": "^5.0.10",
     "vue-tsc": "^1.8.25"
   }
 }
