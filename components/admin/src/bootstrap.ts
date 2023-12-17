@@ -14,8 +14,6 @@ export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
   app.use(router)
   setRequest(requestInstance)
   confBusiness(app, {
-    // eslint-disable-next-line ts/ban-ts-comment
-    // @ts-expect-error
     resetType: null,
     successTip: (msg: string) => message.success(msg),
     table: {

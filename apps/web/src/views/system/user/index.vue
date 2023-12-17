@@ -132,8 +132,9 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
     </n-gi>
     <n-gi :span="20">
       <YyTable
-        v-model:current="current" v-model:limit="limit" :total="total"
-        :loading="loading" :columns="columns" :data-source="dataSource"
+        v-bind="{ total, loading, dataSource }"
+        v-model:current="current" v-model:limit="limit"
+        :columns="columns"
       >
         <template #search>
           <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">

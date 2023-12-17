@@ -1,32 +1,30 @@
 <script setup lang="ts">
-import { type IRole, type IRoleParams, RoleApi } from '@yy-admin/common-apis'
+import { RoleApi } from '@yy-admin/common-apis'
+import type { IRole, IRoleParams, IRoleSearchParams } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
 import { computed, ref } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import type { Merge } from 'type-fest'
 import MenuTree from './menu-tree.vue'
+import { useRoleMenu } from './useRoleMenu'
 
 defineOptions({
   name: 'SystemRole',
 })
-
-interface IRoleSearch {
-  blurry: string
-  id: string
-  menus: { id: number }[]
-}
 
 const {
   searchForm,
   dataSource,
   total,
   delDataRow,
+  getTable,
   current,
   loading,
   limit,
   resetTable,
   searchTable,
-} = useTable<IRoleSearch>({
+} = useTable< Merge<IRole, IRoleSearchParams>>({
   apiAction: RoleApi.page,
   delAction: RoleApi.del,
 })
@@ -50,11 +48,7 @@ const rules = ref<NaiveFormRules<IRoleParams>>({
   ],
 })
 
-const checkMenu = ref<number[]>([])
-function handleSetMenuCheck(val: IRoleSearch['menus']) {
-  checkMenu.value = val.map(item => item.id)
-}
-
+const { checkMenu, handleSetMenuCheck, handleSaveRoleMenu, isShowMenu } = useRoleMenu()
 const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
   cT('name', '名称'),
   cT('dataScope', '数据权限'),
@@ -77,7 +71,10 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
         <template #search>
           <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
             <n-form-item>
-              <n-input v-model:value="searchForm.blurry" placeholder="请输入关键字查询" />
+              <n-input v-model:value="searchForm.blurry" placeholder="输入名称或者描述搜索" />
+            </n-form-item>
+            <n-form-item>
+              <YyRangeDatePicker v-model:range="searchForm.createTime" merge-range type="daterange" />
             </n-form-item>
           </yy-search>
         </template>
@@ -92,7 +89,7 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
           <n-button type="primary" quaternary @click="handleInitForm(record.id)">
             修改
           </n-button>
-          <n-button type="info" quaternary @click="handleSetMenuCheck(record.menus)">
+          <n-button type="info" quaternary @click="handleSetMenuCheck(record.id, record.menus)">
             权限
           </n-button>
           <n-button type="error" quaternary @click="delDataRow(record.id)">
@@ -119,7 +116,23 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
       </YyTable>
     </n-gi>
     <n-gi :span="6">
-      <MenuTree v-if="checkMenu.length" v-model:checked="checkMenu" />
+      <n-card title="菜单配置">
+        <template
+          v-if="isShowMenu"
+          #header-extra
+        >
+          <n-button type="primary" @click="handleSaveRoleMenu(getTable)">
+            保存
+          </n-button>
+        </template>
+        <n-result
+          v-if="!isShowMenu"
+          size="small"
+          status="info"
+          description="请点击左侧权限"
+        />
+        <MenuTree v-else v-model:checked="checkMenu" />
+      </n-card>
     </n-gi>
   </n-grid>
 </template>

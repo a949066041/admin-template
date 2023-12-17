@@ -73,8 +73,8 @@ importers:
         specifier: workspace:^
         version: link:../../config/vite-app
       vant:
-        specifier: ^4.8.0
-        version: 4.8.0(vue@3.3.12)
+        specifier: ^4.8.1
+        version: 4.8.1(vue@3.3.12)
     devDependencies:
       '@types/node':
         specifier: ^20.10.4
@@ -4025,9 +4025,9 @@ packages:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.0.0
     dependencies:
-      '@babel/core': 7.23.3
-      '@babel/plugin-transform-typescript': 7.23.3(@babel/core@7.23.3)
-      '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.23.3)
+      '@babel/core': 7.23.5
+      '@babel/plugin-transform-typescript': 7.23.3(@babel/core@7.23.5)
+      '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.23.5)
       vite: 4.5.0(@types/node@20.10.4)
       vue: 3.3.12(typescript@5.3.3)
     transitivePeerDependencies:
@@ -4466,6 +4466,7 @@ packages:
 
   /@vue/shared@3.3.8:
     resolution: {integrity: sha512-8PGwybFwM4x8pcfgqEQFy70NaQxASvOC5DJwLQfpArw1UDfUXrJkdxD3BhVTMS+0Lef/TU7YO0Jvr0jJY8T+mw==}
+    dev: true
 
   /@vue/tsconfig@0.5.0:
     resolution: {integrity: sha512-vRNRhhZfoJganWuqWuePo7ol2MaG9XkQD3jVJy2WuZOWWa5LAjJqnBSBsTGKvCrcrVMe5nPM9Intp7o3ekRjUw==}
@@ -11749,14 +11750,14 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
-  /vant@4.8.0(vue@3.3.12):
-    resolution: {integrity: sha512-JeEcSd1zt0+fcSo/wuyvhF+dUdd1IaaJmrG0BTiUvH/XcBJEUaTSSEaYG0V8iI38xUTUCuDG+TSfSoSeEwGVAQ==}
+  /vant@4.8.1(vue@3.3.12):
+    resolution: {integrity: sha512-SkFZM3Z3Bwi5do+iQNfRgDi7b+Ka29rUUNzck06W2KoFie3CLTqSifLa5TuZCEoXPSkqR+fRH/VE5G57mmL8sg==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
       '@vant/popperjs': 1.3.0
       '@vant/use': 1.6.0(vue@3.3.12)
-      '@vue/shared': 3.3.8
+      '@vue/shared': 3.3.12
       vue: 3.3.12(typescript@5.3.3)
     dev: false
 

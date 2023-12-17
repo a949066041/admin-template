@@ -21,6 +21,7 @@ onMounted(async () => {
   <n-tree
     v-model:checked-keys="bindCheck" block-line key-field="id"
     checkable
-    :selectable="false" :data="menuTree"
+    :selectable="false"
+    :data="menuTree"
   />
 </template>
