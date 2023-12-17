@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@yy-admin/common-core": "workspace:^",
-    "@yy-admin/common-utils": "workspace:^",
     "@yy-admin/components-admin": "workspace:^",
     "@yy-admin/components-chart": "workspace:^",
     "@yy-admin/components-naive": "workspace:^",

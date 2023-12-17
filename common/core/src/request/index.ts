@@ -3,14 +3,14 @@ import request, { fileInterceptorsResponseConfig, getStore, setStore } from '@yy
 import type { InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { useUserStore } from '../store'
-import { getToken } from '../utils/token'
+import { tokenStorage } from '../utils/cookie'
 
 const service = axios.create({
   baseURL: '/api',
 })
 
 service.interceptors.request.use((config: InternalAxiosRequestConfig & IAxiosRequestConfig) => {
-  const yyToken = getToken()
+  const yyToken = tokenStorage.getValue()
   if (yyToken && config && config.headers)
     config.headers.Authorization = config.headers.Authorization || yyToken
 

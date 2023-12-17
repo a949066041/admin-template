@@ -28,8 +28,6 @@ export default (_config?: ICommonViteConfig) => {
       vueJsx(),
       UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
       AutoImport({
-        resolvers: [
-        ],
         imports: ['vue', 'vue-router', '@vueuse/core', {
           'naive-ui': [
             'useDialog',
@@ -38,7 +36,6 @@ export default (_config?: ICommonViteConfig) => {
             'useLoadingBar',
           ],
         }],
-        vueTemplate: true,
       }),
       Components({
         dts: true,

@@ -1,19 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es2022",
     "jsx": "preserve",
     "lib": ["DOM", "ESNext"],
-    "experimentalDecorators": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "node",
-    "allowJs": true,
-    "strict": true,
-    "declaration": false,
-    "importHelpers": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
-  }
+    "resolveJsonModule": true,
+    "types": [
+      "vite/client",
+      "node",
+      "vite-plugin-vue-server-ref/module"
+    ]
+  },
+  "exclude": [
+    "**/dist",
+    "**/docs",
+    "node_modules"
+  ]
 }

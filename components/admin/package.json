@@ -14,7 +14,6 @@
     "@vueuse/core": "^10.7.0",
     "@vueuse/shared": "^10.7.0",
     "@yy-admin/common-apis": "workspace:^",
-    "@yy-admin/common-core": "workspace:^",
-    "@yy-admin/common-utils": "workspace:^"
+    "@yy-admin/common-core": "workspace:^"
   }
 }

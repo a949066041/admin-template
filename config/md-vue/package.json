@@ -22,7 +22,6 @@
     "@yy-admin/config-vite-lib": "workspace:^",
     "fs-extra": "^11.2.0",
     "markdown-it": "^14.0.0",
-    "monaco-editor": "^0.45.0",
     "typescript": "^5.3.3",
     "vitepress": "1.0.0-rc.24"
   }

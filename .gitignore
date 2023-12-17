@@ -30,3 +30,4 @@ docs/docs/.vitepress/cache
 auto-imports.d.ts
 components.d.ts
 report.html
+.eslintrc-auto-import.json

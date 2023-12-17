@@ -1,13 +1,13 @@
 import type { Router } from 'vue-router'
 import { useUserStore } from '../store/user'
-import { getToken } from '../utils/token'
+import { tokenStorage } from '../utils/cookie'
 import { type AsyncRouters, addWebRouter } from '../utils/registerRouter'
 
 const isLoginPage = (path: string) => path.includes('/login')
 
 export function authRoute(router: Router, whiteList?: string[], mathRules?: AsyncRouters) {
   router.beforeEach(async (to, _from, next) => {
-    const userToken = getToken()
+    const userToken = tokenStorage.getValue()
     if (userToken) {
       const loginPage = isLoginPage(to.path)
       if (loginPage) {
