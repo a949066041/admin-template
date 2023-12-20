@@ -6,13 +6,12 @@
   "license": "ISC",
   "keywords": [],
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.10.5",
     "@yy-admin/config-vite": "workspace:^",
     "typescript": "^5.3.3",
     "unplugin-vue-components": "^0.26.0",

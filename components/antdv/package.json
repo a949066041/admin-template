@@ -12,10 +12,10 @@
     "prepare:build": "vite build"
   },
   "dependencies": {
-    "@antv/s2": "^1.54.0"
+    "@antv/s2": "^1.54.1"
   },
   "devDependencies": {
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.10.5",
     "@vueuse/core": "^10.7.0",
     "@yy-admin/config-vite-lib": "workspace:^",
     "ant-design-vue": "4.0.6",

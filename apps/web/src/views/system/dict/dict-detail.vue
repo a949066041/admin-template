@@ -47,7 +47,7 @@ const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveF
   },
 })
 
-watch(bindDictKey, (val) => {
+watchImmediate(bindDictKey, (val) => {
   if (val)
     resetTable()
 })
