@@ -5,9 +5,12 @@ import { confBusiness } from '@yy-web/business-use'
 import type { App } from 'vue'
 import type { Router } from 'vue-router'
 import { createPinia } from 'pinia'
+import dayjs from 'dayjs'
 import Layout from './components/layout/index.vue'
 import { useAppConfigStore } from './components/app-config/config'
+import 'dayjs/locale/zh-cn'
 
+dayjs.locale('zh-cn')
 export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
   const { message, dialog } = useAppConfigStore()
   app.use(createPinia())

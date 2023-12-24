@@ -36,6 +36,7 @@ export default (_config?: ICommonViteConfig) => {
             'useLoadingBar',
           ],
         }],
+        vueTemplate: true,
       }),
       Components({
         dts: true,

@@ -99,16 +99,16 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
 
         <YyModal v-model:visible="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
           <n-form ref="formRef" :loading="findLoading" :rules="rules" :model="formModel">
-            <n-form-item prop="name" label="角色名称">
+            <n-form-item path="name" label="角色名称">
               <n-input v-model:value="formModel.name" placeholder="请输入角色名称" />
             </n-form-item>
-            <n-form-item prop="level" label="角色级别">
+            <n-form-item path="level" label="角色级别">
               <n-input-number v-model:value="formModel.level" placeholder="请输入角色级别" />
             </n-form-item>
-            <n-form-item prop="dataScope" label="数据范围">
+            <n-form-item path="dataScope" label="数据范围">
               <n-input v-model:value="formModel.dataScope" placeholder="请输入角色" />
             </n-form-item>
-            <n-form-item prop="description" label="描述信息">
+            <n-form-item path="description" label="描述信息">
               <n-input v-model:value="formModel.description" type="textarea" placeholder="请输入描述信息" />
             </n-form-item>
           </n-form>

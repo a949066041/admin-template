@@ -7,7 +7,7 @@
   "keywords": [],
   "main": "src/index.ts",
   "dependencies": {
-    "@yy-web/business-use": "^2.0.5",
+    "@yy-web/business-use": "^2.0.6",
     "@yy-web/request": "^1.5.9"
   },
   "devDependencies": {

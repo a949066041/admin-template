@@ -175,19 +175,19 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
       </YyTable>
       <YyModal v-model:visible="visible" :title="modalTitle" :confirm-loading="saveLoading" @ok="handleSaveForm">
         <n-form ref="formRef" :model="formModel" :rules="rules">
-          <n-form-item props="username" label="用户名">
+          <n-form-item path="username" label="用户名">
             <n-input v-model:value="formModel.username" placeholder="请输入用户名" />
           </n-form-item>
-          <n-form-item props="phone" label="电话">
+          <n-form-item path="phone" label="电话">
             <n-input v-model:value="formModel.phone" placeholder="请输入电话" />
           </n-form-item>
-          <n-form-item props="nickName" label="昵称">
+          <n-form-item path="nickName" label="昵称">
             <n-input v-model:value="formModel.nickName" placeholder="请输入昵称" />
           </n-form-item>
-          <n-form-item props="email" label="邮箱">
+          <n-form-item path="email" label="邮箱">
             <n-input v-model:value="formModel.email" placeholder="请输入邮箱" />
           </n-form-item>
-          <n-form-item props="deptId" label="部门">
+          <n-form-item path="deptId" label="部门">
             <yy-tree-select
               v-model:value="formModel.deptId"
               :options="userFormDeptTree"
@@ -195,16 +195,16 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
               placeholder="请选择部门"
             />
           </n-form-item>
-          <n-form-item props="jobs" label="岗位">
+          <n-form-item path="jobs" label="岗位">
             <yy-select v-model:value="formModel.jobs" :options="jobList" multiple />
           </n-form-item>
-          <n-form-item props="gender" label="性别">
+          <n-form-item path="gender" label="性别">
             <YyDictSelect v-model:value="formModel.gender" type="radio" dict="sex_status" />
           </n-form-item>
-          <n-form-item props="enabled" label="状态">
+          <n-form-item path="enabled" label="状态">
             <YyDictSelect v-model:value="formModel.enabled" type="radio" dict="user_status" transform="boolean" />
           </n-form-item>
-          <n-form-item props="roles" label="角色">
+          <n-form-item path="roles" label="角色">
             <yy-select v-model:value="formModel.roles" :options="roleList" multiple />
           </n-form-item>
         </n-form>

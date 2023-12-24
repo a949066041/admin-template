@@ -1,14 +1,24 @@
-import type { IBaseEntity } from '../base'
+import type { IRecordTree } from '../base'
 
-export interface IDept extends IBaseEntity {
-  deptSort: number
-  enabled: boolean
-  hasChildren: boolean
+export interface IDeptEntity {
   id: number
-  label: string
-  leaf: boolean
   name: string
-  pid: number
-  subCount: number
-  children: IDept[]
+  enabled: boolean
+  deptSort: number
+  pid: number | null
 }
+
+export interface IDeptTree extends IDeptEntity, IRecordTree {}
+
+export interface IDeptTreeRecord extends IDeptTree {
+  parent?: IDeptTreeRecord // refresh
+  children: IDeptTreeRecord[]
+  isLeaf: boolean
+}
+export interface IDeptParams {
+  name: string
+  createTime: [string, string]
+  enabled: string
+}
+
+export type IDeptTableAndParams = IDeptTreeRecord | IDeptParams

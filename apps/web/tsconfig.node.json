@@ -4,12 +4,9 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "types": ["node"],
-    "noEmit": true
+    "types": ["node"]
   },
   "include": [
-    "./auto-imports.d.ts",
-    "./components.d.ts",
     "vite.config.*",
     "vitest.config.*",
     "cypress.config.*",

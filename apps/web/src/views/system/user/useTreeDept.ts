@@ -1,9 +1,8 @@
-import { onMounted, ref } from 'vue'
-import { DeptApi, type IDept } from '@yy-admin/common-apis'
+import { DeptApi, type IDeptTreeRecord } from '@yy-admin/common-apis'
 import type { TreeOption, TreeProps } from 'naive-ui'
 
-function withDeptTree(tree: IDept[]) {
-  return tree.map(item => ({ id: item.id, name: item.label, isLeaf: item.leaf }))
+function withDeptTree(tree: IDeptTreeRecord[]) {
+  return tree.map(item => ({ id: item.id, name: item.label, isLeaf: item.leaf, children: item.children }))
 }
 
 export function useTreeDept() {
@@ -22,7 +21,7 @@ export function useTreeDept() {
   }
 
   function handleGetUserFormTreeDept(isAdd: boolean, pid?: number) {
-    if (isAdd) {
+    if (isAdd || !pid) {
       DeptApi.getDeptTree({}).then((res) => {
         userFormDeptTree.value = withDeptTree(res.content)
       })

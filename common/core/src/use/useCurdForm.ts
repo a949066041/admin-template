@@ -1,4 +1,5 @@
 import { useToggle } from '@vueuse/core'
+import { pick } from 'lodash-es'
 import type { FormInst } from 'naive-ui'
 import type { Ref } from 'vue'
 import { computed, nextTick, ref } from 'vue'
@@ -74,7 +75,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
       }
 
       if (typeof values === 'object') {
-        formModel.value = JSON.parse(JSON.stringify(values))
+        formModel.value = pick(values, Object.keys(initFormFn())) as T
         editId.value = values[formKey]
         afterDetail && afterDetail(formModel.value, isAdd.value)
         return

@@ -10,6 +10,7 @@ interface IYyTable {
   current?: number
   limit?: number
   total?: number
+  pager?: boolean
   s2?: boolean
 }
 
@@ -18,7 +19,7 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<IYyTable>(), {
-  page: 1,
+  pager: true,
   limit: 10,
   s2: false,
 })
@@ -48,7 +49,7 @@ const reColumns = computed(() => {
 
     if (item.renderSlot) {
       baseItem.render = (row, index) =>
-        slots[item.key]?.({ record: row as T, $index: index, column: item, text: props.dataSource[index][`${item.key}`] })
+        slots[item.key]?.({ record: row as T, $index: index, column: item, text: row[`${item.key}`] })
     }
 
     return baseItem
@@ -72,6 +73,7 @@ const { limit, current } = useVModels(props, emit)
     </div>
     <div :class="[$slots && ' mt-2']">
       <n-data-table
+        v-bind="$attrs"
         :loading="loading"
         size="small"
         :bordered="false"
@@ -80,7 +82,13 @@ const { limit, current } = useVModels(props, emit)
         :data="dataSource"
         :scroll-x="totalWidth"
       />
-      <n-pagination v-model:page="current" v-model:page-size="limit" class="mt-2 flex justify-end" :page-count="renderPageCount" show-quick-jumper />
+      <n-pagination
+        v-if="pager"
+        v-model:page="current"
+        v-model:page-size="limit"
+        class="mt-2 flex justify-end"
+        :page-count="renderPageCount" show-quick-jumper
+      />
     </div>
     <slot />
   </div>
