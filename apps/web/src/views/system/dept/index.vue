@@ -4,7 +4,7 @@ import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
 import { createColumn as cT } from '@yy-admin/components-naive'
 import { YyDictSelect } from '@yy-admin/components-admin'
 import { DeptApi } from '@yy-admin/common-apis'
-import type { IDeptEntity, IDeptParams, IDeptTreeRecord, IEntity } from '@yy-admin/common-apis'
+import type { IDeptEntity, IDeptParams, IDeptTreeRecord } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import { omit } from 'lodash-es'
@@ -29,7 +29,7 @@ const {
   delAction: DeptApi.del,
 })
 
-const columns = computed<YyTableColumns<keyof IEntity<IDeptEntity>>[]>(() => ([
+const columns = computed<YyTableColumns<keyof IDeptTreeRecord>[]>(() => ([
   cT('name', '名称'),
   cT('deptSort', '排序'),
   cT('enabled', '是否开启', true),

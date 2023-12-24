@@ -6,16 +6,6 @@ function withDeptTree(tree: IDeptTreeRecord[]) {
 
 export function useDeptTree() {
   const deptTreeData = ref<IDeptTreeRecord[]>([])
-
-  const allDeptTreeData = computed(() => {
-    return [{
-      id: 0,
-      name: '顶级部门',
-      isLeaf: false,
-      children: deptTreeData,
-    }]
-  })
-
   function handleLazyDept(node: IDeptTreeRecord) {
     return new Promise<void>((resolve) => {
       DeptApi.getDeptTree({ pid: node.id! }).then((res) => {
@@ -38,7 +28,6 @@ export function useDeptTree() {
   }
 
   return {
-    allDeptTreeData,
     deptTreeData,
     triggerDeptTree,
     handleLazyDept,

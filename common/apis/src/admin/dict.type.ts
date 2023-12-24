@@ -1,9 +1,14 @@
 import type { IBaseEntity } from '../base'
 
-export interface IDict {
+export interface IDictEntity {
   id: number
   name: string
   description: string
 }
 
-export type IDictParams = Omit<IDict, keyof IBaseEntity>
+export interface IDictRecord extends IDictEntity, IBaseEntity {
+}
+
+export interface IDictParams {
+  blurry: string
+}

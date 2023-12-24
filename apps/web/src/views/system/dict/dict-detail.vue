@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { IDictDetail, IDictDetailParams } from '@yy-admin/common-apis'
+import type { IDictDetailEntity, IDictDetailParams } from '@yy-admin/common-apis'
 import { DictDetailApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
-import { computed, watch } from 'vue'
+import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
+import { computed } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import { useVModel } from '@vueuse/core'
 
@@ -15,8 +15,8 @@ const props = withDefaults(defineProps<{ dictKey: string, dictId?: number }>(), 
 
 const bindDictKey = useVModel(props, 'dictKey')
 const { dataSource, limit, current, total, loading, searchForm, searchTable, resetTable, delDataRow } = useTable<
-  { blurry: string } & IDictDetail,
-{ dictName: string }
+  IDictDetailParams,
+  IDictDetailEntity
 >({
   apiAction: DictDetailApi.page,
   delAction: DictDetailApi.del,
@@ -26,15 +26,31 @@ const { dataSource, limit, current, total, loading, searchForm, searchTable, res
       dictName: props.dictKey,
     }
   },
-},
-)
+})
+
+const rules = ref<NaiveFormRules<IDictDetailEntity>>({
+  label: {
+    required: true,
+    message: '字典标签不能为空',
+  },
+  value: {
+    required: true,
+    message: '字典值不能为空',
+  },
+  dictSort: {
+    type: 'number',
+    required: true,
+    message: '排序值不能为空',
+  },
+})
 
 function iniDictDetailForm() {
-  return initFormObj(['name', 'dictSort', 'label', 'value'], {
-  }) as IDictDetailParams
+  return initFormObj(['dictSort', 'label', 'value'] as const, {
+    dictSort: 0,
+  }) as IDictDetailEntity
 }
 
-const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, findLoading, formRef } = useCurdForm<IDictDetail>({
+const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, findLoading, formRef } = useCurdForm<IDictDetailEntity>({
   initFormFn: iniDictDetailForm,
   saveAction: DictDetailApi.save,
   putAction: DictDetailApi.put,
@@ -52,12 +68,12 @@ watchImmediate(bindDictKey, (val) => {
     resetTable()
 })
 
-const columns = computed<YyTableColumns<keyof IDictDetail | 'dictName'>[]>(() => ([
+const columns = computed<YyTableColumns<keyof IDictDetailEntity | 'dictName'>[]>(() => ([
   cT('dictName', '所属字典', true),
   cT('label', '字典标签'),
   cT('value', '字典值'),
   cT('dictSort', '排序值'),
-  cT('action', '操作', { fixed: 'right' }, true),
+  cT('action', '操作', { fixed: 'right' }, 220, true),
 ]))
 </script>
 
@@ -87,7 +103,7 @@ const columns = computed<YyTableColumns<keyof IDictDetail | 'dictName'>[]>(() =>
     </template>
 
     <template #action="{ record }">
-      <n-button type="primary" quaternary @click="handleInitForm(record.id)">
+      <n-button type="primary" quaternary @click="handleInitForm(record)">
         修改
       </n-button>
 
@@ -97,14 +113,14 @@ const columns = computed<YyTableColumns<keyof IDictDetail | 'dictName'>[]>(() =>
     </template>
 
     <YyModal v-model:visible="visible" :title="modalTitle" class="w-100" :confirm-loading="saveLoading" @ok="handleSaveForm">
-      <n-form ref="formRef" :loading="findLoading" :rules="{}" :model="formModel">
-        <n-form-item name="label" label="字典名称">
-          <n-input v-model:value="formModel.label" placeholder="请输入角字典名称" />
+      <n-form ref="formRef" :loading="findLoading" :rules="rules" :model="formModel">
+        <n-form-item path="label" label="字典标签">
+          <n-input v-model:value="formModel.label" placeholder="请输入字典标签" />
         </n-form-item>
-        <n-form-item name="value" label="描述">
-          <n-input v-model:value="formModel.value" placeholder="请输入描述" />
+        <n-form-item path="value" label="字典值">
+          <n-input v-model:value="formModel.value" placeholder="请输入字典值" />
         </n-form-item>
-        <n-form-item name="value" label="排序">
+        <n-form-item path="dictSort" label="排序">
           <n-input-number v-model:value="formModel.dictSort" placeholder="请输入排序值" />
         </n-form-item>
       </n-form>

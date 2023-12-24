@@ -1,17 +1,21 @@
 import { ApiInstance } from '../instance'
-import type { IDictDetail } from './dict-detail.type'
+import type { IDictDetailEntity } from './dict-detail.type'
 
-class DictDetailApiInstance extends ApiInstance<IDictDetail> {
+class DictDetailApiInstance extends ApiInstance<IDictDetailEntity> {
   baseApi = '/api/dictDetail'
 
   public getDictList(dictName: string) {
-    return this.$request.setPath(this.baseApi).get<{ content: IDictDetail[] }>({ dictName, page: 0, size: 9999 }, true).then(res => res.content)
+    return this.$request.setPath(this.baseApi).get<{ content: IDictDetailEntity[] }>({ dictName, page: 0, size: 9999 }, true).then(res => res.content)
   }
 
   public getDictMap(dictName: string | string[]) {
     dictName = Array.isArray(dictName) ? dictName : [dictName]
     return this.$request.setPath(`${this.baseApi}/map`)
-      .get<Record<keyof typeof dictName, IDictDetail[]>>({ dictName: dictName.join(',') }, true)
+      .get<Record<keyof typeof dictName, IDictDetailEntity[]>>({ dictName: dictName.join(',') }, true)
+  }
+
+  public del(id: string | number) {
+    return this.$request.setPath(`${this.baseApi}/{id}`).carry(id).del<boolean>([id])
   }
 }
 

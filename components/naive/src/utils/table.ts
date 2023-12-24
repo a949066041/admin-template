@@ -60,6 +60,8 @@ export function createColumn<T extends string = string>(
   config = normalizeArg.config
   width = normalizeArg.width || 110
 
+  const renderSlot = typeof last(args) === 'boolean' ? last(args) : false
+
   Object.assign(column, config || {})
   return {
     resizable: true,
@@ -68,10 +70,13 @@ export function createColumn<T extends string = string>(
     title: name,
     ...column,
     key: key as T,
-    ellipsis: {
-      tooltip: true,
-    },
-    renderSlot: typeof last(args) === 'boolean' ? last(args) : false,
+    ellipsisComponent: 'performant-ellipsis',
+    ellipsis: renderSlot
+      ? false
+      : {
+          tooltip: true,
+        },
+    renderSlot,
   }
 }
 

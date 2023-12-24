@@ -1,7 +1,7 @@
 import { ApiInstance } from '../instance'
-import type { IDict } from './dict.type'
+import type { IDictEntity } from './dict.type'
 
-class DictApiInstance extends ApiInstance<IDict> {
+class DictApiInstance extends ApiInstance<IDictEntity> {
   baseApi = '/api/dict'
 }
 

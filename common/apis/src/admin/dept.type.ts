@@ -1,4 +1,4 @@
-import type { IRecordTree } from '../base'
+import type { IBaseEntity, IRecordTree } from '../base'
 
 export interface IDeptEntity {
   id: number
@@ -8,7 +8,7 @@ export interface IDeptEntity {
   pid: number | null
 }
 
-export interface IDeptTree extends IDeptEntity, IRecordTree {}
+export interface IDeptTree extends IDeptEntity, IBaseEntity, IRecordTree {}
 
 export interface IDeptTreeRecord extends IDeptTree {
   parent?: IDeptTreeRecord // refresh
