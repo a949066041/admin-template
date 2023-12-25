@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import {
   defineConfig,
   presetAttributify,
@@ -5,6 +6,8 @@ import {
   presetUno,
   transformerDirectives,
 } from 'unocss'
+
+import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 
 export default defineConfig({
   safelist: [
@@ -14,7 +17,9 @@ export default defineConfig({
     presetAttributify({ /* preset options */}),
     presetUno(),
     presetIcons({
-      collections,
+      collections: {
+        custom: FileSystemIconLoader(resolve('../../config/vite/src/svg')),
+      },
     }),
   ],
   shortcuts: {
