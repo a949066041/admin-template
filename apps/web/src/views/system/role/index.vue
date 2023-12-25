@@ -71,6 +71,9 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
         <template #search>
           <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
             <n-form-item>
+              <i class="i-custom-app" />
+              <i-custom-app />
+              <i-solar:user-broken />
               <n-input v-model:value="searchForm.blurry" placeholder="输入名称或者描述搜索" />
             </n-form-item>
             <n-form-item>

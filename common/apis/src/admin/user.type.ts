@@ -1,11 +1,11 @@
 import type { IBaseEntity } from '../base'
 import type { Merge } from '../utils'
-import type { IDept } from './dept.type'
+import type { IDeptEntity } from './dept.type'
 import type { IJobEntity } from './job.type'
 import type { IRole } from './role.type'
 
 export interface IUser extends IBaseEntity {
-  dept: IDept
+  dept: IDeptEntity
   deptId: number
   email: string
   enabled: boolean
@@ -24,7 +24,7 @@ export type IUserParams = Merge<Omit<IUser, 'isAdmin' | keyof IBaseEntity>, ISav
 export interface IOtherUserData {
   jobs: IJobEntity['id'][]
   roles: IRole['id'][]
-  dept: IDept['id']
+  dept: IDeptEntity['id']
   enabled: string
 }
 

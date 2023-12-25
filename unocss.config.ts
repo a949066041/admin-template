@@ -1,6 +1,7 @@
 import {
   defineConfig,
   presetAttributify,
+  presetIcons,
   presetUno,
   transformerDirectives,
 } from 'unocss'
@@ -12,6 +13,9 @@ export default defineConfig({
   presets: [
     presetAttributify({ /* preset options */}),
     presetUno(),
+    presetIcons({
+      collections,
+    }),
   ],
   shortcuts: {
     'center-absolute': '!absolute left-50% top-50% translate-[-50%]',

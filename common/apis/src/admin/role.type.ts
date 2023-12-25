@@ -1,10 +1,10 @@
 import type { IBaseEntity } from '../base'
-import type { IDept } from './dept.type'
+import type { IDeptEntity } from './dept.type'
 import type { MenuList } from './menu.type'
 
 export interface IRole extends IBaseEntity {
   dataScope: string
-  depts: IDept[]
+  depts: IDeptEntity[]
   description: string
   id: number
   level: number
