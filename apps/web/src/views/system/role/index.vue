@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { RoleApi } from '@yy-admin/common-apis'
-import type { IRole, IRoleParams, IRoleSearchParams } from '@yy-admin/common-apis'
+import type { IRoleEntity, IRolePageParams, IRoleRecord } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
 import { computed, ref } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
-import type { Merge } from 'type-fest'
 import MenuTree from './menu-tree.vue'
 import { useRoleMenu } from './useRoleMenu'
 
@@ -24,17 +23,17 @@ const {
   limit,
   resetTable,
   searchTable,
-} = useTable< Merge<IRole, IRoleSearchParams>>({
+} = useTable<IRolePageParams, IRoleRecord>({
   apiAction: RoleApi.page,
   delAction: RoleApi.del,
 })
 
 function initUserForm() {
-  return initFormObj(['name', 'level', 'dataScope', 'description'], {
-  }) as IRoleParams
+  return initFormObj(['name', 'level', 'dataScope', 'description'] as const, {
+  }) as IRoleEntity
 }
 
-const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, findLoading, formRef } = useCurdForm<IRoleParams>({
+const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, findLoading, formRef } = useCurdForm<IRoleEntity>({
   initFormFn: initUserForm,
   saveAction: RoleApi.save,
   putAction: RoleApi.put,
@@ -42,14 +41,14 @@ const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveF
   afterSave: searchTable,
 })
 
-const rules = ref<NaiveFormRules<IRoleParams>>({
+const rules = ref<NaiveFormRules<IRoleEntity>>({
   name: [
     { required: true, message: '请输入角色名称', trigger: 'change' },
   ],
 })
 
 const { checkMenu, handleSetMenuCheck, handleSaveRoleMenu, isShowMenu } = useRoleMenu()
-const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
+const columns = computed<YyTableColumns<keyof IRoleRecord>[]>(() => [
   cT('name', '名称'),
   cT('dataScope', '数据权限'),
   cT('level', '角色级别'),
@@ -71,9 +70,6 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
         <template #search>
           <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
             <n-form-item>
-              <i class="i-custom-app" />
-              <i-custom-app />
-              <i-solar:user-broken />
               <n-input v-model:value="searchForm.blurry" placeholder="输入名称或者描述搜索" />
             </n-form-item>
             <n-form-item>
@@ -89,7 +85,7 @@ const columns = computed<YyTableColumns<keyof IRole>[]>(() => [
         </template>
 
         <template #action="{ record }">
-          <n-button type="primary" quaternary @click="handleInitForm(record.id)">
+          <n-button type="primary" quaternary @click="handleInitForm(record)">
             修改
           </n-button>
           <n-button type="info" quaternary @click="handleSetMenuCheck(record.id, record.menus)">

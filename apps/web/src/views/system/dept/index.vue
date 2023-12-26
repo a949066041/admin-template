@@ -4,7 +4,7 @@ import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
 import { createColumn as cT } from '@yy-admin/components-naive'
 import { YyDictSelect } from '@yy-admin/components-admin'
 import { DeptApi } from '@yy-admin/common-apis'
-import type { IDeptEntity, IDeptParams, IDeptTreeRecord } from '@yy-admin/common-apis'
+import type { IDeptEntity, IDeptTableParams, IDeptTreeRecord } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 import { omit } from 'lodash-es'
@@ -23,7 +23,7 @@ const {
   getTable,
   loading,
   confirmTable,
-} = useTable<IDeptParams, IDeptTreeRecord>({
+} = useTable<IDeptTableParams, IDeptTreeRecord>({
   apiAction: DeptApi.pageTree,
   pagination: false,
   delAction: DeptApi.del,

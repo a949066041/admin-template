@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { JobApi } from '@yy-admin/common-apis'
-import type { IJobEntity, IJobPageParams, IJobRecord } from '@yy-admin/common-apis'
+import type { IJobEntity, IJobRecord, IJobTableParams } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { createColumn as cT } from '@yy-admin/components-naive'
 import { YyDictSelect } from '@yy-admin/components-admin'
@@ -23,7 +23,7 @@ const {
   delDataRow,
   getTable,
   confirmTable,
-} = useTable<IJobPageParams, IJobEntity>({
+} = useTable<IJobTableParams, IJobEntity>({
   apiAction: JobApi.page,
   delAction: JobApi.del,
 })

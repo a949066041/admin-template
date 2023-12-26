@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { IDictDetailEntity, IDictDetailParams } from '@yy-admin/common-apis'
+import type { IDictDetailEntity, IDictDetailTableParams } from '@yy-admin/common-apis'
 import { DictDetailApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<{ dictKey: string, dictId?: number }>(), 
 
 const bindDictKey = useVModel(props, 'dictKey')
 const { dataSource, limit, current, total, loading, searchForm, searchTable, resetTable, delDataRow } = useTable<
-  IDictDetailParams,
+  IDictDetailTableParams,
   IDictDetailEntity
 >({
   apiAction: DictDetailApi.page,

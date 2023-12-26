@@ -1,16 +1,35 @@
 export interface MenuList {
-  id?: number
-  key?: string
-  label?: string
-  title?: string
-  children?: MenuList[]
-  component: any
-  hasChildren?: boolean
+  cache: boolean
+  createTime: string
+  hasChildren: boolean
   hidden: boolean
-  meta: Meta
-  name: string
+  iFrame: boolean
+  icon: string
+  id: number
+  label: string
+  leaf: boolean
+  menuSort: number
   path: string
-  pid?: string
+  subCount: number
+  title: string
+  type: number
+}
+
+export interface IMenuLazy {
+  cache: boolean
+  createTime: string
+  hasChildren: boolean
+  hidden: boolean
+  iFrame: boolean
+  icon: string
+  id: number
+  label: string
+  leaf: boolean
+  menuSort: number
+  path: string
+  subCount: number
+  title: string
+  type: number
 }
 
 interface Meta {

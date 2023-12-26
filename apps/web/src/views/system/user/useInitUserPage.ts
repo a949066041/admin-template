@@ -1,9 +1,10 @@
-import type { IJobEntity, IRole } from '@yy-admin/common-apis'
+import type { IJobEntity, IRoleEntity } from '@yy-admin/common-apis'
 import { JobApi, RoleApi } from '@yy-admin/common-apis'
 
 export function useInitUserPage() {
   const jobList = ref<IJobEntity[]>([])
-  const roleList = ref<IRole[]>([])
+  const selectedDeps = ref<number[]>([])
+  const roleList = ref<IRoleEntity[]>([])
 
   JobApi.page({ page: 0, size: 999, enabled: true }).then((res) => {
     jobList.value = res.content
@@ -14,6 +15,7 @@ export function useInitUserPage() {
   })
 
   return {
+    selectedDeps,
     jobList,
     roleList,
   }

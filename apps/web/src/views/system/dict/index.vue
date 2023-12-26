@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { IDictEntity, IDictParams, IDictRecord } from '@yy-admin/common-apis'
+import type { IDictEntity, IDictRecord, IDictTableParams } from '@yy-admin/common-apis'
 import { DictApi } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
@@ -23,7 +23,7 @@ const {
   searchTable,
   resetTable,
   delDataRow,
-} = useTable<IDictParams, IDictRecord>({
+} = useTable<IDictTableParams, IDictRecord>({
   apiAction: DictApi.page,
   delAction: DictApi.del,
 })

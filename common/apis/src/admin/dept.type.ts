@@ -15,10 +15,8 @@ export interface IDeptTreeRecord extends IDeptTree {
   children: IDeptTreeRecord[]
   isLeaf: boolean
 }
-export interface IDeptParams {
+export interface IDeptTableParams {
   name: string
   createTime: [string, string]
   enabled: string
 }
-
-export type IDeptTableAndParams = IDeptTreeRecord | IDeptParams

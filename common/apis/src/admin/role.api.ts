@@ -1,13 +1,13 @@
 import { ApiInstance } from '../instance'
-import type { IRole } from './role.type'
+import type { IRoleEntity } from './role.type'
 
 const baseApi = '/api/roles'
 
-class RoleApiInstance extends ApiInstance<IRole> {
+class RoleApiInstance extends ApiInstance<IRoleEntity> {
   baseApi = baseApi
 
   public all() {
-    return this.$request.setPath(`${this.baseApi}/all`).get<IRole[]>(true)
+    return this.$request.setPath(`${this.baseApi}/all`).get<IRoleEntity[]>(true)
   }
 
   public menu(id: number, menuList: number[]) {

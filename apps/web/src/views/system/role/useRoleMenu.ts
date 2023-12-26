@@ -1,4 +1,4 @@
-import { type IRole, RoleApi } from '@yy-admin/common-apis'
+import { type IRoleRecord, RoleApi } from '@yy-admin/common-apis'
 import { useAppConfigStore } from '@yy-admin/components-admin'
 
 export function useRoleMenu() {
@@ -9,13 +9,13 @@ export function useRoleMenu() {
   const isShowMenu = computed(() => {
     return currentRole.value !== null
   })
-  function handleSetMenuCheck(id: IRole['id'], val: IRole['menus']) {
+  function handleSetMenuCheck(id: IRoleRecord['id'], val: IRoleRecord['menus']) {
     currentRole.value = id
     checkMenu.value = val.map(item => item.id)
   }
 
   function handleSaveRoleMenu(cb?: () => void) {
-    RoleApi.menu(currentRole.value, checkMenu.value).then(() => {
+    RoleApi.menu(currentRole.value!, checkMenu.value).then(() => {
       message.success('保存成功')
       cb?.()
     })

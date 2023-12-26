@@ -12,7 +12,7 @@ export interface IDictDetailEntity {
 export interface IDictDetailRecord extends IDictEntity, IBaseEntity {
 }
 
-export interface IDictDetailParams {
+export interface IDictDetailTableParams {
   blurry: string
   dictName: string
 }

@@ -10,6 +10,6 @@ export interface IJobEntity {
 export interface IJobRecord extends IJobEntity, IBaseEntity {
 }
 
-export interface IJobPageParams {
+export interface IJobTableParams {
   blurry: string
 }

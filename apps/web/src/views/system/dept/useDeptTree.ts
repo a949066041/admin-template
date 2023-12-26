@@ -4,9 +4,10 @@ function withDeptTree(tree: IDeptTreeRecord[]) {
   return tree.map(item => ({ ...item, name: item.label, isLeaf: item.leaf, children: item.children }))
 }
 
-export function useDeptTree() {
+export function useDeptTree(init = false) {
   const deptTreeData = ref<IDeptTreeRecord[]>([])
-  function handleLazyDept(node: IDeptTreeRecord) {
+  const filterInput = ref<string>('')
+  function handleLazyDept(node: IDeptTreeRecord & any) {
     return new Promise<void>((resolve) => {
       DeptApi.getDeptTree({ pid: node.id! }).then((res) => {
         node.children = withDeptTree(res.content)
@@ -27,7 +28,15 @@ export function useDeptTree() {
     })
   }
 
+  watch(filterInput, async (val) => {
+    const res = await DeptApi.getDeptTree(val ? { name: val } : {})
+    deptTreeData.value = withDeptTree(res.content)
+  })
+
+  init && triggerDeptTree(true)
+
   return {
+    filterInput,
     deptTreeData,
     triggerDeptTree,
     handleLazyDept,

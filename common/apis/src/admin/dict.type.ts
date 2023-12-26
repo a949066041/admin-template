@@ -9,6 +9,6 @@ export interface IDictEntity {
 export interface IDictRecord extends IDictEntity, IBaseEntity {
 }
 
-export interface IDictParams {
+export interface IDictTableParams {
   blurry: string
 }

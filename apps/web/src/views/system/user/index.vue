@@ -1,25 +1,24 @@
 <script setup lang="ts">
 import { useTable } from '@yy-web/business-use'
 import { UserApi } from '@yy-admin/common-apis'
-import type { IUser, IUserParams, IUserSearchParams } from '@yy-admin/common-apis'
+import type { IDeptEntity, IJobEntity, IRoleEntity, IUserEntity, IUserRecord, IUserTableParams } from '@yy-admin/common-apis'
 import { YyDictSelect } from '@yy-admin/components-admin'
 import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
 import { isValidPhone } from '@yy-admin/common-utils'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
-import type { Merge } from 'type-fest'
-import { useTreeDept } from './useTreeDept'
+import { first } from 'lodash-es'
+import { useDeptTree } from '../dept/useDeptTree'
 import { useInitUserPage } from './useInitUserPage'
 
 defineOptions({
   name: 'SystemUser',
 })
 
-const { jobList, roleList } = useInitUserPage()
+const { jobList, roleList, selectedDeps } = useInitUserPage()
 const {
   searchForm,
   dataSource,
   total,
-  initForm,
   confirmTable,
   getTable,
   current,
@@ -28,31 +27,51 @@ const {
   resetTable,
   delDataRow,
   searchTable,
-} = useTable<Merge<IUser, IUserSearchParams>, { deptId: string }>({
+} = useTable<IUserTableParams, IUserRecord>({
   apiAction: UserApi.page,
   delAction: UserApi.del,
+  initSearch() {
+    return {
+      deptId: (first(selectedDeps.value) || undefined),
+    }
+  },
 })
 
 function initUserForm() {
-  return initFormObj(['username', 'phone', 'nickName', 'email', 'deptId', 'jobs', 'gender', 'enabled', 'roles'], {
-    jobs: [] as string[],
-    roles: [] as string[],
-  }) as IUserParams
+  return initFormObj(['username', 'phone', 'nickName', 'email', 'gender', 'enabled', 'roles', 'jobs', 'dept', 'deptId'] as const, {
+    roles: [],
+    jobs: [],
+  }) as IUserRecord & { roles: number[], jobs: number[], deptId: number }
 }
 
-const { selectedDeps, userDeptTree, handleGetLeftTree, userFormDeptTree, handleGetUserFormTreeDept, filterLeftTree } = useTreeDept()
-const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, formRef } = useCurdForm<IUserParams>({
+const { deptTreeData: leftDeptTree, handleLazyDept: handleLeftLazyDept, filterInput } = useDeptTree(true)
+const { deptTreeData, handleLazyDept, triggerDeptTree } = useDeptTree()
+const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveForm, formRef } = useCurdForm<IUserRecord>({
   initFormFn: initUserForm,
   saveAction: UserApi.save,
   putAction: UserApi.put,
   findIdAction: UserApi.findId,
   afterSave: searchTable,
+  beforeSave(saveData) {
+    return {
+      dept: {
+        id: saveData.deptId,
+      },
+      roles: saveData.roles.map(id => ({ id })),
+      jobs: saveData.jobs.map(id => ({ id })),
+    }
+  },
   afterDetail(result, isAdd) {
-    handleGetUserFormTreeDept(!!isAdd, result?.deptId)
+    if (!isAdd) {
+      formModel.value.roles = (result!.roles as IRoleEntity[]).map(item => item.id)
+      formModel.value.jobs = (result!.jobs as IJobEntity[]).map(item => item.id)
+      formModel.value.deptId = (result?.dept as IDeptEntity).id
+    }
+    triggerDeptTree(!!isAdd, (result?.dept as IDeptEntity).id)
   },
 })
 
-const rules = ref<NaiveFormRules<IUserParams>>({
+const rules = ref<NaiveFormRules<ReturnType<typeof initUserForm>>>({
   username: [
     { required: true, message: '请输入用户名', trigger: 'change' },
     { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'change' },
@@ -67,6 +86,7 @@ const rules = ref<NaiveFormRules<IUserParams>>({
   ],
   deptId: [{
     required: true,
+    type: 'number',
     message: '请输入',
     trigger: 'change',
   }],
@@ -88,18 +108,15 @@ const rules = ref<NaiveFormRules<IUserParams>>({
   ],
 })
 
-function handleChangeStatus(id: number) {
+function handleChangeStatus(entity: IUserEntity) {
   confirmTable('是否切换用户状态', () => {
-    return UserApi.switchEnabled(id).finally(getTable)
+    return UserApi.put({ ...entity, enabled: !entity.enabled }).finally(getTable)
   })
 }
 
-watch(selectedDeps, ([depId]) => {
-  initForm.value.deptId = depId
-  searchTable()
-})
+watch(selectedDeps, searchTable)
 
-const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
+const columns = computed<YyTableColumns<keyof IUserRecord>[]>(() => [
   cT('username', '用户名'),
   cT('nickName', '昵称'),
   cT('gender', '性别'),
@@ -115,7 +132,7 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
 <template>
   <n-grid :x-gap="20">
     <n-gi :span="4">
-      <n-input v-model:value="filterLeftTree" class=" mb-3" placeholder="输入部门名称搜索">
+      <n-input v-model:value="filterInput" class=" mb-3" placeholder="输入部门名称搜索">
         <template #prefix>
           <i-icon-park-outline:search />
         </template>
@@ -125,8 +142,8 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
         selectable
         label-field="name"
         key-field="id"
-        :data="userDeptTree"
-        :on-load="handleGetLeftTree"
+        :data="leftDeptTree"
+        :on-load="handleLeftLazyDept"
         block-line
       />
     </n-gi>
@@ -161,11 +178,11 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
         </template>
 
         <template #enabled="{ text, record }">
-          <n-switch :value="text" @update:value="handleChangeStatus(record.id)" />
+          <n-switch :value="text" @update:value="handleChangeStatus(record)" />
         </template>
 
         <template #action="{ record }">
-          <n-button type="primary" quaternary @click="handleInitForm(record.id)">
+          <n-button type="primary" quaternary @click="handleInitForm(record)">
             修改
           </n-button>
           <n-button type="error" quaternary @click="delDataRow(record.id)">
@@ -190,13 +207,14 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
           <n-form-item path="deptId" label="部门">
             <yy-tree-select
               v-model:value="formModel.deptId"
-              :options="userFormDeptTree"
-              :on-load="handleGetLeftTree"
+              :options="deptTreeData"
+              :on-load="handleLazyDept"
               placeholder="请选择部门"
             />
           </n-form-item>
           <n-form-item path="jobs" label="岗位">
-            <yy-select v-model:value="formModel.jobs" :options="jobList" multiple />
+            <!-- eslint-disable-next-line vue/valid-v-model -->
+            <yy-select v-model:value="(formModel.jobs as number[])" :options="jobList" multiple />
           </n-form-item>
           <n-form-item path="gender" label="性别">
             <YyDictSelect v-model:value="formModel.gender" type="radio" dict="sex_status" />
@@ -205,7 +223,8 @@ const columns = computed<YyTableColumns<keyof IUser>[]>(() => [
             <YyDictSelect v-model:value="formModel.enabled" type="radio" dict="user_status" transform="boolean" />
           </n-form-item>
           <n-form-item path="roles" label="角色">
-            <yy-select v-model:value="formModel.roles" :options="roleList" multiple />
+            <!-- eslint-disable-next-line vue/valid-v-model -->
+            <yy-select v-model:value="formModel.roles as number[]" :options="roleList" multiple />
           </n-form-item>
         </n-form>
       </YyModal>
