@@ -19,7 +19,7 @@
     "@yy-admin/web-monitor": "workspace:^",
     "@yy-web/business-use": "^2.0.6",
     "@yy-web/request": "^1.5.9",
-    "axios": "^1.6.2",
+    "axios": "^1.6.3",
     "echarts": "^5.4.3"
   },
   "devDependencies": {
