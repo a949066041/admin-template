@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { AuthApi, MenuApi } from '@yy-admin/common-apis'
 import type { LoginForm, MenuList, UserInfo } from '@yy-admin/common-apis'
 import type { Router } from 'vue-router'
-import { clearToken, setToken } from '../utils/token'
+import { tokenStorage } from '../utils/cookie'
 import { flatChildrenArr } from '../utils/array.util'
 
 export const useUserStore = defineStore('core-user', () => {
@@ -14,7 +14,7 @@ export const useUserStore = defineStore('core-user', () => {
 
   async function loginAction(loginForm: LoginForm) {
     const { token } = await AuthApi.login(loginForm)
-    setToken(token)
+    tokenStorage.setValue(token)
   }
 
   async function getUserInfo() {
@@ -42,7 +42,7 @@ export const useUserStore = defineStore('core-user', () => {
       })
     }
     userMenuList.value = []
-    clearToken()
+    tokenStorage.removeValue()
   }
 
   return {

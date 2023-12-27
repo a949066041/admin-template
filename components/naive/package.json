@@ -1,0 +1,23 @@
+{
+  "name": "@yy-admin/components-naive",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare:build": "vite build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@vueuse/core": "^10.7.0",
+    "@yy-admin/config-vite-lib": "workspace:^",
+    "axios": "^1.6.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vue-tsc": "^1.8.27"
+  }
+}

@@ -1,3 +1,5 @@
+import type { IBaseEntity } from '../base'
+
 export interface IJobEntity {
   id: number
   name: string
@@ -5,6 +7,9 @@ export interface IJobEntity {
   jobSort: number
 }
 
-export interface IJobPageParams {
+export interface IJobRecord extends IJobEntity, IBaseEntity {
+}
+
+export interface IJobTableParams {
   blurry: string
 }

@@ -1,4 +1,5 @@
 import { useToggle } from '@vueuse/core'
+import { pick } from 'lodash-es'
 import type { FormInst } from 'naive-ui'
 import type { Ref } from 'vue'
 import { computed, nextTick, ref } from 'vue'
@@ -24,8 +25,9 @@ export interface IUseCurdOptions<T, Key extends string | number> {
   findIdAction?: (id: Key) => Promise<T>
   saveAction: (data: T) => Promise<void | any>
   putAction?: (data: T) => Promise<void | any>
-  afterDetail?: (result?: T) => void
+  afterDetail?: (result?: T, isAdd?: boolean) => void
   afterSave?: (result?: any) => void
+  beforeSave?: (saveData: T) => Partial<Record<keyof T, any>>
 }
 
 export function useCurdForm<T extends Record<string, any>, Key extends string | number = number>(options: IUseCurdOptions<T, Key>) {
@@ -37,6 +39,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
     findIdAction,
     afterSave,
     afterDetail,
+    beforeSave,
   } = options
 
   const formRef = ref<FormInst | null>(null)
@@ -66,20 +69,20 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
 
         findIdAction(values).then((formData) => {
           formModel.value = formData
-          afterDetail && afterDetail(formData)
+          afterDetail && afterDetail(formData, isAdd.value)
         }).finally(() => toggleFindLoading(false))
         return
       }
 
       if (typeof values === 'object') {
-        formModel.value = JSON.parse(JSON.stringify(values))
+        formModel.value = pick(values, Object.keys(initFormFn())) as T
         editId.value = values[formKey]
-        afterDetail && afterDetail(formModel.value)
+        afterDetail && afterDetail(formModel.value, isAdd.value)
         return
       }
 
       formModel.value = initFormFn()
-      afterDetail && afterDetail(formModel.value)
+      afterDetail && afterDetail(formModel.value, isAdd.value)
     })
   }
 
@@ -88,7 +91,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
       if (!res) {
         toggleSaveLoading(true)
         const requestSave = isAdd.value ? saveAction : (putAction || saveAction)
-        requestSave({ ...formModel.value, [formKey]: editId.value })
+        requestSave({ ...formModel.value, [formKey]: editId.value, ...beforeSave?.(formModel.value) })
           .then((result) => {
             toggleVisible(false)
             afterSave && afterSave(result)

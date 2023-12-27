@@ -1,10 +1,18 @@
 import type { IBaseEntity } from '../base'
+import type { IDictEntity } from './dict.type'
 
-export interface IDictDetail {
+export interface IDictDetailEntity {
   dictSort: number
   id: number
+  dict?: IDictEntity
   label: string
   value: string
 }
 
-export type IDictDetailParams = Omit<IDictDetail, keyof IBaseEntity>
+export interface IDictDetailRecord extends IDictEntity, IBaseEntity {
+}
+
+export interface IDictDetailTableParams {
+  blurry: string
+  dictName: string
+}

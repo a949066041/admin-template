@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
+
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
@@ -10,7 +11,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { VexipUIResolver } from '@vexip-ui/plugins'
+import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
 export interface ICommonViteConfig {
   resolvers?: ComponentResolver[]
@@ -29,9 +30,6 @@ export default (_config?: ICommonViteConfig) => {
       vueJsx(),
       UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
       AutoImport({
-        resolvers: [
-          VexipUIResolver({ fullStyle: true }),
-        ],
         imports: ['vue', 'vue-router', '@vueuse/core', {
           'naive-ui': [
             'useDialog',
@@ -44,10 +42,20 @@ export default (_config?: ICommonViteConfig) => {
       }),
       Components({
         dts: true,
-        resolvers: [IconsResolver(), AntDesignVueResolver({ importStyle: false }), VexipUIResolver({ fullStyle: true }), NaiveUiResolver(), ...config.resolvers],
+        resolvers: [
+          IconsResolver({
+            customCollections: ['custom', 'custom2'],
+          }),
+          AntDesignVueResolver({ importStyle: false }),
+          NaiveUiResolver(),
+          ...config.resolvers,
+        ],
       }),
       Icons({
         autoInstall: true,
+        customCollections: {
+          custom: FileSystemIconLoader(resolve('../../config/vite/src/svg')),
+        },
       }),
       config.report ? visualizer({
         gzipSize: true,

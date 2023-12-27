@@ -7,15 +7,13 @@
   "keywords": [],
   "main": "src/index.ts",
   "dependencies": {
-    "@yy-web/business-use": "^2.0.3",
-    "@yy-web/request": "^1.5.9",
-    "dayjs": "^1.11.10"
+    "@yy-web/business-use": "^2.0.6",
+    "@yy-web/request": "^1.5.9"
   },
   "devDependencies": {
     "@vueuse/core": "^10.7.0",
     "@vueuse/shared": "^10.7.0",
     "@yy-admin/common-apis": "workspace:^",
-    "@yy-admin/common-core": "workspace:^",
-    "@yy-admin/common-utils": "workspace:^"
+    "@yy-admin/common-core": "workspace:^"
   }
 }

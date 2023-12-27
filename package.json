@@ -8,28 +8,33 @@
   "scripts": {
     "prepare": "turbo prepare:build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "vitest"
   },
   "dependencies": {
+    "dayjs": "^1.11.10",
+    "jsdom": "^23.0.1",
     "lodash-es": "^4.17.21",
-    "naive-ui": "^2.35.0",
+    "naive-ui": "^2.36.0",
     "pinia": "^2.1.7",
-    "vexip-ui": "^2.2.19",
-    "vue": "^3.3.11",
+    "vue": "^3.3.13",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.4.3",
-    "@iconify/json": "^2.2.154",
+    "@antfu/eslint-config": "^2.6.0",
+    "@iconify/json": "^2.2.161",
+    "@iconify/utils": "^2.1.13",
     "@types/lodash": "^4.14.202",
     "@types/lodash-es": "^4.17.12",
     "@unocss/transformer-directives": "^0.58.0",
-    "@vue/tsconfig": "^0.4.0",
-    "eslint": "^8.55.0",
+    "@vue/tsconfig": "^0.5.1",
+    "@yy-admin/common-utils": "workspace:^",
+    "eslint": "^8.56.0",
     "taze": "^0.13.0",
-    "turbo": "^1.11.1",
+    "turbo": "^1.11.2",
     "type-fest": "^4.8.3",
     "typescript": "^5.3.3",
-    "unocss": "^0.58.0"
+    "unocss": "^0.58.0",
+    "vitest": "^1.1.0"
   }
 }

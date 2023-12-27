@@ -5,13 +5,17 @@ export function YyAntdComponents(): ComponentResolver {
     'YySearch',
     'YyTable',
     'YyModal',
+    'YySelect',
+    'YyTreeSelect',
+    'YyRangeDatePicker',
+    'YyDatePicker',
   ])
 
   return {
     type: 'component',
     resolve(componentName: string) {
       if (customComponent.has(componentName))
-        return { name: componentName, from: '@yy-admin/components-vexip', sideEffects: '@yy-admin/components-vexip/dist/style.css' }
+        return { name: componentName, from: '@yy-admin/components-naive', sideEffects: '@yy-admin/components-naive/dist/style.css' }
     },
   }
 }

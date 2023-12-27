@@ -10,16 +10,14 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@yy-admin/common-utils": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
-    "vant": "^4.8.0"
+    "vant": "^4.8.1"
   },
   "devDependencies": {
-    "@types/node": "^20.10.4",
-    "@vue/tsconfig": "^0.4.0",
+    "@types/node": "^20.10.5",
     "npm-run-all": "^4.1.5",
     "typescript": "~5.3.3",
-    "vite": "^5.0.7",
-    "vue-tsc": "^1.8.25"
+    "vite": "^5.0.10",
+    "vue-tsc": "^1.8.27"
   }
 }

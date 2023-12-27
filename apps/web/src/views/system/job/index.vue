@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { JobApi } from '@yy-admin/common-apis'
-import type { IEntity, IJobEntity, IJobPageParams } from '@yy-admin/common-apis'
+import type { IJobEntity, IJobRecord, IJobTableParams } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
-import { createColumn as cT } from '@yy-admin/components-vexip'
+import { createColumn as cT } from '@yy-admin/components-naive'
 import { YyDictSelect } from '@yy-admin/components-admin'
-import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-vexip'
+import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
 
 defineOptions({
@@ -23,7 +23,7 @@ const {
   delDataRow,
   getTable,
   confirmTable,
-} = useTable<IJobPageParams & IJobEntity>({
+} = useTable<IJobTableParams, IJobEntity>({
   apiAction: JobApi.page,
   delAction: JobApi.del,
 })
@@ -67,7 +67,7 @@ function handleUpdateEnabled(entity: IJobEntity) {
   )
 }
 
-const columns = computed<YyTableColumns<keyof IEntity<IJobEntity>>[]>(() => ([
+const columns = computed<YyTableColumns<keyof IJobRecord>[]>(() => ([
   cT('name', '名称'),
   cT('jobSort', '序号'),
   cT('enabled', '是否开启', true),
@@ -103,7 +103,7 @@ const columns = computed<YyTableColumns<keyof IEntity<IJobEntity>>[]>(() => ([
     </template>
 
     <template #action="{ record }">
-      <n-button quaternary type="primary" @click="handleInitForm(record.id)">
+      <n-button quaternary type="primary" @click="handleInitForm(record)">
         修改
       </n-button>
 

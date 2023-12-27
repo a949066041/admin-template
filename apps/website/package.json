@@ -1,5 +1,5 @@
 {
-  "name": "@yy-web/app-website",
+  "name": "@yy-admin/apps-website",
   "type": "module",
   "private": true,
   "scripts": {
@@ -11,7 +11,8 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@unocss/nuxt": "^0.58.0",
-    "nuxt": "^3.8.2"
+    "nuxt": "^3.9.0",
+    "vue": "^3.3.13",
+    "vue-router": "^4.2.5"
   }
 }

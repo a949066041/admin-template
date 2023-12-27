@@ -18,7 +18,7 @@ const bindValue = useVModel(props, 'value', emits)
 <template>
   <YyDict :dict="dict" :transform="transform">
     <template #default="{ loading, data }">
-      <n-select v-if="type === 'select'" v-model:value="bindValue" :options="data" :loading="loading" />
+      <n-select v-if="type === 'select'" v-model:value="bindValue" class=" min-w-100px" :options="data" :loading="loading" />
       <n-radio-group v-if="type === 'radio'" v-model:value="bindValue" v-bind="$attrs" :loading="loading">
         <n-radio v-for="item in data" :key="item.value" :value="item.value">
           {{ item.label }}

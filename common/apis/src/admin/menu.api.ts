@@ -1,5 +1,5 @@
 import { ApiInstance } from '../instance'
-import type { MenuList } from './menu.type'
+import type { IMenuLazy, MenuList } from './menu.type'
 
 class MenuApiInstance extends ApiInstance {
   baseApi = '/api/menus'
@@ -8,7 +8,7 @@ class MenuApiInstance extends ApiInstance {
   }
 
   public menuLazy(pid?: number) {
-    return this.$request.setPath(`${this.baseApi}/lazy`).get<MenuList[]>({ pid }, true)
+    return this.$request.setPath(`${this.baseApi}/lazy`).get<IMenuLazy[]>({ pid }, true)
   }
 
   public list() {

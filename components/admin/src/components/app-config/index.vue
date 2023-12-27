@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useTitle } from '@vueuse/core'
-import { useAppConfigStore } from '@yy-admin/common-core'
+import { useAppConfigStore } from './config'
 
 defineOptions({
   name: 'AppConfig',
@@ -11,7 +11,7 @@ useTitle(props.title)
 </script>
 
 <template>
-  <n-config-provider v-bind="configProps">
+  <n-config-provider v-bind="configProps" preflight-style-disabled>
     <n-message-provider>
       <slot />
     </n-message-provider>

@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { IDictDetail } from '@yy-admin/common-apis'
+import type { IDictDetailEntity } from '@yy-admin/common-apis'
 import { DictDetailApi } from '@yy-admin/common-apis'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { useToggle } from '@vueuse/core'
@@ -24,7 +24,7 @@ export default defineComponent({
         return []
       return [props.dict]
     })
-    const dictValue = ref<IDictDetail[]>([])
+    const dictValue = ref<IDictDetailEntity[]>([])
     const transformDict = computed(() => {
       if (!props.transform)
         return dictValue.value

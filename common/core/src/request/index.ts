@@ -2,15 +2,15 @@ import type { IAxiosRequestConfig } from '@yy-web/request'
 import request, { fileInterceptorsResponseConfig, getStore, setStore } from '@yy-web/request'
 import type { InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
-import { useAppConfigStore, useUserStore } from '../store'
-import { getToken } from '../utils/token'
+import { useUserStore } from '../store'
+import { tokenStorage } from '../utils/cookie'
 
 const service = axios.create({
   baseURL: '/api',
 })
 
 service.interceptors.request.use((config: InternalAxiosRequestConfig & IAxiosRequestConfig) => {
-  const yyToken = getToken()
+  const yyToken = tokenStorage.getValue()
   if (yyToken && config && config.headers)
     config.headers.Authorization = config.headers.Authorization || yyToken
 
@@ -24,7 +24,6 @@ service.interceptors.response.use((response: any) => {
 
   return response.data
 }, (error) => {
-  const { message } = useAppConfigStore()
   if (error.response) {
     const user = useUserStore()
     switch (error.response.status) {
@@ -33,7 +32,7 @@ service.interceptors.response.use((response: any) => {
         break
       default: {
         const errorMsg = error.response.data.message
-        message.error(errorMsg)
+        console.log(errorMsg)
       }
     }
   }

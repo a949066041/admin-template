@@ -1,34 +1,33 @@
 import type { IBaseEntity } from '../base'
-import type { Merge } from '../utils'
-import type { IDept } from './dept.type'
+import type { IDeptEntity } from './dept.type'
 import type { IJobEntity } from './job.type'
-import type { IRole } from './role.type'
+import type { IRoleEntity } from './role.type'
 
-export interface IUser extends IBaseEntity {
-  dept: IDept
-  deptId: number
-  email: string
-  enabled: boolean
-  gender: string
+export interface IUserEntity {
   id: number
-  isAdmin: boolean
-  jobs: IJobEntity[]
-  nickName: string
-  phone: string
-  roles: IRole[]
   username: string
+  nickName: string
+  email: string
+  phone: string
+  gender: string
+  avatarName: string
+  avatarPath: string
+  password: string
+  enabled: boolean
+  isAdmin: boolean
+  pwdResetTime: string
 }
 
-export type IUserParams = Merge<Omit<IUser, 'isAdmin' | keyof IBaseEntity>, ISaveUserData>
+export interface IUserRecord extends IUserEntity, IBaseEntity {
+  roles: IRoleEntity[] | number[]
+  jobs: IJobEntity[] | number[]
+  dept: IDeptEntity
+  deptId: number
+}
 
-export interface IOtherUserData {
-  jobs: IJobEntity['id'][]
-  roles: IRole['id'][]
-  dept: IDept['id']
+export interface IUserTableParams {
+  blurry: string
+  createTime: [string, string]
   enabled: string
-}
-
-export interface ISaveUserData {
-  jobs: number[]
-  roles: number[]
+  deptId: number
 }

@@ -58,5 +58,6 @@
   "powermode.enabled": true,
   "powermode.presets": "flames",
   "powermode.shake.enabled": false,
-  "powermode.shake.intensity": 1
+  "powermode.shake.intensity": 1,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

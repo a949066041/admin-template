@@ -15,14 +15,13 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.10.4",
-    "@vue/compiler-core": "^3.3.11",
-    "@vue/runtime-core": "^3.3.11",
-    "@vue/runtime-dom": "^3.3.11",
+    "@types/node": "^20.10.5",
+    "@vue/compiler-core": "^3.3.13",
+    "@vue/runtime-core": "^3.3.13",
+    "@vue/runtime-dom": "^3.3.13",
     "@yy-admin/config-vite-lib": "workspace:^",
     "fs-extra": "^11.2.0",
     "markdown-it": "^14.0.0",
-    "monaco-editor": "^0.45.0",
     "typescript": "^5.3.3",
     "vitepress": "1.0.0-rc.24"
   }

@@ -21,7 +21,7 @@ const router = createRouter({
             title: '首页',
             affix: true,
           },
-          component: () => import('../views/AboutView.vue'),
+          component: () => import('../dashboard.vue'),
         },
       ],
     },
