@@ -1,11 +1,13 @@
 import { setRequest } from '@yy-web/request'
 import type { AsyncRouters } from '@yy-admin/common-core'
-import { authRoute, requestInstance, withSrcViewModules } from '@yy-admin/common-core'
+import { YyDict, authRoute, requestInstance, withSrcViewModules } from '@yy-admin/common-core'
 import { confBusiness } from '@yy-web/business-use'
 import type { App } from 'vue'
 import type { Router } from 'vue-router'
 import { createPinia } from 'pinia'
 import dayjs from 'dayjs'
+import { confNaive } from '@yy-admin/components-naive'
+import { h } from 'vue'
 import Layout from './components/layout/index.vue'
 import { useAppConfigStore } from './components/app-config/config'
 import 'dayjs/locale/zh-cn'
@@ -44,6 +46,12 @@ export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
           typeof cancelFn === 'function' && cancelFn()
         },
       })
+    },
+  })
+
+  confNaive(app, {
+    dict(dict, value) {
+      return h(YyDict, { dict }, { default: ({ flatData }: { flatData: Record<string, string> }) => flatData[`${value}`] })
     },
   })
 

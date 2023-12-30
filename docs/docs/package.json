@@ -5,8 +5,8 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "@vue/runtime-core": "^3.3.13",
-    "@vue/runtime-dom": "^3.3.13",
+    "@vue/runtime-core": "^3.4.2",
+    "@vue/runtime-dom": "^3.4.2",
     "monaco-editor": "^0.45.0",
     "monaco-editor-ex": "^1.2.0"
   }

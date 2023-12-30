@@ -24,8 +24,8 @@
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
-    "@types/node": "^20.10.5",
-    "@vueuse/core": "^10.7.0",
+    "@types/node": "^20.10.6",
+    "@vueuse/core": "^10.7.1",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",
     "@yy-admin/components-antdv": "workspace:^",

@@ -36,7 +36,6 @@ function iniDictForm() {
 const rules = ref<NaiveFormRules<IDictEntity>>({
   name: [
     { required: true, message: '请输入名称', trigger: 'blur' },
-    { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'change' },
   ],
 })
 

@@ -18,7 +18,7 @@ export default defineConfig({
     presetUno(),
     presetIcons({
       collections: {
-        custom: FileSystemIconLoader(resolve('../../config/vite/src/svg')),
+        custom: FileSystemIconLoader(resolve('../../config/vite/src/svg'), svg => svg.replace('<svg ', '<svg fill="currentColor" ')),
       },
     }),
   ],
