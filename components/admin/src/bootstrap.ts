@@ -15,9 +15,14 @@ import 'dayjs/locale/zh-cn'
 dayjs.locale('zh-cn')
 export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
   const { message, dialog } = useAppConfigStore()
+  // base
   app.use(createPinia())
   app.use(router)
   setRequest(requestInstance)
+
+  window.errorMsg = message.error
+
+  // business config
   confBusiness(app, {
     resetType: null,
     successTip: (msg: string) => message.success(msg),
@@ -49,12 +54,14 @@ export function setupAdmin(app: App, router: Router, page: AsyncRouters) {
     },
   })
 
+  // naive config
   confNaive(app, {
     dict(dict, value) {
       return h(YyDict, { dict }, { default: ({ flatData }: { flatData: Record<string, string> }) => flatData[`${value}`] })
     },
   })
 
+  // add router
   authRoute(router, ['/login'], {
     ...withSrcViewModules(page),
     Layout,

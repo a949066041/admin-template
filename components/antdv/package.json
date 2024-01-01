@@ -6,7 +6,6 @@
   "license": "ISC",
   "keywords": [],
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare:build": "vite build"

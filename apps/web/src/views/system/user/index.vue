@@ -11,7 +11,7 @@ import { useDeptTree } from '../dept/useDeptTree'
 import { useInitUserPage } from './useInitUserPage'
 
 defineOptions({
-  name: 'SystemUser',
+  name: 'User',
 })
 
 const { jobList, roleList, selectedDeps } = useInitUserPage()

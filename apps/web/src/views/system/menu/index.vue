@@ -5,7 +5,7 @@ import { createColumn as cT } from '@yy-admin/components-naive'
 import { computed } from 'vue'
 import type { YyTableColumns } from '@yy-admin/components-naive'
 import { useTable } from '@yy-web/business-use'
-import { YyDictSelect } from '@yy-admin/components-admin'
+import { YyDictSelect, useLazyTableTree } from '@yy-admin/components-admin'
 import { useMenuForm } from './useMenuForm'
 
 defineOptions({
@@ -39,14 +39,17 @@ const columns = computed<YyTableColumns<keyof IMenuTreeRecord>[]>(() => ([
   cT('action', '操作', { fixed: 'right' }, true),
 ]))
 
-function onLoad(row: IMenuTreeRecord) {
-  return new Promise<void>((resolve) => {
-    MenuApi.pageTree({ pid: row.id }).then((res) => {
-      row.children = res.map(item => ({ ...item, parent: row }))
-      resolve()
+const { handleRefreshLoadTree, openKeys, lazyLoad, renderKeys } = useLazyTableTree<IMenuTreeRecord>({
+  onLoad(row: IMenuTreeRecord) {
+    return new Promise<IMenuTreeRecord[]>((resolve) => {
+      MenuApi.pageTree({ pid: row.id }).then((res) => {
+        row.children = res.map(item => ({ ...item, parent: row }))
+        resolve(res)
+      })
     })
-  })
-}
+  },
+  onLoadRoot: getTable,
+})
 
 const {
   menuIconList,
@@ -61,18 +64,17 @@ const {
   formRef,
   menuTreeData,
   handleLazyMenu,
-} = useMenuForm(() => {
-  getTable()
-})
+} = useMenuForm(handleRefreshLoadTree)
 </script>
 
 <template>
   <YyTable
     v-bind="{ loading, dataSource }"
-    :row-key="(row: IMenuTreeRecord) => row.id"
+    v-model:expanded-row-keys="openKeys"
+    :row-key="renderKeys"
     :pager="false"
     :columns="columns"
-    @load="onLoad"
+    @load="lazyLoad"
   >
     <template #search>
       <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">

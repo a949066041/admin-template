@@ -1,12 +1,8 @@
 {
   "name": "@yy-admin/common-utils",
+  "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare:build": "tsc"

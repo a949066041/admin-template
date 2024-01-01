@@ -5,7 +5,8 @@ export interface IDeptEntity {
   name: string
   enabled: boolean
   deptSort: number
-  pid: number | null
+  subCount: number
+  pid?: number
 }
 
 export interface IDeptTree extends IDeptEntity, IBaseEntity, IRecordTree {}

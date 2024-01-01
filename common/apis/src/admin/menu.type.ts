@@ -1,47 +1,5 @@
 import type { IBaseEntity, IRecordTree } from '../'
 
-export interface MenuList {
-  cache: boolean
-  createTime: string
-  hasChildren: boolean
-  hidden: boolean
-  iFrame: boolean
-  icon: string
-  id: number
-  label: string
-  leaf: boolean
-  menuSort: number
-  path: string
-  subCount: number
-  title: string
-  type: number
-}
-
-export interface IMenuLazy {
-  cache: boolean
-  createTime: string
-  hasChildren: boolean
-  hidden: boolean
-  iFrame: boolean
-  icon: string
-  id: number
-  label: string
-  leaf: boolean
-  menuSort: number
-  path: string
-  subCount: number
-  title: string
-  type: number
-  meta: Meta
-}
-
-interface Meta {
-  icon: string
-  noCache: boolean
-  title: string
-}
-
-// private Set<Role> roles;
 export interface IMenuEntity {
   id: number
   title: string
@@ -69,4 +27,35 @@ export interface IMenuTreeRecord extends IMenuTree {
 export interface IMenuTableParams {
   blurry: string
   createTime: [string, string]
+}
+
+export interface IMenuBuild {
+  component: string
+  hidden: IMenuEntity['hidden']
+  name: string
+  path: string
+  redirect?: string
+  children: IMenuBuild[]
+  meta: {
+    icon: IMenuEntity['icon']
+    noCache: IMenuEntity['cache']
+    title: IMenuEntity['title']
+  }
+}
+
+export interface IMenuLazy {
+  cache: boolean
+  createTime: string
+  hasChildren: boolean
+  hidden: boolean
+  iFrame: boolean
+  icon: string
+  id: number
+  label: string
+  leaf: boolean
+  menuSort: number
+  path: string
+  subCount: number
+  title: string
+  type: number
 }

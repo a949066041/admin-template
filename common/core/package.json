@@ -12,7 +12,6 @@
   "devDependencies": {
     "@vueuse/core": "^10.7.1",
     "@yy-admin/common-apis": "workspace:^",
-    "@yy-web/request": "^1.5.9",
     "axios": "^1.6.3",
     "typescript": "^5.3.3"
   }

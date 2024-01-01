@@ -3,6 +3,7 @@ import { useUserStore } from '@yy-admin/common-core'
 import { useRoute, useRouter } from 'vue-router'
 import type { MenuInst } from 'naive-ui'
 import { h, nextTick, onMounted, ref, watch } from 'vue'
+import type { IMenuBuild } from '@yy-admin/common-apis'
 
 defineOptions({
   name: 'YySider',
@@ -21,8 +22,12 @@ function handleToggleMenu() {
   })
 }
 
-function handleRenderIcon(options: any) {
+function handleRenderIcon(options: IMenuBuild) {
   return h('i', { class: `i-custom:${options.meta.icon}` })
+}
+
+function handleRenderLabel(options: IMenuBuild) {
+  return h('span', { class: 'text-truncate' }, options.meta.title)
 }
 
 watch(activePath, (val) => {
@@ -53,6 +58,7 @@ onMounted(() => {
       :collapsed-width="64"
       :collapsed-icon-size="22"
       :render-icon="handleRenderIcon"
+      :render-label="handleRenderLabel"
       :options="userStore.userMenuList"
     />
   </n-layout-sider>

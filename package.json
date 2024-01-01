@@ -12,12 +12,13 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@yy-web/request": "^1.5.9",
     "dayjs": "^1.11.10",
     "jsdom": "^23.0.1",
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.36.0",
     "pinia": "^2.1.7",
-    "vue": "^3.4.2",
+    "vue": "^3.4.3",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
@@ -35,6 +36,6 @@
     "type-fest": "^4.9.0",
     "typescript": "^5.3.3",
     "unocss": "^0.58.2",
-    "vitest": "^1.1.0"
+    "vitest": "^1.1.1"
   }
 }
