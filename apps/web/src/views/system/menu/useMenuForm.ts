@@ -20,10 +20,14 @@ export function useMenuForm(refreshTable: (pid?: number) => void) {
       'component',
       'componentName',
       'permission',
+      'cache',
+      'subCount',
     ] as const, {
+      cache: false,
       iFrame: false,
       hidden: false,
       menuSort: 1,
+      subCount: 0,
     }) as IMenuEntity
   }
 

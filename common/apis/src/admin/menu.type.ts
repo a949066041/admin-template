@@ -14,6 +14,7 @@ export interface IMenuEntity {
   hidden: boolean
   pid: number
   iFrame: boolean
+  subCount: number
 }
 
 export interface IMenuTree extends IMenuEntity, IBaseEntity, IRecordTree {}

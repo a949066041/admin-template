@@ -69,14 +69,14 @@ function handleLoadingAction() {
 </script>
 
 <template>
-  <div ref="section" mx-auto mt20vh rounded-10 w-900px overflow-hidden py8 px10 bg-light-2 shadow-xl>
+  <div ref="section" mx-auto mt20vh rounded-10 w-900px overflow-hidden py8 px10 bg-light-2 shadow-xl dark:bg-dark-2>
     <section flex h-400px>
       <img src="./login.png" class=" w-1/2">
       <n-form
         ref="form" class="flex flex-col justify-evenly  !ml-4  w-1/2 px-4"
         label-align="top" layout="vertical" :model="loginForm" :rules="loginRules" ml5 flex-1 @submit="handleLoadingAction"
       >
-        <h1 mb0>
+        <h1 mb0 class=" dark:text-light-2">
           用户登录
         </h1>
         <n-form-item label="用户名" prop="username">
