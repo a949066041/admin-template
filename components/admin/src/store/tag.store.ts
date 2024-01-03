@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, nextTick, ref } from 'vue'
 
-const MAX_KEEP = 10
+const MAX_KEEP = 100
 
 export interface IRouteTag {
   path: string

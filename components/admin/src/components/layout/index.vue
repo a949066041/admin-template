@@ -20,22 +20,24 @@ watch(route, (val) => {
 </script>
 
 <template>
-  <n-layout>
+  <n-layout class=" overflow-hidden">
     <YyHeader />
     <n-layout has-sider>
       <YySider />
       <n-layout-content>
-        <RouteTags />
-        <div class=" overflow-hidden p4">
-          <router-view v-if="!tagStore.refreshing" v-slot="{ Component }">
-            <transition>
-              <keep-alive :include="tagStore.keepAliveNames">
-                <component :is="Component" />
-              </keep-alive>
-            </transition>
-          </router-view>
+        <div class=" h-full overflow-hidden flex flex-col">
+          <RouteTags />
+          <div class=" overflow-auto p4 flex-1 box-border">
+            <router-view v-if="!tagStore.refreshing" v-slot="{ Component }">
+              <transition>
+                <keep-alive :include="tagStore.keepAliveNames">
+                  <component :is="Component" />
+                </keep-alive>
+              </transition>
+            </router-view>
+          </div>
+          <n-layout-footer>©2023 Created by 洋洋得意</n-layout-footer>
         </div>
-        <n-layout-footer>©2023 Created by 洋洋得意</n-layout-footer>
       </n-layout-content>
     </n-layout>
   </n-layout>
