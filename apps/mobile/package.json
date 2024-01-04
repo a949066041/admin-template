@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@yy-admin/config-vite-app": "workspace:^",
-    "vant": "^4.8.1"
+    "vant": "^4.8.2"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",

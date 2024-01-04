@@ -47,11 +47,17 @@ function handleLoadPage() {
   MonitorApi.getInfo().then((res) => {
     pageInfo.value = res
 
-    cpuData.value[cpuData.value.length >= 10 ? 'shift' : 'push']([res.time, Number.parseFloat(res.cpu.used)])
-    memoryData.value[memoryData.value.length >= 10 ? 'shift' : 'push']([res.time, Number.parseFloat(res.memory.usageRate)])
+    if (cpuData.value.length >= 10)
+      cpuData.value.shift()
 
-    cpuCharts.value.render(lineOption(cpuData.value, { max: 100 }))
-    memoryCharts.value.render(lineOption(memoryData.value, { max: 100 }))
+    if (memoryData.value.length >= 10)
+      memoryData.value.shift()
+
+    cpuData.value.push([res.time, Number.parseFloat(res.cpu.used)])
+    memoryData.value.push([res.time, Number.parseFloat(res.memory.usageRate)])
+
+    cpuCharts.value?.render(lineOption(cpuData.value, { max: 100 }))
+    memoryCharts.value?.render(lineOption(memoryData.value, { max: 100 }))
   }).finally(() => toggleLoading(false))
 }
 
