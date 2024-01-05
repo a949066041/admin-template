@@ -9,9 +9,11 @@ import { useTable } from '@yy-web/business-use'
 import { createColumn as cT } from '@yy-admin/components-naive'
 import type { YyTableColumns } from '@yy-admin/components-naive'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import { useToggle } from '@vueuse/core'
+import { ref } from 'vue'
 
 defineOptions({
-  name: 'Log',
+  name: 'ErrorLog',
 })
 
 const {
@@ -24,31 +26,37 @@ const {
   searchTable,
   resetTable,
 } = useTable<ILogsTableParams, ILogsEntity>({
-  apiAction: LogsApi.page,
+  apiAction: LogsApi.getErrorLog,
   delAction: LogsApi.del,
 })
-
+const errText = ref<string>('')
 function initJobForm() {
   return initFormObj(['username'] as const, {
     username: '',
   }) as ILogsEntity
 }
 
-const { handleInitForm } = useCurdForm<ILogsEntity>({
+const { visible, saveLoading, handleInitForm } = useCurdForm<ILogsEntity>({
   initFormFn: initJobForm,
   saveAction: LogsApi.save,
   putAction: LogsApi.put,
   findIdAction: LogsApi.findId,
   afterSave: searchTable,
 })
+function errorLogDetail(id: number) {
+  visible.value = true
+  LogsApi.getErrorLogDetail(id).then((res) => {
+    errText.value = res.exception
+  })
+}
 const columns = computed<YyTableColumns<keyof ILogsRecord>[]>(() => [
   cT('username', '用户名'),
   cT('requestIp', 'IP'),
   cT('address', 'IP来源'),
   cT('description', '描述'),
   cT('browser', '浏览器'),
-  cT('time', '请求耗时', true),
   cT('createTime', '创建时间'),
+  cT('action', '操作', { fixed: 'right' }, true),
 ])
 </script>
 
@@ -85,10 +93,18 @@ const columns = computed<YyTableColumns<keyof ILogsRecord>[]>(() => [
         </n-button>
       </n-space>
     </template>
-    <template #time="{ text }">
-      <n-tag type="info">
-        {{ text }}ms
-      </n-tag>
+    <template #action="{ record }">
+      <n-button quaternary type="primary" @click="errorLogDetail(record.id)">
+        查看详情
+      </n-button>
     </template>
+    <YyModal
+      v-model:visible="visible"
+      title="异常详情"
+      :confirm-loading="saveLoading"
+      @ok=" () => visible = false "
+    >
+      <span>{{ errText }}</span>
+    </YyModal>
   </YyTable>
 </template>
