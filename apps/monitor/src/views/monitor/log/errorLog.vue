@@ -29,7 +29,7 @@ const {
   apiAction: LogsApi.getErrorLog,
   delAction: LogsApi.del,
 })
-const errtxt = ref<string>('')
+const errText = ref<string>('')
 function initJobForm() {
   return initFormObj(['username'] as const, {
     username: '',
@@ -46,7 +46,7 @@ const { visible, saveLoading, handleSaveForm, handleInitForm } = useCurdForm<ILo
 function errorLogDetail(id: number) {
   visible.value = true
   LogsApi.getErrorLogDetail(id).then((res) => {
-    errtxt.value = res.exception
+    errText.value = res.exception
   })
 }
 const columns = computed<YyTableColumns<keyof ILogsRecord>[]>(() => [
@@ -104,7 +104,7 @@ const columns = computed<YyTableColumns<keyof ILogsRecord>[]>(() => [
       :confirm-loading="saveLoading"
       @ok="handleSaveForm"
     >
-      <span>{{ errtxt }}</span>
+      <span>{{ errText }}</span>
     </YyModal>
   </YyTable>
 </template>
