@@ -1,5 +1,5 @@
 import type { Router } from 'vue-router'
-import type { MenuList } from '@yy-admin/common-apis'
+import type { IMenuBuild } from '@yy-admin/common-apis'
 
 export type AsyncRouters = Record<string, (() => Promise<unknown>) | unknown>
 
@@ -12,39 +12,34 @@ export function withSrcViewModules(routers: AsyncRouters) {
 
 export function addWebRouter(
   router: Router,
-  menuList: MenuList[],
+  menuList: IMenuBuild[],
   routerModules?: AsyncRouters,
 ) {
   const realRouter = registerRouter(menuList, [], routerModules || {})
-  const renderRouter = registerRouter(menuList, [], {}, true)
   realRouter.forEach((item) => {
     router.addRoute(item as any)
   })
-  return renderRouter
+  return realRouter
 }
 
 function registerRouter(
-  menuList: MenuList[],
+  menuList: IMenuBuild[],
   parentPath = [] as string[],
   mathLayout: Record<string, any> = {},
-  delComponent = false,
-): MenuList[] {
+): IMenuBuild[] {
   return menuList.map((item) => {
     const path = parentPath.concat(item.path).join('/')
     const baseRoute = {
       key: path,
       ...item,
-      label: item.meta.title,
-      title: item.meta.title,
       path,
-      name: delComponent ? item.meta.title : item.name,
+      name: item.name,
       meta: { ...item.meta, key: path },
       component: mathLayout[item.component],
       children: item.children
-        ? registerRouter(item.children as MenuList[], parentPath.concat(item.path), mathLayout, delComponent)
+        ? registerRouter(item.children as IMenuBuild[], parentPath.concat(item.path), mathLayout)
         : null,
     }
-    delComponent && delete baseRoute.component
     return baseRoute
-  }) as MenuList[]
+  }) as IMenuBuild[]
 }

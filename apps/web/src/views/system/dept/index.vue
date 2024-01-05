@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
 import { createColumn as cT } from '@yy-admin/components-naive'
-import { YyDictSelect } from '@yy-admin/components-admin'
+import { YyDictSelect, useLazyTableTree } from '@yy-admin/components-admin'
 import { DeptApi } from '@yy-admin/common-apis'
 import type { IDeptEntity, IDeptTableParams, IDeptTreeRecord } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
@@ -37,29 +37,33 @@ const columns = computed<YyTableColumns<keyof IDeptTreeRecord>[]>(() => ([
   cT('action', '操作', true),
 ]))
 
+const { handleRefreshLoadTree, openKeys, lazyLoad, renderKeys } = useLazyTableTree<IDeptTreeRecord>({
+  onLoad(row: IDeptTreeRecord) {
+    return new Promise<IDeptTreeRecord[]>((resolve) => {
+      DeptApi.pageTree({ pid: row.id }).then((res) => {
+        row.children = res.map(item => ({ ...item, parent: row }))
+        resolve(res)
+      })
+    })
+  },
+  onLoadRoot: getTable,
+})
+
 function handleUpdateEnabled(entity: IDeptTreeRecord) {
   confirmTable(
     `确认要${entity.enabled ? '禁用' : '启用'}部门吗？`,
     () => DeptApi.put(omit({ ...entity, enabled: !entity.enabled, id: entity.id }, ['children', 'parent'])).then(() => {
-      entity.parent ? onLoad(entity.parent) : getTable()
+      handleRefreshLoadTree(entity.pid)
     }),
   )
 }
 
-function onLoad(row: IDeptTreeRecord) {
-  return new Promise<void>((resolve) => {
-    DeptApi.pageTree({ pid: row.id }).then((res) => {
-      row.children = res.map(item => ({ ...item, parent: row }))
-      resolve()
-    })
-  })
-}
-
 const { triggerDeptTree, deptTreeData, handleLazyDept } = useDeptTree()
 function initDeptForm() {
-  return initFormObj(['name', 'deptSort', 'enabled', 'pid'] as const, {
+  return initFormObj(['name', 'deptSort', 'enabled', 'pid', 'subCount'] as const, {
     enabled: true,
     deptSort: 999,
+    subCount: 0,
   }) as IDeptEntity
 }
 const rules = ref<NaiveFormRules<IDeptEntity>>({
@@ -85,7 +89,9 @@ const {
   saveAction: DeptApi.save,
   putAction: DeptApi.put,
   findIdAction: DeptApi.findId,
-  afterSave: searchTable,
+  afterSave(saveData: IDeptEntity) {
+    handleRefreshLoadTree(saveData.pid)
+  },
   afterDetail(result, isAdd) {
     triggerDeptTree(!!isAdd, result?.pid)
   },
@@ -95,10 +101,11 @@ const {
 <template>
   <YyTable
     v-bind="{ loading, dataSource }"
-    :row-key="(row: IDeptTreeRecord) => row.id"
+    v-model:expanded-row-keys="openKeys"
+    :row-key="renderKeys"
     :pager="false"
     :columns="columns"
-    @load="onLoad"
+    @load="lazyLoad"
   >
     <template #search>
       <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">

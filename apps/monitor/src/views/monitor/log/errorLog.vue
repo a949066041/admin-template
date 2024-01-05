@@ -36,7 +36,7 @@ function initJobForm() {
   }) as ILogsEntity
 }
 
-const { visible, saveLoading, handleSaveForm, handleInitForm } = useCurdForm<ILogsEntity>({
+const { visible, saveLoading, handleInitForm } = useCurdForm<ILogsEntity>({
   initFormFn: initJobForm,
   saveAction: LogsApi.save,
   putAction: LogsApi.put,
@@ -102,7 +102,7 @@ const columns = computed<YyTableColumns<keyof ILogsRecord>[]>(() => [
       v-model:visible="visible"
       title="异常详情"
       :confirm-loading="saveLoading"
-      @ok="handleSaveForm"
+      @ok=" () => visible = false "
     >
       <span>{{ errText }}</span>
     </YyModal>

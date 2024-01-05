@@ -1,0 +1,5 @@
+export { default as Login } from './login/index.vue'
+export { default as Layout } from './layout/index.vue'
+export { default as AppConfig } from './app-config/index.vue'
+export * from './app-config/config'
+export * from './dict'

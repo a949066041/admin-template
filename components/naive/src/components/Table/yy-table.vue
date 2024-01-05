@@ -1,7 +1,9 @@
 <script lang="ts" generic="T extends Record<string, any>" setup>
 import { useVModels } from '@vueuse/core'
-import { computed } from 'vue'
-import type { YyTableColumns } from '../../utils/table'
+import { computed, inject } from 'vue'
+import type { DataTableBaseColumn } from 'naive-ui'
+import type { INaiveConfig, YyTableColumns } from '../../utils'
+import { provideSymbol } from '../../utils'
 
 interface IYyTable {
   columns: YyTableColumns<string>[]
@@ -36,6 +38,8 @@ const slots = defineSlots<{
   [key: string]: (props: { record: T, $index: number, column: any, text: any }) => any
 }>()
 
+const { dict } = inject<INaiveConfig>(provideSymbol, {})
+
 const renderPageCount = computed(() => {
   if (props.total === undefined)
     return 1
@@ -45,14 +49,20 @@ const renderPageCount = computed(() => {
 
 const reColumns = computed(() => {
   return props.columns.map((item) => {
-    const baseItem = item
+    const baseItem: Omit<DataTableBaseColumn, 'key'> = {}
+
+    if (item.dict && dict)
+      baseItem.render = row => dict(item.dict!, row[`${item.key}`] as string)
 
     if (item.renderSlot) {
       baseItem.render = (row, index) =>
         slots[item.key]?.({ record: row as T, $index: index, column: item, text: row[`${item.key}`] })
     }
 
-    return baseItem
+    return {
+      ...item,
+      ...baseItem,
+    }
   })
 })
 

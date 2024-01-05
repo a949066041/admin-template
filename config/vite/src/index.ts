@@ -54,7 +54,7 @@ export default (_config?: ICommonViteConfig) => {
       Icons({
         autoInstall: true,
         customCollections: {
-          custom: FileSystemIconLoader(resolve('../../config/vite/src/svg')),
+          custom: FileSystemIconLoader(resolve('../../config/vite/src/svg'), svg => svg.replace('<svg ', '<svg fill="currentColor" ')),
         },
       }),
       config.report ? visualizer({

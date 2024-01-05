@@ -2,7 +2,8 @@
 import { useUserStore } from '@yy-admin/common-core'
 import { useRoute, useRouter } from 'vue-router'
 import type { MenuInst } from 'naive-ui'
-import { nextTick, onMounted, ref, watch } from 'vue'
+import { h, nextTick, onMounted, ref, watch } from 'vue'
+import type { IMenuBuild } from '@yy-admin/common-apis'
 
 defineOptions({
   name: 'YySider',
@@ -19,6 +20,14 @@ function handleToggleMenu() {
   nextTick(() => {
     menuInstRef.value?.showOption(activePath.value)
   })
+}
+
+function handleRenderIcon(options: IMenuBuild) {
+  return h('i', { class: `i-custom:${options.meta.icon}` })
+}
+
+function handleRenderLabel(options: IMenuBuild) {
+  return h('span', { class: 'text-truncate' }, options.meta.title)
 }
 
 watch(activePath, (val) => {
@@ -45,8 +54,11 @@ onMounted(() => {
     <n-menu
       ref="menuInstRef"
       v-model:value="activePath"
+      :icon-size="16"
       :collapsed-width="64"
       :collapsed-icon-size="22"
+      :render-icon="handleRenderIcon"
+      :render-label="handleRenderLabel"
       :options="userStore.userMenuList"
     />
   </n-layout-sider>

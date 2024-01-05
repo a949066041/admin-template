@@ -6,7 +6,11 @@ export type IColumnType<T extends string = string> = {
   width?: number | string
   children?: IColumnType[]
   renderSlot: boolean
-} & Omit<DataTableBaseColumn, 'key'>
+} & Omit<DataTableBaseColumn, 'key'> & ICustomConfig
+
+interface ICustomConfig {
+  dict?: string
+}
 
 function normalizeTableArgs(baseConfig: any, baseWidth: any) {
   let width = baseWidth
@@ -37,14 +41,14 @@ export function createColumn<T extends string>(
 export function createColumn<T extends string>(
   dataIndex: T,
   title: string,
-  config: Omit<DataTableBaseColumn, 'key'>,
+  config: Omit<DataTableBaseColumn, 'key'> & ICustomConfig,
   slots?: boolean
 ): IColumnType<T>
 
 export function createColumn<T extends string>(
   dataIndex: T,
   title: string,
-  config: Omit<DataTableBaseColumn, 'key'>,
+  config: Omit<DataTableBaseColumn, 'key'> | ICustomConfig,
   width: number,
   slots?: boolean
 ): IColumnType<T>

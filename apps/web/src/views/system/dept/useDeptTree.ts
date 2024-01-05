@@ -1,8 +1,5 @@
 import { DeptApi, type IDeptTreeRecord } from '@yy-admin/common-apis'
-
-function withDeptTree(tree: IDeptTreeRecord[]) {
-  return tree.map(item => ({ ...item, name: item.label, isLeaf: item.leaf, children: item.children }))
-}
+import { recursiveLeafArr } from '@yy-admin/common-utils'
 
 export function useDeptTree(init = false) {
   const deptTreeData = ref<IDeptTreeRecord[]>([])
@@ -10,7 +7,7 @@ export function useDeptTree(init = false) {
   function handleLazyDept(node: IDeptTreeRecord & any) {
     return new Promise<void>((resolve) => {
       DeptApi.getDeptTree({ pid: node.id! }).then((res) => {
-        node.children = withDeptTree(res.content)
+        node.children = recursiveLeafArr(res.content)
         resolve()
       })
     })
@@ -19,18 +16,18 @@ export function useDeptTree(init = false) {
   function triggerDeptTree(isAdd: boolean, pid?: number | null) {
     if (isAdd || !pid) {
       DeptApi.getDeptTree({}).then((res) => {
-        deptTreeData.value = withDeptTree(res.content)
+        deptTreeData.value = recursiveLeafArr(res.content)
       })
       return
     }
     DeptApi.superior(pid!).then((res) => {
-      deptTreeData.value = withDeptTree(res.content)
+      deptTreeData.value = recursiveLeafArr(res.content)
     })
   }
 
   watch(filterInput, async (val) => {
     const res = await DeptApi.getDeptTree(val ? { name: val } : {})
-    deptTreeData.value = withDeptTree(res.content)
+    deptTreeData.value = recursiveLeafArr(res.content)
   })
 
   init && triggerDeptTree(true)

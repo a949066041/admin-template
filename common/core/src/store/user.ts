@@ -1,14 +1,14 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { AuthApi, MenuApi } from '@yy-admin/common-apis'
-import type { LoginForm, MenuList, UserInfo } from '@yy-admin/common-apis'
+import type { IMenuBuild, LoginForm, UserInfo } from '@yy-admin/common-apis'
 import type { Router } from 'vue-router'
 import { tokenStorage } from '../utils/cookie'
 import { flatChildrenArr } from '../utils/array.util'
 
 export const useUserStore = defineStore('core-user', () => {
   const userInfo = ref<UserInfo | null>(null)
-  const userMenuList = ref<MenuList[]>([])
+  const userMenuList = ref<IMenuBuild[]>([])
   const flatMenuList = computed(() => flatChildrenArr(userMenuList.value))
   let currentRouter: Router | null = null
 
@@ -28,7 +28,7 @@ export const useUserStore = defineStore('core-user', () => {
     userInfo.value = user
   }
 
-  function setRenderMenuList(realMenu: MenuList[], router: Router) {
+  function setRenderMenuList(realMenu: IMenuBuild[], router: Router) {
     userMenuList.value = realMenu
     currentRouter = router
   }

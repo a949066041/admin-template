@@ -48,6 +48,13 @@ export default defineComponent({
       }
     })
 
+    const flatData = computed(() => {
+      return dictValue.value.reduce((prev, curr) => {
+        prev[curr.value] = curr.label
+        return prev
+      }, {} as Record<string, string>)
+    })
+
     const [loading, toggleLoading] = useToggle()
     watch(dictkeys, (val) => {
       if (val.length === 0)
@@ -62,7 +69,7 @@ export default defineComponent({
     }, { immediate: true })
 
     return () => (
-      slots?.default?.({ loading: loading.value, data: transformDict.value })
+      slots?.default?.({ loading: loading.value, data: transformDict.value, flatData: flatData.value })
     )
   },
 })

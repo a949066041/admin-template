@@ -91,10 +91,11 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
       if (!res) {
         toggleSaveLoading(true)
         const requestSave = isAdd.value ? saveAction : (putAction || saveAction)
-        requestSave({ ...formModel.value, [formKey]: editId.value, ...beforeSave?.(formModel.value) })
-          .then((result) => {
+        const saveData = { ...formModel.value, [formKey]: editId.value, ...beforeSave?.(formModel.value) }
+        requestSave(saveData)
+          .then(() => {
             toggleVisible(false)
-            afterSave && afterSave(result)
+            afterSave && afterSave(saveData)
           })
           .catch(() => toggleSaveLoading(false))
       }
@@ -102,6 +103,7 @@ export function useCurdForm<T extends Record<string, any>, Key extends string | 
   }
 
   return {
+    editId,
     formRef,
     formModel,
     modalTitle,

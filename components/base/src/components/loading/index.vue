@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-withDefaults(defineProps<{ size: string, background: string }>(), { size: '40px', background: '#41b883' })
+withDefaults(defineProps<{ size?: string, background?: string }>(), { size: '40px', background: '#41b883' })
 </script>
 
 <template>

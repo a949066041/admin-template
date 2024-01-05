@@ -29,10 +29,11 @@ service.interceptors.response.use((response: any) => {
     switch (error.response.status) {
       case 401:
         user.logout()
+        window.location.reload()
         break
       default: {
         const errorMsg = error.response.data.message
-        console.log(errorMsg)
+        window.errorMsg(errorMsg)
       }
     }
   }

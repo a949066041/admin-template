@@ -1,8 +1,8 @@
-import type { App } from 'vue'
+import { type App, h } from 'vue'
 import { createVNodeDirectives } from '@yy-admin/common-core'
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import Loading from './components/loading/index.vue'
+import { NSpin } from 'naive-ui'
 import DynamicVirtual from './components/dynamic-virtual/index.vue'
 import { LazyBox } from './components/lazy'
 
@@ -11,6 +11,6 @@ export * from './components/lazy'
 export default function install(app: App) {
   app.use(VueVirtualScroller)
   app.component(DynamicVirtual.name, DynamicVirtual)
-  app.directive('loading', createVNodeDirectives(Loading))
+  app.directive('loading', createVNodeDirectives(h(NSpin, { delay: 1000 })))
   app.component(LazyBox.name, LazyBox)
 }

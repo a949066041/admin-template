@@ -1,19 +1,22 @@
 {
   "name": "@yy-admin/components-admin",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "author": "",
   "license": "ISC",
   "keywords": [],
   "main": "src/index.ts",
+  "types": "src/index.ts",
   "dependencies": {
-    "@yy-web/business-use": "^2.0.6",
-    "@yy-web/request": "^1.5.9"
+    "@yy-web/business-use": "^2.0.7"
   },
   "devDependencies": {
-    "@vueuse/core": "^10.7.0",
-    "@vueuse/shared": "^10.7.0",
+    "@vueuse/core": "^10.7.1",
+    "@vueuse/shared": "^10.7.1",
     "@yy-admin/common-apis": "workspace:^",
-    "@yy-admin/common-core": "workspace:^"
+    "@yy-admin/common-core": "workspace:^",
+    "@yy-admin/components-base": "workspace:^",
+    "@yy-admin/components-naive": "workspace:^"
   }
 }
