@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.1",
-    "@iconify/json": "^2.2.164",
+    "@iconify/json": "^2.2.165",
     "@iconify/utils": "^2.1.14",
     "@types/lodash": "^4.14.202",
     "@types/lodash-es": "^4.17.12",
@@ -32,10 +32,10 @@
     "@yy-admin/common-utils": "workspace:^",
     "eslint": "^8.56.0",
     "taze": "^0.13.1",
-    "turbo": "^1.11.2",
+    "turbo": "^1.11.3",
     "type-fest": "^4.9.0",
     "typescript": "^5.3.3",
     "unocss": "^0.58.3",
-    "vitest": "^1.1.1"
+    "vitest": "^1.1.3"
   }
 }

@@ -16,7 +16,6 @@ defineOptions({
         <n-number-animation :from="0" :to="12039" />
       </n-gi>
     </n-grid>
-    <u-card />
 
     <i-solar:dollar-bold-duotone />
     <i-icon-park-outline:shopping />

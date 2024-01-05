@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useUserStore } from '@yy-admin/common-core'
+import { useConfigStore, useUserStore } from '@yy-admin/common-core'
 import { useRoute, useRouter } from 'vue-router'
 import type { MenuInst } from 'naive-ui'
 import { h, nextTick, onMounted, ref, watch } from 'vue'
@@ -11,6 +11,7 @@ defineOptions({
 
 const router = useRouter()
 const route = useRoute()
+const configStore = useConfigStore()
 
 const activePath = ref('')
 const userStore = useUserStore()
@@ -44,15 +45,21 @@ onMounted(() => {
 <template>
   <n-layout-sider
     bordered
-    show-trigger
     collapse-mode="width"
     :collapsed-width="64"
     :width="240"
     :native-scrollbar="false"
     class="h-100vh"
   >
+    <div class="logo h-15 leading-15  text-center flex items-center justify-center">
+      <img src="https://www.naiveui.com/assets/naivelogo-XQ1U1Js8.svg" class=" w-5 h-5 mr-2" alt="logo">
+      <div class=" text-lg">
+        YydyAdmin
+      </div>
+    </div>
     <n-menu
       ref="menuInstRef"
+      v-model:collapse="configStore.collapseMenu"
       v-model:value="activePath"
       :icon-size="16"
       :collapsed-width="64"

@@ -20,10 +20,10 @@ watch(route, (val) => {
 </script>
 
 <template>
-  <n-layout class=" overflow-hidden">
-    <YyHeader />
-    <n-layout has-sider>
-      <YySider />
+  <n-layout has-sider>
+    <YySider />
+    <n-layout>
+      <YyHeader />
       <n-layout-content>
         <div class=" h-full overflow-hidden flex flex-col">
           <RouteTags />
@@ -36,9 +36,9 @@ watch(route, (val) => {
               </transition>
             </router-view>
           </div>
-          <n-layout-footer>©2023 Created by 洋洋得意</n-layout-footer>
         </div>
       </n-layout-content>
+      <n-layout-footer>©2023 Created by 洋洋得意</n-layout-footer>
     </n-layout>
   </n-layout>
 </template>

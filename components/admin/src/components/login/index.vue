@@ -7,6 +7,7 @@ import { useUserStore } from '@yy-admin/common-core'
 import type { FormInst, FormItemRule } from 'naive-ui'
 import { encrypt } from '@yy-admin/common-utils'
 import { useRouter } from 'vue-router'
+import ThemeToggle from '../theme-toggle/index.vue'
 
 defineOptions({
   name: 'Login',
@@ -71,11 +72,21 @@ function handleLoadingAction() {
 <template>
   <div ref="section" mx-auto mt20vh rounded-10 w-900px overflow-hidden py8 px10 bg-light-2 shadow-xl dark:bg-dark-2>
     <section flex h-400px>
-      <img src="./login.png" class=" w-1/2">
+      <img src="./html-isometric.svg" class=" w-1/2 dark:bg-dark-1 bg-gray-1 rounded-12">
       <n-form
-        ref="form" class="flex flex-col justify-evenly  !ml-4  w-1/2 px-4"
+        ref="form" class="flex flex-col justify-evenly  !ml-4  w-1/2 px-4 relative"
         label-align="top" layout="vertical" :model="loginForm" :rules="loginRules" ml5 flex-1 @submit="handleLoadingAction"
       >
+        <ThemeToggle v-slot="{ toggle, isDark }">
+          <n-switch class=" absolute right-2 top-2" :value="isDark" @click="toggle">
+            <template #checked-icon>
+              <i-carbon-moon />
+            </template>
+            <template #unchecked-icon>
+              <i-carbon-sun />
+            </template>
+          </n-switch>
+        </ThemeToggle>
         <h1 mb0 class=" dark:text-light-2">
           用户登录
         </h1>

@@ -1,4 +1,4 @@
-import type { MenuList } from '@yy-admin/common-apis'
+import type { IMenuBuild } from '@yy-admin/common-apis'
 import { first } from 'lodash-es'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
@@ -14,7 +14,7 @@ export function useBreadcrumb() {
   const route = useRoute()
 
   const breadcrumbList = computed<IRouteBreadcrumbItem[]>(() => {
-    const parentRoute = first(route.matched) as unknown as MenuList
+    const parentRoute = first(route.matched) as unknown as IMenuBuild
     if (!parentRoute || route.path === '/')
       return [homePage]
     const parentRoutes = {
