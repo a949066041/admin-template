@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { UserApi } from '@yy-admin/common-apis'
 import { useTagStore } from '../../store/tag.store'
 import YyHeader from './components/header/index.vue'
 import YySider from './components/sider/index.vue'
@@ -13,6 +14,13 @@ const tagStore = useTagStore()
 
 const route = useRoute()
 const active = ref('')
+
+function test(e: Event) {
+  const element = e.currentTarget as HTMLInputElement
+  const fileList: FileList | null = element.files
+  if (fileList)
+    UserApi.updateAvatar(fileList[0])
+}
 
 watch(route, (val) => {
   active.value = val.meta.title as string
@@ -38,6 +46,7 @@ watch(route, (val) => {
           </div>
         </div>
       </n-layout-content>
+      <input type="file" @change="test">
       <n-layout-footer>©2023 Created by 洋洋得意</n-layout-footer>
     </n-layout>
   </n-layout>

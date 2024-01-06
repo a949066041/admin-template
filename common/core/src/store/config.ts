@@ -1,4 +1,4 @@
-import { createGlobalState, useColorMode, useStorage } from '@vueuse/core'
+import { createGlobalState, useColorMode, useEventListener, useStorage } from '@vueuse/core'
 import { computed } from 'vue'
 
 export const useConfigStore = createGlobalState(() => {
@@ -12,14 +12,19 @@ export const useConfigStore = createGlobalState(() => {
     },
   })
 
-  const collapseMenu = useStorage<boolean>('collapseMenu', false)
+  const collapseMenu = useStorage<boolean>('collapseMenu', false, localStorage)
   function handleSwitchTheme() {
     isDark.value = !isDark.value
   }
 
-  function handleToggleMenu() {
-    collapseMenu.value = !collapseMenu.value
+  function handleToggleMenu(status?: boolean) {
+    collapseMenu.value = typeof status === 'boolean' ? status : !collapseMenu.value
   }
+
+  useEventListener('resize', () => {
+    if (window.innerWidth < 960)
+      handleToggleMenu(true)
+  })
 
   return {
     handleSwitchTheme,

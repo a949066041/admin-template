@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as echarts from 'echarts'
-import { ref } from 'vue'
+import { onActivated, ref } from 'vue'
 import { useEventListener } from '@vueuse/core'
 
 defineOptions({
@@ -17,6 +17,9 @@ function render(options: echarts.EChartsCoreOption) {
   chartInstance.setOption(options)
 }
 
+onActivated(() => {
+  window.dispatchEvent(new Event('resize'))
+})
 useEventListener('resize', () => {
   if (chartInstance)
     chartInstance.resize()

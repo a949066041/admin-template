@@ -38,8 +38,9 @@ function registerRouter(
       component: mathLayout[item.component],
       children: item.children
         ? registerRouter(item.children as IMenuBuild[], parentPath.concat(item.path), mathLayout)
-        : null,
+        : undefined,
     }
+
     return baseRoute
   }) as IMenuBuild[]
 }
