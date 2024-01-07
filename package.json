@@ -14,7 +14,7 @@
   "dependencies": {
     "@yy-web/request": "^1.5.9",
     "dayjs": "^1.11.10",
-    "jsdom": "^23.0.1",
+    "jsdom": "^23.1.0",
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.36.0",
     "pinia": "^2.1.7",

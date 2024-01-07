@@ -35,7 +35,7 @@ watch(route, (val) => {
       <n-layout-content>
         <div class=" h-full overflow-hidden flex flex-col">
           <RouteTags />
-          <div class=" overflow-auto p4 flex-1 box-border">
+          <div class=" overflow-auto p4 flex-1 box-border relative">
             <router-view v-if="!tagStore.refreshing" v-slot="{ Component }">
               <transition>
                 <keep-alive :include="tagStore.keepAliveNames">

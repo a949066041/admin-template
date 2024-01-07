@@ -63,7 +63,7 @@ useEventListener('resize', setFixed)
     :class="isFixed && '!fixed z-3001'"
   >
     <div class="logo h-15 leading-15  text-center flex items-center justify-center">
-      <img src="https://www.naiveui.com/assets/naivelogo-XQ1U1Js8.svg" class=" w-5 h-5" alt="logo">
+      <img src="https://www.naiveui.com/assets/naivelogo-XQ1U1Js8.svg" class=" w-5 h-5" :class=" collapseMenu && 'w-6 h-6'" alt="logo">
       <div v-if="!collapseMenu" class=" text-lg ml-2">
         YydyAdmin
       </div>
@@ -74,7 +74,7 @@ useEventListener('resize', setFixed)
       :collapsed="collapseMenu"
       :icon-size="16"
       :collapsed-width="64"
-      :collapsed-icon-size="24"
+      :collapsed-icon-size="20"
       :render-icon="handleRenderIcon"
       :render-label="handleRenderLabel"
       :options="userStore.userMenuList"

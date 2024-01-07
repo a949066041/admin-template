@@ -6,6 +6,7 @@ defineOptions({
 
 <template>
   <div>
+    <GithubCorner class=" absolute right-0 top-0 z-1" />
     <n-grid>
       <n-gi :span="6">
         <i-solar:user-broken />

@@ -18,7 +18,6 @@
     "@yy-admin/components-naive": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
     "@yy-web/business-use": "^2.0.7",
-    "axios": "^1.6.4",
     "echarts": "^5.4.3"
   },
   "devDependencies": {
@@ -27,7 +26,6 @@
     "@vueuse/core": "^10.7.1",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",
-    "@yy-admin/components-antdv": "workspace:^",
     "@yy-admin/components-base": "workspace:^",
     "less": "^4.2.0",
     "npm-run-all": "^4.1.5",

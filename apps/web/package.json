@@ -18,7 +18,6 @@
     "@yy-admin/config-vite-app": "workspace:^",
     "@yy-admin/web-monitor": "workspace:^",
     "@yy-web/business-use": "^2.0.7",
-    "axios": "^1.6.4",
     "echarts": "^5.4.3"
   },
   "devDependencies": {

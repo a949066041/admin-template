@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useTitle } from '@vueuse/core'
+import { NThemeEditor } from 'naive-ui'
 import { useAppConfigStore } from './config'
 
 defineOptions({
@@ -12,23 +13,13 @@ useTitle(props.title)
 
 <template>
   <n-loading-bar-provider>
-    <n-config-provider v-bind="configProps" preflight-style-disabled>
-      <n-message-provider>
-        <!-- <n-watermark
-          content="洋洋得意"
-          cross
-          selectable
-          :font-size="16"
-          :line-height="16"
-          :width="192"
-          :height="128"
-          :x-offset="12"
-          :y-offset="28"
-          :rotate="-15"
-        > -->
-        <slot />
-        <!-- </n-watermark> -->
-      </n-message-provider>
-    </n-config-provider>
+    <NThemeEditor>
+      <n-config-provider v-bind="configProps" preflight-style-disabled>
+        <n-global-style />
+        <n-message-provider>
+          <slot />
+        </n-message-provider>
+      </n-config-provider>
+    </NThemeEditor>
   </n-loading-bar-provider>
 </template>
