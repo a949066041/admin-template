@@ -32,6 +32,9 @@ export default () => mergeConfig(commonViteConfig({
         rewrite: path => path.replace(/^\/api\//, ''),
         changeOrigin: true,
       },
+      '/avatar': {
+        target: 'http://110.41.161.81/',
+      },
     },
   },
   plugins: [

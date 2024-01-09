@@ -19,7 +19,7 @@ const userStore = useUserStore()
 const options = [
   {
     label: '个人中心',
-    key: '/user',
+    key: 'user',
   },
   {
     label: '退出登录',
@@ -27,13 +27,16 @@ const options = [
   },
 ]
 
-function handleSelectAction(key: string) {
+function handleSelectAction(key: typeof options[number]['key']) {
   if (key === 'logout') {
     userStore.logout().then(() => {
       message.success('退出成功！')
       router.push('/login')
     })
+    return
   }
+  if (key === 'user')
+    router.push('/ext/setting')
 }
 
 const { breadcrumbList } = useBreadcrumb()
@@ -64,17 +67,21 @@ function handleToMenu(breadcrumbItem: IRouteBreadcrumbItem) {
         </n-breadcrumb-item>
       </n-breadcrumb>
     </div>
-    <n-space class="flex items-center">
-      <div class=" text-xl cursor-pointer" :class=" isFullscreen ? 'i-dashicons:fullscreen-exit-alt' : 'i-lets-icons:full-alt'" @click="toggleFullscreen()" />
+    <div class="flex items-center">
+      <n-space>
+        <div class=" text-xl cursor-pointer" :class=" isFullscreen ? 'i-dashicons:fullscreen-exit-alt' : 'i-lets-icons:full-alt'" @click="toggleFullscreen()" />
 
-      <ThemeToggle v-slot="{ toggle }" class=" flex items-center">
-        <div i-carbon-sun dark:i-carbon-moon translate-y--1px class=" text-xl cursor-pointer" @click="toggle" />
-      </ThemeToggle>
-      <n-dropdown :options="options" @select="handleSelectAction">
-        <n-avatar class=" flex items-center">
-          {{ userStore.userInfo?.user.nickName }}
-        </n-avatar>
+        <ThemeToggle v-slot="{ toggle }" class=" flex items-center">
+          <div i-carbon-sun dark:i-carbon-moon translate-y--1px class=" text-xl cursor-pointer" @click="toggle" />
+        </ThemeToggle>
+      </n-space>
+      <n-divider vertical />
+      <n-dropdown :options="options" trigger="click" @select="handleSelectAction">
+        <div class="flex items-center cursor-pointer">
+          <n-avatar :src="userStore.avatar" round />
+          <i-ri:arrow-drop-down-line class=" text-xl" />
+        </div>
       </n-dropdown>
-    </n-space>
+    </div>
   </n-layout-header>
 </template>

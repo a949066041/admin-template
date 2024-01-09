@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
-import { Login } from './components'
+import { Layout, Login, UserSetting } from './components'
 
 export function createYyRouter(home?: RouteRecordRaw) {
   const baseRoutres = [
@@ -18,4 +18,21 @@ export function createYyRouter(home?: RouteRecordRaw) {
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: baseRoutres,
   })
+}
+
+export const loginRoute = {
+  key: 'ext',
+  path: '/ext',
+  name: 'Ext',
+  component: Layout,
+  hidden: true,
+  redirect: 'noredirect',
+  children: [
+    {
+      path: 'setting',
+      component: UserSetting,
+      name: '个人中心',
+      meta: { title: '个人中心' },
+    },
+  ],
 }

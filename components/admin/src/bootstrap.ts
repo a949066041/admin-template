@@ -12,7 +12,7 @@ import { h } from 'vue'
 import Layout from './components/layout/index.vue'
 import { useAppConfigStore } from './components/app-config/config'
 import 'dayjs/locale/zh-cn'
-import { createYyRouter } from './router'
+import { createYyRouter, loginRoute } from './router'
 
 dayjs.locale('zh-cn')
 export function setupAdmin(app: App, page: AsyncRouters, home?: RouteRecordRaw) {
@@ -71,4 +71,6 @@ export function setupAdmin(app: App, page: AsyncRouters, home?: RouteRecordRaw) 
     ...withSrcViewModules(page),
     Layout,
   })
+
+  router.addRoute(loginRoute)
 }

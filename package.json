@@ -14,16 +14,16 @@
   "dependencies": {
     "@yy-web/request": "^1.5.9",
     "dayjs": "^1.11.10",
-    "jsdom": "^23.1.0",
+    "jsdom": "^23.2.0",
     "lodash-es": "^4.17.21",
-    "naive-ui": "^2.36.0",
+    "naive-ui": "^2.37.3",
     "pinia": "^2.1.7",
-    "vue": "^3.4.5",
+    "vue": "^3.4.7",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.6.1",
-    "@iconify/json": "^2.2.165",
+    "@antfu/eslint-config": "^2.6.2",
+    "@iconify/json": "^2.2.166",
     "@iconify/utils": "^2.1.14",
     "@types/lodash": "^4.14.202",
     "@types/lodash-es": "^4.17.12",

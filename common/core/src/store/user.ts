@@ -10,17 +10,32 @@ export const useUserStore = defineStore('core-user', () => {
   const userInfo = ref<UserInfo | null>(null)
   const userMenuList = ref<IMenuBuild[]>([])
   const flatMenuList = computed(() => flatChildrenArr(userMenuList.value))
+  const userValue = computed(() => {
+    if (!userInfo.value)
+      return null
+
+    return userInfo.value.user
+  })
   let currentRouter: Router | null = null
+
+  const avatar = computed(() => {
+    if (!userInfo.value)
+      return ''
+
+    return `/avatar/${userInfo.value.user.avatarName}`
+  })
 
   async function loginAction(loginForm: LoginForm) {
     const { token } = await AuthApi.login(loginForm)
     tokenStorage.setValue(token)
   }
 
-  async function getUserInfo() {
+  async function getUserInfo(refreshUser: boolean = false) {
     const user = await AuthApi.info()
-    const menuList = await MenuApi.buildMenu()
     setUserInfo(user)
+    if (refreshUser)
+      return
+    const menuList = await MenuApi.buildMenu()
     return menuList
   }
 
@@ -46,6 +61,8 @@ export const useUserStore = defineStore('core-user', () => {
   }
 
   return {
+    userValue,
+    avatar,
     flatMenuList,
     userMenuList,
     userInfo,

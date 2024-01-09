@@ -94,7 +94,7 @@ const rules = ref<NaiveFormRules<ReturnType<typeof initUserForm>>>({
     {
       required: true,
       trigger: 'change',
-      validator(rule, value) {
+      validator(_rule, value) {
         if (!value)
           return new Error('请输入电话号码')
 

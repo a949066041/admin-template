@@ -31,3 +31,11 @@ export interface IUserTableParams {
   enabled: string
   deptId: number
 }
+
+export interface IResetPwdData {
+  newPass: string
+  oldPass: string
+  confirmPass: string
+}
+
+export type EditUserData = Pick<IUserEntity, 'nickName' | 'gender' | 'phone' | 'id'>
