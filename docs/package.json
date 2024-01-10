@@ -15,9 +15,7 @@
     "@guolao/vue-monaco-editor": "^1.4.1",
     "@ruabick/md-demo-plugins": "^0.3.3",
     "@ruabick/vitepress-demo-block": "^0.3.3",
-    "@yy-admin/components-antdv": "workspace:^",
     "@yy-admin/config-md-vue": "workspace:^",
-    "ant-design-vue": "4.0.6",
     "vite": "^5.0.11",
     "vitepress": "1.0.0-rc.24"
   }

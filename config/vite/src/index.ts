@@ -1,4 +1,6 @@
-import { resolve } from 'node:path'
+import path, { resolve } from 'node:path'
+
+import { URL, fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 
 import vue from '@vitejs/plugin-vue'
@@ -6,7 +8,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
-import { AntDesignVueResolver, NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -19,6 +21,9 @@ export interface ICommonViteConfig {
 }
 
 export default (_config?: ICommonViteConfig) => {
+  const __filename = fileURLToPath(import.meta.url)
+
+  const __dirname = path.dirname(__filename)
   const config = {
     resolvers: [],
     report: false,
@@ -46,7 +51,6 @@ export default (_config?: ICommonViteConfig) => {
           IconsResolver({
             customCollections: ['custom', 'custom2'],
           }),
-          AntDesignVueResolver({ importStyle: false }),
           NaiveUiResolver(),
           ...config.resolvers,
         ],

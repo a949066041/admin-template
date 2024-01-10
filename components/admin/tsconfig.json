@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ESNext",
     "jsx": "preserve",
     "lib": ["DOM.Iterable", "Dom", "ESNext"],
     "useDefineForClassFields": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "strict": true,
     "outDir": "dist",

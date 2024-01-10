@@ -23,8 +23,6 @@ export default (options: LibConfigOption) => mergeConfig(commonViteConfig({
     rollupOptions: {
       external: [
         'vue',
-        'ant-design-vue',
-        'ant-design-vue/es',
         '@yy-admin/common-apis',
         '@yy-admin/common-core',
         '@yy-admin/common-utils',
@@ -37,8 +35,6 @@ export default (options: LibConfigOption) => mergeConfig(commonViteConfig({
         globals: {
           'naive-ui': 'naiveUi',
           'vue': 'Vue',
-          'ant-design-vue': 'antd',
-          'ant-design-vue/es': 'antd',
           '@yy-admin/common-apis': 'yy-admin-common-apis',
           '@yy-admin/common-core': 'yy-admin-common-core',
           '@yy-admin/common-utils': 'yy-admin-common-utils',
@@ -49,7 +45,7 @@ export default (options: LibConfigOption) => mergeConfig(commonViteConfig({
   },
   plugins: [
     dts({
-      rollupTypes: true,
+      rollupTypes: false,
     }),
   ],
   css: {

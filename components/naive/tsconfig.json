@@ -2,8 +2,10 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "composite": true,
-    "baseUrl": "."
+    "target": "ESNext",
+    "baseUrl": ".",
+    "module": "ESNext"
   },
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "./src/**/*.vue"],
   "exclude": ["src/**/__tests__/*"]
 }

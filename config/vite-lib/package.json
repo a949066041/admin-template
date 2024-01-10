@@ -1,17 +1,21 @@
 {
   "name": "@yy-admin/config-vite-lib",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "author": "",
   "license": "ISC",
   "keywords": [],
+  "exports": {
+    "import": "./dist/index.js"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.10.7",
+    "@types/node": "^20.10.8",
     "@types/rollup-plugin-visualizer": "^4.2.3",
     "@yy-admin/config-vite": "workspace:^",
     "autoprefixer": "^10.4.16",

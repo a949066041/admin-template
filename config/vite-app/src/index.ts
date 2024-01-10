@@ -2,11 +2,31 @@ import { defineConfig, mergeConfig } from 'vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import commonViteConfig from '@yy-admin/config-vite'
-import { YyAntdComponents } from './resolver-components'
+import type { ComponentResolver } from 'unplugin-vue-components/types'
+
+export function YyNaiveuiComponents(): ComponentResolver {
+  const customComponent = new Set([
+    'YySearch',
+    'YyTable',
+    'YyModal',
+    'YySelect',
+    'YyTreeSelect',
+    'YyRangeDatePicker',
+    'YyDatePicker',
+  ])
+
+  return {
+    type: 'component',
+    resolve(componentName: string) {
+      if (customComponent.has(componentName))
+        return { name: componentName, from: '@yy-admin/components-naive', sideEffects: '@yy-admin/components-naive/dist/style.css' }
+    },
+  }
+}
 
 export default () => mergeConfig(commonViteConfig({
   report: true,
-  resolvers: [VantResolver(), YyAntdComponents()],
+  resolvers: [VantResolver(), YyNaiveuiComponents()],
 }), defineConfig({
   build: {
     rollupOptions: {

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["ESNext"],
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "types": [
@@ -13,9 +13,12 @@
     "strictNullChecks": true,
     "declaration": true,
     "outDir": "dist",
+    "sourceMap": false,
     "esModuleInterop": true,
     "preserveSymlinks": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules"]
 }

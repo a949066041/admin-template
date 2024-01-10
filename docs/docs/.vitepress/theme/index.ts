@@ -2,9 +2,7 @@
 import { h } from 'vue'
 import Theme from 'vitepress/theme'
 import './style.css'
-import Antd from 'ant-design-vue'
 
-import { YySelect } from '@yy-admin/components-antdv'
 import 'uno.css'
 import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
 
@@ -19,8 +17,6 @@ export default {
   },
   enhanceApp({ app }) {
     app.component('YyDemo', YyDemo)
-    app.use(Antd)
-    app.component(YySelect.name, YySelect)
 
     app.use(VueMonacoEditorPlugin, {
       paths: {
