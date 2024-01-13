@@ -1,14 +1,14 @@
 import { createApp } from 'vue'
 import '@yy-admin/common-css'
+import 'uno.css'
 
 import { Layout, setupAdmin } from '@yy-admin/components-admin'
-import { pageList as monitorPageList } from '@yy-admin/web-monitor'
-import { pageList as systemPageList } from '@yy-admin/web-system'
+import { pageList } from './page'
 import App from './App.vue'
 
 const app = createApp(App)
 
-setupAdmin(app, { ...monitorPageList(), ...systemPageList() }, {
+setupAdmin(app, pageList(), {
   path: '/',
   name: 'about',
   component: Layout,
@@ -20,7 +20,7 @@ setupAdmin(app, { ...monitorPageList(), ...systemPageList() }, {
         title: '首页',
         affix: true,
       },
-      component: () => import('./dashboard.vue'),
+      component: () => import('./views/AboutView.vue'),
     },
   ],
 })

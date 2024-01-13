@@ -1,7 +1,10 @@
 {
-  "name": "web",
+  "name": "@yy-admin/web-system",
   "type": "module",
+  "version": "0.0.0",
   "private": true,
+  "main": "src/page.ts",
+  "types": "src/page.ts",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -10,17 +13,20 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@yy-admin/common-core": "workspace:^",
     "@yy-admin/components-admin": "workspace:^",
+    "@yy-admin/components-base": "workspace:^",
+    "@yy-admin/components-chart": "workspace:^",
+    "@yy-admin/components-naive": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
-    "@yy-admin/web-monitor": "workspace:^",
-    "echarts": "^5.4.3"
+    "@yy-web/business-use": "^2.0.7"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^20.11.0",
     "@vueuse/core": "^10.7.1",
+    "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",
-    "@yy-admin/web-system": "workspace:^",
     "less": "^4.2.0",
     "npm-run-all": "^4.1.5",
     "typescript": "~5.3.3",

@@ -35,7 +35,7 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.6.2
-        version: 2.6.2(@vue/compiler-sfc@3.4.7)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.2.0)
+        version: 2.6.2(@vue/compiler-sfc@3.4.13)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.2.0)
       '@iconify/json':
         specifier: ^2.2.168
         version: 2.2.168
@@ -162,7 +162,7 @@ importers:
         specifier: ^1.8.27
         version: 1.8.27(typescript@5.3.3)
 
-  apps/web:
+  apps/system:
     dependencies:
       '@yy-admin/common-core':
         specifier: workspace:^
@@ -170,27 +170,21 @@ importers:
       '@yy-admin/components-admin':
         specifier: workspace:^
         version: link:../../components/admin
+      '@yy-admin/components-base':
+        specifier: workspace:^
+        version: link:../../components/base
       '@yy-admin/components-chart':
         specifier: workspace:^
         version: link:../../components/chart
       '@yy-admin/components-naive':
         specifier: workspace:^
         version: link:../../components/naive
-      '@yy-admin/components-three':
-        specifier: workspace:^
-        version: link:../../components/threejs
       '@yy-admin/config-vite-app':
         specifier: workspace:^
         version: link:../../config/vite-app
-      '@yy-admin/web-monitor':
-        specifier: workspace:^
-        version: link:../monitor
       '@yy-web/business-use':
         specifier: ^2.0.7
         version: 2.0.7(typescript@5.3.3)
-      echarts:
-        specifier: ^5.4.3
-        version: 5.4.3
     devDependencies:
       '@tsconfig/node18':
         specifier: ^18.2.2
@@ -207,9 +201,52 @@ importers:
       '@yy-admin/common-css':
         specifier: workspace:^
         version: link:../../common/css
-      '@yy-admin/components-base':
+      less:
+        specifier: ^4.2.0
+        version: 4.2.0
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
+      typescript:
+        specifier: ~5.3.3
+        version: 5.3.3
+      vite:
+        specifier: ^5.0.11
+        version: 5.0.11(@types/node@20.11.0)(less@4.2.0)
+      vue-tsc:
+        specifier: ^1.8.27
+        version: 1.8.27(typescript@5.3.3)
+
+  apps/web:
+    dependencies:
+      '@yy-admin/components-admin':
         specifier: workspace:^
-        version: link:../../components/base
+        version: link:../../components/admin
+      '@yy-admin/config-vite-app':
+        specifier: workspace:^
+        version: link:../../config/vite-app
+      '@yy-admin/web-monitor':
+        specifier: workspace:^
+        version: link:../monitor
+      echarts:
+        specifier: ^5.4.3
+        version: 5.4.3
+    devDependencies:
+      '@tsconfig/node18':
+        specifier: ^18.2.2
+        version: 18.2.2
+      '@types/node':
+        specifier: ^20.11.0
+        version: 20.11.0
+      '@vueuse/core':
+        specifier: ^10.7.1
+        version: 10.7.1(vue@3.4.13)
+      '@yy-admin/common-css':
+        specifier: workspace:^
+        version: link:../../common/css
+      '@yy-admin/web-system':
+        specifier: workspace:^
+        version: link:../system
       less:
         specifier: ^4.2.0
         version: 4.2.0
@@ -415,7 +452,7 @@ importers:
         version: 0.17.3
       unplugin-icons:
         specifier: ^0.18.2
-        version: 0.18.2(@vue/compiler-sfc@3.4.7)
+        version: 0.18.2(@vue/compiler-sfc@3.4.13)
       unplugin-vue-components:
         specifier: ^0.26.0
         version: 0.26.0(vue@3.4.13)
@@ -679,7 +716,7 @@ packages:
       '@jridgewell/trace-mapping': 0.3.20
     dev: true
 
-  /@antfu/eslint-config@2.6.2(@vue/compiler-sfc@3.4.7)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.2.0):
+  /@antfu/eslint-config@2.6.2(@vue/compiler-sfc@3.4.13)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.2.0):
     resolution: {integrity: sha512-iHJtFrJLE0gc+oQGxe8I2vpXwhn2wAbz2kqunSPhiOt39yV6yuoE+NJt5nstzy0INKfjSL2teQKlr4g7E2bVhA==}
     hasBin: true
     peerDependencies:
@@ -733,7 +770,7 @@ packages:
       eslint-plugin-vitest: 0.3.20(@typescript-eslint/eslint-plugin@6.18.0)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.2.0)
       eslint-plugin-vue: 9.19.2(eslint@8.56.0)
       eslint-plugin-yml: 1.11.0(eslint@8.56.0)
-      eslint-processor-vue-blocks: 0.1.1(@vue/compiler-sfc@3.4.7)(eslint@8.56.0)
+      eslint-processor-vue-blocks: 0.1.1(@vue/compiler-sfc@3.4.13)(eslint@8.56.0)
       globals: 13.24.0
       jsonc-eslint-parser: 2.4.0
       local-pkg: 0.5.0
@@ -3260,20 +3297,6 @@ packages:
       source-map-js: 1.0.2
     dev: false
 
-  /@vue/compiler-sfc@3.4.7:
-    resolution: {integrity: sha512-Gec6CLkReVswDYjQFq79O5rktri4R7TsD/VPCiUoJw40JhNNxaNJJa8mrQrWoJluW4ETy6QN0NUyC/JO77OCOw==}
-    dependencies:
-      '@babel/parser': 7.23.6
-      '@vue/compiler-core': 3.4.7
-      '@vue/compiler-dom': 3.4.7
-      '@vue/compiler-ssr': 3.4.7
-      '@vue/shared': 3.4.7
-      estree-walker: 2.0.2
-      magic-string: 0.30.5
-      postcss: 8.4.32
-      source-map-js: 1.0.2
-    dev: true
-
   /@vue/compiler-ssr@3.3.8:
     resolution: {integrity: sha512-hXCqQL/15kMVDBuoBYpUnSYT8doDNwsjvm3jTefnXr+ytn294ySnT8NlsFHmTgKNjwpuFy7XVV8yTeLtNl/P6w==}
     dependencies:
@@ -3293,13 +3316,6 @@ packages:
       '@vue/compiler-dom': 3.4.3
       '@vue/shared': 3.4.3
     dev: false
-
-  /@vue/compiler-ssr@3.4.7:
-    resolution: {integrity: sha512-PvYeSOvnCkST5mGS0TLwEn5w+4GavtEn6adcq8AspbHaIr+mId5hp7cG3ASy3iy8b+LuXEG2/QaV/nj5BQ/Aww==}
-    dependencies:
-      '@vue/compiler-dom': 3.4.7
-      '@vue/shared': 3.4.7
-    dev: true
 
   /@vue/devtools-api@6.5.1:
     resolution: {integrity: sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==}
@@ -5263,13 +5279,13 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-processor-vue-blocks@0.1.1(@vue/compiler-sfc@3.4.7)(eslint@8.56.0):
+  /eslint-processor-vue-blocks@0.1.1(@vue/compiler-sfc@3.4.13)(eslint@8.56.0):
     resolution: {integrity: sha512-9+dU5lU881log570oBwpelaJmOfOzSniben7IWEDRYQPPWwlvaV7NhOtsTuUWDqpYT+dtKKWPsgz4OkOi+aZnA==}
     peerDependencies:
       '@vue/compiler-sfc': ^3.3.0
       eslint: ^8.50.0
     dependencies:
-      '@vue/compiler-sfc': 3.4.7
+      '@vue/compiler-sfc': 3.4.13
       eslint: 8.56.0
     dev: true
 
@@ -8650,7 +8666,7 @@ packages:
       - rollup
     dev: true
 
-  /unplugin-icons@0.18.2(@vue/compiler-sfc@3.4.7):
+  /unplugin-icons@0.18.2(@vue/compiler-sfc@3.4.13):
     resolution: {integrity: sha512-OgZoIJHGubeJmc3KePMOy62ovtxPEJfNMlr5tU+1ZqHGpSXubg3fnqq28VPvLL0D5vKj2PRCJF9tVGbQ7vBXJQ==}
     peerDependencies:
       '@svgr/core': '>=7.0.0'
@@ -8673,7 +8689,7 @@ packages:
       '@antfu/install-pkg': 0.3.1
       '@antfu/utils': 0.7.7
       '@iconify/utils': 2.1.14
-      '@vue/compiler-sfc': 3.4.7
+      '@vue/compiler-sfc': 3.4.13
       debug: 4.3.4
       kolorist: 1.8.0
       local-pkg: 0.5.0

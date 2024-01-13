@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { defineConfig, mergeConfig } from 'vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import VueDevTools from 'vite-plugin-vue-devtools'
