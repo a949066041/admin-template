@@ -12,6 +12,7 @@
     "vitest.config.*",
     "cypress.config.*",
     "nightwatch.conf.*",
-    "playwright.config.*"
+    "playwright.config.*",
+    "components.d.ts", "auto-imports.d.ts"
   ]
 }

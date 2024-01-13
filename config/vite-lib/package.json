@@ -15,7 +15,7 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.10.8",
+    "@types/node": "^20.11.0",
     "@types/rollup-plugin-visualizer": "^4.2.3",
     "@yy-admin/config-vite": "workspace:^",
     "autoprefixer": "^10.4.16",

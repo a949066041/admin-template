@@ -8,6 +8,6 @@
     },
     "noEmit": true
   },
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "./components.d.ts", "./auto-imports.d.ts"],
   "exclude": ["src/**/__tests__/*"]
 }
