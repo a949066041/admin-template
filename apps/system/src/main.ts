@@ -3,12 +3,12 @@ import '@yy-admin/common-css'
 import 'uno.css'
 
 import { Layout, setupAdmin } from '@yy-admin/components-admin'
-import { pageList } from './page'
+import { systemPageList } from './page'
 import App from './App.vue'
 
 const app = createApp(App)
 
-setupAdmin(app, pageList(), {
+setupAdmin(app, systemPageList(), {
   path: '/',
   name: 'about',
   component: Layout,

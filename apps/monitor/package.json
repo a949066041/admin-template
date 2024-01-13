@@ -1,5 +1,6 @@
 {
   "name": "@yy-admin/web-monitor",
+  "type": "module",
   "version": "0.0.0",
   "private": true,
   "main": "src/page.ts",

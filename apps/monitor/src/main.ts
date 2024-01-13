@@ -4,10 +4,11 @@ import 'uno.css'
 
 import { Layout, setupAdmin } from '@yy-admin/components-admin'
 import App from './App.vue'
+import { monitorPageList } from './page'
 
 const app = createApp(App)
 
-setupAdmin(app, import.meta.glob('@/views/**/*.vue'), {
+setupAdmin(app, monitorPageList(), {
   path: '/',
   name: 'about',
   component: Layout,
@@ -19,7 +20,7 @@ setupAdmin(app, import.meta.glob('@/views/**/*.vue'), {
         title: '首页',
         affix: true,
       },
-      component: () => import('./views/monitor/online/index.vue'),
+      component: () => import('./views/online/index.vue'),
     },
   ],
 })

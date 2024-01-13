@@ -66,6 +66,7 @@ export function setupAdmin(app: App, page: AsyncRouters, home?: RouteRecordRaw) 
     },
   })
 
+  console.log(withSrcViewModules(page))
   // add router
   authRoute(router, ['/login'], {
     ...withSrcViewModules(page),
