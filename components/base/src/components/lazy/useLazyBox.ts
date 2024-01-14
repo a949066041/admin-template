@@ -26,7 +26,7 @@ export function useLazyBox<T extends Record<string, ILazyConf>>(lazyConfig: T, e
     }, {} as Record<keyof T, ILazyItemConf>)
   })
 
-  function handleRenderCb(key: keyof T) {
+  function handleRenderCb(key: string) {
     if (!lazyConfig[key])
       return
 

@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { EchartsView, pieOption } from '@yy-admin/components-chart'
+import { EchartsView, pieOption, smallLineOption } from '@yy-admin/components-chart'
 import { UserApi } from '@yy-admin/common-apis'
-import { useLazyBox } from '@yy-admin/components-base'
+import { useLazyBox, LazyBox } from '@yy-admin/components-base'
+import dayjs from 'dayjs'
 
 defineOptions({
   name: 'Home',
@@ -16,76 +17,103 @@ const chart4 = ref<InstanceType<typeof EchartsView>>()
 const { config, handleRenderCb } = useLazyBox({
   test: {
     service() {
-      return UserApi.findId(1)
+      return UserApi.page({ size: 1 })
     },
     render() {
-      chart1.value?.render(pieOption([
-        { value: Math.random() * 100, name: 'rose 1' },
-        { value: Math.random() * 100, name: 'rose 2' },
-        { value: Math.random() * 100, name: 'rose 3' },
-        { value: Math.random() * 100, name: 'rose 5' },
-        { value: Math.random() * 100, name: 'rose 6' },
-        { value: Math.random() * 100, name: 'rose 7' },
-        { value: Math.random() * 100, name: 'rose 4' },
-        { value: Math.random() * 100, name: 'rose 8' },
-      ]))
+      console.log(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse())
+      chart1.value?.render(smallLineOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
     },
   },
   test2: {
     service() {
-      return UserApi.findId(2)
+      return UserApi.page({ size: 1 })
     },
     render() {
-      chart2.value?.render(pieOption([
-        { value: Math.random() * 100, name: 'rose 1' },
-        { value: Math.random() * 100, name: 'rose 2' },
-        { value: Math.random() * 100, name: 'rose 3' },
-        { value: Math.random() * 100, name: 'rose 4' },
-        { value: Math.random() * 100, name: 'rose 5' },
-        { value: Math.random() * 100, name: 'rose 6' },
-        { value: Math.random() * 100, name: 'rose 7' },
-        { value: Math.random() * 100, name: 'rose 8' },
-      ]))
+      chart2.value?.render(smallLineOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
+      
     },
   },
   test3: {
     service() {
-      return UserApi.findId(3)
+      return UserApi.page({ size: 1 })
     },
     render() {
-      chart3.value?.render(pieOption([
-        { value: Math.random() * 100, name: 'rose 1' },
-        { value: Math.random() * 100, name: 'rose 2' },
-        { value: Math.random() * 100, name: 'rose 3' },
-        { value: Math.random() * 100, name: 'rose 4' },
-        { value: Math.random() * 100, name: 'rose 5' },
-        { value: Math.random() * 100, name: 'rose 6' },
-        { value: Math.random() * 100, name: 'rose 7' },
-        { value: Math.random() * 100, name: 'rose 8' },
-      ]))
+      chart3.value?.render(smallLineOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
     },
   },
   test4: {
     service() {
-      return UserApi.findId(4)
+      return UserApi.page({ size: 1 })
     },
     render() {
-      chart4.value?.render(pieOption([
-        { value: Math.random() * 100, name: 'rose 1' },
-        { value: Math.random() * 100, name: 'rose 2' },
-        { value: Math.random() * 100, name: 'rose 3' },
-        { value: Math.random() * 100, name: 'rose 4' },
-        { value: Math.random() * 100, name: 'rose 5' },
-        { value: Math.random() * 100, name: 'rose 6' },
-        { value: Math.random() * 100, name: 'rose 7' },
-        { value: Math.random() * 100, name: 'rose 8' },
-      ]))
+      chart4.value?.render(smallLineOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
+
     },
   },
 }, data)
 </script>
 
 <template>
+  <div>
+    <n-grid :x-gap="12">
+      <n-gi  :span="6">
+        <n-card  hoverable>
+          <div class=" flex justify-between">
+            <span class=" text-black op65">总销售额</span>
+            <i-ph:question-light />
+          </div>
+          <div class=" text-3xl">
+            <n-number-animation :from="0" :to="12039" show-separator />
+          </div>
+          <lazy-box :height="46" title="测试" v-bind="config.test" @render="handleRenderCb">
+            <EchartsView class=" h-200px w-full" ref="chart1" />
+          </lazy-box>
+        </n-card>
+      </n-gi>
+      <n-gi  :span="6">
+        <n-card  hoverable>
+          <div class=" flex justify-between">
+            <span class=" text-black op65">总销售额</span>
+            <i-ph:question-light />
+          </div>
+          <div class=" text-3xl">
+            <n-number-animation :from="0" :to="12039" show-separator />
+          </div>
+          <lazy-box :height="46" title="测试" v-bind="config.test2" @render="handleRenderCb">
+            <EchartsView class=" h-200px w-full" ref="chart2" />
+          </lazy-box>
+        </n-card>
+      </n-gi>
+      <n-gi  :span="6">
+        <n-card  hoverable>
+          <div class=" flex justify-between">
+            <span class=" text-black op65">总销售额</span>
+            <i-ph:question-light />
+          </div>
+          <div class=" text-3xl">
+            <n-number-animation :from="0" :to="12039" show-separator />
+          </div>
+          <lazy-box :height="46" title="测试" v-bind="config.test3" @render="handleRenderCb">
+            <EchartsView class=" h-200px w-full" ref="chart3" />
+          </lazy-box>
+        </n-card>
+      </n-gi>
+      <n-gi  :span="6">
+        <n-card  hoverable>
+          <div class=" flex justify-between">
+            <span class=" text-black op65">总销售额</span>
+            <i-ph:question-light />
+          </div>
+          <div class=" text-3xl">
+            <n-number-animation :from="0" :to="12039" show-separator />
+          </div>
+          <lazy-box :height="46" title="测试" v-bind="config.test4" @render="handleRenderCb">
+            <EchartsView class=" h-200px w-full" ref="chart4" />
+          </lazy-box>
+        </n-card>
+      </n-gi>
+    </n-grid>
+  </div>
   <div class=" flex flex-col h-full overflow-hidden">
     <n-button
       :key="1"
@@ -93,29 +121,5 @@ const { config, handleRenderCb } = useLazyBox({
     >
       test
     </n-button>
-    <div class=" flex-1 overflow-hidden">
-      <n-grid :x-gap="20">
-        <n-gi :span="12">
-          <lazy-box :height="800" title="测试" v-bind="config.test" @render="handleRenderCb">
-            <EchartsView ref="chart1" />
-          </lazy-box>
-        </n-gi>
-        <n-gi :span="12">
-          <lazy-box :height="800" title="测试" v-bind="config.test2" @render="handleRenderCb">
-            <EchartsView ref="chart2" />
-          </lazy-box>
-        </n-gi>
-        <n-gi :span="12">
-          <lazy-box :height="800" title="测试" v-bind="config.test3" @render="handleRenderCb">
-            <EchartsView ref="chart3" />
-          </lazy-box>
-        </n-gi>
-        <n-gi :span="12">
-          <lazy-box :height="800" title="测试" v-bind="config.test4" @render="handleRenderCb">
-            <EchartsView ref="chart4" />
-          </lazy-box>
-        </n-gi>
-      </n-grid>
-    </div>
   </div>
 </template>

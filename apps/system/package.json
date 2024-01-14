@@ -24,7 +24,6 @@
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^20.11.0",
-    "@vueuse/core": "^10.7.1",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",
     "less": "^4.2.0",

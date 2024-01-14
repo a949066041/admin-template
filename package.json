@@ -6,12 +6,14 @@
   "license": "ISC",
   "keywords": [],
   "scripts": {
+    "build:app": "pnpm --filter @yy-admin/app-main build-only",
     "prepare": "turbo prepare:build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest"
   },
   "dependencies": {
+    "@vueuse/core": "^10.7.2",
     "@yy-web/request": "^1.5.9",
     "dayjs": "^1.11.10",
     "jsdom": "^23.2.0",

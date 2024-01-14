@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useCurrentElement, useIntersectionObserver, useToggle } from '@vueuse/core'
 
 defineOptions({
@@ -12,14 +12,14 @@ const props = withDefaults(defineProps<{ title: string, height: string | number,
 })
 
 const emits = defineEmits<{
-  render: [string]
+  render: [name: string]
 }>()
 
 const contentHeight = computed(() => {
   return typeof props.height === 'number' ? `${props.height}px` : props.height
 })
 
-const content = useCurrentElement<HTMLElement>()
+const content = ref<HTMLElement>()
 const [render, toggleRender] = useToggle<boolean>()
 const [intersecting, toggleIntersecting] = useToggle()
 useIntersectionObserver(content, (entry) => {
@@ -39,11 +39,11 @@ watch(() => props.effectData, () => {
 </script>
 
 <template>
-  <div v-loading="loading" class="flex flex-col bg-white rounded dark:bg-gray-900">
-    <div class=" px-4 py-2 border-b border-b-solid border-b-orange-400">
+  <div v-loading="loading" ref="content" class="flex flex-col bg-white rounded dark:bg-gray-900">
+    <div class=" px-4 py-2 border-b ">
       {{ title }}
     </div>
-    <div class="overflow-hidden box-border p-2" :style="{ height: contentHeight }">
+    <div class="box-border" :style="{ height: contentHeight }">
       <slot />
     </div>
   </div>

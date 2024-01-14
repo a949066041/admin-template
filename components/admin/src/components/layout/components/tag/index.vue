@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { watchOnce } from '@vueuse/shared'
-import { watch } from 'vue'
+import { watch, onMounted } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
 import { useTagStore } from '../../../../store/tag.store'
@@ -27,7 +26,10 @@ function handleAddTag(routeInfo: RouteLocationNormalizedLoaded) {
   tagStore.addTag({ path: routeInfo.path, title: routeInfo.meta.title as string, affix: !!routeInfo.meta.affix, name: routeInfo.name as string })
 }
 
-watchOnce(() => route, handleAddTag, { immediate: true })
+onMounted(() => {
+  handleAddTag(route)
+})
+
 router.afterEach(handleAddTag)
 </script>
 

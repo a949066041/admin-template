@@ -10,9 +10,6 @@
   "scripts": {
     "build": "vite build"
   },
-  "dependencies": {
-    "@vueuse/core": "^10.7.1"
-  },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.0",

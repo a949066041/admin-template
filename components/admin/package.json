@@ -12,8 +12,6 @@
     "@yy-web/business-use": "^2.0.7"
   },
   "devDependencies": {
-    "@vueuse/core": "^10.7.1",
-    "@vueuse/shared": "^10.7.1",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-core": "workspace:^",
     "@yy-admin/components-base": "workspace:^",

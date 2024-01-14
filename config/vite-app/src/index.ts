@@ -59,6 +59,5 @@ export default () => mergeConfig(commonViteConfig({
     },
   },
   plugins: [
-    VueDevTools(),
   ],
 }))
