@@ -20,7 +20,7 @@ setupAdmin(app, systemPageList(), {
         title: '首页',
         affix: true,
       },
-      component: () => import('./views/AboutView.vue'),
+      component: () => import('./views/home-page.vue'),
     },
   ],
 })

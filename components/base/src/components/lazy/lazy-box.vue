@@ -40,9 +40,6 @@ watch(() => props.effectData, () => {
 
 <template>
   <div v-loading="loading" ref="content" class="flex flex-col bg-white rounded dark:bg-gray-900">
-    <div class=" px-4 py-2 border-b ">
-      {{ title }}
-    </div>
     <div class="box-border" :style="{ height: contentHeight }">
       <slot />
     </div>

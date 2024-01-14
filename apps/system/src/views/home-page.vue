@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { EchartsView, pieOption, smallLineOption } from '@yy-admin/components-chart'
+import { EchartsView, pieOption, smallLineOrBarOption } from '@yy-admin/components-chart'
 import { UserApi } from '@yy-admin/common-apis'
 import { useLazyBox, LazyBox } from '@yy-admin/components-base'
 import dayjs from 'dayjs'
@@ -21,7 +21,7 @@ const { config, handleRenderCb } = useLazyBox({
     },
     render() {
       console.log(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse())
-      chart1.value?.render(smallLineOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
+      chart1.value?.render(smallLineOrBarOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
     },
   },
   test2: {
@@ -29,8 +29,7 @@ const { config, handleRenderCb } = useLazyBox({
       return UserApi.page({ size: 1 })
     },
     render() {
-      chart2.value?.render(smallLineOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
-      
+      chart2.value?.render(smallLineOrBarOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse(), { type: 'bar' }))
     },
   },
   test3: {
@@ -38,7 +37,7 @@ const { config, handleRenderCb } = useLazyBox({
       return UserApi.page({ size: 1 })
     },
     render() {
-      chart3.value?.render(smallLineOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
+      chart3.value?.render(smallLineOrBarOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse(), { type: 'bar' }))
     },
   },
   test4: {
@@ -46,7 +45,7 @@ const { config, handleRenderCb } = useLazyBox({
       return UserApi.page({ size: 1 })
     },
     render() {
-      chart4.value?.render(smallLineOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
+      chart4.value?.render(smallLineOrBarOption(Array.from({ length: 30 }, (_, i) => ({ name: dayjs().subtract(i, 'day').format('YYYY-MM-DD'), value: Math.random() * 100 })).reverse()))
 
     },
   },

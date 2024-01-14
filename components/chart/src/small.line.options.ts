@@ -11,13 +11,20 @@ const gradientColor = new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
 }]);
 
 
-export interface ISmallLineData {
+export interface ISmallLineOrBarData {
   value: number
   name: string
 }
 
-export function smallLineOption(data: ISmallLineData[]) {
-  console.log(data)
+export interface ISmallLineOrBarOption {
+  type: 'line' | 'bar'
+}
+
+export function smallLineOrBarOption(data: ISmallLineOrBarData[], options: Partial<ISmallLineOrBarOption> = {}) {
+  options = {
+    type: 'line',
+    ...options
+  }
   return {
     color: [gradientColor],
     tooltip: {
@@ -63,7 +70,7 @@ export function smallLineOption(data: ISmallLineData[]) {
         data: data.map((item) => {
           return [item.name, item.value]
         }),
-        type: 'bar',
+        type: options.type,
         smooth: true,
         symbol: 'none',
         lineStyle: {
