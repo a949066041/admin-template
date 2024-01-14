@@ -27,14 +27,32 @@ jobs:
       run: pnpm run build:app
 
     - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@2.1.1
-      env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+      uses: easingthemes/ssh-deploy@main
+      with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "apps/web/dist"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-          # scp参数
-          ARGS: "-avzr --delete"
-          # 源⽬录
-          SOURCE: "./apps/web/dist"
+          EXCLUDE: "/dist/, /node_modules/"
+
+    # - name: Deploy to Server
+    #   uses: easingthemes/ssh-deploy@main
+    #   env:
+    #       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+    #       ARGS: "-rlgoDzvc -i --delete"
+    #       SOURCE: "dist/"
+    #       REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+    #       REMOTE_USER: ${{ secrets.REMOTE_USER }}
+    #       TARGET: ${{ secrets.REMOTE_TARGET }}
+    #       EXCLUDE: "/dist/, /node_modules/"
+          # SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          # REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          # REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          # TARGET: ${{ secrets.REMOTE_TARGET }}
+          # # scp参数
+          # ARGS: "-avzr --delete"
+          # # 源⽬录
+          # SOURCE: "./apps/web/dist"
         
