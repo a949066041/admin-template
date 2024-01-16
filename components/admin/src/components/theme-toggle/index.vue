@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Fragment, nextTick } from 'vue'
+import { nextTick } from 'vue'
 import { useConfigStore } from '@yy-admin/common-core'
 
 defineOptions({

@@ -1,15 +1,13 @@
 import type { EChartsOption } from 'echarts'
 import * as echarts from 'echarts'
 
-
 const gradientColor = new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
   offset: 0,
-  color: '#8ae88a' // 渐变起始颜色，浅绿色
+  color: '#8ae88a', // 渐变起始颜色，浅绿色
 }, {
   offset: 1,
-  color: '#5eb85e' // 渐变结束颜色，稍深一些的绿色
-}]);
-
+  color: '#5eb85e', // 渐变结束颜色，稍深一些的绿色
+}])
 
 export interface ISmallLineOrBarData {
   value: number
@@ -23,7 +21,7 @@ export interface ISmallLineOrBarOption {
 export function smallLineOrBarOption(data: ISmallLineOrBarData[], options: Partial<ISmallLineOrBarOption> = {}) {
   options = {
     type: 'line',
-    ...options
+    ...options,
   }
   return {
     color: [gradientColor],
@@ -35,35 +33,35 @@ export function smallLineOrBarOption(data: ISmallLineOrBarData[], options: Parti
       left: 0,
       right: 0,
       bottom: 0,
-      top: 0
+      top: 0,
     },
     xAxis: {
       type: 'category',
       boundaryGap: false,
       axisLine: {
-        show: false
+        show: false,
       },
       axisLabel: {
-        show: false
+        show: false,
       },
       axisTick: {
-        show: false
-      }
+        show: false,
+      },
     },
     yAxis: {
       type: 'value',
       splitLine: {
-        show: false
+        show: false,
       },
       axisLine: {
-        show: false
+        show: false,
       },
       axisLabel: {
-        show: false
+        show: false,
       },
       axisTick: {
-        show: false
-      }
+        show: false,
+      },
     },
     series: [
       {
@@ -76,12 +74,12 @@ export function smallLineOrBarOption(data: ISmallLineOrBarData[], options: Parti
         lineStyle: {
           color: gradientColor, // 使用渐变颜色
           width: 2, // 线条宽度
-          type: 'solid' // 线条类型
+          type: 'solid', // 线条类型
         },
         areaStyle: {
-          color: gradientColor
-        }
-      }
-    ]
+          color: gradientColor,
+        },
+      },
+    ],
   } as EChartsOption
 }

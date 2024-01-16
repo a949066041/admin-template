@@ -4,7 +4,7 @@ import type { ILogEntity } from '@yy-admin/common-apis'
 import { useTable } from '@yy-web/business-use'
 import { createColumn as cT } from '@yy-admin/components-naive'
 import type { YyTableColumns } from '@yy-admin/components-naive'
-import { computed, h } from 'vue'
+import { computed } from 'vue'
 
 defineOptions({
   name: 'UserLog',

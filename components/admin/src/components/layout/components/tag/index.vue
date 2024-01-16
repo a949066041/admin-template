@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { watch, onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
 import { useTagStore } from '../../../../store/tag.store'

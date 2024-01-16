@@ -1,5 +1,5 @@
 import { ApiInstance } from '../instance'
-import type { IMenuEntity, IMenuLazy, IMenuTreeRecord, MenuList } from './menu.type'
+import type { IMenuEntity, IMenuTreeRecord, MenuList } from './menu.type'
 
 class MenuApiInstance extends ApiInstance<IMenuEntity> {
   baseApi = '/api/menus'

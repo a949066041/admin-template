@@ -12,10 +12,9 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.11.0",
-    "@vue/compiler-core": "^3.4.13",
-    "@vue/runtime-core": "^3.4.13",
-    "@vue/runtime-dom": "^3.4.13",
+    "@vue/compiler-core": "^3.4.14",
+    "@vue/runtime-core": "^3.4.14",
+    "@vue/runtime-dom": "^3.4.14",
     "@yy-admin/config-vite-lib": "workspace:^",
     "fs-extra": "^11.2.0",
     "markdown-it": "^14.0.0",

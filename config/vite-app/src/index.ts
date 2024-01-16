@@ -1,7 +1,5 @@
-import { resolve } from 'node:path'
 import { defineConfig, mergeConfig } from 'vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
-import VueDevTools from 'vite-plugin-vue-devtools'
 import commonViteConfig from '@yy-admin/config-vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
 

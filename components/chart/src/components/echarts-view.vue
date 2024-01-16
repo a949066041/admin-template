@@ -1,25 +1,40 @@
 <script lang="ts" setup>
 import * as echarts from 'echarts'
-import { onActivated, ref } from 'vue'
-import { useEventListener } from '@vueuse/core'
+import { computed, onActivated, ref, watch } from 'vue'
+import { useColorMode, useEventListener } from '@vueuse/core'
 
 defineOptions({
   name: 'EchartsView',
 })
 
 const chartRef = ref<HTMLElement | null>(null)
+const mode = useColorMode()
+const renderChartTheme = computed(() => mode.value === 'dark' ? 'dark' : 'light')
 let chartInstance: echarts.ECharts | null = null
+let cacheOptions: echarts.EChartsCoreOption | null = null
 
 function render(options: echarts.EChartsCoreOption) {
   if (!chartInstance)
-    chartInstance = echarts.init(chartRef.value!)
+    chartInstance = echarts.init(chartRef.value!, renderChartTheme.value)
 
-  chartInstance.setOption(options)
+  cacheOptions = { ...options, backgroundColor: 'transparent' }
+  chartInstance.setOption(cacheOptions)
 }
+
+watch(renderChartTheme, () => {
+  if (chartInstance) {
+    chartInstance.dispose()
+    chartInstance = null
+  }
+
+  if (cacheOptions)
+    render(cacheOptions)
+})
 
 onActivated(() => {
   window.dispatchEvent(new Event('resize'))
 })
+
 useEventListener('resize', () => {
   if (chartInstance)
     chartInstance.resize()

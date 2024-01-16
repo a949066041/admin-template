@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
-import { useCurrentElement, useIntersectionObserver, useToggle } from '@vueuse/core'
+import { useIntersectionObserver, useToggle } from '@vueuse/core'
 
 defineOptions({
   name: 'LazyBox',
@@ -39,7 +39,7 @@ watch(() => props.effectData, () => {
 </script>
 
 <template>
-  <div v-loading="loading" ref="content" class="flex flex-col bg-white rounded dark:bg-gray-900">
+  <div ref="content" v-loading="loading" class="flex flex-col rounded ">
     <div class="box-border" :style="{ height: contentHeight }">
       <slot />
     </div>

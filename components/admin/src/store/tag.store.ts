@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, nextTick, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const MAX_KEEP = 100
 

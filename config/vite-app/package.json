@@ -12,7 +12,6 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
     "@yy-admin/config-vite": "workspace:^",
     "typescript": "^5.3.3",
     "unplugin-vue-components": "^0.26.0",
