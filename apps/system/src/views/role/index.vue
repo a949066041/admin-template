@@ -9,7 +9,7 @@ import MenuTree from './menu-tree.vue'
 import { useRoleMenu } from './useRoleMenu'
 
 defineOptions({
-  name: 'SystemRole',
+  name: 'Role',
 })
 
 const {

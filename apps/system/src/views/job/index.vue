@@ -6,9 +6,10 @@ import { createColumn as cT } from '@yy-admin/components-naive'
 import { YyDictSelect } from '@yy-admin/components-admin'
 import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import { computed, ref } from 'vue'
 
 defineOptions({
-  name: 'JobPage',
+  name: 'Job',
 })
 
 const {

@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import * as echarts from 'echarts'
 import { computed, onActivated, ref, watch } from 'vue'
-import { useColorMode, useEventListener } from '@vueuse/core'
+import { useColorMode, useEventListener, useMutationObserver, useResizeObserver } from '@vueuse/core'
 
 defineOptions({
   name: 'EchartsView',
 })
 
 const chartRef = ref<HTMLElement | null>(null)
+
 const mode = useColorMode()
 const renderChartTheme = computed(() => mode.value === 'dark' ? 'dark' : 'light')
 let chartInstance: echarts.ECharts | null = null
@@ -35,7 +36,7 @@ onActivated(() => {
   window.dispatchEvent(new Event('resize'))
 })
 
-useEventListener('resize', () => {
+useResizeObserver(chartRef, () => {
   if (chartInstance)
     chartInstance.resize()
 })

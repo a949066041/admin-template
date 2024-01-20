@@ -154,7 +154,7 @@ const columns = computed<YyTableColumns<keyof IUserRecord>[]>(() => [
         :columns="columns"
       >
         <template #search>
-          <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
+          <yy-search :model="searchForm" :loading="loading" @submit="searchTable" @search="searchTable" @reset="resetTable">
             <n-form-item>
               <n-input v-model:value="searchForm.blurry" placeholder="输入名称或者邮箱搜索" />
             </n-form-item>

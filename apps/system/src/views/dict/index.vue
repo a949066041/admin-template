@@ -9,7 +9,7 @@ import DictDetail from './dict-detail.vue'
 import { useDictAction } from './useDictAction'
 
 defineOptions({
-  name: 'DictPage',
+  name: 'Dict',
 })
 
 const { dictName, dictId, handleConfigDict } = useDictAction()

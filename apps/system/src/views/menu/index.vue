@@ -9,7 +9,8 @@ import { YyDictSelect, useLazyTableTree } from '@yy-admin/components-admin'
 import { useMenuForm } from './useMenuForm'
 
 defineOptions({
-  name: 'SystemMenu',
+  // eslint-disable-next-line vue/no-reserved-component-names
+  name: 'Menu',
 })
 
 const {

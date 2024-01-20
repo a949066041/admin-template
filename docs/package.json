@@ -16,7 +16,7 @@
     "@ruabick/md-demo-plugins": "^0.3.3",
     "@ruabick/vitepress-demo-block": "^0.3.3",
     "@yy-admin/config-md-vue": "workspace:^",
-    "vite": "^5.0.11",
+    "vite": "^5.0.12",
     "vitepress": "1.0.0-rc.24"
   }
 }

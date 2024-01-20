@@ -11,7 +11,7 @@ import { omit } from 'lodash-es'
 import { useDeptTree } from './useDeptTree'
 
 defineOptions({
-  name: 'DeptPage',
+  name: 'Dept',
 })
 
 const {

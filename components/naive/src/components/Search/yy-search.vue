@@ -3,6 +3,8 @@ defineOptions({
   name: 'YySearch',
 })
 
+withDefaults(defineProps<{ loading?: boolean }>(), { loading: false })
+
 const emit = defineEmits(['search', 'reset'])
 </script>
 
@@ -11,7 +13,7 @@ const emit = defineEmits(['search', 'reset'])
     <slot />
     <n-form-item>
       <n-space>
-        <n-button type="primary" @click="emit('search')">
+        <n-button type="primary" :loading="loading" @click="emit('search')">
           查询
         </n-button>
         <n-button @click="emit('reset')">

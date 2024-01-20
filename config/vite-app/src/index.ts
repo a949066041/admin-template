@@ -2,6 +2,7 @@ import { defineConfig, mergeConfig } from 'vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import commonViteConfig from '@yy-admin/config-vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 export function YyNaiveuiComponents(): ComponentResolver {
   const customComponent = new Set([
@@ -57,5 +58,6 @@ export default () => mergeConfig(commonViteConfig({
     },
   },
   plugins: [
+    VueDevTools(),
   ],
 }))
