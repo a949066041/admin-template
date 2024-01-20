@@ -31,7 +31,9 @@ export default (_config?: ICommonViteConfig) => {
   } as Required<ICommonViteConfig>
   return defineConfig({
     plugins: [
-      vue(),
+      vue({
+        customElement: true,
+      }),
       vueJsx(),
       UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
       AutoImport({
