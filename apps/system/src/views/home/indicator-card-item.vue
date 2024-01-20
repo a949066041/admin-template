@@ -7,7 +7,7 @@ withDefaults(defineProps<{ title: string, value: number, suffix?: string, prefix
 </script>
 
 <template>
-  <div class=" card-item__box">
+  <div class=" card-item">
     <div class=" flex justify-between">
       <span class=" op65">{{ title }}</span>
       <i-ph:question-light />
@@ -23,7 +23,7 @@ withDefaults(defineProps<{ title: string, value: number, suffix?: string, prefix
 </template>
 
 <style lang="less" scoped>
-.card-item__box {
+.card-item {
   @apply px-24px pt-20px pb-8px rounded-xl
     shadow-[0_1px_2px_0_rgba(0,0,0,0.03),0_1px_6px_-1px_rgba(0,0,0,0.02),0_2px_4px_0_rgba(0,0,0,0.02)]
     border
