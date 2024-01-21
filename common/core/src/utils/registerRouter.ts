@@ -34,6 +34,7 @@ function registerRouter(
       ...item,
       path,
       name: item.name,
+      show: !item.hidden,
       meta: { ...item.meta, key: path },
       component: mathLayout[item.component],
       children: item.children
