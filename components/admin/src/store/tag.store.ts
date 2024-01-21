@@ -11,7 +11,7 @@ export interface IRouteTag {
 }
 
 export const useTagStore = defineStore('admin-tag', () => {
-  const tagList = ref<IRouteTag[]>([])
+  const tagList = ref<IRouteTag[]>(Array.from({ length: 0 }, (_, i) => ({ path: `/${i}`, title: `标签${i}`, name: `tag${i}` })))
   const activeTag = ref<IRouteTag['path']>('')
   const refreshing = ref<string | null>(null)
   const renderList = computed(() => {

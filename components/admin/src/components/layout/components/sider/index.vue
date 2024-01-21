@@ -12,7 +12,7 @@ defineOptions({
 
 const router = useRouter()
 const route = useRoute()
-const { collapseMenu } = useConfigStore()
+const { collapseMenu, handleToggleMenu: handleToggleMenuCollapse } = useConfigStore()
 
 const activePath = ref('')
 const userStore = useUserStore()
@@ -81,6 +81,6 @@ useEventListener('resize', setFixed)
     />
   </n-layout-sider>
   <Teleport v-if="isFixed && !collapseMenu" to="body">
-    <div class="n-modal-mask z-3000" />
+    <div class="n-modal-mask z-3000" @click="handleToggleMenuCollapse(true)" />
   </Teleport>
 </template>
