@@ -29,7 +29,7 @@ watch(route, (val) => {
           <RouteTags />
           <div class=" overflow-auto p4 flex-1 box-border relative">
             <router-view v-if="!tagStore.refreshing" v-slot="{ Component }">
-              <transition name="fade-transform" mode="out-in" appear>
+              <transition name="fade-transform">
                 <keep-alive :include="tagStore.keepAliveNames">
                   <component :is="Component" :key="$route.path" />
                 </keep-alive>

@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue'
+import { nextTick, onMounted, ref, watch } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
 import { NTag } from 'naive-ui'
+import { useCurrentElement } from '@vueuse/core'
 import ScrollContent from '../../../scroll-content/index.vue'
 import { useTagStore } from '../../../../store/tag.store'
 import { useContextTag } from './useContextTag'
@@ -17,12 +18,23 @@ const {
   handleOpenMenu,
 } = useContextTag()
 
+const currentEl = useCurrentElement<HTMLElement>()
+const scrollContent = ref<InstanceType<typeof ScrollContent>>()
 const route = useRoute()
 const router = useRouter()
 watch(() => tagStore.activeTag, (tag) => {
   if (tag)
     router.push(tag)
+  handleScrollTag()
 })
+
+function handleScrollTag() {
+  // https://github.com/qingqingxuan/admin-work/blob/master/src/components/tabbar/index.vue
+  nextTick(() => {
+    const el = currentEl.value.querySelector(`[data-path="${route.path}"]`) as HTMLElement
+    el && scrollContent.value?.handleToX(el.offsetLeft)
+  })
+}
 
 function handleAddTag(routeInfo: RouteLocationNormalizedLoaded) {
   tagStore.addTag({ path: routeInfo.path, title: routeInfo.meta.title as string, affix: !!routeInfo.meta.affix, name: routeInfo.name as string })
@@ -40,10 +52,11 @@ router.afterEach(handleAddTag)
 </script>
 
 <template>
-  <ScrollContent class="pb-2">
+  <ScrollContent ref="scrollContent" class="pb-2">
     <NTag
       v-for="item of tagStore.tagList"
       :key="item.path"
+      :data-path="item.path"
       :type="tagStore.activeTag === item.path ? 'success' : undefined" class=" cursor-pointer router-tab flex items-center mr-3 last:mr-0"
       @contextmenu="handleOpenMenu($event, item)"
       @click="handleChangeTag(item.path)"
