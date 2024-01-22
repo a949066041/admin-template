@@ -3,6 +3,7 @@ import { VantResolver } from 'unplugin-vue-components/resolvers'
 import commonViteConfig from '@yy-admin/config-vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
 import VueDevTools from 'vite-plugin-vue-devtools'
+import viteCompression from 'vite-plugin-compression'
 
 export function YyNaiveuiComponents(): ComponentResolver {
   const customComponent = new Set([
@@ -58,6 +59,12 @@ export default () => mergeConfig(commonViteConfig({
     },
   },
   plugins: [
+    viteCompression({
+      threshold: 1024,
+      filter: /\.(css|html|js|svg|json)$/i,
+      deleteOriginFile: false,
+      algorithm: 'gzip',
+    }),
     VueDevTools(),
   ],
 }))
