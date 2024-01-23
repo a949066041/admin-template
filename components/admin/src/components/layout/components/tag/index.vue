@@ -63,7 +63,7 @@ router.afterEach(handleAddTag)
     >
       <div class=" flex items-center">
         <span>{{ item.title }}</span>
-        <i-carbon:close-outline v-if="!item.affix" class="router-tab__icon text-0 cursor-pointer ml-2 transition-all duration-.3s " @click.stop="tagStore.closeTag(item.path)" />
+        <i v-if="!item.affix" class="router-tab__icon text-0 cursor-pointer ml-2 transition-all duration-.3s i-carbon:close-outline" @click.stop="tagStore.closeTag(item.path)" />
       </div>
     </NTag>
     <n-dropdown

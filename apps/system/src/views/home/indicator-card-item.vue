@@ -10,7 +10,7 @@ withDefaults(defineProps<{ title: string, value: number, suffix?: string, prefix
   <div class=" card-item">
     <div class=" flex justify-between">
       <span class=" op65">{{ title }}</span>
-      <i-ph:question-light />
+      <i class="i-ph:question-light" />
     </div>
     <div class=" text-3xl">
       {{ prefix }}<n-number-animation :from="0" :to="value" show-separator />{{ suffix }}

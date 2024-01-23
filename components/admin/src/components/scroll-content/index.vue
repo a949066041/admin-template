@@ -41,8 +41,8 @@ defineExpose({
 <template>
   <div class=" mx-2 relative" :class="[xAction && '!mx-8', yAction && '!my-8']">
     <template v-if="xAction">
-      <i-mingcute:left-fill class=" absolute left-[-20px] z-10 top-[5px] text-sm cursor-pointer" @click="handleToX(0)" />
-      <i-mingcute:right-fill class=" absolute right-[-20px] z-10 top-[5px] text-sm cursor-pointer" @click="handleToX(width)" />
+      <i class=" absolute left-[-20px] z-10 top-[5px] text-sm cursor-pointer i-mingcute:left-fill" @click="handleToX(0)" />
+      <i class=" absolute right-[-20px] z-10 top-[5px] text-sm cursor-pointer i-mingcute:right-fill " @click="handleToX(width)" />
     </template>
     <NScrollbar ref="scrollX" x-scrollable>
       <div ref="contentScroll" class=" flex flex-nowrap pb-2" @click="contracts && handleChange">

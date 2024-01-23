@@ -46,12 +46,12 @@ const { config, handleRenderCb } = useLazyBox({
       <div class=" flex flex-wrap">
         <IndicatorText class=" mr-4" label="周同比" value="12%">
           <template #suffix-icon>
-            <i-teenyicons:up-solid class=" w-3 text-green-700 ml-1" />
+            <i class=" w-3 text-green-700 ml-1 i-teenyicons:up-solid" />
           </template>
         </IndicatorText>
         <IndicatorText label="日同比" value="11%">
           <template #suffix-icon>
-            <i-teenyicons:up-solid class=" w-3 text-red-700 ml-1 rotate-180" />
+            <i class=" w-3 text-red-700 ml-1 rotate-180 i-teenyicons:up-solid" />
           </template>
         </IndicatorText>
       </div>

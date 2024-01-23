@@ -54,7 +54,7 @@ function handleToMenu(breadcrumbItem: IRouteBreadcrumbItem) {
 <template>
   <n-layout-header class=" flex justify-between h-15 items-center px-4">
     <div class=" flex items-center">
-      <i-iconoir:sidebar-collapse class=" cursor-pointer" :class=" collapseMenu && 'rotate-[180deg]'" @click="handleToggleMenu()" />
+      <i class=" cursor-pointer i-iconoir:sidebar-collapse" :class=" collapseMenu && 'rotate-[180deg]'" @click="handleToggleMenu()" />
       <n-breadcrumb class=" ml-2">
         <n-breadcrumb-item v-for="item of breadcrumbList" :key="item.key">
           <n-dropdown :options="item.children" @select="handleSelectMenu">
@@ -79,7 +79,7 @@ function handleToMenu(breadcrumbItem: IRouteBreadcrumbItem) {
       <n-dropdown :options="options" trigger="click" @select="handleSelectAction">
         <div class="flex items-center cursor-pointer">
           <n-avatar :src="userStore.avatar" round />
-          <i-ri:arrow-drop-down-line class=" text-xl" />
+          <i class=" text-xl i-ri:arrow-drop-down-line" />
         </div>
       </n-dropdown>
     </div>

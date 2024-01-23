@@ -134,7 +134,7 @@ const columns = computed<YyTableColumns<keyof IUserRecord>[]>(() => [
     <n-gi :span="4">
       <n-input v-model:value="filterInput" class=" mb-3" placeholder="输入部门名称搜索">
         <template #prefix>
-          <i-icon-park-outline:search />
+          <i class="i-icon-park-outline:search" />
         </template>
       </n-input>
       <n-tree
