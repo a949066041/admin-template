@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:rs": "DEBUG=rsbuild rsbuild dev --open",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -15,8 +16,10 @@
     "echarts": "^5.4.3"
   },
   "devDependencies": {
+    "@rsbuild/core": "^0.3.6",
     "@tsconfig/node18": "^18.2.2",
     "@yy-admin/common-css": "workspace:^",
+    "@yy-admin/config-rsbuild-app": "workspace:^",
     "@yy-admin/web-monitor": "workspace:^",
     "@yy-admin/web-system": "workspace:^",
     "less": "^4.2.0",

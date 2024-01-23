@@ -1,0 +1,20 @@
+{
+  "name": "@yy-admin/config-rsbuild-app",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare:build": "tsc"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^0.3.6",
+    "@yy-admin/config-rsbuild": "workspace:^",
+    "typescript": "^5.3.3",
+    "unplugin-vue-components": "^0.26.0"
+  }
+}

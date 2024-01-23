@@ -1,0 +1,25 @@
+{
+  "name": "@yy-admin/config-rsbuild",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare:build": "tsc"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^0.3.6",
+    "@rsbuild/plugin-babel": "^0.3.6",
+    "@rsbuild/plugin-vue": "^0.3.6",
+    "@rsbuild/plugin-vue-jsx": "^0.3.6",
+    "@unocss/postcss": "^0.58.3",
+    "unplugin-auto-import": "^0.17.3",
+    "unplugin-icons": "^0.18.2",
+    "unplugin-vue-components": "^0.26.0"
+  }
+}
