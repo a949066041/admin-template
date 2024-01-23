@@ -52,25 +52,30 @@ router.afterEach(handleAddTag)
 </script>
 
 <template>
-  <ScrollContent ref="scrollContent" class="pb-2">
-    <NTag
-      v-for="item of tagStore.tagList"
-      :key="item.path"
-      :data-path="item.path"
-      :type="tagStore.activeTag === item.path ? 'success' : undefined" class=" cursor-pointer router-tab flex items-center mr-3 last:mr-0"
-      @contextmenu="handleOpenMenu($event, item)"
-      @click="handleChangeTag(item.path)"
-    >
-      <div class=" flex items-center">
-        <span>{{ item.title }}</span>
-        <i v-if="!item.affix" class="router-tab__icon text-0 cursor-pointer ml-2 transition-all duration-.3s i-carbon:close-outline" @click.stop="tagStore.closeTag(item.path)" />
-      </div>
-    </NTag>
-    <n-dropdown
-      placement="bottom-start"
-      v-bind="bindDrop"
-    />
-  </ScrollContent>
+  <div
+    class="shadow-[0_1px_3px_0_rgba(0,0,0,.12),0_0_3px_0_rgba(0,0,0,.04)] dark:shadow-[0_1px_3px_0_rgba(255,255,255,.12),0_0_3px_0_rgba(255,255,255,.04)] border-t border-t-solid dark:border-color-[rgba(255,255,255,0.09)]
+    border-color-[rgb(239,239,245)] pt-2"
+  >
+    <ScrollContent ref="scrollContent">
+      <NTag
+        v-for="item of tagStore.tagList"
+        :key="item.path"
+        :data-path="item.path"
+        :type="tagStore.activeTag === item.path ? 'success' : undefined" class=" cursor-pointer router-tab flex items-center mr-3 last:mr-0"
+        @contextmenu="handleOpenMenu($event, item)"
+        @click="handleChangeTag(item.path)"
+      >
+        <div class=" flex items-center">
+          <span>{{ item.title }}</span>
+          <i v-if="!item.affix" class="router-tab__icon text-0 cursor-pointer ml-2 transition-all duration-.3s i-carbon:close-outline" @click.stop="tagStore.closeTag(item.path)" />
+        </div>
+      </NTag>
+      <n-dropdown
+        placement="bottom-start"
+        v-bind="bindDrop"
+      />
+    </ScrollContent>
+  </div>
 </template>
 
 <style scoped lang="less">

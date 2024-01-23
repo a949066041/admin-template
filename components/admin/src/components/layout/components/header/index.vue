@@ -22,6 +22,10 @@ const options = [
     key: 'user',
   },
   {
+    type: 'divider',
+    key: 'd1',
+  },
+  {
     label: '退出登录',
     key: 'logout',
   },
@@ -54,7 +58,7 @@ function handleToMenu(breadcrumbItem: IRouteBreadcrumbItem) {
 <template>
   <n-layout-header class=" flex justify-between h-15 items-center px-4">
     <div class=" flex items-center">
-      <i class=" cursor-pointer i-iconoir:sidebar-collapse" :class=" collapseMenu && 'rotate-[180deg]'" @click="handleToggleMenu()" />
+      <i class=" cursor-pointer text-lg i-iconoir:sidebar-collapse" :class=" collapseMenu && 'rotate-[180deg]'" @click="handleToggleMenu()" />
       <n-breadcrumb class=" ml-2">
         <n-breadcrumb-item v-for="item of breadcrumbList" :key="item.key">
           <n-dropdown :options="item.children" @select="handleSelectMenu">
