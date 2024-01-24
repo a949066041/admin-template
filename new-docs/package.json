@@ -8,6 +8,17 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite dev"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/markdown-it": "^13.0.7",
+    "@vue/compiler-core": "^3.4.15",
+    "@yy-admin/config-vite-app": "workspace:^",
+    "fs-extra": "^11.2.0",
+    "markdown-it": "^14.0.0",
+    "unplugin-vue-markdown": "^0.25.2",
+    "vite": "^5.0.12",
+    "vite-plugin-markdown": "^2.2.0"
   }
 }

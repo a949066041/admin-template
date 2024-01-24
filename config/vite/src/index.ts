@@ -32,6 +32,7 @@ export default (_config?: ICommonViteConfig) => {
   return defineConfig({
     plugins: [
       vue({
+        include: [/\.vue$/, /\.md$/],
       }),
       vueJsx(),
       UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
