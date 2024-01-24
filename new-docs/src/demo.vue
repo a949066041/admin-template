@@ -1,5 +1,17 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
+import {
+  codeToHtml,
+} from 'shikiji'
+
+// `shikiji/core` entry does not include any themes or languages or the wasm binary.
+import { getHighlighterCore } from 'shikiji/core'
+
+// `shikiji/wasm` contains the wasm binary inlined as base64 string.
+import getWasm from 'shikiji/wasm'
+
+// directly import the theme and language modules, only the ones you imported will be bundled.
+import nord from 'shikiji/themes/nord.mjs'
 
 // import { useClipboard } from '@vueuse/core'
 // import { KMessage } from '@ikun-ui/message'
@@ -22,8 +34,33 @@ onMounted(async () => {
   // const path = `../../../../example/${props.src}`
   // comp = await modules[path]()
 })
-const showCode = ref(false)
+
 const code = computed(() => decodeURIComponent(props.source))
+const html = ref('')
+watch(code, async (code) => {
+  const highlighter = await getHighlighterCore({
+    themes: [
+    // instead of strings, you need to pass the imported module
+      nord,
+      // or a dynamic import if you want to do chunk splitting
+      import('shikiji/themes/material-theme-ocean.mjs'),
+    ],
+    langs: [
+      import('shikiji/langs/vue.mjs'),
+    ],
+    loadWasm: getWasm,
+  })
+
+  await highlighter.loadTheme(import('shikiji/themes/vitesse-light.mjs'))
+
+  html.value = highlighter.codeToHtml(code, {
+    lang: 'javascript',
+    theme: 'material-theme-ocean',
+  })
+}, { immediate: true })
+
+const showCode = ref(false)
+
 const { copy } = useClipboard({ source: code.value })
 function handleCopy() {
   copy()
@@ -39,7 +76,7 @@ function handleCopy() {
       v-if="showCode"
       class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"
     >
-      <highlight-code class="k-docs-code" language="html" :code="code" />
+      <div v-html="html" />
     </div>
     <div
       class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"

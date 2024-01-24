@@ -503,6 +503,15 @@ importers:
       markdown-it:
         specifier: ^14.0.0
         version: 14.0.0
+      markdown-it-shikiji:
+        specifier: ^0.10.0
+        version: 0.10.0
+      shikiji:
+        specifier: ^0.10.0
+        version: 0.10.0
+      twoslash-vue:
+        specifier: ^0.1.0
+        version: 0.1.0(typescript@5.3.3)
       unplugin-vue-markdown:
         specifier: ^0.25.2
         version: 0.25.2(vite@5.0.12)
@@ -2806,6 +2815,14 @@ packages:
     dependencies:
       '@typescript-eslint/types': 6.19.0
       eslint-visitor-keys: 3.4.3
+    dev: true
+
+  /@typescript/vfs@1.5.0:
+    resolution: {integrity: sha512-AJS307bPgbsZZ9ggCT3wwpg3VbTKMFNHfaY/uF0ahSkYYrPF2dSSKDNIDIQAHm9qJqbLvCsSJH7yN4Vs/CsMMg==}
+    dependencies:
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@ungap/structured-clone@1.2.0:
@@ -6655,6 +6672,14 @@ packages:
     resolution: {integrity: sha512-1I+1qpDt4idfgLQG+BNWmrqku+7/2bi5nLf4YwF8y8zXvmfiTBY3PV3ZibfrjBueCByROpuBjLLFCajqkgYoLQ==}
     dev: true
 
+  /markdown-it-shikiji@0.10.0:
+    resolution: {integrity: sha512-d0sL2zLythdBLjERBUaMZspsolzs++cFPUCHCgiNlktPCmsLNZloczf8Zs0UHKGvVuYGQnEWByU9l6Zgui1czw==}
+    dependencies:
+      markdown-it: 14.0.0
+      shikiji: 0.10.0
+      shikiji-transformers: 0.10.0
+    dev: true
+
   /markdown-it@12.3.2:
     resolution: {integrity: sha512-TchMembfxfNVpHkbtriWltGWc+m3xszaRD0CZup7GFFhzIgQqxIfn3eGj1yZpfuflzPvfkt611B2Q/Bsk1YnGg==}
     hasBin: true
@@ -7980,6 +8005,22 @@ packages:
       vscode-textmate: 8.0.0
     dev: true
 
+  /shikiji-core@0.10.0:
+    resolution: {integrity: sha512-imG+bvRkuNlZUi2q9tMVfegRRouTpDxMFejpfF/6J+bFX3NDKtlW9T9iIAkBYnw4pcCtSwirW0AvkwlQR4wyxg==}
+    dev: true
+
+  /shikiji-transformers@0.10.0:
+    resolution: {integrity: sha512-x9oYybeF/XOrIc6Mm8G1gU5ezunMxdgD4WwBTKrZ5tAmFFaNIWCjwZENgRt1uR4iMi0+pGH0g9bmrbraSC41nA==}
+    dependencies:
+      shikiji: 0.10.0
+    dev: true
+
+  /shikiji@0.10.0:
+    resolution: {integrity: sha512-1dAzIOWbtM7B4Sem5BvE+CEdsebDsRA34SfCxM4qJ4PLgR73ZD92VEtNfbcoZ3xOLSqvtV0J9i4WpCgVsmQteg==}
+    dependencies:
+      shikiji-core: 0.10.0
+    dev: true
+
   /side-channel@1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
     dependencies:
@@ -8484,6 +8525,29 @@ packages:
       turbo-linux-arm64: 1.11.3
       turbo-windows-64: 1.11.3
       turbo-windows-arm64: 1.11.3
+    dev: true
+
+  /twoslash-vue@0.1.0(typescript@5.3.3):
+    resolution: {integrity: sha512-4IVOdvQcjLY5KTrsR9GuTUAThhpYQqkkKawCtfUaTSkui3CXR2KPYBJMvY5yM1by+TkENBlW1ykLywP2BGukHg==}
+    peerDependencies:
+      typescript: '*'
+    dependencies:
+      '@vue/language-core': 1.8.27(typescript@5.3.3)
+      twoslash: 0.1.0(typescript@5.3.3)
+      typescript: 5.3.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /twoslash@0.1.0(typescript@5.3.3):
+    resolution: {integrity: sha512-zvDn23/FwNdi/i2xMTTDcn7xnX4iKlp6tJt68aD86zRqesQrb/HOnMBtaUu6+vme4gtlX9ScEfKYog1+7IPKSw==}
+    peerDependencies:
+      typescript: '*'
+    dependencies:
+      '@typescript/vfs': 1.5.0
+      typescript: 5.3.3
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /type-check@0.4.0:
