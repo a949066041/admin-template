@@ -8,7 +8,11 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "dev": "vite dev"
+    "dev": "vite dev",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "echarts": "^5.4.3"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",

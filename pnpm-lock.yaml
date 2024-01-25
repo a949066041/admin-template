@@ -484,6 +484,10 @@ importers:
         version: 1.0.0-rc.24(@algolia/client-search@4.22.0)(@types/node@20.11.6)(postcss@8.4.33)(search-insights@2.13.0)(typescript@5.3.3)
 
   new-docs:
+    dependencies:
+      echarts:
+        specifier: ^5.4.3
+        version: 5.4.3
     devDependencies:
       '@types/fs-extra':
         specifier: ^11.0.4
