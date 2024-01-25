@@ -1,9 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import 'uno.css'
-import Demo from './demo.vue'
+import { DemoBlock } from './components'
+import router from './router'
 
 const app = createApp(App)
-app.component('demo', Demo)
+app.component('demo', DemoBlock)
+app.use(router)
 
-app.mount('#app')
+router.isReady().then(() => {
+  app.mount('#app')
+})

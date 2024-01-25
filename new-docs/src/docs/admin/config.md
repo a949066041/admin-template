@@ -1,4 +1,3 @@
-# test
-this is md
+# config
 
 <demo src="hehe.vue" />

@@ -1,17 +1,8 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
-import {
-  codeToHtml,
-} from 'shikiji'
-
-// `shikiji/core` entry does not include any themes or languages or the wasm binary.
 import { getHighlighterCore } from 'shikiji/core'
 
-// `shikiji/wasm` contains the wasm binary inlined as base64 string.
 import getWasm from 'shikiji/wasm'
-
-// directly import the theme and language modules, only the ones you imported will be bundled.
-import nord from 'shikiji/themes/nord.mjs'
 
 // import { useClipboard } from '@vueuse/core'
 // import { KMessage } from '@ikun-ui/message'
@@ -28,11 +19,18 @@ const props = defineProps({
     default: '',
   },
 })
-// const modules = import.meta.glob('../../../../example/**/*.svelte')
-const el = ref()
+
+const [render, toggleRender] = useToggle()
+let AsyncComp: any = null
+const modules = import.meta.glob('../../example/**/*.vue')
 onMounted(async () => {
-  // const path = `../../../../example/${props.src}`
-  // comp = await modules[path]()
+  const path = `../../example/${props.src}`
+  if (!modules[path])
+    throw new Error('not found comp')
+  modules[path]().then((res) => {
+    AsyncComp = (res as any).default
+    toggleRender(true)
+  })
 })
 
 const code = computed(() => decodeURIComponent(props.source))
@@ -40,22 +38,19 @@ const html = ref('')
 watch(code, async (code) => {
   const highlighter = await getHighlighterCore({
     themes: [
-    // instead of strings, you need to pass the imported module
-      nord,
-      // or a dynamic import if you want to do chunk splitting
-      import('shikiji/themes/material-theme-ocean.mjs'),
+      import('shikiji/themes/vitesse-light.mjs'),
+      import('shikiji/themes/vitesse-dark.mjs'),
     ],
     langs: [
+      import('shikiji/langs/javascript.mjs'),
       import('shikiji/langs/vue.mjs'),
     ],
     loadWasm: getWasm,
   })
 
-  await highlighter.loadTheme(import('shikiji/themes/vitesse-light.mjs'))
-
   html.value = highlighter.codeToHtml(code, {
     lang: 'javascript',
-    theme: 'material-theme-ocean',
+    theme: 'vitesse-dark',
   })
 }, { immediate: true })
 
@@ -69,14 +64,14 @@ function handleCopy() {
 
 <template>
   <div class="mt-6 border border-solid py-4 px-2 rounded border-slate-200">
-    <div>
-      <div ref="el" />
+    <div v-if="render" class=" w-full">
+      <AsyncComp />
     </div>
     <div
       v-if="showCode"
       class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"
     >
-      <div v-html="html" />
+      <div class="w-full" v-html="html" />
     </div>
     <div
       class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"

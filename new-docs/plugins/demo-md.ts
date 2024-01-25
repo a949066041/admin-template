@@ -31,7 +31,7 @@ export function demoBlockPlugin(md: MarkdownIt) {
       if (!props.src)
         return defaultRender!(tokens, idx, options, env, self)
 
-      const filePath = resolve(`src/example/${props.src}`)
+      const filePath = resolve(`./src/example/${props.src}`)
       // get source code
       const code = fsExtra.readFileSync(filePath, 'utf-8')
       // inject source code

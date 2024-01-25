@@ -1,11 +1,17 @@
+import { URL, fileURLToPath } from 'node:url'
 import { defineConfig, mergeConfig } from 'vite'
 import defaultConfig from '@yy-admin/config-vite-app'
 import Markdown from 'unplugin-vue-markdown/vite'
 import Shikiji from 'markdown-it-shikiji'
 
-import { demoBlockPlugin } from './src/demo'
+import { demoBlockPlugin } from './plugins/demo-md'
 
 export default mergeConfig(defaultConfig(), defineConfig({
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
   plugins: [
     Markdown({
       async markdownItSetup(md) {
