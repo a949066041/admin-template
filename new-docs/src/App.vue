@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { AppConfig } from '@yy-admin/components-admin'
-import { DocRouter } from './components'
+import { DocRouter, LoginStatus } from './components'
 
 defineOptions({
   name: 'App',
@@ -11,8 +11,11 @@ defineOptions({
   <AppConfig>
     <div class=" flex">
       <DocRouter />
-      <div class=" flex-1">
-        <router-view />
+      <div class="flex flex-col overflow-hidden flex-1">
+        <LoginStatus />
+        <div class="flex-1">
+          <router-view />
+        </div>
       </div>
     </div>
   </AppConfig>

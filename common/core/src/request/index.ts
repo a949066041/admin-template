@@ -1,6 +1,6 @@
 import request from '@yy-web/request'
 import axios from 'axios'
-import { $pinia, useRequestCache, useUserStore } from '../store'
+import { $pinia, useRequestCache } from '../store'
 import { requestInterceptors } from './request.interceptors'
 import { responseInterceptors, responseInterceptorsError } from './response.interceptors'
 

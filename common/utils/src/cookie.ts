@@ -22,7 +22,7 @@ export class CookieStore<T> implements ICookieStorage<T> {
     Cookies.set(this.key, JSON.stringify(value))
   }
 
-  getValue() {
+  getValue(): T | null {
     const value = Cookies.get(this.key) || undefined
     if (value === undefined)
       return this.defaultValue

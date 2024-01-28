@@ -14,16 +14,14 @@ import 'dayjs/locale/zh-cn'
 import { createYyRouter, loginRoute } from './router'
 
 dayjs.locale('zh-cn')
-export function setupAdmin(app: App, page: AsyncRouters, home?: RouteRecordRaw) {
+
+export function setupComponents(app: App) {
   const { message, dialog } = useAppConfigStore()
-  const router = createYyRouter(home)
-  // base
-  app.use($pinia)
-  app.use(router)
-  setRequest(requestInstance)
 
   window.errorMsg = message.error
-
+  setRequest(requestInstance)
+  // base
+  app.use($pinia)
   app.use(BaseUI)
 
   // business config
@@ -64,7 +62,12 @@ export function setupAdmin(app: App, page: AsyncRouters, home?: RouteRecordRaw) 
       return h(YyDict, { dict }, { default: ({ flatData }: { flatData: Record<string, string> }) => flatData[`${value}`] })
     },
   })
+}
 
+export function setupAdmin(app: App, page: AsyncRouters, home?: RouteRecordRaw) {
+  const router = createYyRouter(home)
+  app.use(router)
+  setupComponents(app)
   // add router
   authRoute(router, ['/login'], {
     ...withSrcViewModules(page),

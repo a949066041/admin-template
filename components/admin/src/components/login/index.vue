@@ -5,7 +5,6 @@ import type { LoginForm } from '@yy-admin/common-apis'
 import { AuthApi } from '@yy-admin/common-apis'
 import { useConfigStore, useUserStore } from '@yy-admin/common-core'
 import type { FormInst, FormItemRule } from 'naive-ui'
-import { encrypt } from '@yy-admin/common-utils'
 import { useRouter } from 'vue-router'
 import ThemeToggle from '../theme-toggle/index.vue'
 
@@ -58,7 +57,7 @@ function handleLoadingAction() {
     if (!err) {
       toggleLoading(true)
       try {
-        await userStore.loginAction({ ...loginForm.value, password: encrypt(loginForm.value.password) as string })
+        await userStore.loginAction(loginForm.value)
         router.push('/')
       }
       catch {

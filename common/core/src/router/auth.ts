@@ -15,8 +15,7 @@ export function authRoute(router: Router, whiteList?: string[], mathRules?: Asyn
         return
       }
       const userStore = useUserStore()
-      const userInfo = userStore.userInfo
-      if (userInfo) {
+      if (userStore.isLogin) {
         next()
         return
       }

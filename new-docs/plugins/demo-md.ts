@@ -10,6 +10,10 @@ export function parseProps(content: string) {
   const demoElement = ast.children[0] as ElementNode
   const res: Record<string, any> = {}
   demoElement.props.forEach((v) => {
+    if (!(v as any).value) {
+      res[v.name] = true
+      return
+    }
     res[v.name] = (v as any).value.content
   })
   return res
@@ -38,7 +42,7 @@ export function demoBlockPlugin(md: MarkdownIt) {
       if (!content.includes(`<${DemoTag} source=`)) {
         tokens[idx].content = content.replace(
 					`<${DemoTag}`,
-					`<${DemoTag} source="${encodeURIComponent(code.trim())}" `,
+					`<${DemoTag} source="${encodeURIComponent(code.trim())}" :auth="${props.auth || false}" `,
         )
       }
 
