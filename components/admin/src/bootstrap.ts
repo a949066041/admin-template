@@ -1,11 +1,10 @@
 import { setRequest } from '@yy-web/request'
 import BaseUI from '@yy-admin/components-base'
 import type { AsyncRouters } from '@yy-admin/common-core'
-import { YyDict, authRoute, requestInstance, withSrcViewModules } from '@yy-admin/common-core'
+import { $pinia, YyDict, authRoute, requestInstance, withSrcViewModules } from '@yy-admin/common-core'
 import { confBusiness } from '@yy-web/business-use'
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import { createPinia } from 'pinia'
 import dayjs from 'dayjs'
 import { confNaive } from '@yy-admin/components-naive'
 import { h } from 'vue'
@@ -19,7 +18,7 @@ export function setupAdmin(app: App, page: AsyncRouters, home?: RouteRecordRaw) 
   const { message, dialog } = useAppConfigStore()
   const router = createYyRouter(home)
   // base
-  app.use(createPinia())
+  app.use($pinia)
   app.use(router)
   setRequest(requestInstance)
 

@@ -12,7 +12,7 @@ defineOptions({
 })
 
 const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
-const { collapseMenu, handleToggleMenu } = useConfigStore()
+const configStore = useConfigStore()
 const router = useRouter()
 const message = useMessage()
 const userStore = useUserStore()
@@ -58,7 +58,7 @@ function handleToMenu(breadcrumbItem: IRouteBreadcrumbItem) {
 <template>
   <n-layout-header class=" flex justify-between h-15 items-center px-4">
     <div class=" flex items-center">
-      <i class=" cursor-pointer text-lg i-iconoir:sidebar-collapse" :class=" collapseMenu && 'rotate-[180deg]'" @click="handleToggleMenu()" />
+      <i class=" cursor-pointer text-lg i-iconoir:sidebar-collapse" :class=" configStore.collapseMenu && 'rotate-[180deg]'" @click="configStore.handleToggleMenu()" />
       <n-breadcrumb class=" ml-2">
         <n-breadcrumb-item v-for="item of breadcrumbList" :key="item.key">
           <n-dropdown :options="item.children" @select="handleSelectMenu">

@@ -49,15 +49,20 @@ export const useUserStore = defineStore('core-user', () => {
   }
 
   async function logout() {
-    userInfo.value = null
-    // remove currentRoute
-    if (currentRouter) {
-      userMenuList.value.forEach((item) => {
-        currentRouter!.removeRoute(item.name)
-      })
-    }
-    userMenuList.value = []
-    tokenStorage.removeValue()
+    return new Promise<void>((resolve, reject) => {
+      AuthApi.logout().then(() => {
+        userInfo.value = null
+        // remove currentRoute
+        if (currentRouter) {
+          userMenuList.value.forEach((item) => {
+            currentRouter!.removeRoute(item.name)
+          })
+        }
+        userMenuList.value = []
+        tokenStorage.removeValue()
+        resolve()
+      }).catch(reject)
+    })
   }
 
   return {

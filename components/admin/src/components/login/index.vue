@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import { useAnimate, useToggle } from '@vueuse/core'
 import type { LoginForm } from '@yy-admin/common-apis'
 import { AuthApi } from '@yy-admin/common-apis'
-import { useUserStore } from '@yy-admin/common-core'
+import { useConfigStore, useUserStore } from '@yy-admin/common-core'
 import type { FormInst, FormItemRule } from 'naive-ui'
 import { encrypt } from '@yy-admin/common-utils'
 import { useRouter } from 'vue-router'
@@ -40,6 +40,8 @@ const loginRules = ref<{ [P in keyof Partial<LoginForm>]: FormItemRule[] }>({
   ],
 })
 const codeImg = ref('')
+const configStore = useConfigStore()
+const userStore = useUserStore()
 
 function handleRefreshImg() {
   AuthApi.code().then(({ img, uuid }) => {
@@ -56,7 +58,6 @@ function handleLoadingAction() {
     if (!err) {
       toggleLoading(true)
       try {
-        const userStore = useUserStore()
         await userStore.loginAction({ ...loginForm.value, password: encrypt(loginForm.value.password) as string })
         router.push('/')
       }
@@ -77,8 +78,8 @@ function handleLoadingAction() {
         ref="form" class="flex flex-col justify-evenly  !ml-4  w-1/2 px-4 relative"
         label-align="top" layout="vertical" :model="loginForm" :rules="loginRules" ml5 flex-1 @submit="handleLoadingAction"
       >
-        <ThemeToggle v-slot="{ toggle, isDark }">
-          <n-switch class=" absolute right-2 top-2" :value="isDark" @click="toggle">
+        <ThemeToggle v-slot="{ toggle }">
+          <n-switch class=" absolute right-2 top-2" :value="configStore.isDark" @click="toggle">
             <template #checked-icon>
               <i class="i-carbon-moon" />
             </template>

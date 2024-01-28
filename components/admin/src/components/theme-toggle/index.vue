@@ -6,7 +6,7 @@ defineOptions({
   name: 'ThemeToggle',
 })
 
-const { handleSwitchTheme, isDark } = useConfigStore()
+const configStore = useConfigStore()
 
 const isAppearanceTransition = typeof document !== 'undefined'
   // @ts-expect-error: Transition API
@@ -19,7 +19,7 @@ const isAppearanceTransition = typeof document !== 'undefined'
  */
 function toggle(event?: MouseEvent) {
   if (!isAppearanceTransition || !event) {
-    handleSwitchTheme()
+    configStore.handleSwitchTheme()
     return
   }
 
@@ -32,7 +32,7 @@ function toggle(event?: MouseEvent) {
 
   // @ts-expect-error: Transition API
   const transition = document.startViewTransition(async () => {
-    handleSwitchTheme()
+    configStore.handleSwitchTheme()
     await nextTick()
   })
 
@@ -43,14 +43,14 @@ function toggle(event?: MouseEvent) {
     ]
     document.documentElement.animate(
       {
-        clipPath: isDark.value
+        clipPath: configStore.isDark
           ? [...clipPath].reverse()
           : clipPath,
       },
       {
         duration: 400,
         easing: 'ease-in',
-        pseudoElement: isDark.value
+        pseudoElement: configStore.isDark
           ? '::view-transition-old(root)'
           : '::view-transition-new(root)',
       },
@@ -60,7 +60,6 @@ function toggle(event?: MouseEvent) {
 
 const context = {
   toggle,
-  isDark,
 }
 </script>
 

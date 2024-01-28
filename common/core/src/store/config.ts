@@ -1,7 +1,8 @@
-import { createGlobalState, useColorMode, useEventListener, useStorage } from '@vueuse/core'
+import { useColorMode, useEventListener, useStorage } from '@vueuse/core'
+import { defineStore } from 'pinia'
 import { computed } from 'vue'
 
-export const useConfigStore = createGlobalState(() => {
+export const useConfigStore = defineStore('config', () => {
   const mode = useColorMode()
   const isDark = computed<boolean>({
     get() {

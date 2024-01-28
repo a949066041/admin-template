@@ -5,9 +5,9 @@ import { computed } from 'vue'
 import { createGlobalState } from '@vueuse/core'
 
 export const useAppConfigStore = createGlobalState(() => {
-  const { isDark } = useConfigStore()
+  const configStore = useConfigStore()
   const configProps = computed<ConfigProviderProps>(() => ({
-    theme: !isDark.value ? lightTheme : darkTheme,
+    theme: !configStore.isDark ? lightTheme : darkTheme,
     locale: zhCN,
     size: 'small',
     dateLocale: dateZhCN,

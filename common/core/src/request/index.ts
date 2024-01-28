@@ -1,48 +1,20 @@
-import type { IAxiosRequestConfig } from '@yy-web/request'
-import request, { fileInterceptorsResponseConfig, getStore, setStore } from '@yy-web/request'
-import type { InternalAxiosRequestConfig } from 'axios'
+import request from '@yy-web/request'
 import axios from 'axios'
-import { useUserStore } from '../store'
-import { tokenStorage } from '../utils/cookie'
+import { $pinia, useRequestCache, useUserStore } from '../store'
+import { requestInterceptors } from './request.interceptors'
+import { responseInterceptors, responseInterceptorsError } from './response.interceptors'
 
 const service = axios.create({
   baseURL: '/api',
 })
 
-service.interceptors.request.use((config: InternalAxiosRequestConfig & IAxiosRequestConfig) => {
-  const yyToken = tokenStorage.getValue()
-  if (yyToken && config && config.headers)
-    config.headers.Authorization = config.headers.Authorization || yyToken
+service.interceptors.request.use(requestInterceptors)
+service.interceptors.response.use(responseInterceptors, responseInterceptorsError)
 
-  return config
-})
-
-service.interceptors.response.use((response: any) => {
-  const { isFile, value } = fileInterceptorsResponseConfig(response)
-  if (isFile)
-    return value
-
-  return response.data
-}, (error) => {
-  if (error.response) {
-    const user = useUserStore()
-    switch (error.response.status) {
-      case 401:
-        user.logout()
-        window.location.reload()
-        break
-      default: {
-        const errorMsg = error.response.data.message
-        window.errorMsg(errorMsg)
-      }
-    }
-  }
-  return Promise.reject(error)
-})
-
+const requestStore = useRequestCache($pinia)
 const yyRequest = request(service, {
-  getStore,
-  setStore,
+  getStore: requestStore.getStore,
+  setStore: requestStore.setStore,
   cancelRepeat: true,
   maxConcurrentNum: 5,
 })
