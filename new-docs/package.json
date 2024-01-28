@@ -24,8 +24,8 @@
     "fs-extra": "^11.2.0",
     "github-markdown-css": "^5.5.0",
     "markdown-it": "^14.0.0",
-    "markdown-it-shikiji": "^0.10.0",
-    "shikiji": "^0.10.0",
+    "markdown-it-shikiji": "^0.10.2",
+    "shikiji": "^0.10.2",
     "unplugin-vue-markdown": "^0.25.2",
     "vite": "^5.0.12"
   }
