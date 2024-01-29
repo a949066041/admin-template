@@ -65,6 +65,7 @@ export function setupComponents(app: App) {
 }
 
 export function setupAdmin(app: App, page: AsyncRouters, home?: RouteRecordRaw) {
+  const { loadingBar } = useAppConfigStore()
   const router = createYyRouter(home)
   app.use(router)
   setupComponents(app)
@@ -75,4 +76,6 @@ export function setupAdmin(app: App, page: AsyncRouters, home?: RouteRecordRaw) 
   })
 
   router.addRoute(loginRoute)
+  router.beforeEach(() => loadingBar.start())
+  router.afterEach(() => loadingBar.finish())
 }

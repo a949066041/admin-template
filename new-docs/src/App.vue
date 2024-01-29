@@ -11,7 +11,7 @@ defineOptions({
   <AppConfig>
     <div class=" flex">
       <DocRouter />
-      <div class="flex flex-col overflow-hidden flex-1">
+      <div class="flex flex-col overflow-hidden flex-1 px-5">
         <LoginStatus />
         <div class="flex-1">
           <router-view />

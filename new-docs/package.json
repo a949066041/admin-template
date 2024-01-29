@@ -23,6 +23,7 @@
     "@yy-admin/components-admin": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
     "fs-extra": "^11.2.0",
+    "http-proxy-middleware": "^2.0.6",
     "markdown-it": "^14.0.0",
     "markdown-it-shikiji": "^0.10.2",
     "shikiji": "^0.10.2",
