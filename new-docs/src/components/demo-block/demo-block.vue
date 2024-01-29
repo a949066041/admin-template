@@ -29,26 +29,27 @@ onMounted(async () => {
 const code = computed(() => decodeURIComponent(props.source))
 let highlighter: HighlighterCore | null = null
 
-const html = ref('')
-watch([code, () => configStore.isDark], async () => {
-  highlighter = await getHighlighterCore({
-    themes: [
-      import('shikiji/themes/vitesse-light.mjs'),
-      import('shikiji/themes/vitesse-dark.mjs'),
-    ],
-    langs: [
-      import('shikiji/langs/javascript.mjs'),
-      import('shikiji/langs/vue.mjs'),
-    ],
-    loadWasm: getWasm,
-  })
-  html.value = highlighter.codeToHtml(code.value, {
-    lang: 'javascript',
-    theme: configStore.isDark ? 'vitesse-dark' : 'vitesse-light',
-  })
-}, { immediate: true })
-
 const showCode = ref(false)
+const html = ref('')
+watch([showCode, () => configStore.isDark], async () => {
+  if (showCode.value) {
+    highlighter = await getHighlighterCore({
+      themes: [
+        import('shikiji/themes/vitesse-light.mjs'),
+        import('shikiji/themes/vitesse-dark.mjs'),
+      ],
+      langs: [
+        import('shikiji/langs/javascript.mjs'),
+        import('shikiji/langs/vue.mjs'),
+      ],
+      loadWasm: getWasm,
+    })
+    html.value = highlighter.codeToHtml(code.value, {
+      lang: 'javascript',
+      theme: configStore.isDark ? 'vitesse-dark' : 'vitesse-light',
+    })
+  }
+}, { immediate: true })
 
 const { copy } = useClipboard({ source: code.value })
 function handleCopy() {
@@ -61,8 +62,7 @@ function handleCopy() {
   <div class="mt-6 border border-solid py-4 px-2 rounded border-slate-200">
     <div
       v-if="render" class=" w-full min-h-30 relative"
-      :class="auth && !userStore.isLogin && `after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-gray-1 after:dark:bg-[#ccc] after:text-black
-      after:content-[\'授权后查看\'] after:text-2xl after:flex after:items-center after:justify-center`"
+      :class="auth && !userStore.isLogin && 'auth'"
     >
       <div v-if="auth && userStore.isLogin || !auth">
         <AsyncComp />
@@ -92,3 +92,10 @@ function handleCopy() {
     </div>
   </div>
 </template>
+
+<style>
+.auth {
+  @apply after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-gray-1 after:dark:bg-[#ccc]
+  after:text-black after:content-['授权后查看'] after:text-2xl after:flex after:items-center after:justify-center;
+}
+</style>

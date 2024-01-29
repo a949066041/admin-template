@@ -1,4 +1,4 @@
-name: Frontend CI/CD
+name: docs publish
 
 on:
   push:

@@ -3,7 +3,7 @@ import { tokenStorage, useUserStore } from '@yy-admin/common-core'
 import { genComponents } from '../utils'
 
 const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHistory('/docs'),
   routes: Object.entries(genComponents()).map(([k, v]) => ({ path: `/${k}`, component: v })),
 })
 
