@@ -7,11 +7,10 @@ import Shikiji from 'markdown-it-shikiji'
 import { demoBlockPlugin } from './plugins/demo-md'
 
 export default mergeConfig(defaultConfig(), defineConfig({
-  publicDir: '/docs',
+  base: '/docs/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@yy-web/common-api': fileURLToPath(new URL('../common/apis/src/index.ts', import.meta.url)),
     },
   },
   plugins: [
