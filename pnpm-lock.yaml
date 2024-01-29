@@ -447,6 +447,9 @@ importers:
       '@vue/compiler-core':
         specifier: ^3.4.15
         version: 3.4.15
+      '@yy-admin/common-apis':
+        specifier: workspace:^
+        version: link:../common/apis
       '@yy-admin/common-core':
         specifier: workspace:^
         version: link:../common/core
@@ -459,9 +462,6 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
-      github-markdown-css:
-        specifier: ^5.5.0
-        version: 5.5.0
       markdown-it:
         specifier: ^14.0.0
         version: 14.0.0
@@ -4740,11 +4740,6 @@ packages:
     resolution: {integrity: sha512-wuMsz4leaj5hbGgg4IvDU0bqJagpftG5l5cXIAvo8uZrqn0NJqwtfupTN00VnkQJPcIRrxYrm1Ue24btpCha2A==}
     dependencies:
       resolve-pkg-maps: 1.0.0
-    dev: true
-
-  /github-markdown-css@5.5.0:
-    resolution: {integrity: sha512-Ncp4putm+cGteDhtNYKGdchM4uiIm5tmQcAQx/eEYhuM0sOdjZYNQOauQTaodjDQjfw7whU99MijwC1M0FUY4w==}
-    engines: {node: '>=10'}
     dev: true
 
   /glob-parent@5.1.2:

@@ -8,7 +8,7 @@ defineOptions({
 
 const route = useRoute()
 const activeMenu = ref('')
-const router = Object.values(Object.keys(genComponents()).reduce((arr, value) => {
+const menuList = ref(Object.values(Object.keys(genComponents()).reduce((arr, value) => {
   const [chunk, name] = value.split('/')
 
   if (!arr[chunk]) {
@@ -21,7 +21,7 @@ const router = Object.values(Object.keys(genComponents()).reduce((arr, value) =>
   }
   arr[chunk].children!.push({ label: name, key: `/${value}` })
   return arr
-}, {} as Record<string, MenuOption>))
+}, {} as Record<string, MenuOption>)))
 
 onMounted(() => {
   activeMenu.value = route.path
@@ -32,7 +32,7 @@ onMounted(() => {
   <n-menu
     v-model:value="activeMenu"
     class=" w-[200px]"
-    :options="router"
+    :options="menuList"
     @update-value="$router.push"
   />
 </template>

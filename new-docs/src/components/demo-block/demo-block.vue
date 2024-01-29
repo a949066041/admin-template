@@ -1,25 +1,18 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
-import { getHighlighterCore } from 'shikiji/core'
-
+import { type HighlighterCore, getHighlighterCore } from 'shikiji/core'
 import getWasm from 'shikiji/wasm'
 
-// import { useClipboard } from '@vueuse/core'
-// import { KMessage } from '@ikun-ui/message'
+import { useClipboard } from '@vueuse/core'
+import { useMessage } from 'naive-ui'
+import { useConfigStore, useUserStore } from '@yy-admin/common-core'
 
-const props = defineProps({
-  src: {
-    type: String,
-  },
-  github: {
-    type: String,
-  },
-  source: {
-    type: String,
-    default: '',
-  },
+const props = withDefaults(defineProps<{ src: string, source: string, auth?: boolean }>(), {
+  auth: false,
 })
-
+const userStore = useUserStore()
+const configStore = useConfigStore()
+const message = useMessage()
 const [render, toggleRender] = useToggle()
 let AsyncComp: any = null
 const modules = import.meta.glob('../../example/**/*.vue')
@@ -34,9 +27,11 @@ onMounted(async () => {
 })
 
 const code = computed(() => decodeURIComponent(props.source))
+let highlighter: HighlighterCore | null = null
+
 const html = ref('')
-watch(code, async (code) => {
-  const highlighter = await getHighlighterCore({
+watch([code, () => configStore.isDark], async () => {
+  highlighter = await getHighlighterCore({
     themes: [
       import('shikiji/themes/vitesse-light.mjs'),
       import('shikiji/themes/vitesse-dark.mjs'),
@@ -47,10 +42,9 @@ watch(code, async (code) => {
     ],
     loadWasm: getWasm,
   })
-
-  html.value = highlighter.codeToHtml(code, {
+  html.value = highlighter.codeToHtml(code.value, {
     lang: 'javascript',
-    theme: 'vitesse-dark',
+    theme: configStore.isDark ? 'vitesse-dark' : 'vitesse-light',
   })
 }, { immediate: true })
 
@@ -59,13 +53,20 @@ const showCode = ref(false)
 const { copy } = useClipboard({ source: code.value })
 function handleCopy() {
   copy()
+  message.success('复制成功 😄')
 }
 </script>
 
 <template>
   <div class="mt-6 border border-solid py-4 px-2 rounded border-slate-200">
-    <div v-if="render" class=" w-full">
-      <AsyncComp />
+    <div
+      v-if="render" class=" w-full min-h-30 relative"
+      :class="auth && !userStore.isLogin && `after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-gray-1 after:dark:bg-[#ccc] after:text-black
+      after:content-[\'授权后查看\'] after:text-2xl after:flex after:items-center after:justify-center`"
+    >
+      <div v-if="auth && userStore.isLogin || !auth">
+        <AsyncComp />
+      </div>
     </div>
     <div
       v-if="showCode"
@@ -88,13 +89,6 @@ function handleCopy() {
         style="color: #737373"
         @click="handleCopy()"
       />
-      <a
-        :href="`https://github.com/ikun-svelte/ikun-ui/tree/main/components/${github}`"
-        target="_blank"
-        class="mx-2"
-      >
-        <div title="open in github" class="i-carbon-logo-github" style="color: #737373" />
-      </a>
     </div>
   </div>
 </template>

@@ -2,6 +2,7 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { AuthApi, MenuApi } from '@yy-admin/common-apis'
 import type { IMenuBuild, LoginForm, UserInfo } from '@yy-admin/common-apis'
+import { encrypt } from '@yy-admin/common-utils'
 import type { Router } from 'vue-router'
 import { tokenStorage } from '../utils/cookie'
 import { flatChildrenArr } from '../utils/array.util'
@@ -16,6 +17,8 @@ export const useUserStore = defineStore('core-user', () => {
 
     return userInfo.value.user
   })
+
+  const isLogin = computed(() => userValue.value !== null)
   let currentRouter: Router | null = null
 
   const avatar = computed(() => {
@@ -26,7 +29,7 @@ export const useUserStore = defineStore('core-user', () => {
   })
 
   async function loginAction(loginForm: LoginForm) {
-    const { token } = await AuthApi.login(loginForm)
+    const { token } = await AuthApi.login({ ...loginForm, password: encrypt(loginForm.password) as string })
     tokenStorage.setValue(token)
   }
 
@@ -66,6 +69,7 @@ export const useUserStore = defineStore('core-user', () => {
   }
 
   return {
+    isLogin,
     userValue,
     avatar,
     flatMenuList,

@@ -10,6 +10,7 @@ export default mergeConfig(defaultConfig(), defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@yy-web/common-api': fileURLToPath(new URL('../common/apis/src/index.ts', import.meta.url)),
     },
   },
   plugins: [
