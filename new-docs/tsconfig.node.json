@@ -12,6 +12,6 @@
     "cypress.config.*",
     "nightwatch.conf.*",
     "playwright.config.*",
-    "./auto-imports.d.ts", "./plugins/demo-md.ts"
+    "./auto-imports.d.ts", "./plugins/demo-md.ts", "./plugins/resolve-type.ts"
   ]
 }

@@ -9,7 +9,6 @@ export const useAppConfigStore = createGlobalState(() => {
   const configProps = computed<ConfigProviderProps>(() => ({
     theme: !configStore.isDark ? lightTheme : darkTheme,
     locale: zhCN,
-    size: 'small',
     dateLocale: dateZhCN,
   }))
 

@@ -9,11 +9,11 @@ defineOptions({
 
 <template>
   <AppConfig>
-    <div class=" flex">
+    <div class=" flex h-screen overflow-hidden">
       <DocRouter />
-      <div class="flex flex-col overflow-hidden flex-1 px-5">
+      <div class="flex flex-col overflow-hidden flex-1 overflow-hidden h-full">
         <LoginStatus />
-        <div class="flex-1">
+        <div class="flex-1 overflow-auto px-5">
           <router-view />
         </div>
       </div>

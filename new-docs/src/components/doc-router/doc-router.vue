@@ -31,7 +31,7 @@ onMounted(() => {
 <template>
   <n-menu
     v-model:value="activeMenu"
-    class=" w-[200px]"
+    class=" w-[200px] h-full overscroll-auto"
     :options="menuList"
     @update-value="$router.push"
   />

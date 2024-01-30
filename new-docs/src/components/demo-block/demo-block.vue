@@ -59,7 +59,7 @@ function handleCopy() {
 </script>
 
 <template>
-  <div class="mt-6 border border-solid py-4 px-2 rounded border-slate-200">
+  <div class="mt-6 border border-solid pt-4 px-2 rounded border-slate-200">
     <div
       v-if="render" class=" w-full min-h-30 relative"
       :class="auth && !userStore.isLogin && 'auth'"
@@ -75,7 +75,7 @@ function handleCopy() {
       <div class="w-full" v-html="html" />
     </div>
     <div
-      class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"
+      class="border-t-1px border-t-solid border-slate-200  flex justify-end items-center h-8"
     >
       <div
         title="show source code"

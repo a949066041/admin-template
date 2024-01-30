@@ -4,8 +4,7 @@ import { AuthApi, MenuApi } from '@yy-admin/common-apis'
 import type { IMenuBuild, LoginForm, UserInfo } from '@yy-admin/common-apis'
 import { encrypt } from '@yy-admin/common-utils'
 import type { Router } from 'vue-router'
-import { tokenStorage } from '../utils/cookie'
-import { flatChildrenArr } from '../utils/array.util'
+import { flatChildrenArr, tokenStorage } from '../utils'
 
 export const useUserStore = defineStore('core-user', () => {
   const userInfo = ref<UserInfo | null>(null)

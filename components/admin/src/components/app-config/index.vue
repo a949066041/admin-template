@@ -8,18 +8,16 @@ defineOptions({
 })
 const props = defineProps<{ title?: string }>()
 const { configProps } = useAppConfigStore()
-useTitle(props.title)
+useTitle(() => props.title)
 </script>
 
 <template>
   <n-loading-bar-provider>
-    <NThemeEditor>
-      <n-config-provider v-bind="configProps" preflight-style-disabled>
-        <n-global-style />
-        <n-message-provider>
-          <slot />
-        </n-message-provider>
-      </n-config-provider>
-    </NThemeEditor>
+    <n-config-provider v-bind="configProps" preflight-style-disabled>
+      <n-global-style />
+      <n-message-provider>
+        <slot />
+      </n-message-provider>
+    </n-config-provider>
   </n-loading-bar-provider>
 </template>

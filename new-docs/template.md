@@ -1,0 +1,24 @@
+### 属性
+
+| 名称  | 说明     | 类型   | 默认值 |
+| ----- | -------- | ------ | ------ |
+| title | 项目标题 | string | null   |
+
+### 事件
+| 名称   | 说明                              | 类型                                                                |
+| ------ | --------------------------------- | ------------------------------------------------------------------- |
+| change | triggers when fixed state changed | ^[Function]`(fixed: boolean) => void`                               |
+| scroll | triggers when scrolling           | ^[Function]`(value: { scrollTop: number, fixed: boolean }) => void` |
+
+### 插槽
+
+| 名称    | 说明               |
+| ------- | ------------------------- |
+| default | customize default content |
+
+### 暴露
+
+| 名称       | 说明                        | 类型                    |
+| ---------- | --------------------------- | ----------------------- |
+| update     | update affix state manually | ^[Function]`() => void` |
+| updateRoot | update rootRect info        | ^[Function]`() => void` |
