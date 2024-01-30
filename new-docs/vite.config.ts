@@ -7,6 +7,7 @@ import Shikiji from 'markdown-it-shikiji'
 import { demoBlockPlugin } from './plugins/demo-md'
 
 export default mergeConfig(defaultConfig(), defineConfig({
+  base: '/docs',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
