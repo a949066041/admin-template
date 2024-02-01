@@ -67,7 +67,7 @@ const { formModel, visible, modalTitle, handleInitForm, saveLoading, handleSaveF
       formModel.value.jobs = (result!.jobs as IJobEntity[]).map(item => item.id)
       formModel.value.deptId = (result?.dept as IDeptEntity).id
     }
-    triggerDeptTree(!!isAdd, (result?.dept as IDeptEntity).id)
+    triggerDeptTree(!!isAdd, (result?.dept as IDeptEntity)?.id)
   },
 })
 

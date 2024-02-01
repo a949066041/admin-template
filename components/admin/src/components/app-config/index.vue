@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useTitle } from '@vueuse/core'
-import { NThemeEditor } from 'naive-ui'
 import { useAppConfigStore } from './config'
 
 defineOptions({
