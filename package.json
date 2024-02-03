@@ -28,11 +28,11 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.3",
-    "@iconify/json": "^2.2.177",
+    "@iconify/json": "^2.2.178",
     "@iconify/utils": "^2.1.20",
     "@types/lodash": "^4.14.202",
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.11.15",
+    "@types/node": "^20.11.16",
     "@unocss/transformer-directives": "^0.58.4",
     "@vitest/coverage-v8": "^1.2.2",
     "@vue/tsconfig": "^0.5.1",

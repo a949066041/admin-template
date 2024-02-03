@@ -16,6 +16,6 @@
     "typescript": "^5.3.3",
     "unplugin-vue-components": "^0.26.0",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-vue-devtools": "^7.0.13"
+    "vite-plugin-vue-devtools": "^7.0.14"
   }
 }
