@@ -80,10 +80,10 @@ function handleLoadingAction() {
         <ThemeToggle v-slot="{ toggle }">
           <n-switch class=" absolute right-2 top-2" :value="configStore.isDark" @click="toggle">
             <template #checked-icon>
-              <i class="i-carbon-moon" />
+              <i class="i-line-md:moon-rising-loop " />
             </template>
             <template #unchecked-icon>
-              <i class="i-carbon-sun" />
+              <i class="i-line-md:sun-rising-loop" />
             </template>
           </n-switch>
         </ThemeToggle>

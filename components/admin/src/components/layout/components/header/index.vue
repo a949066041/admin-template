@@ -76,7 +76,7 @@ function handleToMenu(breadcrumbItem: IRouteBreadcrumbItem) {
         <div class=" text-xl cursor-pointer" :class=" isFullscreen ? 'i-dashicons:fullscreen-exit-alt' : 'i-lets-icons:full-alt'" @click="toggleFullscreen()" />
 
         <ThemeToggle v-slot="{ toggle }" class=" flex items-center">
-          <div i-carbon-sun dark:i-carbon-moon translate-y--1px class=" text-xl cursor-pointer" @click="toggle" />
+          <div i-line-md:sun-rising-loop dark:i-line-md:moon-rising-loop translate-y--1px class=" text-xl cursor-pointer" @click="toggle" />
         </ThemeToggle>
       </n-space>
       <n-divider vertical />

@@ -8,7 +8,7 @@ const configStore = useConfigStore()
 <template>
   <div>
     <div class="flex">
-      <span>状态：</span><span v-if="!configStore.isDark" class="i-carbon-sun text-black flex w-20 h-20" /><span v-else class="i-carbon-moon flex w-20 h-20" />
+      <span>状态：</span><span v-if="!configStore.isDark" class="i-line-md:sun-rising-loop text-black flex w-20 h-20" /><span v-else class="i-line-md:moon-rising-loop flex w-20 h-20" />
     </div>
     <ThemeToggle>
       <template #default="{ toggle }">
