@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
-import { type HighlighterCore, getHighlighterCore } from 'shikiji/core'
-import getWasm from 'shikiji/wasm'
+import { type HighlighterCore, getHighlighterCore } from 'shiki/core'
+import getWasm from 'shiki/wasm'
 
 import { useClipboard } from '@vueuse/core'
 import { useMessage } from 'naive-ui'
@@ -35,12 +35,12 @@ watch([showCode, () => configStore.isDark], async () => {
   if (showCode.value) {
     highlighter = await getHighlighterCore({
       themes: [
-        import('shikiji/themes/vitesse-light.mjs'),
-        import('shikiji/themes/vitesse-dark.mjs'),
+        import('shiki/themes/vitesse-light.mjs'),
+        import('shiki/themes/vitesse-dark.mjs'),
       ],
       langs: [
-        import('shikiji/langs/javascript.mjs'),
-        import('shikiji/langs/vue.mjs'),
+        import('shiki/langs/javascript.mjs'),
+        import('shiki/langs/vue.mjs'),
       ],
       loadWasm: getWasm,
     })
