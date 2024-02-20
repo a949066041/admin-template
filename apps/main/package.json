@@ -12,7 +12,7 @@
   "dependencies": {
     "@yy-admin/components-admin": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
-    "echarts": "^5.4.3"
+    "echarts": "^5.5.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
