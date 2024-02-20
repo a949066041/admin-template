@@ -2,8 +2,8 @@ name: docs publish
 
 on:
   push:
-    branches:
-      - docs
+    tags:
+      - 'v*'
 
 jobs:
   build-docs:
