@@ -1,9 +1,18 @@
 <script lang="ts" setup>
 import { AppConfig } from '@yy-admin/components-admin'
-import { DocRouter, LoginStatus } from './components'
+import { useRoute } from 'vue-router'
+import { DocAnchor, DocRouter, LoginStatus } from './components'
+import { type ITreeTocList, getHeaders } from './composables'
 
 defineOptions({
   name: 'App',
+})
+const route = useRoute()
+const headers = ref<ITreeTocList[]>([])
+watchImmediate(route, () => {
+  nextTick(() => {
+    headers.value = getHeaders()
+  })
 })
 </script>
 
@@ -14,7 +23,16 @@ defineOptions({
       <div class="flex flex-col overflow-hidden flex-1 overflow-hidden h-full">
         <LoginStatus />
         <div class="flex-1 overflow-auto px-5">
-          <router-view />
+          <n-row :gutter="12">
+            <n-col :span="18">
+              <router-view />
+            </n-col>
+            <n-col :span="6">
+              <div class=" w-40 float-right p-10 overflow-hidden">
+                <DocAnchor :headers="headers" />
+              </div>
+            </n-col>
+          </n-row>
         </div>
       </div>
     </div>

@@ -15,7 +15,6 @@ export default mergeConfig(defaultConfig(), defineConfig({
     },
   },
   plugins: [
-    MarkdownTransform(),
     Markdown({
       async markdownItSetup(md) {
         md.use(demoBlockPlugin)
