@@ -15,6 +15,8 @@ export const useTagStore = defineStore('admin-tag', () => {
   const tagList = ref<IRouteTag[]>(Array.from({ length: 0 }, (_, i) => ({ path: `/${i}`, title: `标签${i}`, name: `tag${i}` })))
   const activeTag = ref<IRouteTag['path']>('')
   const refreshing = ref<string | null>(null)
+  // 用来存已经创建的组件
+  const wrapperMap = new Map()
   const renderList = computed(() => {
     return [
       {
@@ -50,6 +52,8 @@ export const useTagStore = defineStore('admin-tag', () => {
     const lastIndex = tagList.value.findIndex(tag => tag.path === path) - 1
 
     cb()
+
+    wrapperMap.delete(path)
 
     if (tagList.value.length === 0) {
       activeTag.value = '/'
@@ -88,8 +92,6 @@ export const useTagStore = defineStore('admin-tag', () => {
     })
   }
 
-  // 用来存已经创建的组件
-  const wrapperMap = new Map()
   // https://juejin.cn/post/7237306107746877501
   function formatComponentInstance(component: VNode, wrapperName: string) {
     let wrapper
