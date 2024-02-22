@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import type { VNode } from 'vue'
+import { computed, h, ref } from 'vue'
 
 const MAX_KEEP = 100
 
@@ -27,7 +28,7 @@ export const useTagStore = defineStore('admin-tag', () => {
   })
 
   const keepAliveNames = computed(() => {
-    return renderList.value.map(item => item.name).filter(item => refreshing.value !== item)
+    return renderList.value.map(item => item.path).filter(item => refreshing.value !== item)
   })
 
   function switchTag(value: IRouteTag['path']) {
@@ -87,6 +88,27 @@ export const useTagStore = defineStore('admin-tag', () => {
     })
   }
 
+  // 用来存已经创建的组件
+  const wrapperMap = new Map()
+  // https://juejin.cn/post/7237306107746877501
+  function formatComponentInstance(component: VNode, wrapperName: string) {
+    let wrapper
+    if (component) {
+      wrapper = wrapperMap.has(wrapperName)
+        ? wrapperMap.get(wrapperName)
+        : {
+            name: wrapperName,
+            render() {
+              return h(component)
+            },
+          }
+      if (!wrapperMap.has(wrapperName))
+        wrapperMap.set(wrapperName, wrapper)
+
+      return h(wrapper)
+    }
+  }
+
   return {
     keepAliveNames,
     refreshing,
@@ -98,5 +120,6 @@ export const useTagStore = defineStore('admin-tag', () => {
     closeTag,
     closeAll,
     closeRight,
+    formatComponentInstance,
   }
 })

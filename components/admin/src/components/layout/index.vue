@@ -31,7 +31,7 @@ watch(route, (val) => {
             <router-view v-if="!tagStore.refreshing" v-slot="{ Component }">
               <transition name="fade-transform" mode="out-in" appear>
                 <keep-alive :include="tagStore.keepAliveNames">
-                  <component :is="Component" :key="$route.path" />
+                  <component :is="tagStore.formatComponentInstance(Component, $route.path)" :key="$route.path" />
                 </keep-alive>
               </transition>
             </router-view>
