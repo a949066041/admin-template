@@ -15,9 +15,9 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/rollup-plugin-visualizer": "^4.2.3",
+    "@types/rollup-plugin-visualizer": "^4.2.4",
     "@yy-admin/config-vite": "workspace:^",
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.18",
     "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "^5.3.3",
     "unplugin-vue-components": "^0.26.0",

@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "declaration": true
   },
-
   "references": [
     {
       "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
     }
   ],
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"]
+  "files": []
 }

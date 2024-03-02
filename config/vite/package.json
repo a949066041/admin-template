@@ -13,7 +13,7 @@
     "prepare:build": "tsc"
   },
   "devDependencies": {
-    "@types/rollup-plugin-visualizer": "^4.2.3",
+    "@types/rollup-plugin-visualizer": "^4.2.4",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "rollup-plugin-visualizer": "^5.12.0",
