@@ -1,8 +1,9 @@
 import { type IRoleRecord, RoleApi } from '@yy-admin/common-apis'
 import { useAppConfigStore } from '@yy-admin/components-admin'
+import type MenuTree from './menu-tree.vue'
 
 export function useRoleMenu() {
-  const checkMenu = ref<number[]>([])
+  const menuTree = ref<InstanceType<typeof MenuTree>>()
   const currentRole = ref<number | null>(null)
   const { message } = useAppConfigStore()
 
@@ -11,20 +12,23 @@ export function useRoleMenu() {
   })
   function handleSetMenuCheck(id: IRoleRecord['id'], val: IRoleRecord['menus']) {
     currentRole.value = id
-    checkMenu.value = val.map(item => item.id)
+
+    nextTick(() => {
+      menuTree.value?.withCheckedChildrenPick(val.map(item => item.id))
+    })
   }
 
   function handleSaveRoleMenu(cb?: () => void) {
-    RoleApi.menu(currentRole.value!, checkMenu.value).then(() => {
+    RoleApi.menu(currentRole.value!, menuTree.value!.getCheckMenuTree()).then(() => {
       message.success('保存成功')
       cb?.()
     })
   }
 
   return {
+    menuTree,
     handleSaveRoleMenu,
     isShowMenu,
-    checkMenu,
     handleSetMenuCheck,
   }
 }

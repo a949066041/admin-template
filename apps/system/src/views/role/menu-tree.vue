@@ -1,42 +1,53 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { type IMenuLazy, MenuApi } from '@yy-admin/common-apis'
+import { type IMenuEntity, MenuApi } from '@yy-admin/common-apis'
+import { flatChildrenArr } from '@yy-admin/common-core'
+import type { TreeInst } from 'naive-ui'
 
 defineOptions({
   name: 'MenuTree',
 })
 
-const props = defineProps<{ checked: number[] }>()
+const menuTree = ref<IMenuEntity[]>([])
+const roleMenuChecked = ref<number[]>([])
+const treeRef = ref<TreeInst>()
 
-interface IRenderMenuTree extends IMenuLazy {
-  isLeaf: boolean
-  children?: IRenderMenuTree[]
+async function withCheckedChildrenPick(checked: number[]) {
+  const menuList = await handleGetMenuTree()
+  const flatMenuList = flatChildrenArr(menuList)
+
+  // pick children
+  const childrenChecked = flatMenuList.filter(item => !item.children).map(item => item.id).filter(id => checked.includes(id))
+  roleMenuChecked.value = childrenChecked
 }
 
-const bindCheck = useVModel(props, 'checked')
-const menuTree = ref<IRenderMenuTree[]>([])
-
-// TODO
-function handleLoadMenu(node: IRenderMenuTree | any) {
-  return new Promise<void>((resolve) => {
-    MenuApi.menuLazy(node.id).then((res) => {
-      node.children = res.map(item => ({ ...item, isLeaf: item.leaf }))
-      resolve()
-    })
-  })
+async function handleGetMenuTree() {
+  const menuList = await MenuApi.role()
+  menuTree.value = menuList
+  return menuList
 }
 
-onMounted(async () => {
-  const menuList = await MenuApi.menuLazy(0)
-  menuTree.value = menuList.map(item => ({ ...item, isLeaf: item.leaf }))
+onMounted(handleGetMenuTree)
+
+function getCheckMenuTree() {
+  const { keys = [] } = treeRef.value!.getIndeterminateData()
+  return [...roleMenuChecked.value, ...keys] as number[]
+}
+
+defineExpose({
+  withCheckedChildrenPick,
+  getCheckMenuTree,
 })
 </script>
 
 <template>
   <n-tree
-    v-model:checked-keys="bindCheck" block-line key-field="id"
-    :on-load="handleLoadMenu"
+    ref="treeRef"
+    v-model:checked-keys="roleMenuChecked"
+    default-expand-all
+    class=" overflow-auto " block-line key-field="id"
     checkable
+    cascade
     :selectable="false"
     :data="menuTree"
   />

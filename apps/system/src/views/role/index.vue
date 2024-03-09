@@ -47,7 +47,7 @@ const rules = ref<NaiveFormRules<IRoleEntity>>({
   ],
 })
 
-const { checkMenu, handleSetMenuCheck, handleSaveRoleMenu, isShowMenu } = useRoleMenu()
+const { handleSetMenuCheck, handleSaveRoleMenu, isShowMenu, menuTree } = useRoleMenu()
 const columns = computed<YyTableColumns<keyof IRoleRecord>[]>(() => [
   cT('name', '名称'),
   cT('dataScope', '数据权限'),
@@ -130,7 +130,7 @@ const columns = computed<YyTableColumns<keyof IRoleRecord>[]>(() => [
           status="info"
           description="请点击左侧权限"
         />
-        <MenuTree v-else v-model:checked="checkMenu" />
+        <MenuTree v-else ref="menuTree" class=" h-[500px] " />
       </n-card>
     </n-gi>
   </n-grid>

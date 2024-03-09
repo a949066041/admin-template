@@ -1,19 +1,23 @@
 import { ApiInstance } from '../instance'
-import type { IMenuEntity, IMenuTreeRecord, MenuList } from './menu.type'
+import type { IMenuEntity, IMenuTreeRecord } from './menu.type'
 
 class MenuApiInstance extends ApiInstance<IMenuEntity> {
   baseApi = '/api/menus'
 
   public buildMenu() {
-    return this.$request.setPath(`${this.baseApi}/build`).get<MenuList[]>()
+    return this.$request.setPath(`${this.baseApi}/build`).get<IMenuEntity[]>()
   }
 
   public menuLazy(pid?: number) {
     return this.$request.setPath(`${this.baseApi}/lazy`).get<IMenuTreeRecord[]>({ pid })
   }
 
+  public role() {
+    return this.$request.setPath(`${this.baseApi}/role`).get<IMenuTreeRecord[]>(true)
+  }
+
   public list() {
-    return this.$request.setPath(`${this.baseApi}/menuAll`).get<MenuList[]>()
+    return this.$request.setPath(`${this.baseApi}/menuAll`).get<IMenuEntity[]>()
   }
 
   public pageTree(params: Record<string, any>): Promise<IMenuTreeRecord[]> {
