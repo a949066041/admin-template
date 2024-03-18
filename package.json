@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.3",
-    "@iconify/json": "^2.2.192",
+    "@iconify/json": "^2.2.193",
     "@iconify/utils": "^2.1.22",
     "@types/lodash": "^4.17.0",
     "@types/lodash-es": "^4.17.12",
