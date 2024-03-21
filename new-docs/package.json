@@ -27,6 +27,6 @@
     "markdown-it": "^14.1.0",
     "shiki": "^1.2.0",
     "unplugin-vue-markdown": "^0.26.0",
-    "vite": "^5.2.0"
+    "vite": "^5.2.2"
   }
 }

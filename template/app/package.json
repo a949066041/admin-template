@@ -23,7 +23,7 @@
     "@yy-admin/common-css": "workspace:^",
     "less": "^4.2.0",
     "npm-run-all": "^4.1.5",
-    "typescript": "~5.4.2",
+    "typescript": "~5.4.3",
     "vue-tsc": "^2.0.7"
   }
 }
