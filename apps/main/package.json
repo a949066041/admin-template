@@ -15,7 +15,7 @@
     "echarts": "^5.5.0"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.2",
+    "@tsconfig/node18": "^18.2.3",
     "@yy-admin/common-css": "workspace:^",
     "@yy-admin/web-monitor": "workspace:^",
     "@yy-admin/web-system": "workspace:^",

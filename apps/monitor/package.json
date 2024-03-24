@@ -22,7 +22,7 @@
     "echarts": "^5.5.0"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.2",
+    "@tsconfig/node18": "^18.2.3",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",
     "@yy-admin/components-base": "workspace:^",
