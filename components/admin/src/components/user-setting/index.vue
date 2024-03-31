@@ -105,6 +105,6 @@ function handleActionUserClick(key: string) {
         </n-tabs>
       </n-card>
     </n-gi>
+    <UserResetPwd ref="userResetPwd" />
   </n-grid>
-  <UserResetPwd ref="userResetPwd" />
 </template>
