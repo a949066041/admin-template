@@ -10,7 +10,7 @@ const configProps = computed<ConfigProviderProps>(() => ({
 </script>
 
 <template>
-  <n-config-provider v-bind="configProps">
+  <n-config-provider v-bind="configProps" inline-theme-disabled>
     <NuxtLayout>
       <n-global-style />
       <NuxtPage />
