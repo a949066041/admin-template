@@ -97,7 +97,8 @@ const { limit, current } = useVModels(props, emit)
         v-model:page="current"
         v-model:page-size="limit"
         class="mt-2 flex justify-end"
-        :page-count="renderPageCount" show-quick-jumper
+        :page-count="renderPageCount" show-quick-jumper show-size-picker
+        :page-sizes="[10, 20, 50, 100, 200]"
       />
     </div>
     <slot />
