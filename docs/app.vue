@@ -1,7 +1,19 @@
+<script lang="ts" setup>
+import type { ConfigProviderProps } from 'naive-ui'
+import { darkTheme, lightTheme } from 'naive-ui'
+
+const colorMode = useColorMode()
+
+const configProps = computed<ConfigProviderProps>(() => ({
+  theme: colorMode.value === 'light' ? lightTheme : darkTheme,
+}))
+</script>
+
 <template>
-  <NuxtLayout>
-    <div>
+  <n-config-provider v-bind="configProps">
+    <NuxtLayout>
+      <n-global-style />
       <NuxtPage />
-    </div>
-  </NuxtLayout>
+    </NuxtLayout>
+  </n-config-provider>
 </template>

@@ -1,12 +1,17 @@
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import Icons from 'unplugin-icons/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  css: ['~/assets/css/main.css'],
   devtools: { enabled: true },
   experimental: {
     componentIslands: true,
+  },
+  features: {
+    inlineStyles: false,
   },
   runtimeConfig: {
     public: {
@@ -17,6 +22,7 @@ export default defineNuxtConfig({
   modules: [
     '@unocss/nuxt',
     '@vueuse/nuxt',
+    'unplugin-icons/nuxt',
   ],
   build: {
     transpile:
@@ -29,6 +35,9 @@ export default defineNuxtConfig({
       include: process.env.NODE_ENV === 'development' ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone'] : [],
     },
     plugins: [
+      Icons({
+        autoInstall: true,
+      }),
       AutoImport({
         imports: [
           {

@@ -1,10 +1,89 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
-    <h1>Welcome to the central testing suite of FormKit Drag and Drop!</h1>
-    <n-button type="primary" data-aos="flip-left">
-      test
-    </n-button>
+  <div class=" w-full flex justify-center">
+    <span v-for="item of 'yy-web'" :key="item" :class="item">{{ item }}</span>
   </div>
 </template>
+
+<style scoped lang="scss">
+$bright: #afa695;
+$gold: #867862;
+$dark: #746853;
+
+$duration: 14s;
+div {
+	position: relative;
+	margin: auto;
+	perspective: 2000px;
+	transform-style: preserve-3d;
+	letter-spacing: -10px;
+	font: 18vw Righteous;
+	animation: fade $duration infinite;
+	-webkit-box-reflect: below -8vw linear-gradient(transparent 20%, rgba(255, 255, 255, 0.6));
+
+	&::before {
+		position: absolute;
+		content: "";
+		inset: 0;
+		backdrop-filter: blur(5px);
+		z-index: 1;
+		transform: translate(0, -100%);
+	}
+}
+
+span {
+	position: relative;
+	display: inline-block;
+	min-width: 0.5em;
+	text-align: center;
+	transform-style: preserve-3d;
+	letter-space: -100px;
+	transform: rotateY(25deg);
+	animation: rotate $duration infinite ease-in-out;
+	color: transparent;
+	background: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180815%2Ff26de16c9dfa40c1ba0bfe9ae81be3ee.gif&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673678016&t=47dde8d78f9d5064f9a9c4764422facf);
+	background-clip: text;
+
+	&:after,
+	&:before {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		content: attr(class);
+		color: transparent;
+		filter: brightness(3) contrast(0.8);
+		z-index: -1;
+		background: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180815%2Ff26de16c9dfa40c1ba0bfe9ae81be3ee.gif&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673678016&t=47dde8d78f9d5064f9a9c4764422facf);
+		background-clip: text;
+		background-position: 20px 20px;
+	}
+
+	&:before {
+		transform: translateZ(-20px);
+	}
+	&:after {
+		transform: translateZ(-10px);
+		background-position: 30px 30px;
+	}
+}
+
+@keyframes fade {
+	from {
+		transform: scale(1.5);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotateY(50deg);
+	}
+	to {
+		transform: rotateY(-35deg);
+	}
+}
+</style>
