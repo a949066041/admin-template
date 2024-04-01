@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import type { MenuInst } from 'naive-ui'
 import { h, nextTick, onMounted, ref, watch } from 'vue'
 import type { IMenuBuild } from '@yy-admin/common-apis'
-import { useEventListener } from '@vueuse/core'
+import { useEventListener, watchImmediate } from '@vueuse/core'
 
 defineOptions({
   name: 'YySider',
@@ -32,12 +32,7 @@ function handleRenderLabel(options: IMenuBuild) {
   return h('span', { class: 'text-truncate' }, options.meta.title)
 }
 
-watch(activePath, (val) => {
-  router.push(val)
-  handleToggleMenu()
-})
-
-onMounted(() => {
+watchImmediate(route, () => {
   activePath.value = route.path
   handleToggleMenu()
 })
@@ -70,7 +65,7 @@ useEventListener('resize', setFixed)
     </div>
     <n-menu
       ref="menuInstRef"
-      v-model:value="activePath"
+      :value="activePath"
       :collapsed="configStore.collapseMenu"
       :icon-size="16"
       :collapsed-width="64"
@@ -78,6 +73,7 @@ useEventListener('resize', setFixed)
       :render-icon="handleRenderIcon"
       :render-label="handleRenderLabel"
       :options="userStore.userMenuList"
+      @update:value="(val: string) => router.push(val)"
     />
   </n-layout-sider>
   <Teleport v-if="isFixed && !configStore.collapseMenu" to="body">
