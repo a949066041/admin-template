@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { ConfigProviderProps } from 'naive-ui'
 import { darkTheme, lightTheme } from 'naive-ui'
+import '@shikijs/twoslash/style-rich.css'
 
 const colorMode = useColorMode()
 

@@ -1,6 +1,9 @@
 <script lang="ts" setup>
+
 </script>
 
 <template>
-  <div>button</div>
+  <div>
+    <CodeExample example="test" />
+  </div>
 </template>

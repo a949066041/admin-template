@@ -23,7 +23,7 @@ function toggleDark() {
             介绍
           </n-button>
         </nuxt-link>
-        <nuxt-link to="components/">
+        <nuxt-link to="/components/">
           <n-button quaternary type="primary">
             组件库
           </n-button>
