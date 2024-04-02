@@ -4,6 +4,7 @@ import commonViteConfig from '@yy-admin/config-vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import viteCompression from 'vite-plugin-compression'
+import TurboConsole from 'unplugin-turbo-console/vite'
 
 export function YyNaiveuiComponents(): ComponentResolver {
   const customComponent = new Set([
@@ -59,6 +60,7 @@ export default () => mergeConfig(commonViteConfig({
     },
   },
   plugins: [
+    TurboConsole(),
     viteCompression({
       threshold: 1024,
       filter: /\.(css|html|js|svg|json)$/i,
