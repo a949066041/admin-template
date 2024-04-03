@@ -1,17 +1,28 @@
 <script lang="ts" setup>
+import { useFileUpload } from './useFileUpload'
 import type { IPropsUpload } from './index'
 
 defineOptions({
   name: 'SingleUpload',
 })
 
-withDefaults(defineProps<IPropsUpload>(), {
+const props = withDefaults(defineProps<IPropsUpload>(), {
   name: 'file',
   size: 2,
   ext: () => ['jpg', 'jpeg', 'png'],
 })
+
+const { handleUploadFile } = useFileUpload({
+  name: props.name,
+  size: props.size,
+  action: props.action,
+})
 </script>
 
 <template>
-  <div>SingleUpload</div>
+  <div>
+    <button @click="handleUploadFile()">
+      click
+    </button>
+  </div>
 </template>
