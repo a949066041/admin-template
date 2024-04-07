@@ -13,12 +13,12 @@
   },
   "devDependencies": {
     "@yy-admin/config-vite": "workspace:^",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.4",
     "unplugin-vue-components": "^0.26.0",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vue-devtools": "^7.0.25"
   },
   "dependencies": {
-    "unplugin-turbo-console": "^1.5.1"
+    "unplugin-turbo-console": "^1.6.1"
   }
 }
