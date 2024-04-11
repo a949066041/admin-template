@@ -54,10 +54,9 @@ export function useFileUpload(options: IUseFileUpload) {
       reset()
     }
 
-    // 文件类型过滤
-
-    // 文件大小过滤
-    console.log(file)
+    _options.action(file[0]).then((res) => {
+      console.log(res)
+    })
   })
 
   return {

@@ -5,6 +5,7 @@ export { RoleApi } from './role.api'
 export { JobApi } from './job.api'
 export { DictDetailApi } from './dict-detail.api'
 export { DictApi } from './dict.api'
+export { LocalStorageApi } from './localStorage.api'
 
 export * from './user.type'
 export * from './dict-detail.type'
