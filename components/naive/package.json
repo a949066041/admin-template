@@ -9,7 +9,14 @@
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "prepare:build": "vite build"
+    "prepare:build": "vite build",
+    "build": "farm build"
+  },
+  "dependencies": {
+    "@farmfe/cli": "^1.0.0",
+    "@farmfe/core": "^1.0.21",
+    "@yy-admin/config-farm": "workspace:^",
+    "core-js": "^3.37.0"
   },
   "devDependencies": {
     "@yy-admin/config-vite-lib": "workspace:^",
