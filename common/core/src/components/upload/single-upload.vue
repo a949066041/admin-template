@@ -12,7 +12,8 @@ const props = withDefaults(defineProps<IPropsUpload>(), {
   ext: () => ['jpg', 'jpeg', 'png'],
 })
 
-const { handleUploadFile } = useFileUpload({
+const { handleUploadFile, fileListModel } = useFileUpload({
+  value: [],
   name: props.name,
   size: props.size,
   action: props.action,
@@ -21,6 +22,7 @@ const { handleUploadFile } = useFileUpload({
 
 <template>
   <div>
+    {{ fileListModel }}
     <button @click="handleUploadFile()">
       click
     </button>

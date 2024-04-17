@@ -10,8 +10,13 @@ class LocalStorageApiInstance extends ApiInstance {
     this.upload = this.upload.bind(this)
   }
 
-  upload(file: File, name: string = 'xxx.jpg') {
-    return this.$request.setPath(`${this.baseApi}?name=${name}`).upload(file, { name })
+  upload(file: File, onUploadProgress?: (progress: number) => void) {
+    return this.$request.setPath(`${this.baseApi}`).setConfig(({
+      onUploadProgress(e) {
+        if (e)
+          onUploadProgress?.(Math.round((e.loaded * 100) / (e.total || 0)))
+      },
+    })).upload(file, { name: file.name })
   }
 }
 

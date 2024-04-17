@@ -15,6 +15,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@types/uuid": "^9.0.8",
     "@vitest/ui": "^1.5.0",
     "@vueuse/core": "^10.9.0",
     "@yy-web/request": "^1.5.9",
@@ -23,6 +24,7 @@
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.38.1",
     "pinia": "^2.1.7",
+    "uuid": "^9.0.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

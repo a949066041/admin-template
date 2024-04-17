@@ -1,8 +1,10 @@
 import { type MaybeRefOrGetter, computed, ref, toValue } from 'vue'
-import { useFileDialog } from '@vueuse/core'
+import { useFileDialog, useVModel } from '@vueuse/core'
+import { v4 } from 'uuid'
 import type { IPropsUpload } from './index'
 
 export interface IUseFileUpload {
+  value: MaybeRefOrGetter<Pick<IFileItem, 'name' | 'url'>[]>
   multiple?: MaybeRefOrGetter<boolean>
   action: IPropsUpload['action']
   size?: MaybeRefOrGetter<IPropsUpload['size']>
@@ -11,10 +13,12 @@ export interface IUseFileUpload {
 }
 
 export interface IFileItem {
+  url?: string
+  uKey?: string
   name: string
-  size: number
-  type: string
-  progress: number
+  size?: number
+  type?: string
+  progress?: number
 }
 
 export function useFileUpload(options: IUseFileUpload) {
@@ -24,42 +28,56 @@ export function useFileUpload(options: IUseFileUpload) {
     ...options,
   } as Required<IUseFileUpload>
 
-  const fileList = ref<IFileItem[]>([])
+  const fileListModel = ref<IFileItem[]>([])
   const { open, reset, onChange } = useFileDialog({
     multiple: toValue(_options.multiple),
     directory: toValue(_options.multiple),
   })
 
-  const isUploadFile = computed(() => fileList.value
+  const isUploadFile = computed(() => fileListModel.value
     .filter(item => typeof item.progress !== 'undefined')
     .map(item => item.progress !== 100).length !== 0)
-  const isOverstepLimit = computed(() => fileList.value.length >= _options.limit)
+  const isOverstepLimit = computed(() => fileListModel.value.length >= _options.limit)
 
   function handleUploadFile() {
     reset()
     open()
   }
 
-  onChange((file) => {
-    if (!file || file.length === 0)
+  onChange((fileList) => {
+    if (!fileList || fileList.length === 0)
       return
 
     if (isUploadFile.value) {
       window.errorMsg('文件未上传完毕')
       reset()
     }
+
     // 过滤
     if (isOverstepLimit.value) {
       window.errorMsg('文件数量超出')
       reset()
     }
 
-    _options.action(file[0]).then((res) => {
-      console.log(res)
-    })
+    // 开始上传未上传文件
+    Promise.all(Array.from(fileList)
+      .map(file => new Promise<void>((resolve) => {
+        const fileValue = { name: file.name, size: file.size, type: file.type, progress: 0, uKey: v4() }
+        fileListModel.value.push(fileValue)
+        _options.action(file, (e) => {
+          // 进度
+          fileListModel.value[fileListModel.value.findIndex(item => item.uKey === fileValue.uKey)].progress = e
+        }).then(() => {
+          resolve()
+          delete fileListModel.value[fileListModel.value.findIndex(item => item.uKey === fileValue.uKey)].progress
+        })
+      }),
+      ),
+    )
   })
 
   return {
+    fileListModel,
     handleUploadFile,
   }
 }

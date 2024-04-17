@@ -1,7 +1,7 @@
 export interface IPropsUpload {
   name?: string
   size?: number
-  action: (file: File) => Promise<unknown>
+  action: (file: File, uploadProgress?: (progress: number) => void) => Promise<unknown>
   ext?: string[]
 }
 
