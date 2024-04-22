@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.15.0",
-    "@iconify/json": "^2.2.202",
+    "@iconify/json": "^2.2.203",
     "@iconify/utils": "^2.1.23",
     "@types/lodash": "^4.17.0",
     "@types/lodash-es": "^4.17.12",
@@ -42,7 +42,7 @@
     "eslint": "^9.1.0",
     "taze": "^0.13.6",
     "turbo": "^1.13.2",
-    "type-fest": "^4.15.0",
+    "type-fest": "^4.16.0",
     "typescript": "^5.4.5",
     "unocss": "^0.59.4",
     "vite": "^5.2.10",

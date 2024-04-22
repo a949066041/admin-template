@@ -50,12 +50,12 @@ export default () => mergeConfig(commonViteConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://192.168.2.91:8000/',
+        target: 'http://110.41.161.81/',
         rewrite: path => path.replace(/^\/api\//, ''),
         changeOrigin: true,
       },
       '/avatar': {
-        target: 'http://192.168.2.91:8000/',
+        target: 'http://110.41.161.81/',
       },
     },
   },
