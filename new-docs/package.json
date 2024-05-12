@@ -15,17 +15,17 @@
     "echarts": "^5.5.0"
   },
   "devDependencies": {
-    "@shikijs/markdown-it": "^1.4.0",
+    "@shikijs/markdown-it": "^1.5.1",
     "@types/fs-extra": "^11.0.4",
     "@types/markdown-it": "^14.1.1",
-    "@vue/compiler-core": "^3.4.26",
+    "@vue/compiler-core": "^3.4.27",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-core": "workspace:^",
     "@yy-admin/components-admin": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
     "fs-extra": "^11.2.0",
     "markdown-it": "^14.1.0",
-    "shiki": "^1.4.0",
+    "shiki": "^1.5.1",
     "unplugin-vue-markdown": "^0.26.2",
     "vite": "^5.2.11"
   }
