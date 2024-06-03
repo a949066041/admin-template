@@ -10,6 +10,6 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "devDependencies": {
-    "@unocss/reset": "^0.60.3"
+    "@unocss/reset": "^0.60.4"
   }
 }
