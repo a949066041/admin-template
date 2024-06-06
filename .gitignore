@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 tsconfig.vue.tsbuildinfo
 .DS_Store
+.trubo
+.turbo/cache
 dist
 dist-ssr
 coverage

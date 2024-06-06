@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
+  "tasks": {
     "prepare:build": {
       "dependsOn": ["^prepare:build"],
       "inputs": ["src/**/*.ts", "svg/**/*.svg"],
