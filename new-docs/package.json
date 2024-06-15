@@ -18,7 +18,7 @@
     "@shikijs/markdown-it": "^1.6.4",
     "@types/fs-extra": "^11.0.4",
     "@types/markdown-it": "^14.1.1",
-    "@vue/compiler-core": "^3.4.27",
+    "@vue/compiler-core": "^3.4.29",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-core": "workspace:^",
     "@yy-admin/components-admin": "workspace:^",
@@ -27,6 +27,6 @@
     "markdown-it": "^14.1.0",
     "shiki": "^1.6.4",
     "unplugin-vue-markdown": "^0.26.2",
-    "vite": "^5.2.13"
+    "vite": "^5.3.1"
   }
 }
