@@ -16,6 +16,6 @@
   },
   "devDependencies": {
     "@types/three": "^0.165.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   }
 }

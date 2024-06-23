@@ -12,6 +12,6 @@
   "devDependencies": {
     "@yy-admin/common-apis": "workspace:^",
     "axios": "^1.7.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   }
 }
