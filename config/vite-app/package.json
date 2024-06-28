@@ -14,7 +14,7 @@
   "devDependencies": {
     "@yy-admin/config-vite": "workspace:^",
     "typescript": "^5.5.2",
-    "unplugin-vue-components": "^0.27.0",
+    "unplugin-vue-components": "^0.27.2",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vue-devtools": "^7.3.4"
   }
