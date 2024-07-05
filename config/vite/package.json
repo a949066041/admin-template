@@ -20,6 +20,9 @@
     "unplugin-auto-import": "^0.17.6",
     "unplugin-icons": "^0.19.0",
     "unplugin-vue-components": "^0.27.2",
-    "vite": "^5.3.2"
+    "vite": "^5.3.3"
+  },
+  "dependencies": {
+    "typescript": "^5.5.3"
   }
 }
