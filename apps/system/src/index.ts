@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import '@yy-admin/common-css'
-import 'uno.css'
 
 import { Layout, setupAdmin } from '@yy-admin/components-admin'
 import { systemPageList } from './page'
@@ -25,4 +24,4 @@ setupAdmin(app, systemPageList(), {
   ],
 })
 
-app.mount('#app')
+app.mount('#root')

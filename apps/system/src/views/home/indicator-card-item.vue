@@ -22,7 +22,7 @@ withDefaults(defineProps<{ title: string, value: number, suffix?: string, prefix
   </div>
 </template>
 
-<style lang="less" scoped>
+<style  scoped>
 .card-item {
   @apply px-24px pt-20px pb-8px rounded-xl
     shadow-[0_1px_2px_0_rgba(0,0,0,0.03),0_1px_6px_-1px_rgba(0,0,0,0.02),0_2px_4px_0_rgba(0,0,0,0.02)]

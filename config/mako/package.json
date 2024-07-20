@@ -1,0 +1,17 @@
+{
+  "name": "@yy-admin/config-mako",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "prepare:build": "mako build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@umijs/mako": "^0.7.6"
+  }
+}

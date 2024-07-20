@@ -20,7 +20,7 @@
     "autoprefixer": "^10.4.19",
     "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "^5.5.3",
-    "unplugin-vue-components": "^0.27.2",
+    "unplugin-vue-components": "^0.27.3",
     "vite-plugin-dts": "^3.9.1"
   }
 }
