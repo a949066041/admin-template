@@ -1,7 +1,8 @@
 import type { Router } from 'vue-router'
 import type { IMenuBuild } from '@yy-admin/common-apis'
+import type { VNode } from 'vue'
 
-export type AsyncRouters = Record<string, (() => Promise<unknown>) | unknown>
+export type AsyncRouters = Record<string, (() => Promise<unknown>) | unknown | VNode[]>
 
 export function withSrcViewModules(routers: AsyncRouters) {
   return Object.entries(routers).reduce((base, [k, v]) => {
