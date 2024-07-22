@@ -31,7 +31,7 @@ export function YyNaiveuiComponents(): ComponentResolver {
 export default () => defineConfig({
   source: {
     entry: {
-      index: './src/index.ts',
+      index: './src/main.ts',
     },
   },
   performance: {

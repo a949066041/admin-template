@@ -173,6 +173,12 @@ importers:
       '@yy-admin/components-naive':
         specifier: workspace:^
         version: link:../../components/naive
+      '@yy-admin/config-rsbuild-app':
+        specifier: workspace:^
+        version: link:../../config/rsbuild-app
+      '@yy-admin/config-unocss':
+        specifier: workspace:^
+        version: link:../../config/unocss
       '@yy-admin/config-vite-app':
         specifier: workspace:^
         version: link:../../config/vite-app
@@ -183,6 +189,9 @@ importers:
         specifier: ^5.5.1
         version: 5.5.1
     devDependencies:
+      '@rsbuild/core':
+        specifier: 1.0.1-beta.3
+        version: 1.0.1-beta.3
       '@tsconfig/node18':
         specifier: ^18.2.4
         version: 18.2.4

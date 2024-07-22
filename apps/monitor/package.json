@@ -7,6 +7,7 @@
   "types": "src/page.ts",
   "scripts": {
     "dev": "vite",
+    "dev:rs": "rsbuild dev",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -17,11 +18,14 @@
     "@yy-admin/components-admin": "workspace:^",
     "@yy-admin/components-chart": "workspace:^",
     "@yy-admin/components-naive": "workspace:^",
+    "@yy-admin/config-rsbuild-app": "workspace:^",
+    "@yy-admin/config-unocss": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
     "@yy-web/business-use": "^2.0.8-beta.1",
     "echarts": "^5.5.1"
   },
   "devDependencies": {
+    "@rsbuild/core": "1.0.1-beta.3",
     "@tsconfig/node18": "^18.2.4",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",
