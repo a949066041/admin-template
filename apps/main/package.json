@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@yy-admin/components-admin": "workspace:^",
-    "@yy-admin/config-vite-app": "workspace:^",
     "@yy-admin/config-rsbuild-app": "workspace:^",
     "@yy-admin/config-unocss": "workspace:^",
+    "@yy-admin/config-vite-app": "workspace:^",
     "echarts": "^5.5.1"
   },
   "devDependencies": {

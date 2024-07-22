@@ -3,7 +3,6 @@ import { defineConfig, mergeConfig } from 'vite'
 import defaultConfig from '@yy-admin/config-vite-app'
 import Markdown from 'unplugin-vue-markdown/vite'
 import Shikiji from '@shikijs/markdown-it'
-import { MarkdownTransform } from './plugins/resolve-type'
 
 import { demoBlockPlugin } from './plugins/demo-md'
 

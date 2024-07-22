@@ -4,6 +4,7 @@
   "recommendations": [
     "antfu.unocss",
     "antfu.file-nesting",
-    "Vue.volar", "Vue.vscode-typescript-vue-plugin"
+    "Vue.volar",
+    "Vue.vscode-typescript-vue-plugin"
   ]
 }

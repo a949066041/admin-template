@@ -1,16 +1,16 @@
 {
   "name": "@yy-admin/config-unocss",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "src/index.ts",
-  "type": "module",
   "types": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@unocss/preset-icons": "^0.61.5"
   }
