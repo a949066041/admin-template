@@ -1,5 +1,5 @@
 import { defineConfig } from 'unocss'
-import { plugins, resolvePkgPath, scanFile, transFormConfig } from '@yy-admin/config-unocss'
+import { plugins, resolvePkgPath, scanFile, shortList, transFormConfig } from '@yy-admin/config-unocss'
 
 export default defineConfig({
   content: {
@@ -8,6 +8,9 @@ export default defineConfig({
       resolvePkgPath(__dirname, require.resolve('@yy-admin/components-admin')),
       resolvePkgPath(__dirname, require.resolve('@yy-admin/common-css')),
     ],
+  },
+  shortcuts: {
+    ...shortList,
   },
   presets: [
     ...plugins,

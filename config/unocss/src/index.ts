@@ -1,4 +1,5 @@
 import path from 'node:path'
+import type { UserConfig } from '@unocss/core'
 import presetIcons from '@unocss/preset-icons'
 import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 import { presetAttributify, presetUno, transformerDirectives } from 'unocss'
@@ -13,13 +14,18 @@ export const plugins = [
       custom: FileSystemIconLoader('../../config/vite/src/svg', svg => svg.replace(/^<svg /, '<svg fill="currentColor" ')),
     },
   }),
-]
+] as UserConfig['presets']
+
+export const shortList = {
+  'center-absolute': '!absolute left-50% top-50% translate-[-50%]',
+  'base-bg': 'bg-[#00b96b]',
+} as UserConfig['shortcuts']
 
 export const transFormConfig = [
   transformerDirectives({
     enforce: 'pre',
   }),
-]
+] as UserConfig['transformers']
 
 export function resolvePkgPath(currentPath: string, pkg: string) {
   return path.join(path.relative(currentPath, path.dirname(pkg)), scanFile)

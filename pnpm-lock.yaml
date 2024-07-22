@@ -358,6 +358,9 @@ importers:
 
   components/naive:
     devDependencies:
+      '@yy-admin/config-unocss':
+        specifier: workspace:^
+        version: link:../../config/unocss
       '@yy-admin/config-vite-lib':
         specifier: workspace:^
         version: link:../../config/vite-lib

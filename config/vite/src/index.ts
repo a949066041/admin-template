@@ -1,4 +1,4 @@
-import path, { resolve } from 'node:path'
+import path from 'node:path'
 
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
@@ -10,10 +10,8 @@ import Components from 'unplugin-vue-components/vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
-import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
 export interface ICommonViteConfig {
   resolvers?: ComponentResolver[]
@@ -35,7 +33,7 @@ export default (_config?: ICommonViteConfig) => {
         include: [/\.vue$/, /\.md$/],
       }),
       vueJsx(),
-      UnoCSS(resolve(__dirname, '../../../unocss.config.ts')),
+      UnoCSS({}),
       AutoImport({
         imports: ['vue', 'vue-router', '@vueuse/core', {
           'naive-ui': [
@@ -57,18 +55,13 @@ export default (_config?: ICommonViteConfig) => {
           ...config.resolvers,
         ],
       }),
-      Icons({
-        autoInstall: true,
-        customCollections: {
-          custom: FileSystemIconLoader(resolve('../../config/vite/src/svg'), svg => svg.replace('<svg ', '<svg fill="currentColor" ')),
-        },
-      }),
-      config.report ? visualizer({
-        gzipSize: true,
-        brotliSize: true,
-        emitFile: false,
-        filename: 'report.html', // 分析图生成的文件名
-      }) : () => {},
+      config.report
+        ? visualizer({
+          gzipSize: true,
+          brotliSize: true,
+          emitFile: false,
+          filename: 'report.html', // 分析图生成的文件名
+        }) : () => {},
     ],
   })
 }
