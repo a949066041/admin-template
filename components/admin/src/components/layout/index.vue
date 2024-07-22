@@ -43,7 +43,7 @@ watch(route, (val) => {
   </n-layout>
 </template>
 
-<style lang="less">
+<style>
 .fade-transform-leave-active,
 .fade-transform-enter-active {
   transition: all .5s;

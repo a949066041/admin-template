@@ -1,6 +1,6 @@
 // @unocss-include
 export const iconList = [
-  'i-custom:Steve-Jobs',
+  'i-custom:steve-jobs',
   'i-custom:alipay',
   'i-custom:anq',
   'i-custom:app',
@@ -73,7 +73,7 @@ export const iconList = [
   'i-custom:unlock',
   'i-custom:user',
   'i-custom:user1',
-  'i-custom:validCode',
+  'i-custom:valid-code',
   'i-custom:visits',
   'i-custom:web',
   'i-custom:wechat',

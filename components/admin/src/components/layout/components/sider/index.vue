@@ -2,7 +2,7 @@
 import { useConfigStore, useUserStore } from '@yy-admin/common-core'
 import { useRoute, useRouter } from 'vue-router'
 import type { MenuInst } from 'naive-ui'
-import { h, nextTick, onMounted, ref, watch } from 'vue'
+import { h, nextTick, ref } from 'vue'
 import type { IMenuBuild } from '@yy-admin/common-apis'
 import { useEventListener, watchImmediate } from '@vueuse/core'
 

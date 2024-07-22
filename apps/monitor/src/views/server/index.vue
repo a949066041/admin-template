@@ -130,9 +130,3 @@ onMounted(() => {
     </n-grid>
   </div>
 </template>
-
-<style lang="less" scoped>
-  :deep(.n-progress-text) {
-    @apply !text-lg;
-  }
-</style>

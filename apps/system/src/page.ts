@@ -1,10 +1,19 @@
+import type { AsyncRouters } from '@yy-admin/common-core'
 import { addModulePageList } from '@yy-admin/components-admin'
 
-// @ts-expect-error
-export const systemPageList = () => addModulePageList(import.meta.glob('./views/**/*.vue'), 'system')
+export function systemPageList() {
+  const context = import.meta.webpackContext('./views', {
+    recursive: true,
+    regExp: /\.vue$/,
+    mode: 'lazy',
+  })
+  return addModulePageList(context.keys().reduce((base, item) => {
+    base[item.replace('./', '')] = context(item)
+    return base
+  }, {} as AsyncRouters), 'system')
+}
 export function testPageList() {
   return {
-    // @ts-expect-error
     'generator/config': () => import('./views/generator/config.vue'),
   }
 }

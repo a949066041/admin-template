@@ -1,15 +1,17 @@
 {
-  "name": "@yy-admin/common-css",
+  "name": "@yy-admin/config-mako",
   "type": "module",
   "version": "1.0.0",
   "description": "",
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "main": "dist/index.js",
   "types": "src/index.ts",
+  "scripts": {
+    "prepare:build2": "mako build"
+  },
   "devDependencies": {
-    "@unocss/reset": "^0.61.5"
+    "@umijs/mako": "^0.7.6"
   }
 }
