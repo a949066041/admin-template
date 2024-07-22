@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:rs": "rsbuild dev",
     "build": "run-p type-check build-only",
+    "build:rs": "rsbuild build",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit"
@@ -12,9 +14,12 @@
   "dependencies": {
     "@yy-admin/components-admin": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
+    "@yy-admin/config-rsbuild-app": "workspace:^",
+    "@yy-admin/config-unocss": "workspace:^",
     "echarts": "^5.5.1"
   },
   "devDependencies": {
+    "@rsbuild/core": "1.0.1-beta.3",
     "@tsconfig/node18": "^18.2.4",
     "@yy-admin/common-css": "workspace:^",
     "@yy-admin/web-monitor": "workspace:^",

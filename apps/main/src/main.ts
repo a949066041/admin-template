@@ -25,4 +25,4 @@ setupAdmin(app, { ...monitorPageList(), ...systemPageList(), ...testPageList() }
   ],
 })
 
-app.mount('#app')
+app.mount('#root')
