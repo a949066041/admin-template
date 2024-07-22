@@ -110,11 +110,7 @@ const {
     <template #search>
       <yy-search :model="searchForm" @submit="searchTable" @search="searchTable" @reset="resetTable">
         <n-form-item>
-          <div class="w-full flex items-center justify-center gap-x-4 text-4xl p-2 mt-4">
-            <div class="i-vscode-icons:file-type-light-pnpm" />
-            <div class="i-vscode-icons:file-type-light-pnpm?mask text-red-300" />
-          </div>
-          <!--          <n-input v-model:value="searchForm.name" placeholder="输入部门名称" /> -->
+          <n-input v-model:value="searchForm.name" placeholder="输入部门名称" />
         </n-form-item>
         <n-form-item>
           <YyRangeDatePicker v-model:range="searchForm.createTime" merge-range type="daterange" />

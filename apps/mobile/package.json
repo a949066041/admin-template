@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@yy-admin/config-vite-app": "workspace:^",
-    "vant": "^4.9.2"
+    "vant": "^4.9.3"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",

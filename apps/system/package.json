@@ -9,6 +9,7 @@
     "dev": "vite",
     "dev:rs": "rsbuild dev",
     "build": "run-p type-check build-only",
+    "build:rs": "rsbuild build",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit"
@@ -21,13 +22,12 @@
     "@yy-admin/components-naive": "workspace:^",
     "@yy-admin/config-rsbuild-app": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
-    "@yy-web/business-use": "^2.0.8-beta.1"
+    "@yy-admin/config-unocss": "workspace:^",
+    "@yy-web/business-use": "2.0.8-beta.1"
   },
   "devDependencies": {
     "@rsbuild/core": "1.0.1-beta.3",
     "@tsconfig/node18": "^18.2.4",
-    "@unocss/postcss": "^0.61.5",
-    "@unocss/preset-icons": "^0.61.5",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",
     "typescript": "~5.5.3",

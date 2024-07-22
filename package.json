@@ -1,7 +1,7 @@
 {
   "name": "admin-template",
   "type": "module",
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.6.0",
   "description": "",
   "author": "",
   "license": "ISC",
@@ -16,11 +16,12 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@unocss/postcss": "^0.61.5",
     "@vitest/ui": "^2.0.3",
     "@vueuse/core": "^10.11.0",
     "@yy-web/request": "^1.5.9",
     "dayjs": "^1.11.12",
-    "jsdom": "^24.1.0",
+    "jsdom": "^24.1.1",
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.39.0",
     "pinia": "^2.1.7",
@@ -28,8 +29,8 @@
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.23.0",
-    "@iconify/json": "^2.2.229",
+    "@antfu/eslint-config": "^2.23.1",
+    "@iconify/json": "^2.2.230",
     "@iconify/utils": "^2.1.25",
     "@types/lodash": "^4.17.7",
     "@types/lodash-es": "^4.17.12",

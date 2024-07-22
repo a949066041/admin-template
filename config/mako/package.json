@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "types": "src/index.ts",
   "scripts": {
-    "prepare:build": "mako build"
+    "prepare:build2": "mako build"
   },
   "keywords": [],
   "author": "",
