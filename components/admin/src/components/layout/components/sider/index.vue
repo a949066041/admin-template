@@ -58,7 +58,7 @@ useEventListener('resize', setFixed)
     :class="isFixed && '!fixed z-3001'"
   >
     <div class="logo h-15 leading-15  text-center flex items-center justify-center">
-      <img src="https://www.naiveui.com/assets/naivelogo-XQ1U1Js8.svg" class=" w-5 h-5" :class=" configStore.collapseMenu && 'w-6 h-6'" alt="logo">
+      <div class="i-logos:naiveui w-5 h-5" :class=" configStore.collapseMenu && 'w-6 h-6'" />
       <div v-if="!configStore.collapseMenu" class=" text-lg ml-2">
         YydyAdmin
       </div>

@@ -31,6 +31,6 @@
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",
     "typescript": "~5.5.3",
-    "vue-tsc": "^2.0.26"
+    "vue-tsc": "^2.0.28"
   }
 }
