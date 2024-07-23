@@ -30,7 +30,7 @@
     "@tsconfig/node18": "^18.2.4",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",
-    "typescript": "~5.5.3",
+    "typescript": "~5.5.4",
     "vue-tsc": "^2.0.28"
   }
 }

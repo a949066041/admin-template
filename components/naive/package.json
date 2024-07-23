@@ -12,9 +12,9 @@
     "prepare:build": "vite build"
   },
   "devDependencies": {
+    "@yy-admin/config-unocss": "workspace:^",
     "@yy-admin/config-vite-lib": "workspace:^",
-    "typescript": "^5.5.3",
-    "vue-tsc": "^2.0.28",
-    "@yy-admin/config-unocss": "workspace:^"
+    "typescript": "^5.5.4",
+    "vue-tsc": "^2.0.28"
   }
 }

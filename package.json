@@ -29,7 +29,7 @@
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.23.1",
+    "@antfu/eslint-config": "^2.23.2",
     "@iconify/json": "^2.2.230",
     "@iconify/utils": "^2.1.25",
     "@types/lodash": "^4.17.7",
@@ -43,7 +43,7 @@
     "taze": "^0.16.1",
     "turbo": "^2.0.9",
     "type-fest": "^4.23.0",
-    "typescript": "^5.5.3",
+    "typescript": "^5.5.4",
     "unocss": "^0.61.5",
     "vite": "^5.3.4",
     "vitest": "^2.0.4",

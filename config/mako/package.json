@@ -12,6 +12,6 @@
     "prepare:build2": "mako build"
   },
   "devDependencies": {
-    "@umijs/mako": "^0.7.6"
+    "@umijs/mako": "^0.7.7"
   }
 }

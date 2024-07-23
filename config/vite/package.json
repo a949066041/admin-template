@@ -13,7 +13,7 @@
     "prepare:build": "tsc"
   },
   "dependencies": {
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
     "@types/rollup-plugin-visualizer": "^4.2.4",
