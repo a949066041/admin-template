@@ -15,7 +15,7 @@ export function createYyRouter(home?: RouteRecordRaw) {
     baseRoutres.push(home as any)
 
   return createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHistory('/'),
     routes: baseRoutres,
   })
 }
