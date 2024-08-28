@@ -26,7 +26,7 @@
     "@yy-web/business-use": "2.0.8-beta.1"
   },
   "devDependencies": {
-    "@rsbuild/core": "^1.0.1-beta.16",
+    "@rsbuild/core": "^1.0.1-rc.0",
     "@tsconfig/node18": "^18.2.4",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-css": "workspace:^",

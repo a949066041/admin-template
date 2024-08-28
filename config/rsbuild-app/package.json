@@ -12,13 +12,13 @@
     "prepare:build": "tsc"
   },
   "dependencies": {
-    "@rsbuild/plugin-vue-jsx": "^1.0.1-beta.16"
+    "@rsbuild/plugin-vue-jsx": "^1.0.1-rc.0"
   },
   "devDependencies": {
-    "@rsbuild/core": "^1.0.1-beta.16",
-    "@rsbuild/plugin-less": "^1.0.1-beta.16",
+    "@rsbuild/core": "^1.0.1-rc.0",
+    "@rsbuild/plugin-less": "^1.0.1-rc.0",
     "@rsbuild/plugin-vue": "^1.0.1-beta.16",
-    "@unocss/postcss": "^0.62.2",
+    "@unocss/postcss": "^0.62.3",
     "typescript": "^5.5.4",
     "unplugin-auto-import": "^0.18.2",
     "unplugin-icons": "^0.19.2",

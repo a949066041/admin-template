@@ -9,7 +9,7 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@yy-web/business-use": "^2.0.8-beta.1"
+    "@yy-web/business-use": "^2.0.8-beta.2"
   },
   "devDependencies": {
     "@yy-admin/common-apis": "workspace:^",

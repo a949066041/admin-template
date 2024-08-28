@@ -19,7 +19,7 @@
     "echarts": "^5.5.1"
   },
   "devDependencies": {
-    "@rsbuild/core": "^1.0.1-beta.16",
+    "@rsbuild/core": "^1.0.1-rc.0",
     "@tsconfig/node18": "^18.2.4",
     "@yy-admin/common-css": "workspace:^",
     "@yy-admin/web-monitor": "workspace:^",
