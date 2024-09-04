@@ -2,7 +2,6 @@ import { defineConfig, mergeConfig } from 'vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import commonViteConfig from '@yy-admin/config-vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
-import VueDevTools from 'vite-plugin-vue-devtools'
 import viteCompression from 'vite-plugin-compression'
 
 export function YyNaiveuiComponents(): ComponentResolver {
@@ -66,6 +65,5 @@ export default () => mergeConfig(commonViteConfig({
       deleteOriginFile: false,
       algorithm: 'gzip',
     }),
-    VueDevTools(),
   ],
 }))
