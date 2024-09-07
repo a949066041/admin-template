@@ -15,6 +15,6 @@
     "@yy-admin/config-unocss": "workspace:^",
     "@yy-admin/config-vite-lib": "workspace:^",
     "typescript": "^5.5.4",
-    "vue-tsc": "^2.1.4"
+    "vue-tsc": "^2.1.6"
   }
 }
