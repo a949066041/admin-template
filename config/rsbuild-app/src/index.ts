@@ -1,11 +1,11 @@
 import { defineConfig } from '@rsbuild/core'
+import { pluginLess } from '@rsbuild/plugin-less'
 import { pluginVue } from '@rsbuild/plugin-vue'
 import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx'
-import type { ComponentResolver } from 'unplugin-vue-components'
-import { pluginLess } from '@rsbuild/plugin-less'
-import Components from 'unplugin-vue-components/rspack'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/rspack'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/rspack'
+import type { ComponentResolver } from 'unplugin-vue-components'
 
 export function YyNaiveuiComponents(): ComponentResolver {
   const customComponent = new Set([
@@ -88,12 +88,12 @@ export default () => defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://110.41.161.81/',
+        target: 'http://123.57.18.187:8085/',
         pathRewrite: { '^/api': '' },
         changeOrigin: true,
       },
       '/avatar': {
-        target: 'http://110.41.161.81/',
+        target: 'http://123.57.18.187:8085/',
       },
     },
   },

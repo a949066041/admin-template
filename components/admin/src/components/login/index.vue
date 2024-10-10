@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
 import { useAnimate, useToggle } from '@vueuse/core'
-import type { LoginForm } from '@yy-admin/common-apis'
 import { AuthApi } from '@yy-admin/common-apis'
 import { useConfigStore, useUserStore } from '@yy-admin/common-core'
-import type { FormInst, FormItemRule } from 'naive-ui'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import type { LoginForm } from '@yy-admin/common-apis'
+import type { FormInst, FormItemRule } from 'naive-ui'
 import ThemeToggle from '../theme-toggle/index.vue'
 
 defineOptions({
@@ -102,7 +102,8 @@ function handleLoadingAction() {
               <n-input v-model:value="loginForm.code" placeholder="请输入验证码" @keyup.enter="handleLoadingAction" />
             </n-gi>
             <n-gi :span="6">
-              <img class="w-full h-32px cursor-pointer" :src="codeImg" alt="code" @click="handleRefreshImg">
+              <span v-html="codeImg" />
+              <!-- <img class="w-full h-32px cursor-pointer" :src="codeImg" alt="code" @click="handleRefreshImg"> -->
             </n-gi>
           </n-grid>
         </n-form-item>

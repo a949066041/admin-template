@@ -12,6 +12,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@unocss/preset-icons": "^0.62.3"
+    "@unocss/preset-icons": "^0.63.4"
   }
 }

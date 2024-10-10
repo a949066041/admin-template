@@ -13,16 +13,16 @@
     "prepare:build": "tsc"
   },
   "dependencies": {
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.3"
   },
   "devDependencies": {
     "@types/rollup-plugin-visualizer": "^4.2.4",
-    "@vitejs/plugin-vue": "^5.1.3",
+    "@vitejs/plugin-vue": "^5.1.4",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
     "rollup-plugin-visualizer": "^5.12.0",
-    "unplugin-auto-import": "^0.18.2",
+    "unplugin-auto-import": "^0.18.3",
     "unplugin-icons": "^0.19.3",
     "unplugin-vue-components": "^0.27.4",
-    "vite": "^5.4.3"
+    "vite": "^5.4.8"
   }
 }
