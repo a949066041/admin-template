@@ -131,6 +131,7 @@ const columns = computed<YyTableColumns<keyof IUserRecord>[]>(() => [
 
 <template>
   <n-grid :x-gap="20">
+    {{ dataSource }}
     <n-gi :span="4">
       <n-input v-model:value="filterInput" class=" mb-3" placeholder="输入部门名称搜索">
         <template #prefix>

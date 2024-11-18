@@ -88,12 +88,12 @@ export default () => defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://123.57.18.187:8085/',
+        target: 'http://localhost:8085/',
         pathRewrite: { '^/api': '' },
         changeOrigin: true,
       },
       '/avatar': {
-        target: 'http://123.57.18.187:8085/',
+        target: 'http://localhost:8085/',
       },
     },
   },
