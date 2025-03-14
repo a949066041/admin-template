@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { MenuApi } from '@yy-admin/common-apis'
 import type { IMenuTableParams, IMenuTreeRecord } from '@yy-admin/common-apis'
-import { createColumn as cT } from '@yy-admin/components-naive'
-import { computed } from 'vue'
 import type { YyTableColumns } from '@yy-admin/components-naive'
-import { useTable } from '@yy-web/business-use'
-import { YyDictSelect, useLazyTableTree } from '@yy-admin/components-admin'
+import { MenuApi } from '@yy-admin/common-apis'
+import { useLazyTableTree, YyDictSelect } from '@yy-admin/components-admin'
+import { createColumn as cT } from '@yy-admin/components-naive'
+import { useTable } from '@yy-web/use-curd-vue'
+import { computed } from 'vue'
 import { useMenuForm } from './useMenuForm'
 
 defineOptions({

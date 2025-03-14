@@ -1,3 +1,4 @@
+import type { ComponentResolver } from 'unplugin-vue-components'
 import { defineConfig } from '@rsbuild/core'
 import { pluginLess } from '@rsbuild/plugin-less'
 import { pluginVue } from '@rsbuild/plugin-vue'
@@ -5,7 +6,6 @@ import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/rspack'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/rspack'
-import type { ComponentResolver } from 'unplugin-vue-components'
 
 export function YyNaiveuiComponents(): ComponentResolver {
   const customComponent = new Set([
@@ -23,7 +23,7 @@ export function YyNaiveuiComponents(): ComponentResolver {
     type: 'component',
     resolve(componentName: string) {
       if (customComponent.has(componentName))
-        return { name: componentName, from: '@yy-admin/components-naive', sideEffects: '@yy-admin/components-naive/dist/style.css' }
+        return { name: componentName, from: '@yy-admin/components-naive' }
     },
   }
 }
@@ -88,12 +88,12 @@ export default () => defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8085/',
+        target: 'http://localhost:8000/',
         pathRewrite: { '^/api': '' },
         changeOrigin: true,
       },
       '/avatar': {
-        target: 'http://localhost:8085/',
+        target: 'http://localhost:8000/',
       },
     },
   },

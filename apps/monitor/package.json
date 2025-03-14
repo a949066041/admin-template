@@ -21,7 +21,7 @@
     "@yy-admin/config-rsbuild-app": "workspace:^",
     "@yy-admin/config-unocss": "workspace:^",
     "@yy-admin/config-vite-app": "workspace:^",
-    "@yy-web/business-use": "^2.0.8-beta.2",
+    "@yy-web/use-curd-vue": "^1.0.1",
     "echarts": "^5.6.0"
   },
   "devDependencies": {

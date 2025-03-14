@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { RoleApi } from '@yy-admin/common-apis'
 import type { IRoleEntity, IRolePageParams, IRoleRecord } from '@yy-admin/common-apis'
-import { useTable } from '@yy-web/business-use'
-import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
-import { computed, ref } from 'vue'
+import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
+import { RoleApi } from '@yy-admin/common-apis'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import { createColumn as cT } from '@yy-admin/components-naive'
+import { useTable } from '@yy-web/use-curd-vue'
+import { computed, ref } from 'vue'
 import MenuTree from './menu-tree.vue'
 import { useRoleMenu } from './useRoleMenu'
 
@@ -15,12 +16,10 @@ defineOptions({
 const {
   searchForm,
   dataSource,
-  total,
+  pageConf,
   delDataRow,
   getTable,
-  current,
   loading,
-  limit,
   resetTable,
   searchTable,
 } = useTable<IRolePageParams, IRoleRecord>({
@@ -62,9 +61,9 @@ const columns = computed<YyTableColumns<keyof IRoleRecord>[]>(() => [
   <n-grid :x-gap="20">
     <n-gi :span="18">
       <YyTable
-        v-model:current="current"
-        v-model:limit="limit"
-        :total="total" :loading="loading"
+        v-model:current="pageConf.current"
+        v-model:limit="pageConf.limit"
+        :total="pageConf.total" :loading="loading"
         :columns="columns" :data-source="dataSource"
       >
         <template #search>

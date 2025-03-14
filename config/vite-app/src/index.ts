@@ -1,7 +1,7 @@
-import { defineConfig, mergeConfig } from 'vite'
-import { VantResolver } from 'unplugin-vue-components/resolvers'
-import commonViteConfig from '@yy-admin/config-vite'
 import type { ComponentResolver } from 'unplugin-vue-components/types'
+import commonViteConfig from '@yy-admin/config-vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
+import { defineConfig, mergeConfig } from 'vite'
 import viteCompression from 'vite-plugin-compression'
 
 export function YyNaiveuiComponents(): ComponentResolver {
@@ -20,7 +20,7 @@ export function YyNaiveuiComponents(): ComponentResolver {
     type: 'component',
     resolve(componentName: string) {
       if (customComponent.has(componentName))
-        return { name: componentName, from: '@yy-admin/components-naive', sideEffects: '@yy-admin/components-naive/dist/style.css' }
+        return { name: componentName, from: '@yy-admin/components-naive' }
     },
   }
 }

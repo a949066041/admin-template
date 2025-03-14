@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import type { IDictDetailEntity, IDictDetailTableParams } from '@yy-admin/common-apis'
+import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
+import { useVModel, watchImmediate } from '@vueuse/core'
 import { DictDetailApi } from '@yy-admin/common-apis'
-import { useTable } from '@yy-web/business-use'
-import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
-import { computed } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
-import { useVModel } from '@vueuse/core'
+import { createColumn as cT } from '@yy-admin/components-naive'
+import { useTable } from '@yy-web/use-curd-vue'
+import { computed, ref } from 'vue'
 
 defineOptions({
   name: 'DictDetail',
@@ -14,7 +15,7 @@ defineOptions({
 const props = withDefaults(defineProps<{ dictKey: string, dictId?: number }>(), {})
 
 const bindDictKey = useVModel(props, 'dictKey')
-const { dataSource, limit, current, total, loading, searchForm, searchTable, resetTable, delDataRow } = useTable<
+const { dataSource, pageConf, loading, searchForm, searchTable, resetTable, delDataRow } = useTable<
   IDictDetailTableParams,
   IDictDetailEntity
 >({
@@ -79,9 +80,9 @@ const columns = computed<YyTableColumns<keyof IDictDetailEntity | 'dictName'>[]>
 
 <template>
   <YyTable
-    v-model:current="current"
-    v-model:limit="limit"
-    :total="total" :loading="loading"
+    v-model:current="pageConf.current"
+    v-model:limit="pageConf.limit"
+    :total="pageConf.total" :loading="loading"
     :columns="columns" :data-source="dataSource"
   >
     <template #search>

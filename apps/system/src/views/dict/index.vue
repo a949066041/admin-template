@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { IDictEntity, IDictRecord, IDictTableParams } from '@yy-admin/common-apis'
+import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
 import { DictApi } from '@yy-admin/common-apis'
-import { useTable } from '@yy-web/business-use'
-import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
-import { computed, ref } from 'vue'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import { createColumn as cT } from '@yy-admin/components-naive'
+import { useTable } from '@yy-web/use-curd-vue'
+import { computed, ref } from 'vue'
 import DictDetail from './dict-detail.vue'
 import { useDictAction } from './useDictAction'
 
@@ -15,9 +16,7 @@ defineOptions({
 const { dictName, dictId, handleConfigDict } = useDictAction()
 const {
   dataSource,
-  limit,
-  current,
-  total,
+  pageConf,
   loading,
   searchForm,
   searchTable,
@@ -67,9 +66,9 @@ const columns = computed<YyTableColumns<keyof IDictRecord>[]>(() => ([
   <n-grid :x-gap="16">
     <n-gi :span="10">
       <YyTable
-        v-model:current="current"
-        v-model:limit="limit"
-        :total="total" :loading="loading"
+        v-model:current="pageConf.current"
+        v-model:limit="pageConf.limit"
+        :total="pageConf.total" :loading="loading"
         :columns="columns" :data-source="dataSource"
       >
         <template #search>
@@ -113,7 +112,7 @@ const columns = computed<YyTableColumns<keyof IDictRecord>[]>(() => ([
       </YyTable>
     </n-gi>
     <n-gi :span="14">
-      <DictDetail v-if="dictId" v-model:dictKey="dictName" :dict-id="dictId" />
+      <DictDetail v-if="dictId" v-model:dict-key="dictName" :dict-id="dictId" />
     </n-gi>
   </n-grid>
 </template>

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { OnLineApi } from '@yy-admin/common-apis'
 import type { IEntity, IOnline } from '@yy-admin/common-apis'
-import { useTable } from '@yy-web/business-use'
-import { createColumn as cT } from '@yy-admin/components-naive'
-import { computed } from 'vue'
 import type { YyTableColumns } from '@yy-admin/components-naive'
+import { OnLineApi } from '@yy-admin/common-apis'
+import { createColumn as cT } from '@yy-admin/components-naive'
+import { useTable } from '@yy-web/use-curd-vue'
+import { computed } from 'vue'
 
 defineOptions({
   name: 'MonitorOnline',
@@ -12,9 +12,7 @@ defineOptions({
 
 const {
   dataSource,
-  limit,
-  current,
-  total,
+  pageConf,
   loading,
   searchForm,
   searchTable,
@@ -38,9 +36,9 @@ const columns = computed<YyTableColumns<keyof IEntity<IOnline>>[]>(() => ([
 
 <template>
   <YyTable
-    v-bind="{ total, loading, dataSource }"
-    v-model:current="current"
-    v-model:limit="limit"
+    v-bind="{ total: pageConf.total, loading, dataSource }"
+    v-model:current="pageConf.current"
+    v-model:limit="pageConf.limit"
     :columns="columns"
   >
     <template #search>
