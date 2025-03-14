@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "@yy-admin/config-vite-app": "workspace:^",
-    "vant": "^4.9.9"
+    "vant": "^4.9.17"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",
     "postcss-px-to-viewport": "^1.1.1",
-    "typescript": "~5.6.3",
-    "vue-tsc": "^2.1.10"
+    "typescript": "~5.8.2",
+    "vue-tsc": "^2.2.8"
   }
 }

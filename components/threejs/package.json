@@ -12,10 +12,10 @@
     "prepare:build": "tsc"
   },
   "dependencies": {
-    "three": "^0.170.0"
+    "three": "^0.174.0"
   },
   "devDependencies": {
-    "@types/three": "^0.170.0",
-    "typescript": "^5.6.3"
+    "@types/three": "^0.174.0",
+    "typescript": "^5.8.2"
   }
 }

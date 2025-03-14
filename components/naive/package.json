@@ -14,7 +14,7 @@
   "devDependencies": {
     "@yy-admin/config-unocss": "workspace:^",
     "@yy-admin/config-vite-lib": "workspace:^",
-    "typescript": "^5.6.3",
-    "vue-tsc": "^2.1.10"
+    "typescript": "^5.8.2",
+    "vue-tsc": "^2.2.8"
   }
 }
