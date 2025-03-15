@@ -12,7 +12,7 @@
     "@yy-admin/config-unocss": "workspace:^"
   },
   "devDependencies": {
-    "@rsbuild/core": "^1.2.19",
+    "@rsbuild/core": "catalog:",
     "@yy-admin/common-css": "workspace:^",
     "@yy-admin/web-monitor": "workspace:^",
     "@yy-admin/web-system": "workspace:^"

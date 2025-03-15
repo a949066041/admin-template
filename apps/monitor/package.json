@@ -16,8 +16,8 @@
     "@yy-admin/components-naive": "workspace:^",
     "@yy-admin/config-rsbuild-app": "workspace:^",
     "@yy-admin/config-unocss": "workspace:^",
-    "@yy-web/use-curd-vue": "^1.0.1",
-    "echarts": "^5.6.0"
+    "@yy-web/use-curd-vue": "catalog:",
+    "echarts": "catalog:"
   },
   "devDependencies": {
     "@yy-admin/common-apis": "workspace:^",

@@ -12,11 +12,11 @@
     "postinstall": "esno scripts/svg2json.ts"
   },
   "dependencies": {
-    "@iconify/tools": "^4.1.1",
-    "@unocss/preset-uno": "66.1.0-beta.5",
-    "esno": "^4.8.0"
+    "@iconify/tools": "catalog:",
+    "@unocss/preset-uno": "catalog:",
+    "esno": "catalog:"
   },
   "devDependencies": {
-    "@unocss/preset-icons": "^66.0.0"
+    "@unocss/preset-icons": "catalog:"
   }
 }

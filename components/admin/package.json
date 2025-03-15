@@ -9,7 +9,7 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@yy-web/use-curd-vue": "^1.0.1"
+    "@yy-web/use-curd-vue": "catalog:"
   },
   "devDependencies": {
     "@yy-admin/common-apis": "workspace:^",

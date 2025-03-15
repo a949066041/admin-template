@@ -8,12 +8,12 @@
     "prepare:build": "tsc"
   },
   "dependencies": {
-    "jsencrypt": "^3.3.2",
-    "rxjs": "^7.8.2"
+    "jsencrypt": "catalog:",
+    "rxjs": "catalog:"
   },
   "devDependencies": {
-    "@types/js-cookie": "^3.0.6",
-    "js-cookie": "^3.0.5",
-    "typescript": "^5.8.2"
+    "@types/js-cookie": "catalog:",
+    "js-cookie": "catalog:",
+    "typescript": "catalog:"
   }
 }

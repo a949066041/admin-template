@@ -10,10 +10,10 @@
     "prepare:build": "rslib build && vue-tsc"
   },
   "dependencies": {
-    "@rslib/core": "^0.5.4",
+    "@rslib/core": "catalog:",
     "@yy-admin/common-css": "workspace:^",
     "@yy-admin/config-rslib": "workspace:^",
     "@yy-admin/config-unocss": "workspace:^",
-    "vue-tsc": "^2.2.8"
+    "vue-tsc": "catalog:"
   }
 }

@@ -11,7 +11,7 @@
   "types": "src/index.ts",
   "devDependencies": {
     "@yy-admin/common-apis": "workspace:^",
-    "axios": "^1.8.3",
-    "typescript": "^5.8.2"
+    "axios": "catalog:",
+    "typescript": "catalog:"
   }
 }
