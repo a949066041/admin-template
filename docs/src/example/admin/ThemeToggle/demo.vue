@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ThemeToggle } from '@yy-admin/components-admin'
 import { useConfigStore } from '@yy-admin/common-core'
+import { ThemeToggle } from '@yy-admin/components-admin'
 
 const configStore = useConfigStore()
 </script>

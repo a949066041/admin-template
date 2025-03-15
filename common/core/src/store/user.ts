@@ -1,9 +1,9 @@
-import { computed, ref } from 'vue'
-import { defineStore } from 'pinia'
-import { AuthApi, MenuApi } from '@yy-admin/common-apis'
 import type { IMenuBuild, LoginForm, UserInfo } from '@yy-admin/common-apis'
-import { encrypt } from '@yy-admin/common-utils'
 import type { Router } from 'vue-router'
+import { AuthApi, MenuApi } from '@yy-admin/common-apis'
+import { encrypt } from '@yy-admin/common-utils'
+import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
 import { flatChildrenArr, tokenStorage } from '../utils'
 
 export const useUserStore = defineStore('core-user', () => {

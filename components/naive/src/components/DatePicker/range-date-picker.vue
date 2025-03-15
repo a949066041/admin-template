@@ -30,7 +30,7 @@ interface IYyRangeDatePickerProps {
   start?: string | null
   end?: string | null
   range?: [string, string] | null
-  type: DatePickerProps['type']
+  type?: DatePickerProps['type']
   mergeRange?: boolean
 }
 

@@ -1,7 +1,8 @@
 import type { Router } from 'vue-router'
+import type { AsyncRouters } from '../utils/registerRouter'
 import { useUserStore } from '../store'
 import { tokenStorage } from '../utils'
-import { type AsyncRouters, addWebRouter } from '../utils/registerRouter'
+import { addWebRouter } from '../utils/registerRouter'
 
 const isLoginPage = (path: string) => path.includes('/login')
 

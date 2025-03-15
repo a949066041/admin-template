@@ -1,5 +1,5 @@
-import { getRequest } from '@yy-web/request'
 import type { AppendToObject, Merge } from './utils/index'
+import { getRequest } from '@yy-web/request'
 
 export abstract class ApiInstance<T extends object = object, K extends string = 'id', U extends object = object> {
   baseApi = ''

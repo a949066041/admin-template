@@ -1,5 +1,5 @@
-import { ApiInstance } from '../instance'
 import type { ILogEntity } from './logs.type'
+import { ApiInstance } from '../instance'
 
 const baseApi = '/api/logs'
 

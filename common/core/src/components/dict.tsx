@@ -1,8 +1,8 @@
-import type { PropType } from 'vue'
 import type { IDictDetailEntity } from '@yy-admin/common-apis'
+import type { PropType } from 'vue'
+import { useToggle } from '@vueuse/core'
 import { DictDetailApi } from '@yy-admin/common-apis'
 import { computed, defineComponent, ref, watch } from 'vue'
-import { useToggle } from '@vueuse/core'
 
 export default defineComponent({
   name: 'YyDict',

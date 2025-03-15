@@ -3,8 +3,8 @@ import { UserApi } from '@yy-admin/common-apis'
 import { useUserStore } from '@yy-admin/common-core'
 import { computed, ref } from 'vue'
 import { useAppConfigStore } from '../app-config/config'
-import UserResetPwd from './components/reset-pwd.vue'
 import EditUser from './components/edit-user.vue'
+import UserResetPwd from './components/reset-pwd.vue'
 import UserLog from './components/user-log.vue'
 
 defineOptions({

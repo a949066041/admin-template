@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
 import type { VNode } from 'vue'
+import { defineStore } from 'pinia'
 import { computed, h, ref } from 'vue'
 
 const MAX_KEEP = 100

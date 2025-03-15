@@ -4,9 +4,9 @@ defineOptions({
 })
 
 withDefaults(defineProps<{
-  depKey: string
+  depKey?: string
   wrapperClass?: string
-  minItemSize: number
+  minItemSize?: number
 }>(), {
   depKey: 'id',
   minItemSize: 20,

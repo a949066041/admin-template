@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { AuthCode } from '@yy-admin/common-apis'
+import { AuthApi } from '@yy-admin/common-apis'
 import { useUserStore } from '@yy-admin/common-core'
-import { AuthApi, type AuthCode } from '@yy-admin/common-apis'
 
 defineOptions({
   name: 'LoginStatus',

@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
 import type { Component, DirectiveBinding, ObjectDirective } from 'vue'
+import { createApp } from 'vue'
 
 export type IBindElement = {
   [key: string]: { instance: any } | any

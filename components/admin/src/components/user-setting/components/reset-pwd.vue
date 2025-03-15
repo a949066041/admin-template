@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { initFormObj, useCurdForm, useUserStore } from '@yy-admin/common-core'
-import type { NaiveFormRules } from '@yy-admin/components-naive'
 import type { IResetPwdData } from '@yy-admin/common-apis'
+import type { NaiveFormRules } from '@yy-admin/components-naive'
 import { UserApi } from '@yy-admin/common-apis'
+import { initFormObj, useCurdForm, useUserStore } from '@yy-admin/common-core'
 import { encrypt } from '@yy-admin/common-utils'
+import { useMessage } from 'naive-ui'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useMessage } from 'naive-ui'
 
 defineOptions({
   name: 'UserResetPwd',

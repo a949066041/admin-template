@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+import type { IRouteBreadcrumbItem } from './useBreadcrumb'
+import { useFullscreen } from '@vueuse/core'
 import { useConfigStore, useUserStore } from '@yy-admin/common-core'
 import { useMessage } from 'naive-ui'
 import { useRouter } from 'vue-router'
-import { useFullscreen } from '@vueuse/core'
 import ThemeToggle from '../../../theme-toggle/index.vue'
-import type { IRouteBreadcrumbItem } from './useBreadcrumb'
 import { useBreadcrumb } from './useBreadcrumb'
 
 defineOptions({

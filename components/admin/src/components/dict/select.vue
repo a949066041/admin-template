@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { YyDict } from '@yy-admin/common-core'
 import { useVModel } from '@vueuse/core'
+import { YyDict } from '@yy-admin/common-core'
 
 defineOptions({
   name: 'YyDictSelect',

@@ -1,7 +1,7 @@
-import { resolve } from 'node:path'
-import { baseParse } from '@vue/compiler-core'
 import type { ElementNode } from '@vue/compiler-core'
 import type MarkdownIt from 'markdown-it'
+import { resolve } from 'node:path'
+import { baseParse } from '@vue/compiler-core'
 import fsExtra from 'fs-extra'
 
 const DemoTag = 'demo'
@@ -41,8 +41,8 @@ export function demoBlockPlugin(md: MarkdownIt) {
       // inject source code
       if (!content.includes(`<${DemoTag} source=`)) {
         tokens[idx].content = content.replace(
-					`<${DemoTag}`,
-					`<${DemoTag} source="${encodeURIComponent(code.trim())}" :auth="${props.auth || false}" `,
+          `<${DemoTag}`,
+          `<${DemoTag} source="${encodeURIComponent(code.trim())}" :auth="${props.auth || false}" `,
         )
       }
 

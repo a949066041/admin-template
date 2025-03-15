@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import type { ITreeTocList } from './composables'
 import { AppConfig } from '@yy-admin/components-admin'
 import { useRoute } from 'vue-router'
 import { DocAnchor, DocRouter, LoginStatus } from './components'
-import { type ITreeTocList, getHeaders } from './composables'
+import { getHeaders } from './composables'
 
 defineOptions({
   name: 'App',

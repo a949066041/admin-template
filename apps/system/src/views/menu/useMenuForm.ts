@@ -1,8 +1,9 @@
-import { iconList } from '@yy-admin/common-css'
-import type { SelectRenderLabel } from 'naive-ui'
-import { initFormObj, useCurdForm } from '@yy-admin/common-core'
-import { type IMenuEntity, MenuApi } from '@yy-admin/common-apis'
+import type { IMenuEntity } from '@yy-admin/common-apis'
 import type { NaiveFormRules } from '@yy-admin/components-naive'
+import type { SelectRenderLabel } from 'naive-ui'
+import { MenuApi } from '@yy-admin/common-apis'
+import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import { iconList } from '@yy-admin/common-css'
 import { useMenuTree } from './useMenuTree'
 
 export function useMenuForm(refreshTable: (pid?: number) => void) {

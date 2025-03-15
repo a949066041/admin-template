@@ -1,4 +1,5 @@
-import { type IMenuTreeRecord, MenuApi } from '@yy-admin/common-apis'
+import type { IMenuTreeRecord } from '@yy-admin/common-apis'
+import { MenuApi } from '@yy-admin/common-apis'
 import { recursiveLeafArr } from '@yy-admin/common-utils'
 
 const ROOT_MENU = {

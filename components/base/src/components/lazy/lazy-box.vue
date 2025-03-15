@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
 import { useIntersectionObserver, useToggle } from '@vueuse/core'
+import { computed, ref, watch } from 'vue'
 
 defineOptions({
   name: 'LazyBox',

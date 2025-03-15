@@ -1,6 +1,6 @@
 import type { MaybeComputedElementRef } from '@vueuse/core'
-import { computed, ref, toValue } from 'vue'
 import type { Ref } from 'vue'
+import { computed, ref, toValue } from 'vue'
 
 export interface ILazyConf<R = any> {
   render: (result: R) => void

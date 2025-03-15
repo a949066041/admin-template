@@ -1,6 +1,7 @@
-import { type IRoleRecord, RoleApi } from '@yy-admin/common-apis'
-import { useAppConfigStore } from '@yy-admin/components-admin'
+import type { IRoleRecord } from '@yy-admin/common-apis'
 import type MenuTree from './menu-tree.vue'
+import { RoleApi } from '@yy-admin/common-apis'
+import { useAppConfigStore } from '@yy-admin/components-admin'
 
 export function useRoleMenu() {
   const menuTree = ref<InstanceType<typeof MenuTree>>()

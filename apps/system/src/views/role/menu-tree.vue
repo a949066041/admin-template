@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { type IMenuEntity, MenuApi } from '@yy-admin/common-apis'
-import { flatChildrenArr } from '@yy-admin/common-core'
+import type { IMenuEntity } from '@yy-admin/common-apis'
 import type { TreeInst } from 'naive-ui'
+import { MenuApi } from '@yy-admin/common-apis'
+import { flatChildrenArr } from '@yy-admin/common-core'
+import { ref } from 'vue'
 
 defineOptions({
   name: 'MenuTree',

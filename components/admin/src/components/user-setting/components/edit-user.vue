@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { EditUserData } from '@yy-admin/common-apis'
+import type { NaiveFormRules } from '@yy-admin/components-naive'
 import { UserApi } from '@yy-admin/common-apis'
 import { initFormObj, useCurdForm, useUserStore } from '@yy-admin/common-core'
 import { isValidPhone } from '@yy-admin/common-utils'
-import type { NaiveFormRules } from '@yy-admin/components-naive'
 import { onMounted, ref } from 'vue'
 import { YyDictSelect } from '../../dict/index'
 

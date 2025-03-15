@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useConfigStore, useUserStore } from '@yy-admin/common-core'
-import { useRoute, useRouter } from 'vue-router'
-import type { MenuInst } from 'naive-ui'
-import { h, nextTick, ref } from 'vue'
 import type { IMenuBuild } from '@yy-admin/common-apis'
+import type { MenuInst } from 'naive-ui'
 import { useEventListener, watchImmediate } from '@vueuse/core'
+import { useConfigStore, useUserStore } from '@yy-admin/common-core'
+import { h, nextTick, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 defineOptions({
   name: 'YySider',

@@ -1,5 +1,5 @@
-import { ApiInstance } from '../instance'
 import type { IRoleEntity } from './role.type'
+import { ApiInstance } from '../instance'
 
 const baseApi = '/api/roles'
 

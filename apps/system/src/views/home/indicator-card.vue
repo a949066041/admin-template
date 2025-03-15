@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { EchartsView, smallLineOrBarOption } from '@yy-admin/components-chart'
+import { createReusableTemplate } from '@vueuse/core'
 import { UserApi } from '@yy-admin/common-apis'
 import { LazyBox, useLazyBox } from '@yy-admin/components-base'
+import { EchartsView, smallLineOrBarOption } from '@yy-admin/components-chart'
 import dayjs from 'dayjs'
-import { createReusableTemplate } from '@vueuse/core'
+import { ref } from 'vue'
 import IndicatorText from '../../components/indicator-text.vue'
 import IndicatorCardItem from './indicator-card-item.vue'
 
