@@ -3,6 +3,7 @@ import type { ComponentResolver } from 'unplugin-vue-components'
 import { defineConfig } from '@rsbuild/core'
 import { pluginVue } from '@rsbuild/plugin-vue'
 import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx'
+import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin'
 import { UnoCSSRspackPlugin } from '@unocss/webpack/rspack'
 import AutoImport from 'unplugin-auto-import/rspack'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
@@ -42,6 +43,11 @@ export default (options?: IRsBildOptions) => {
     source: {
       entry: {
         index: './src/main.ts',
+      },
+    },
+    performance: {
+      chunkSplit: {
+        strategy: 'split-by-module',
       },
     },
     tools: {

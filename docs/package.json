@@ -17,6 +17,7 @@
     "@yy-admin/config-rsbuild-app": "workspace:^",
     "@yy-admin/config-unocss": "workspace:^",
     "echarts": "catalog:",
+    "github-markdown-css": "^5.8.1",
     "vue-loader": "catalog:"
   },
   "devDependencies": {

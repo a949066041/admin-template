@@ -37,7 +37,7 @@ const html = ref('')
 watch([showCode, () => configStore.isDark], async () => {
   if (showCode.value) {
     html.value = await codeToHtml(code.value, {
-      lang: 'javascript',
+      lang: 'vue',
       theme: configStore.isDark ? 'vitesse-dark' : 'vitesse-light',
     })
   }
@@ -63,7 +63,7 @@ function handleCopy() {
     </div>
     <div
       v-if="showCode"
-      class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4"
+      class="border-t-1px border-t-solid border-slate-200 pt-2 flex justify-end items-center mt-4 overflow-auto"
     >
       <div class="w-full" v-html="html" />
     </div>

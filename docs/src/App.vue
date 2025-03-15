@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { ITreeTocList } from './composables'
+import { watchImmediate } from '@vueuse/core'
 import { AppConfig } from '@yy-admin/components-admin'
+import { nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { DocAnchor, DocRouter, LoginStatus } from './components'
 import { getHeaders } from './composables'
