@@ -16,7 +16,6 @@ export function YyNaiveuiComponents(): ComponentResolver {
     'YyTreeSelect',
     'YyRangeDatePicker',
     'YyDatePicker',
-    '',
   ])
 
   return {
