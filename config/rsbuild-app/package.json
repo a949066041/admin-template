@@ -12,13 +12,14 @@
     "prepare:build": "tsc"
   },
   "dependencies": {
-    "@rsbuild/plugin-vue-jsx": "^1.1.0"
+    "@rsbuild/plugin-vue-jsx": "^1.1.0",
+    "@unocss/webpack": "66.1.0-beta.5"
   },
   "devDependencies": {
     "@rsbuild/core": "^1.2.19",
-    "@rsbuild/plugin-less": "^1.1.1",
     "@rsbuild/plugin-vue": "^1.0.7",
     "@unocss/postcss": "^66.0.0",
+    "@yy-admin/config-unocss": "workspace:*",
     "typescript": "^5.8.2",
     "unplugin-auto-import": "^19.1.1",
     "unplugin-icons": "^22.1.0",

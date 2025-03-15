@@ -8,9 +8,6 @@
   "keywords": [],
   "main": "src/index.ts",
   "types": "src/index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "devDependencies": {
     "@unocss/preset-icons": "^66.0.0"
   }

@@ -1,5 +1,5 @@
-import { defineConfig } from 'unocss'
 import { plugins, resolvePkgPath, scanFile, shortList, transFormConfig } from '@yy-admin/config-unocss'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   content: {

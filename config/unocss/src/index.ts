@@ -1,7 +1,7 @@
+import type { UserConfig } from 'unocss'
 import path from 'node:path'
-import type { UserConfig } from '@unocss/core'
-import presetIcons from '@unocss/preset-icons'
 import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
+import presetIcons from '@unocss/preset-icons'
 import { presetAttributify, presetUno, transformerDirectives } from 'unocss'
 
 export const scanFile = '/**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}'

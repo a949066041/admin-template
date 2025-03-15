@@ -111,19 +111,10 @@ importers:
       '@yy-admin/config-unocss':
         specifier: workspace:^
         version: link:../../config/unocss
-      '@yy-admin/config-vite-app':
-        specifier: workspace:^
-        version: link:../../config/vite-app
-      echarts:
-        specifier: ^5.6.0
-        version: 5.6.0
     devDependencies:
       '@rsbuild/core':
         specifier: ^1.2.19
         version: 1.2.19
-      '@tsconfig/node18':
-        specifier: ^18.2.4
-        version: 18.2.4
       '@yy-admin/common-css':
         specifier: workspace:^
         version: link:../../common/css
@@ -133,18 +124,6 @@ importers:
       '@yy-admin/web-system':
         specifier: workspace:^
         version: link:../system
-      less:
-        specifier: ^4.2.2
-        version: 4.2.2
-      npm-run-all:
-        specifier: ^4.1.5
-        version: 4.1.5
-      typescript:
-        specifier: ~5.8.2
-        version: 5.8.2
-      vue-tsc:
-        specifier: ^2.2.8
-        version: 2.2.8(typescript@5.8.2)
 
   apps/mobile:
     dependencies:
@@ -213,9 +192,6 @@ importers:
       '@yy-admin/components-base':
         specifier: workspace:^
         version: link:../../components/base
-      less:
-        specifier: ^4.2.2
-        version: 4.2.2
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -389,19 +365,22 @@ importers:
       '@rsbuild/plugin-vue-jsx':
         specifier: ^1.1.0
         version: 1.1.0(@babel/core@7.26.0)(@rsbuild/core@1.2.19)
+      '@unocss/webpack':
+        specifier: 66.1.0-beta.5
+        version: 66.1.0-beta.5(webpack@5.98.0)
     devDependencies:
       '@rsbuild/core':
         specifier: ^1.2.19
         version: 1.2.19
-      '@rsbuild/plugin-less':
-        specifier: ^1.1.1
-        version: 1.1.1(@rsbuild/core@1.2.19)
       '@rsbuild/plugin-vue':
         specifier: ^1.0.7
         version: 1.0.7(@rsbuild/core@1.2.19)(@vue/compiler-sfc@3.5.13)(vue@3.5.13(typescript@5.8.2))
       '@unocss/postcss':
         specifier: ^66.0.0
         version: 66.0.0(postcss@8.5.3)
+      '@yy-admin/config-unocss':
+        specifier: workspace:*
+        version: link:../unocss
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
@@ -619,24 +598,28 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@ast-grep/napi-linux-arm64-musl@0.36.1':
     resolution: {integrity: sha512-qBg0id6C138OkD68zuaa37hrNE01NKJVaV+VZ+7lYIdM7ovwq4D3cgvKsxz1iWUrXsQIX+RPQfU4MoYJdRKYRQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@ast-grep/napi-linux-x64-gnu@0.36.1':
     resolution: {integrity: sha512-DJnOF0nETsFCPlwRSPwiddja/Pe6yyQmgvQMZRWR3jBcqNeytL6MwVBs7bLyiGPeRNgB/Fk/V4lfVjPV8OYi6w==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@ast-grep/napi-linux-x64-musl@0.36.1':
     resolution: {integrity: sha512-vXrqWq9KZssTrJa47mDv8uPk7+ZLjQZScQjpbzB/icYj+VdhDAMxRC2ZrCTaSP+FQzibtZQdlEe3lGm4DGvuKA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@ast-grep/napi-win32-arm64-msvc@0.36.1':
     resolution: {integrity: sha512-y02toJitm47Zv6zeCZnvzU/YyACfim8xcZx7+V9dJr5H8DSd6bJhnCIEhyPqsDJBhgh0i+saRmFr12rb6Fmjtw==}
@@ -1445,51 +1428,61 @@ packages:
     resolution: {integrity: sha512-mrA0v3QMy6ZSvEuLs0dMxcO2LnaCONs1Z73GUDBHWbY8tFFocM6yl7YyMu7rz4zS81NDSqhrUuolyZXGi8TEqg==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.35.0':
     resolution: {integrity: sha512-DnYhhzcvTAKNexIql8pFajr0PiDGrIsBYPRvCKlA5ixSS3uwo/CWNZxB09jhIapEIg945KOzcYEAGGSmTSpk7A==}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.35.0':
     resolution: {integrity: sha512-uagpnH2M2g2b5iLsCTZ35CL1FgyuzzJQ8L9VtlJ+FckBXroTwNOaD0z0/UF+k5K3aNQjbm8LIVpxykUOQt1m/A==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.35.0':
     resolution: {integrity: sha512-XQxVOCd6VJeHQA/7YcqyV0/88N6ysSVzRjJ9I9UA/xXpEsjvAgDTgH3wQYz5bmr7SPtVK2TsP2fQ2N9L4ukoUg==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-loongarch64-gnu@4.35.0':
     resolution: {integrity: sha512-5pMT5PzfgwcXEwOaSrqVsz/LvjDZt+vQ8RT/70yhPU06PTuq8WaHhfT1LW+cdD7mW6i/J5/XIkX/1tCAkh1W6g==}
     cpu: [loong64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.35.0':
     resolution: {integrity: sha512-c+zkcvbhbXF98f4CtEIP1EBA/lCic5xB0lToneZYvMeKu5Kamq3O8gqrxiYYLzlZH6E3Aq+TSW86E4ay8iD8EA==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.35.0':
     resolution: {integrity: sha512-s91fuAHdOwH/Tad2tzTtPX7UZyytHIRR6V4+2IGlV0Cej5rkG0R61SX4l4y9sh0JBibMiploZx3oHKPnQBKe4g==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-s390x-gnu@4.35.0':
     resolution: {integrity: sha512-hQRkPQPLYJZYGP+Hj4fR9dDBMIM7zrzJDWFEMPdTnTy95Ljnv0/4w/ixFw3pTBMEuuEuoqtBINYND4M7ujcuQw==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.35.0':
     resolution: {integrity: sha512-Pim1T8rXOri+0HmV4CdKSGrqcBWX0d1HoPnQ0uw0bdp1aP5SdQVNBy8LjYncvnLgu3fnnCt17xjWGd4cqh8/hA==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.35.0':
     resolution: {integrity: sha512-QysqXzYiDvQWfUiTm8XmJNO2zm9yC9P/2Gkrwg2dH9cxotQzunBHYr6jk4SujCTqnfGxduOmQcI7c2ryuW8XVg==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.35.0':
     resolution: {integrity: sha512-OUOlGqPkVJCdJETKOCEf1mw848ZyJ5w50/rZ/3IBQVdLfR5jk/6Sr5m3iO2tdPgwo0x7VcncYuOvMhBWZq8ayg==}
@@ -1513,11 +1506,6 @@ packages:
 
   '@rsbuild/plugin-babel@1.0.4':
     resolution: {integrity: sha512-ZYbyC3zNYluTWTJDVrAW3eRJfvSTIQlp/bs20iY/MATm8/rRq2xtlAP5keCYxpx5CJZX7IT7i6f4z24/YrJJwA==}
-    peerDependencies:
-      '@rsbuild/core': 1.x
-
-  '@rsbuild/plugin-less@1.1.1':
-    resolution: {integrity: sha512-Gkp73c9p4CQs2dB4BVCmw/cJ6JpIaWbsKcmZqyr+tlsKqZvZn9aYU+Zx4qWSqPR8I5zatiV2Lh15ObL9CCnlXw==}
     peerDependencies:
       '@rsbuild/core': 1.x
 
@@ -1561,21 +1549,25 @@ packages:
     resolution: {integrity: sha512-En/SMl45s19iUVb1/ZDFQvFDxIjnlfk7yqV3drMWWAL5HSgksNejaTIFTO52aoohIBbmwuk5wSGcbU0G0IFiPg==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rspack/binding-linux-arm64-musl@1.2.8':
     resolution: {integrity: sha512-N1oZsXfJ9VLLcK7p1PS65cxLYQCZ7iqHW2OP6Ew2+hlz/d1hzngxgzrtZMCXFOHXDvTzVu5ff6jGS2v7+zv2tA==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rspack/binding-linux-x64-gnu@1.2.8':
     resolution: {integrity: sha512-BdPaepoLKuaVwip4QK/nGqNi1xpbCWSxiycPbKRrGqKgt/QGihxxFgiqr4EpWQVIJNIMy4nCsg4arO0+H1KWGQ==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rspack/binding-linux-x64-musl@1.2.8':
     resolution: {integrity: sha512-GFv0Bod268OcXIcjeLoPlK0oz8rClEIxIRFkz+ejhbvfCwRJ+Fd+EKaaKQTBfZQujPqc0h2GctIF25nN5pFTmA==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rspack/binding-win32-arm64-msvc@1.2.8':
     resolution: {integrity: sha512-aEU+uJdbvJJGrzzAsjbjrPeNbG/bcG8JoXK2kSsUB+/sWHTIkHX0AQ3oX3aV/lcLKgZWrUxLAfLoCXEnIHMEyQ==}
@@ -1868,8 +1860,15 @@ packages:
     resolution: {integrity: sha512-nFRGop/guBa4jLkrgXjaRDm5JPz4x3YpP10m5IQkHpHwlnHUVn1L9smyPl04ohYWhYn9ZcAHgR28Ih2jwta8hw==}
     engines: {node: '>=14'}
 
+  '@unocss/config@66.1.0-beta.5':
+    resolution: {integrity: sha512-RBty/CVvdefTpeLmluQrIQIj+Po5bTIgIgcWgw+A3dMcUN3iRv0mYbw1d3FIRa0Ladx9zKaMxRFss0xkiS13yw==}
+    engines: {node: '>=14'}
+
   '@unocss/core@66.0.0':
     resolution: {integrity: sha512-PdVbSMHNDDkr++9nkqzsZRAkaU84gxMTEgYbqI7dt2p1DXp/5tomVtmMsr2/whXGYKRiUc0xZ3p4Pzraz8TcXA==}
+
+  '@unocss/core@66.1.0-beta.5':
+    resolution: {integrity: sha512-1kZzSrB87KKd+xP+vMN7IP03j2UPEykna447aw3UaK5RYTDd/LuVtxoep6gvjN9TJiB4K+Qx0sAtgnfhPpka9Q==}
 
   '@unocss/extractor-arbitrary-variants@66.0.0':
     resolution: {integrity: sha512-vlkOIOuwBfaFBJcN6o7+obXjigjOlzVFN/jT6pG1WXbQDTRZ021jeF3i9INdb9D/0cQHSeDvNgi1TJ5oUxfiow==}
@@ -1933,6 +1932,11 @@ packages:
     resolution: {integrity: sha512-IVcPX8xL+2edyXKt4tp9yu5A6gcbPVCsspfcL0XgziCr01kS+4qSoZ90F3IUs3hXc/AyO5eCpRtGFMPLpOjXQg==}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0 || ^6.0.0-0
+
+  '@unocss/webpack@66.1.0-beta.5':
+    resolution: {integrity: sha512-+ukKrLGzXSp4KT0QStgackCWx9mbw95QJw7qnasgpftquWqwBCF+QTHQa0EH5mpHdIhoealXSZ+MUnCTJxEEqg==}
+    peerDependencies:
+      webpack: ^4 || ^5
 
   '@vant/popperjs@1.3.0':
     resolution: {integrity: sha512-hB+czUG+aHtjhaEmCJDuXOep0YTZjdlRR+4MSmIFnkCQIxJaXLQdSsR90XWvAI2yvKUI7TCGqR8pQg2RtvkMHw==}
@@ -6121,12 +6125,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@rsbuild/plugin-less@1.1.1(@rsbuild/core@1.2.19)':
-    dependencies:
-      '@rsbuild/core': 1.2.19
-      deepmerge: 4.3.1
-      reduce-configs: 1.1.0
-
   '@rsbuild/plugin-vue-jsx@1.1.0(@babel/core@7.26.0)(@rsbuild/core@1.2.19)':
     dependencies:
       '@rsbuild/plugin-babel': 1.0.4(@rsbuild/core@1.2.19)
@@ -6569,7 +6567,14 @@ snapshots:
       '@unocss/core': 66.0.0
       unconfig: 7.0.0
 
+  '@unocss/config@66.1.0-beta.5':
+    dependencies:
+      '@unocss/core': 66.1.0-beta.5
+      unconfig: 7.3.1
+
   '@unocss/core@66.0.0': {}
+
+  '@unocss/core@66.1.0-beta.5': {}
 
   '@unocss/extractor-arbitrary-variants@66.0.0':
     dependencies:
@@ -6682,6 +6687,19 @@ snapshots:
       vite: 6.2.2(@types/node@22.13.10)(jiti@2.4.2)(less@4.2.2)(terser@5.31.3)(tsx@4.19.1)(yaml@2.7.0)
     transitivePeerDependencies:
       - vue
+
+  '@unocss/webpack@66.1.0-beta.5(webpack@5.98.0)':
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@unocss/config': 66.1.0-beta.5
+      '@unocss/core': 66.1.0-beta.5
+      chokidar: 3.6.0
+      magic-string: 0.30.17
+      tinyglobby: 0.2.12
+      unplugin: 2.2.0
+      unplugin-utils: 0.2.4
+      webpack: 5.98.0
+      webpack-sources: 3.2.3
 
   '@vant/popperjs@1.3.0': {}
 
@@ -7330,6 +7348,7 @@ snapshots:
   copy-anything@2.0.6:
     dependencies:
       is-what: 3.14.1
+    optional: true
 
   copy-anything@3.0.5:
     dependencies:
@@ -8381,7 +8400,8 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
 
-  is-what@3.14.1: {}
+  is-what@3.14.1:
+    optional: true
 
   is-what@4.1.16: {}
 
@@ -8531,6 +8551,7 @@ snapshots:
       mime: 1.6.0
       needle: 3.3.1
       source-map: 0.6.1
+    optional: true
 
   levn@0.4.1:
     dependencies:
@@ -9160,7 +9181,8 @@ snapshots:
       index-to-position: 0.1.2
       type-fest: 4.37.0
 
-  parse-node-version@1.0.1: {}
+  parse-node-version@1.0.1:
+    optional: true
 
   parse5@7.2.1:
     dependencies:

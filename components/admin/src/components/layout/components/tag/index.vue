@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { nextTick, onMounted, ref, watch } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import { useRoute, useRouter } from 'vue-router'
-import { NTag } from 'naive-ui'
 import { useCurrentElement } from '@vueuse/core'
-import ScrollContent from '../../../scroll-content/index.vue'
+import { NTag } from 'naive-ui'
+import { nextTick, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useTagStore } from '../../../../store/tag.store'
+import ScrollContent from '../../../scroll-content/index.vue'
 import { useContextTag } from './useContextTag'
 
 defineOptions({
@@ -78,7 +78,7 @@ router.afterEach(handleAddTag)
   </div>
 </template>
 
-<style scoped lang="less">
+<style scoped lang="css">
 .router-tab {
   &:hover {
     .router-tab__icon {
