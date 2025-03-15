@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { SelectProps } from 'naive-ui'
 import { useVModel } from '@vueuse/core'
+import { NSelect } from 'naive-ui'
 import { selectProps } from './select.type'
 
 defineOptions({
@@ -13,7 +14,7 @@ const bindValue = useVModel(props, 'value')
 </script>
 
 <template>
-  <n-select
+  <NSelect
     v-bind="{ ...selectProps, ...$attrs }"
     v-model:value="bindValue"
     :options="options"

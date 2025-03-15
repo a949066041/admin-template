@@ -1,11 +1,20 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "composite": true,
-    "target": "ESNext",
+    "lib": ["DOM", "ESNext"],
     "baseUrl": ".",
-    "module": "ESNext"
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
-  "include": ["env.d.ts", "src/**/*", "./src/**/*.vue"],
-  "exclude": ["src/**/__tests__/*"]
+  "include": ["src"],
+  "exclude": ["**/node_modules"]
 }

@@ -1,11 +1,16 @@
 <script lang="ts" generic="T extends Record<string, any>" setup>
-import { useVModels } from '@vueuse/core'
-import { computed, inject } from 'vue'
 import type { DataTableBaseColumn } from 'naive-ui'
 import type { INaiveConfig, YyTableColumns } from '../../utils'
+import { useVModels } from '@vueuse/core'
+import { NDataTable, NPagination } from 'naive-ui'
+import { computed, inject } from 'vue'
 import { provideSymbol } from '../../utils'
 
-interface IYyTable {
+defineOptions({
+  name: 'YyTable',
+})
+
+const props = withDefaults(defineProps<{
   columns: YyTableColumns<string>[]
   dataSource: T[]
   loading: boolean
@@ -14,13 +19,7 @@ interface IYyTable {
   total?: number
   pager?: boolean
   s2?: boolean
-}
-
-defineOptions({
-  name: 'YyTable',
-})
-
-const props = withDefaults(defineProps<IYyTable>(), {
+}>(), {
   pager: true,
   limit: 10,
   s2: false,
@@ -78,11 +77,11 @@ const { limit, current } = useVModels(props, emit)
 <template>
   <div class="yy-table">
     <slot name="search" />
-    <div class=" flex justify-end">
+    <div class=" flex justify-end text-red-800">
       <slot name="tools" />
     </div>
     <div :class="[$slots && ' mt-2']">
-      <n-data-table
+      <NDataTable
         v-bind="$attrs"
         :loading="loading"
         size="small"
@@ -92,7 +91,7 @@ const { limit, current } = useVModels(props, emit)
         :data="dataSource"
         :scroll-x="totalWidth"
       />
-      <n-pagination
+      <NPagination
         v-if="pager"
         v-model:page="current"
         v-model:page-size="limit"

@@ -21,7 +21,6 @@ custom.json
 
 /cypress/videos/
 /cypress/screenshots/
-docs/docs/.vitepress/cache
 
 # Editor directories and files
 !.vscode/extensions.json

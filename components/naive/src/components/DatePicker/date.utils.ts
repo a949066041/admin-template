@@ -20,6 +20,7 @@ export const DATE_FORMAT: Record<Required<DatePickerProps>['type'], string> = {
   monthrange: MONTH,
   quarterrange: SECOND,
   yearrange: YEAR,
+  week: '',
 }
 
 export const NOW_DAY = dayjs().toDate().getTime()

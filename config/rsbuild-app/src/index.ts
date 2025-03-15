@@ -46,14 +46,6 @@ export default (options?: IRsBildOptions) => {
     },
     tools: {
       rspack: {
-        module: {
-          rules: [
-            {
-              test: /\.md$/,
-              loader: 'vue-loader',
-            },
-          ],
-        },
         plugins: [
           AutoImport({
             imports: ['vue', 'vue-router', '@vueuse/core', {

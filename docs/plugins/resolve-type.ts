@@ -1,6 +1,4 @@
-import type { Plugin } from 'vite'
-
-export function MarkdownTransform(): Plugin {
+export function MarkdownTransform(): any {
   return {
     name: 'vueuse-md-transform',
     enforce: 'pre',
@@ -8,7 +6,6 @@ export function MarkdownTransform(): Plugin {
       if (!id.match(/\.md\b/))
         return null
 
-      console.log(code)
       return `${code}\n<n-anchor>
       <n-anchor-link title="演示" href="#演示">
         <n-anchor-link title="基础用法" href="#basic.vue" />

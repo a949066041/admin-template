@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useVModel } from '@vueuse/core'
+import { NButton, NModal, NSpace } from 'naive-ui'
 
 defineOptions({
   name: 'YyModal',
@@ -31,19 +32,19 @@ function handleCancelModal() {
 </script>
 
 <template>
-  <n-modal v-model:show="bindVisible" class=" w-200" :title="title" preset="card">
+  <NModal v-model:show="bindVisible" class=" w-200" :title="title" preset="card">
     <slot />
     <template #action>
       <div class=" flex justify-end">
-        <n-space>
-          <n-button @click="handleCancelModal">
+        <NSpace>
+          <NButton @click="handleCancelModal">
             {{ cancelText }}
-          </n-button>
-          <n-button type="primary" :loading="confirmLoading" @click="emits('ok')">
+          </NButton>
+          <NButton type="primary" :loading="confirmLoading" @click="emits('ok')">
             {{ confirmText }}
-          </n-button>
-        </n-space>
+          </NButton>
+        </NSpace>
       </div>
     </template>
-  </n-modal>
+  </NModal>
 </template>

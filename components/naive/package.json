@@ -3,18 +3,17 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "author": "",
-  "license": "ISC",
   "keywords": [],
   "main": "dist/index.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "prepare:build": "vite build"
+    "prepare:build": "rslib build && vue-tsc"
   },
-  "devDependencies": {
+  "dependencies": {
+    "@rslib/core": "^0.5.4",
+    "@yy-admin/common-css": "workspace:^",
+    "@yy-admin/config-rslib": "workspace:^",
     "@yy-admin/config-unocss": "workspace:^",
-    "@yy-admin/config-vite-lib": "workspace:^",
-    "typescript": "^5.8.2",
     "vue-tsc": "^2.2.8"
   }
 }

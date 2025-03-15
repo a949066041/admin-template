@@ -1,5 +1,10 @@
-export * from './Search'
-export * from './Table'
-export * from './Modal'
-export * from './Select'
+import YyModal from './Modal/yy-modal.vue'
+
+export {
+  YyModal,
+}
+
 export * from './DatePicker'
+export * from './Search'
+export * from './Select'
+export * from './Table'

@@ -1,19 +1,10 @@
-import { defineConfig } from 'unocss'
-import { plugins, scanFile, shortList, transFormConfig } from '@yy-admin/config-unocss'
+import { config, scanFile } from '@yy-admin/config-unocss'
+import { defineConfig, mergeConfigs } from 'unocss'
 
-export default defineConfig({
+export default mergeConfigs([defineConfig({
   content: {
     filesystem: [
       `./src/${scanFile}`,
     ],
   },
-  shortcuts: {
-    ...shortList,
-  },
-  presets: [
-    ...plugins,
-  ],
-  transformers: [
-    ...transFormConfig,
-  ],
-})
+}), config])

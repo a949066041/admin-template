@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { DatePickerProps } from 'naive-ui'
-import { computed } from 'vue'
 import { first } from 'lodash-es'
+import { NDatePicker } from 'naive-ui'
+import { computed } from 'vue'
 import { AUTO_COMPLETE_END, AUTO_COMPLETE_START, DATE_FORMAT, NOW_DAY, SHORTCUTS } from './date.utils'
 
 defineOptions({
@@ -50,7 +51,7 @@ const bindDateValue = computed<string | [string, string]>({
           : null
       return (withValue !== null
         ? withValue
-          .map(item => item.replace(AUTO_COMPLETE_START, '').replace(AUTO_COMPLETE_END, ''))
+            .map(item => item.replace(AUTO_COMPLETE_START, '').replace(AUTO_COMPLETE_END, ''))
         : null) as [string, string]
     }
     return (props.value || null) as string
@@ -92,7 +93,7 @@ const shortcuts = computed<DatePickerProps['shortcuts']>(() => {
 </script>
 
 <template>
-  <n-date-picker
+  <NDatePicker
     v-bind="$attrs"
     v-model:formatted-value="bindDateValue"
     :type="type"
