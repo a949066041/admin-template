@@ -6,7 +6,6 @@ export default mergeConfigs([defineConfig({
     filesystem: [
       `./src/${scanFile}`,
       resolvePkgPath(__dirname, require.resolve('@yy-admin/components-admin')),
-      resolvePkgPath(__dirname, require.resolve('@yy-admin/common-css')),
     ],
   },
 }), config])

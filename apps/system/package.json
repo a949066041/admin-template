@@ -6,13 +6,8 @@
   "main": "src/page.ts",
   "types": "src/page.ts",
   "scripts": {
-    "dev": "vite",
-    "dev:rs": "rsbuild dev",
-    "build": "run-p type-check build-only",
-    "build:rs": "rsbuild build",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit"
+    "dev": "rsbuild dev",
+    "build": "rsbuild build"
   },
   "dependencies": {
     "@yy-admin/common-core": "workspace:^",
@@ -22,15 +17,10 @@
     "@yy-admin/components-naive": "workspace:^",
     "@yy-admin/config-rsbuild-app": "workspace:^",
     "@yy-admin/config-unocss": "workspace:^",
-    "@yy-admin/config-vite-app": "workspace:^",
     "@yy-web/use-curd-vue": "^1.0.1"
   },
   "devDependencies": {
-    "@rsbuild/core": "^1.2.19",
-    "@tsconfig/node18": "^18.2.4",
     "@yy-admin/common-apis": "workspace:^",
-    "@yy-admin/common-css": "workspace:^",
-    "typescript": "~5.8.2",
-    "vue-tsc": "^2.2.8"
+    "@yy-admin/common-css": "workspace:^"
   }
 }

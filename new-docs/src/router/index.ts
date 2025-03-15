@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import { tokenStorage, useUserStore } from '@yy-admin/common-core'
+import { createRouter, createWebHistory } from 'vue-router'
 import { genComponents } from '../utils'
 
 const router = createRouter({

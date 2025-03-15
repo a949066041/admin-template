@@ -1,7 +1,7 @@
-import { plugins, resolvePkgPath, scanFile, shortList, transFormConfig } from '@yy-admin/config-unocss'
-import { defineConfig } from 'unocss'
+import { config, resolvePkgPath, scanFile } from '@yy-admin/config-unocss'
+import { defineConfig, mergeConfigs } from 'unocss'
 
-export default defineConfig({
+export default mergeConfigs([defineConfig({
   content: {
     filesystem: [
       `./src/${scanFile}`,
@@ -11,13 +11,4 @@ export default defineConfig({
       resolvePkgPath(__dirname, require.resolve('@yy-admin/common-css')),
     ],
   },
-  shortcuts: {
-    ...shortList,
-  },
-  presets: [
-    ...plugins,
-  ],
-  transformers: [
-    ...transFormConfig,
-  ],
-})
+}), config])

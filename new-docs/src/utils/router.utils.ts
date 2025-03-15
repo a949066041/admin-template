@@ -1,6 +1,10 @@
 export function genComponents() {
-  return Object.entries(import.meta.glob('@/docs/**/*.md')).reduce((base, [k, v]) => {
-    base[k.replace('/src/docs/', '').replace('.md', '')] = v
+  const context = import.meta.webpackContext('../docs/', {
+    recursive: true,
+    regExp: /\.md$/,
+  })
+  return context.keys().reduce((base, item) => {
+    base[item.replace('./', '').replace('.md', '')] = (context(item) as unknown as any).default
     return base
-  }, {} as Record<string, () => Promise<unknown>>)
+  }, {} as Record<string, unknown>)
 }

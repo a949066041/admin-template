@@ -8,9 +8,6 @@ defineOptions({
 
 <template>
   <AppConfig title="web1">
-    <div text-red-100>
-      hello
-    </div>
     <RouterView />
   </AppConfig>
 </template>

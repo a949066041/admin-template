@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue'
-import { type HighlighterCore, getHighlighterCore } from 'shiki/core'
-import getWasm from 'shiki/wasm'
-
-import { useClipboard } from '@vueuse/core'
-import { useMessage } from 'naive-ui'
+import { useClipboard, useToggle } from '@vueuse/core'
 import { useConfigStore, useUserStore } from '@yy-admin/common-core'
+
+import { useMessage } from 'naive-ui'
+import { codeToHtml } from 'shiki'
+import { computed, onMounted, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<{ src: string, source: string, auth?: boolean }>(), {
   auth: false,
@@ -15,36 +14,29 @@ const configStore = useConfigStore()
 const message = useMessage()
 const [render, toggleRender] = useToggle()
 let AsyncComp: any = null
-const modules = import.meta.glob('../../example/**/*.vue')
+const contextExample = import.meta.webpackContext('../../example', {
+  // 是否搜索子目录
+  recursive: true,
+  regExp: /\.vue$/,
+})
+const modules = contextExample.keys().reduce((arr, value) => {
+  arr[value.replace('./', '')] = contextExample(value)
+  return arr
+}, {} as Record<string, any>)
 onMounted(async () => {
-  const path = `../../example/${props.src}`
-  if (!modules[path])
+  if (!modules[props.src])
     throw new Error('not found comp')
-  modules[path]().then((res) => {
-    AsyncComp = (res as any).default
-    toggleRender(true)
-  })
+  AsyncComp = modules[props.src].default
+  toggleRender(true)
 })
 
 const code = computed(() => decodeURIComponent(props.source))
-let highlighter: HighlighterCore | null = null
 
 const showCode = ref(false)
 const html = ref('')
 watch([showCode, () => configStore.isDark], async () => {
   if (showCode.value) {
-    highlighter = await getHighlighterCore({
-      themes: [
-        import('shiki/themes/vitesse-light.mjs'),
-        import('shiki/themes/vitesse-dark.mjs'),
-      ],
-      langs: [
-        import('shiki/langs/javascript.mjs'),
-        import('shiki/langs/vue.mjs'),
-      ],
-      loadWasm: getWasm,
-    })
-    html.value = highlighter.codeToHtml(code.value, {
+    html.value = await codeToHtml(code.value, {
       lang: 'javascript',
       theme: configStore.isDark ? 'vitesse-dark' : 'vitesse-light',
     })
@@ -62,7 +54,8 @@ function handleCopy() {
   <div class="mt-6 border border-solid pt-4 px-2 rounded border-slate-200">
     <div
       v-if="render" class=" w-full min-h-30 relative"
-      :class="auth && !userStore.isLogin && 'auth'"
+      :class="auth && !userStore.isLogin && `after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-gray-1 after:dark:bg-[#ccc]
+  after:text-black after:content-['授权后查看'] after:text-2xl after:flex after:items-center after:justify-center`"
     >
       <div v-if="auth && userStore.isLogin || !auth">
         <AsyncComp />
@@ -92,10 +85,3 @@ function handleCopy() {
     </div>
   </div>
 </template>
-
-<style>
-.auth {
-  @apply after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-gray-1 after:dark:bg-[#ccc]
-  after:text-black after:content-['授权后查看'] after:text-2xl after:flex after:items-center after:justify-center;
-}
-</style>

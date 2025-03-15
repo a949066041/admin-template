@@ -7,7 +7,14 @@ withDefaults(defineProps<{ title: string, value: number, suffix?: string, prefix
 </script>
 
 <template>
-  <div class=" card-item">
+  <div
+    class=" card-item px-24px pt-20px pb-8px rounded-xl
+    shadow-[0_1px_2px_0_rgba(0,0,0,0.03),0_1px_6px_-1px_rgba(0,0,0,0.02),0_2px_4px_0_rgba(0,0,0,0.02)]
+    border
+    border-solid
+    dark:border-color-[rgba(255,255,255,0.09)]
+    border-color-[rgb(239,239,245)]"
+  >
     <div class=" flex justify-between">
       <span class=" op65">{{ title }}</span>
       <i class="i-ph:question-light" />
@@ -21,14 +28,3 @@ withDefaults(defineProps<{ title: string, value: number, suffix?: string, prefix
     <slot name="footer" />
   </div>
 </template>
-
-<style  scoped>
-.card-item {
-  @apply px-24px pt-20px pb-8px rounded-xl
-    shadow-[0_1px_2px_0_rgba(0,0,0,0.03),0_1px_6px_-1px_rgba(0,0,0,0.02),0_2px_4px_0_rgba(0,0,0,0.02)]
-    border
-    border-solid
-    dark:border-color-[rgba(255,255,255,0.09)]
-    border-color-[rgb(239,239,245)];
-}
-</style>

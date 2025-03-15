@@ -8,11 +8,16 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build"
+    "dev": "rsbuild dev",
+    "build": "rsbuild build"
   },
   "dependencies": {
-    "echarts": "^5.6.0"
+    "@rsbuild/core": "^1.2.19",
+    "@yy-admin/common-css": "workspace:^",
+    "@yy-admin/config-rsbuild-app": "workspace:^",
+    "@yy-admin/config-unocss": "workspace:^",
+    "echarts": "^5.6.0",
+    "vue-loader": "^17.4.2"
   },
   "devDependencies": {
     "@shikijs/markdown-it": "^3.2.1",
@@ -22,7 +27,6 @@
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-core": "workspace:^",
     "@yy-admin/components-admin": "workspace:^",
-    "@yy-admin/config-vite-app": "workspace:^",
     "fs-extra": "^11.3.0",
     "markdown-it": "^14.1.0",
     "shiki": "^3.2.1",

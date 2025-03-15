@@ -1,3 +1,4 @@
+import type { ProxyOptions, RsbuildPlugins } from '@rsbuild/core'
 import type { ComponentResolver } from 'unplugin-vue-components'
 import { defineConfig } from '@rsbuild/core'
 import { pluginVue } from '@rsbuild/plugin-vue'
@@ -27,7 +28,16 @@ export function YyNaiveuiComponents(): ComponentResolver {
   }
 }
 
-export default () => {
+interface IRsBildOptions {
+  proxyApis?: [string, string][]
+  plugins?: RsbuildPlugins[]
+}
+
+export default (options?: IRsBildOptions) => {
+  const {
+    proxyApis = [],
+    plugins = [],
+  } = options || {}
   return defineConfig({
     source: {
       entry: {
@@ -36,6 +46,14 @@ export default () => {
     },
     tools: {
       rspack: {
+        module: {
+          rules: [
+            {
+              test: /\.md$/,
+              loader: 'vue-loader',
+            },
+          ],
+        },
         plugins: [
           AutoImport({
             imports: ['vue', 'vue-router', '@vueuse/core', {
@@ -57,24 +75,25 @@ export default () => {
           }),
           UnoCSSRspackPlugin({
           }),
+          ...plugins,
         ],
       },
     },
     plugins: [
-      pluginVue(),
-      pluginVueJsx(),
+      pluginVue({
+      }),
+      pluginVueJsx({
+      }),
     ],
     server: {
-      proxy: {
-        '/api': {
-          target: 'http://192.168.2.91:8000/',
-          pathRewrite: { '^/api': '' },
+      proxy: proxyApis.reduce((prev, [key, value]) => {
+        prev[key] = {
+          target: value,
+          pathRewrite: { [`^${key}`]: '' },
           changeOrigin: true,
-        },
-        '/avatar': {
-          target: 'http://192.168.2.91:8000/',
-        },
-      },
+        }
+        return prev
+      }, {} as Record<string, ProxyOptions>),
     },
   })
 }

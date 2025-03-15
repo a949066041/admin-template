@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { MenuOption } from 'naive-ui'
-import { genComponents } from '@/utils'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { genComponents } from '../../utils'
 
 defineOptions({
   name: 'DocRouter',

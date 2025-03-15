@@ -4,7 +4,6 @@ import { systemHomePage, systemPageList, testPageList } from '@yy-admin/web-syst
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import 'uno.css'
 import '@yy-admin/common-css'
 
 const app = createApp(App)
