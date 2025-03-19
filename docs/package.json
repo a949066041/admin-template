@@ -19,6 +19,7 @@
     "@yy-admin/config-unocss": "workspace:^",
     "echarts": "catalog:",
     "github-markdown-css": "^5.8.1",
+    "remark-gfm": "^4.0.1",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "vue-loader": "catalog:"

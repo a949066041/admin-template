@@ -1,6 +1,7 @@
 import { mergeRsbuildConfig } from '@rsbuild/core'
 import { pluginMdx } from '@rsbuild/plugin-mdx'
 import rsConfig from '@yy-admin/config-rsbuild-app'
+import remarkGfm from 'remark-gfm'
 import { remarkCodeSrc } from './plugins/remark'
 
 export default mergeRsbuildConfig(
@@ -16,6 +17,7 @@ export default mergeRsbuildConfig(
         jsxImportSource: 'vue',
         remarkPlugins: [
           [remarkCodeSrc, { basePath: '' }],
+          remarkGfm,
         ],
       },
     })],
