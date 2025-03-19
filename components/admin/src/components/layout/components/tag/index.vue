@@ -61,13 +61,13 @@ router.afterEach(handleAddTag)
         v-for="item of tagStore.tagList"
         :key="item.path"
         :data-path="item.path"
-        :type="tagStore.activeTag === item.path ? 'success' : undefined" class=" cursor-pointer router-tab flex items-center mr-3 last:mr-0"
+        :type="tagStore.activeTag === item.path ? 'success' : undefined" class=" cursor-pointer  flex items-center mr-3 last:mr-0"
         @contextmenu="handleOpenMenu($event, item)"
         @click="handleChangeTag(item.path)"
       >
-        <div class=" flex items-center">
+        <div class=" flex items-center group">
           <span>{{ item.title }}</span>
-          <i v-if="!item.affix" class="router-tab__icon text-0 cursor-pointer ml-2 transition-all duration-.3s i-carbon:close-outline" @click.stop="tagStore.closeTag(item.path)" />
+          <i v-if="!item.affix" class="group-hover:w-3 group-hover:h-3 text-0 cursor-pointer ml-2 transition-all duration-.3s i-carbon:close-outline" @click.stop="tagStore.closeTag(item.path)" />
         </div>
       </NTag>
       <n-dropdown
@@ -77,13 +77,3 @@ router.afterEach(handleAddTag)
     </ScrollContent>
   </div>
 </template>
-
-<style scoped lang="css">
-.router-tab {
-  &:hover {
-    .router-tab__icon {
-      @apply w-3 h-3;
-    }
-  }
-}
-</style>

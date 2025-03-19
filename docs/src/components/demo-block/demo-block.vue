@@ -9,6 +9,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 const props = withDefaults(defineProps<{ src: string, source: string, auth?: boolean }>(), {
   auth: false,
 })
+
 const userStore = useUserStore()
 const configStore = useConfigStore()
 const message = useMessage()
@@ -19,10 +20,12 @@ const contextExample = import.meta.webpackContext('../../example', {
   recursive: true,
   regExp: /\.vue$/,
 })
+
 const modules = contextExample.keys().reduce((arr, value) => {
   arr[value.replace('./', '')] = contextExample(value)
   return arr
 }, {} as Record<string, any>)
+
 onMounted(async () => {
   if (!modules[props.src])
     throw new Error('not found comp')

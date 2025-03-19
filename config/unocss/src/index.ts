@@ -3,12 +3,12 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 import presetIcons from '@unocss/preset-icons'
-import { presetAttributify, presetUno, transformerDirectives } from 'unocss'
+import { presetAttributify, presetWind3, transformerDirectives } from 'unocss'
 
 export const scanFile = '/**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}'
 
 export const plugins = [
-  presetUno(),
+  presetWind3(),
   presetAttributify({ /* preset options */}),
   presetIcons({
     collections: {
@@ -38,7 +38,7 @@ export const config: UserConfig = {
     ...shortList,
   },
   presets: [
-    presetUno(),
+    presetWind3(),
     presetAttributify({ /* preset options */}),
     presetIcons({
       collections: {
