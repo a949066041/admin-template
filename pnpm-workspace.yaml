@@ -7,8 +7,8 @@ packages:
   - docs
 catalog:
   "@antfu/eslint-config": ^4.10.1
-  "@iconify/json": ^2.2.317
-  "@iconify/tools": ^4.1.1
+  "@iconify/json": ^2.2.318
+  "@iconify/tools": ^4.1.2
   "@iconify/utils": ^2.3.0
   "@rsbuild/core": ^1.2.19
   "@rsbuild/plugin-vue": ^1.0.7
@@ -28,8 +28,8 @@ catalog:
   "@unocss/reset": ^66.0.0
   "@unocss/transformer-directives": ^66.0.0
   "@unocss/webpack": 66.1.0-beta.5
-  "@vitest/coverage-v8": ^3.0.8
-  "@vitest/ui": ^3.0.8
+  "@vitest/coverage-v8": ^3.0.9
+  "@vitest/ui": ^3.0.9
   "@vue/compiler-core": ^3.5.13
   "@vue/tsconfig": ^0.7.0
   "@vueuse/core": ^13.0.0
@@ -62,7 +62,7 @@ catalog:
   unplugin-vue-components: ^28.4.1
   unplugin-vue-markdown: ^28.3.1
   vant: ^4.9.18
-  vitest: ^3.0.8
+  vitest: ^3.0.9
   vue: ^3.5.13
   vue-loader: ^17.4.2
   vue-router: ^4.5.0

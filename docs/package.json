@@ -13,24 +13,23 @@
   },
   "dependencies": {
     "@rsbuild/core": "catalog:",
+    "@rsbuild/plugin-mdx": "^1.0.2",
     "@yy-admin/common-css": "workspace:^",
     "@yy-admin/config-rsbuild-app": "workspace:^",
     "@yy-admin/config-unocss": "workspace:^",
     "echarts": "catalog:",
     "github-markdown-css": "^5.8.1",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0",
     "vue-loader": "catalog:"
   },
   "devDependencies": {
-    "@shikijs/markdown-it": "catalog:",
     "@types/fs-extra": "catalog:",
-    "@types/markdown-it": "catalog:",
     "@vue/compiler-core": "catalog:",
     "@yy-admin/common-apis": "workspace:^",
     "@yy-admin/common-core": "workspace:^",
     "@yy-admin/components-admin": "workspace:^",
     "fs-extra": "catalog:",
-    "markdown-it": "catalog:",
-    "shiki": "catalog:",
-    "unplugin-vue-markdown": "catalog:"
+    "shiki": "catalog:"
   }
 }

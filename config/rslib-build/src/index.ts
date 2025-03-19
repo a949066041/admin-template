@@ -33,6 +33,7 @@ export default () => defineConfig({
       'vue-router',
       'naive-ui',
       'dayjs',
+      '@vueuse/core',
     ],
   },
 })
