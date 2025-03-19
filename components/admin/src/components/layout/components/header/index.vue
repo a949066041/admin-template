@@ -15,7 +15,7 @@ const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 const configStore = useConfigStore()
 const router = useRouter()
 const message = useMessage()
-const userStore = useUserStore()
+const { logout, avatar } = useUserStore()
 const options = [
   {
     label: '个人中心',
@@ -33,7 +33,7 @@ const options = [
 
 function handleSelectAction(key: typeof options[number]['key']) {
   if (key === 'logout') {
-    userStore.logout().then(() => {
+    logout().then(() => {
       message.success('退出成功！')
       router.push('/login')
     })
@@ -82,7 +82,7 @@ function handleToMenu(breadcrumbItem: IRouteBreadcrumbItem) {
       <n-divider vertical />
       <n-dropdown :options="options" trigger="click" @select="handleSelectAction">
         <div class="flex items-center cursor-pointer">
-          <n-avatar :src="userStore.avatar" round />
+          <n-avatar :src="avatar" round />
           <i class=" text-xl i-ri:arrow-drop-down-line" />
         </div>
       </n-dropdown>

@@ -24,7 +24,6 @@
     "jsdom": "catalog:",
     "lodash-es": "catalog:",
     "naive-ui": "catalog:",
-    "pinia": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"
   },

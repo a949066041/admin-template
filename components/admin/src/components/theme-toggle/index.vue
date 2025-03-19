@@ -42,14 +42,14 @@ function toggle(event?: MouseEvent) {
     ]
     document.documentElement.animate(
       {
-        clipPath: configStore.isDark
+        clipPath: configStore.isDark.value
           ? [...clipPath].reverse()
           : clipPath,
       },
       {
         duration: 400,
         easing: 'ease-in',
-        pseudoElement: configStore.isDark
+        pseudoElement: configStore.isDark.value
           ? '::view-transition-old(root)'
           : '::view-transition-new(root)',
       },

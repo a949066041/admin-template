@@ -13,7 +13,7 @@ defineOptions({
 })
 
 const message = useMessage()
-const userStore = useUserStore()
+const { logout } = useUserStore()
 const router = useRouter()
 
 function initResetPwdForm() {
@@ -33,7 +33,7 @@ const { formModel, visible, handleInitForm, saveLoading, handleSaveForm, formRef
     message.success('密码修改成功，请重新登录', {
       duration: 1500,
       onAfterLeave() {
-        userStore.logout().then(() => {
+        logout().then(() => {
           router.push('/login')
         })
       },

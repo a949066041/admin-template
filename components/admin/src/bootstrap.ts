@@ -1,7 +1,7 @@
 import type { AsyncRouters } from '@yy-admin/common-core'
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import { $pinia, authRoute, requestInstance, withSrcViewModules, YyDict } from '@yy-admin/common-core'
+import { authRoute, requestInstance, withSrcViewModules, YyDict } from '@yy-admin/common-core'
 import BaseUI from '@yy-admin/components-base'
 import { confNaive } from '@yy-admin/components-naive'
 import { setRequest } from '@yy-web/request'
@@ -20,8 +20,6 @@ export function setupComponents(app: App) {
 
   window.errorMsg = message.error
   setRequest(requestInstance)
-  // base
-  app.use($pinia)
   app.use(BaseUI)
 
   // business config

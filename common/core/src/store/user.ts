@@ -1,12 +1,12 @@
 import type { IMenuBuild, LoginForm, UserInfo } from '@yy-admin/common-apis'
 import type { Router } from 'vue-router'
+import { createGlobalState } from '@vueuse/core'
 import { AuthApi, MenuApi } from '@yy-admin/common-apis'
 import { encrypt } from '@yy-admin/common-utils'
-import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { flatChildrenArr, tokenStorage } from '../utils'
 
-export const useUserStore = defineStore('core-user', () => {
+export const useUserStore = createGlobalState(() => {
   const userInfo = ref<UserInfo | null>(null)
   const userMenuList = ref<IMenuBuild[]>([])
   const flatMenuList = computed(() => flatChildrenArr(userMenuList.value))

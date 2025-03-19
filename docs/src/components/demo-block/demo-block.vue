@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{ src: string, source: string, auth?: boo
   auth: false,
 })
 
-const userStore = useUserStore()
+const { isLogin } = useUserStore()
 const configStore = useConfigStore()
 const message = useMessage()
 const [render, toggleRender] = useToggle()
@@ -37,11 +37,11 @@ const code = computed(() => decodeURIComponent(props.source))
 
 const showCode = ref(false)
 const html = ref('')
-watch([showCode, () => configStore.isDark], async () => {
+watch([showCode, () => configStore.isDark.value], async () => {
   if (showCode.value) {
     html.value = await codeToHtml(code.value, {
       lang: 'vue',
-      theme: configStore.isDark ? 'vitesse-dark' : 'vitesse-light',
+      theme: configStore.isDark.value ? 'vitesse-dark' : 'vitesse-light',
     })
   }
 }, { immediate: true })
@@ -57,10 +57,10 @@ function handleCopy() {
   <div class="mt-6 border border-solid pt-4 px-2 rounded border-slate-200">
     <div
       v-if="render" class=" w-full min-h-30 relative"
-      :class="auth && !userStore.isLogin && `after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-gray-1 after:dark:bg-[#ccc]
+      :class="auth && !isLogin && `after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-gray-1 after:dark:bg-[#ccc]
   after:text-black after:content-['授权后查看'] after:text-2xl after:flex after:items-center after:justify-center`"
     >
-      <div v-if="auth && userStore.isLogin || !auth">
+      <div v-if="auth && isLogin || !auth">
         <AsyncComp />
       </div>
     </div>

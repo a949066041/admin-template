@@ -1,8 +1,8 @@
 import type { getStore, setStore } from '@yy-web/request'
-import { defineStore } from 'pinia'
+import { createGlobalState } from '@vueuse/core'
 import { ref } from 'vue'
 
-export const useRequestCache = defineStore('request-cache', () => {
+export const useRequestCache = createGlobalState(() => {
   const requestStore = ref<Map<string, any>>(new Map())
 
   const getRequestStore: typeof getStore = (key: string) => {

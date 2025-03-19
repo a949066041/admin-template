@@ -2,13 +2,15 @@
 import type { AuthCode } from '@yy-admin/common-apis'
 import { AuthApi } from '@yy-admin/common-apis'
 import { useUserStore } from '@yy-admin/common-core'
+import { useMessage } from 'naive-ui'
+import { onMounted, ref } from 'vue'
 
 defineOptions({
   name: 'LoginStatus',
 })
 
 const message = useMessage()
-const userStore = useUserStore()
+const { loginAction, getUserInfo, isLogin, logout } = useUserStore()
 const loginCode = ref<AuthCode & { code?: string }>({
   uuid: '',
   img: '',
@@ -24,13 +26,13 @@ function handleGetCode() {
 onMounted(handleGetCode)
 
 function handleToLogin() {
-  userStore.loginAction({
+  loginAction({
     username: 'admin',
     password: '123456',
     uuid: loginCode.value.uuid,
     code: loginCode.value.code!,
   }).then(() => {
-    userStore.getUserInfo(true).then(() => {
+    getUserInfo(true).then(() => {
       message.success('登录成功')
     })
   })
@@ -39,10 +41,10 @@ function handleToLogin() {
 
 <template>
   <div class=" h-12 leading-12 flex justify-end px-2 items-center">
-    <n-tag :type="userStore.isLogin ? 'success' : 'error'" class=" mr-2">
-      {{ userStore.isLogin ? '已登录' : '未登录' }}
+    <n-tag :type="isLogin ? 'success' : 'error'" class=" mr-2">
+      {{ isLogin ? '已登录' : '未登录' }}
     </n-tag>
-    <template v-if="!userStore.isLogin">
+    <template v-if="!isLogin">
       <n-input v-model:value="loginCode.code" class=" !w-[280px]">
         <template #prefix>
           <img :src="loginCode.img" @click="handleGetCode">
@@ -54,7 +56,7 @@ function handleToLogin() {
         </template>
       </n-input>
     </template>
-    <n-button v-else type="primary" @click="userStore.logout">
+    <n-button v-else type="primary" @click="logout">
       退出
     </n-button>
   </div>

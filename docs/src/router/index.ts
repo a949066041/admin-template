@@ -11,9 +11,9 @@ const router = createRouter({
 
 router.beforeEach((to, form, next) => {
   const token = tokenStorage.getValue()
-  const userStore = useUserStore()
+  const { getUserInfo } = useUserStore()
   if (token) {
-    userStore.getUserInfo(true).then(next)
+    getUserInfo(true).then(next)
     return
   }
   next()

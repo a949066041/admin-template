@@ -9,7 +9,7 @@ import RouteTags from './components/tag/index.vue'
 defineOptions({
   name: 'YyLayout',
 })
-const tagStore = useTagStore()
+const { refreshing, keepAliveNames, formatComponentInstance } = useTagStore()
 
 const route = useRoute()
 const active = ref('')
@@ -28,10 +28,10 @@ watch(route, (val) => {
         <div class=" h-full overflow-hidden flex flex-col">
           <RouteTags />
           <div class=" overflow-auto p4 flex-1 box-border relative">
-            <router-view v-if="!tagStore.refreshing" v-slot="{ Component }">
+            <router-view v-if="!refreshing" v-slot="{ Component }">
               <transition name="fade-transform" mode="out-in" appear>
-                <keep-alive :include="tagStore.keepAliveNames">
-                  <component :is="tagStore.formatComponentInstance(Component, $route.path)" :key="$route.path" />
+                <keep-alive :include="keepAliveNames">
+                  <component :is="formatComponentInstance(Component, $route.path)" :key="$route.path" />
                 </keep-alive>
               </transition>
             </router-view>
@@ -46,7 +46,7 @@ watch(route, (val) => {
 <style>
 .fade-transform-leave-active,
 .fade-transform-enter-active {
-  transition: all .5s;
+  transition: all .3s;
 }
 
 .fade-transform-enter {

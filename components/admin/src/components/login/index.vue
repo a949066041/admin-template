@@ -40,7 +40,7 @@ const loginRules = ref<{ [P in keyof Partial<LoginForm>]: FormItemRule[] }>({
 })
 const codeImg = ref('')
 const configStore = useConfigStore()
-const userStore = useUserStore()
+const { loginAction } = useUserStore()
 
 function handleRefreshImg() {
   AuthApi.code().then(({ img, uuid }) => {
@@ -57,7 +57,7 @@ function handleLoadingAction() {
     if (!err) {
       toggleLoading(true)
       try {
-        await userStore.loginAction(loginForm.value)
+        await loginAction(loginForm.value)
         router.push('/')
       }
       catch {

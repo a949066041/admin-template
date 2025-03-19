@@ -10,6 +10,7 @@
     "build": "rsbuild build"
   },
   "dependencies": {
+    "@rsbuild/core": "catalog:",
     "@yy-admin/common-core": "workspace:^",
     "@yy-admin/components-admin": "workspace:^",
     "@yy-admin/components-base": "workspace:^",

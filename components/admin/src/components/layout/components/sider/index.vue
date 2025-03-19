@@ -12,17 +12,11 @@ defineOptions({
 
 const router = useRouter()
 const route = useRoute()
-const configStore = useConfigStore()
+const { collapseMenu, handleToggleMenu } = useConfigStore()
 
 const activePath = ref('')
-const userStore = useUserStore()
+const { userMenuList } = useUserStore()
 const menuInstRef = ref<MenuInst | null>(null)
-
-function handleToggleMenu() {
-  nextTick(() => {
-    menuInstRef.value?.showOption(activePath.value)
-  })
-}
 
 function handleRenderIcon(options: IMenuBuild) {
   return h('i', { class: `i-custom:${options.meta.icon}` })
@@ -34,7 +28,9 @@ function handleRenderLabel(options: IMenuBuild) {
 
 watchImmediate(route, () => {
   activePath.value = route.path
-  handleToggleMenu()
+  nextTick(() => {
+    menuInstRef.value?.showOption(activePath.value)
+  })
 })
 
 const isFixed = ref(window.innerWidth < 760)
@@ -48,35 +44,35 @@ useEventListener('resize', setFixed)
 
 <template>
   <n-layout-sider
-    v-show="!isFixed || (isFixed && !configStore.collapseMenu)"
+    v-show="!isFixed || (isFixed && !collapseMenu)"
     bordered
     collapse-mode="width"
     :collapsed-width="64"
     :width="240"
-    :collapsed="configStore.collapseMenu"
+    :collapsed="collapseMenu"
     class="h-100vh"
     :class="isFixed && '!fixed z-3001'"
   >
     <div class="logo h-15 leading-15  text-center flex items-center justify-center">
-      <div class="i-logos:naiveui w-5 h-5" :class=" configStore.collapseMenu && 'w-6 h-6'" />
-      <div v-if="!configStore.collapseMenu" class=" text-lg ml-2">
+      <div class="i-logos:naiveui w-5 h-5" :class=" collapseMenu && 'w-6 h-6'" />
+      <div v-if="!collapseMenu" class=" text-lg ml-2">
         YydyAdmin
       </div>
     </div>
     <n-menu
       ref="menuInstRef"
       :value="activePath"
-      :collapsed="configStore.collapseMenu"
+      :collapsed="collapseMenu"
       :icon-size="16"
       :collapsed-width="64"
       :collapsed-icon-size="20"
       :render-icon="handleRenderIcon"
       :render-label="handleRenderLabel"
-      :options="userStore.userMenuList"
+      :options="userMenuList"
       @update:value="(val: string) => router.push(val)"
     />
   </n-layout-sider>
-  <Teleport v-if="isFixed && !configStore.collapseMenu" to="body">
-    <div class="n-modal-mask z-3000" @click="configStore.handleToggleMenu(true)" />
+  <Teleport v-if="isFixed && !collapseMenu" to="body">
+    <div class="n-modal-mask z-3000" @click="handleToggleMenu(true)" />
   </Teleport>
 </template>
