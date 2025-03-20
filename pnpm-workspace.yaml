@@ -13,7 +13,7 @@ catalog:
   '@rsbuild/core': ^1.2.19
   '@rsbuild/plugin-vue': ^1.0.7
   '@rsbuild/plugin-vue-jsx': ^1.1.0
-  '@rslib/core': ^0.5.4
+  '@rslib/core': ^0.5.5
   '@shikijs/markdown-it': ^3.2.1
   '@types/fs-extra': ^11.0.4
   '@types/js-cookie': ^3.0.6
@@ -35,7 +35,7 @@ catalog:
   '@vueuse/core': ^13.0.0
   '@yy-web/request': ^1.5.9
   '@yy-web/use-curd-vue': ^1.0.1
-  axios: ^1.8.3
+  axios: ^1.8.4
   dayjs: ^1.11.13
   echarts: ^5.6.0
   eslint: ^9.22.0
