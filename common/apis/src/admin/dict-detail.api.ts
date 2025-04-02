@@ -11,7 +11,7 @@ class DictDetailApiInstance extends ApiInstance<IDictDetailEntity> {
   public getDictMap(dictName: string | string[]) {
     dictName = Array.isArray(dictName) ? dictName : [dictName]
     return this.$request.setPath(`${this.baseApi}/map`)
-      .get<Record<keyof typeof dictName, IDictDetailEntity[]>>({ dictName: dictName.join(',') }, true)
+      .get<Record<string, IDictDetailEntity[]>>({ dictName: dictName.join(',') }, true)
   }
 
   public del(id: string | number) {

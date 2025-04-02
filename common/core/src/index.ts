@@ -1,4 +1,5 @@
 export { default as YyDict } from './components/dict'
+export * from './components/useDict'
 export { default as requestInstance } from './request'
 export * from './router'
 export * from './store'

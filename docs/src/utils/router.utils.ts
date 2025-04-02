@@ -6,7 +6,7 @@ export function genComponents() {
     regExp: /\.mdx$/,
   })
   return context.keys().reduce((base, item) => {
-    base[item.replace('./', '').replace('.md', '')] = (context(item) as unknown as any).default
+    base[item.replace('./', '').replace('.mdx', '')] = (context(item) as unknown as any).default
     return base
   }, {} as Record<string, Component>)
 }

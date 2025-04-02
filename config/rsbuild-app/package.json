@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@rsbuild/plugin-vue-jsx": "catalog:",
-    "@rsdoctor/rspack-plugin": "^1.0.0",
+    "@rsdoctor/rspack-plugin": "catalog:",
     "@unocss/webpack": "catalog:"
   },
   "devDependencies": {

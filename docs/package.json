@@ -6,22 +6,21 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "main": "index.js",
   "scripts": {
     "dev": "rsbuild dev",
     "build": "rsbuild build"
   },
   "dependencies": {
     "@rsbuild/core": "catalog:",
-    "@rsbuild/plugin-mdx": "^1.0.2",
+    "@rsbuild/plugin-mdx": "catalog:",
     "@yy-admin/common-css": "workspace:^",
     "@yy-admin/config-rsbuild-app": "workspace:^",
     "@yy-admin/config-unocss": "workspace:^",
     "echarts": "catalog:",
-    "github-markdown-css": "^5.8.1",
-    "remark-gfm": "^4.0.1",
-    "unified": "^11.0.5",
-    "unist-util-visit": "^5.0.0",
+    "github-markdown-css": "catalog:",
+    "remark-gfm": "catalog:",
+    "unified": "catalog:",
+    "unist-util-visit": "catalog:",
     "vue-loader": "catalog:"
   },
   "devDependencies": {

@@ -73,18 +73,28 @@ function handleCopy() {
     <div
       class="border-t-1px border-t-solid border-slate-200  flex justify-end items-center h-8"
     >
-      <div
-        title="show source code"
-        class="i-carbon-code mx-2 cursor-pointer"
-        style="color: #737373"
-        @click="showCode = !showCode"
-      />
-      <div
-        title="copy source code"
-        class="i-carbon-copy-file mx-2 cursor-pointer"
-        style="color: #737373"
-        @click="handleCopy()"
-      />
+      <n-tooltip trigger="hover">
+        <template #trigger>
+          <div
+            title="show source code"
+            class="i-carbon-code mx-2 cursor-pointer"
+            style="color: #737373"
+            @click="showCode = !showCode"
+          />
+        </template>
+        {{ showCode ? '隐藏代码' : '显示代码' }}
+      </n-tooltip>
+      <n-tooltip trigger="hover">
+        <template #trigger>
+          <div
+            title="copy source code"
+            class="i-carbon-copy-file mx-2 cursor-pointer"
+            style="color: #737373"
+            @click="handleCopy()"
+          />
+        </template>
+        复制代码
+      </n-tooltip>
     </div>
   </div>
 </template>

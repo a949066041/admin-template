@@ -1,7 +1,7 @@
 {
   "name": "admin-template",
   "type": "module",
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@10.7.1",
   "description": "",
   "author": "",
   "license": "ISC",
