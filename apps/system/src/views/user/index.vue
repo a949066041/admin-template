@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { useTable } from '@yy-web/business-use'
-import { UserApi } from '@yy-admin/common-apis'
 import type { IDeptEntity, IJobEntity, IRoleEntity, IUserEntity, IUserRecord, IUserTableParams } from '@yy-admin/common-apis'
-import { YyDictSelect } from '@yy-admin/components-admin'
-import { type NaiveFormRules, type YyTableColumns, createColumn as cT } from '@yy-admin/components-naive'
-import { isValidPhone } from '@yy-admin/common-utils'
+import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
+import { UserApi } from '@yy-admin/common-apis'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import { isValidPhone } from '@yy-admin/common-utils'
+import { YyDictSelect } from '@yy-admin/components-admin'
+import { createColumn as cT, YyTable } from '@yy-admin/components-naive'
+import { useTable } from '@yy-web/use-curd-vue'
 import { first } from 'lodash-es'
+import { computed, ref, watch } from 'vue'
 import { useDeptTree } from '../dept/useDeptTree'
 import { useInitUserPage } from './useInitUserPage'
 
@@ -18,12 +20,10 @@ const { jobList, roleList, selectedDeps } = useInitUserPage()
 const {
   searchForm,
   dataSource,
-  total,
-  confirmTable,
+  confirmSearch,
   getTable,
-  current,
   loading,
-  limit,
+  pageConf,
   resetTable,
   delDataRow,
   searchTable,
@@ -109,7 +109,7 @@ const rules = ref<NaiveFormRules<ReturnType<typeof initUserForm>>>({
 })
 
 function handleChangeStatus(entity: IUserEntity) {
-  confirmTable('是否切换用户状态', () => {
+  confirmSearch('是否切换用户状态', () => {
     return UserApi.put({ ...entity, enabled: !entity.enabled }).finally(getTable)
   })
 }
@@ -149,8 +149,8 @@ const columns = computed<YyTableColumns<keyof IUserRecord>[]>(() => [
     </n-gi>
     <n-gi :span="20">
       <YyTable
-        v-bind="{ total, loading, dataSource }"
-        v-model:current="current" v-model:limit="limit"
+        v-bind="{ total: pageConf.total, loading, dataSource }"
+        v-model:current="pageConf.current" v-model:limit="pageConf.limit"
         :columns="columns"
       >
         <template #search>

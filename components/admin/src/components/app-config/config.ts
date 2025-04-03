@@ -1,13 +1,13 @@
 import type { ConfigProviderProps } from 'naive-ui'
-import { createDiscreteApi, darkTheme, dateZhCN, lightTheme, zhCN } from 'naive-ui'
-import { useConfigStore } from '@yy-admin/common-core'
-import { computed } from 'vue'
 import { createGlobalState } from '@vueuse/core'
+import { useConfigStore } from '@yy-admin/common-core'
+import { createDiscreteApi, darkTheme, dateZhCN, lightTheme, zhCN } from 'naive-ui'
+import { computed } from 'vue'
 
 export const useAppConfigStore = createGlobalState(() => {
-  const configStore = useConfigStore()
+  const { isDark } = useConfigStore()
   const configProps = computed<ConfigProviderProps>(() => ({
-    theme: !configStore.isDark ? lightTheme : darkTheme,
+    theme: !isDark.value ? lightTheme : darkTheme,
     locale: zhCN,
     dateLocale: dateZhCN,
   }))

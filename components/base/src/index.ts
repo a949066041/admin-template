@@ -1,12 +1,13 @@
-import { type App, h } from 'vue'
+import type { App } from 'vue'
 import { createVNodeDirectives } from '@yy-admin/common-core'
-import VueVirtualScroller from 'vue-virtual-scroller'
-import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import { NSpin } from 'naive-ui'
+import { h } from 'vue'
+import VueVirtualScroller from 'vue-virtual-scroller'
 import DynamicVirtual from './components/dynamic-virtual/index.vue'
-import { LazyBox } from './components/lazy'
 import GithubCorner from './components/github-corner/index.vue'
+import { LazyBox } from './components/lazy'
 import BaseUpload from './components/upload/index.vue'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 export * from './components/lazy'
 

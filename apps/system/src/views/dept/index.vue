@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
-import { createColumn as cT } from '@yy-admin/components-naive'
-import { YyDictSelect, useLazyTableTree } from '@yy-admin/components-admin'
-import { DeptApi } from '@yy-admin/common-apis'
 import type { IDeptEntity, IDeptTableParams, IDeptTreeRecord } from '@yy-admin/common-apis'
-import { useTable } from '@yy-web/business-use'
+import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
+import { DeptApi } from '@yy-admin/common-apis'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import { useLazyTableTree, YyDictSelect } from '@yy-admin/components-admin'
+import { createColumn as cT } from '@yy-admin/components-naive'
+import { useTable } from '@yy-web/use-curd-vue'
 import { omit } from 'lodash-es'
+import { computed, ref } from 'vue'
 import { useDeptTree } from './useDeptTree'
 
 defineOptions({
@@ -22,7 +22,7 @@ const {
   delDataRow,
   getTable,
   loading,
-  confirmTable,
+  confirmSearch,
 } = useTable<IDeptTableParams, IDeptTreeRecord>({
   apiAction: DeptApi.pageTree,
   pagination: false,
@@ -50,7 +50,7 @@ const { handleRefreshLoadTree, openKeys, lazyLoad, renderKeys } = useLazyTableTr
 })
 
 function handleUpdateEnabled(entity: IDeptTreeRecord) {
-  confirmTable(
+  confirmSearch(
     `确认要${entity.enabled ? '禁用' : '启用'}部门吗？`,
     () => DeptApi.put(omit({ ...entity, enabled: !entity.enabled, id: entity.id }, ['children', 'parent'])).then(() => {
       handleRefreshLoadTree(entity.pid)

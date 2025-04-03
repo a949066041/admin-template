@@ -3,8 +3,8 @@ import { UserApi } from '@yy-admin/common-apis'
 import { useUserStore } from '@yy-admin/common-core'
 import { computed, ref } from 'vue'
 import { useAppConfigStore } from '../app-config/config'
-import UserResetPwd from './components/reset-pwd.vue'
 import EditUser from './components/edit-user.vue'
+import UserResetPwd from './components/reset-pwd.vue'
 import UserLog from './components/user-log.vue'
 
 defineOptions({
@@ -13,32 +13,32 @@ defineOptions({
 
 const { message } = useAppConfigStore()
 const userResetPwd = ref<InstanceType<typeof UserResetPwd> | null>(null)
-const userStore = useUserStore()
-const infoList = computed(() => userStore.userValue
+const { userValue, getUserInfo, avatar } = useUserStore()
+const infoList = computed(() => userValue.value
   ? [
       {
         label: '登录账号',
-        value: userStore.userValue.username,
+        value: userValue.value.username,
         icon: 'login',
       },
       {
         label: '用户昵称',
-        value: userStore.userValue.nickName,
+        value: userValue.value.nickName,
         icon: 'user1',
       },
       {
         label: '所属部门',
-        value: userStore.userValue.phone,
+        value: userValue.value.phone,
         icon: 'dept',
       },
       {
         label: '手机号',
-        value: userStore.userValue.phone,
+        value: userValue.value.phone,
         icon: 'phone',
       },
       {
         label: '用户邮箱',
-        value: userStore.userValue.email,
+        value: userValue.value.email,
         icon: 'email',
       },
       {
@@ -52,7 +52,7 @@ const infoList = computed(() => userStore.userValue
 function handleUploadAvatar(file: File, cb: (value: number) => void) {
   return UserApi.updateAvatar(file, cb).then(() => {
     message.success('上传成功')
-    userStore.getUserInfo(true)
+    getUserInfo(true)
   })
 }
 
@@ -75,7 +75,7 @@ function handleActionUserClick(key: string) {
         <div class=" flex justify-center flex-col">
           <BaseUpload :action="handleUploadAvatar" class="  self-center">
             <template #default="{ open }">
-              <n-avatar :size="88" :src="userStore.avatar" round alt="上传头像" class=" cursor-pointer" @click="open" />
+              <n-avatar :size="88" :src="avatar" round alt="上传头像" class=" cursor-pointer" @click="open" />
             </template>
           </BaseUpload>
           <ul class="m-0 p-0">

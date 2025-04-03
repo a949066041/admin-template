@@ -11,15 +11,16 @@ node_modules
 tsconfig.vue.tsbuildinfo
 .DS_Store
 .trubo
+.turbo/config.json
 .turbo/cache
 dist
 dist-ssr
 coverage
 *.local
+custom.json
 
 /cypress/videos/
 /cypress/screenshots/
-docs/docs/.vitepress/cache
 
 # Editor directories and files
 !.vscode/extensions.json
@@ -33,3 +34,4 @@ auto-imports.d.ts
 components.d.ts
 report.html
 .eslintrc-auto-import.json
+.env

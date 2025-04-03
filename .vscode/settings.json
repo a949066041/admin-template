@@ -7,11 +7,9 @@
     "echarts",
     "encryptor",
     "nocheck",
-    "pinia",
     "Sider",
     "unocss",
-    "vexip",
-    "vitepress"
+    "vexip"
   ],
   "explorer.fileNesting.patterns": {
     "*.api.ts": "${capture}.type.ts"

@@ -1,10 +1,10 @@
-import { createApp } from 'vue'
-import '@yy-admin/common-css'
-
 import { Layout, setupAdmin } from '@yy-admin/components-admin'
 import { monitorPageList } from '@yy-admin/web-monitor'
 import { systemHomePage, systemPageList, testPageList } from '@yy-admin/web-system'
+
+import { createApp } from 'vue'
 import App from './App.vue'
+import '@yy-admin/common-css'
 
 const app = createApp(App)
 

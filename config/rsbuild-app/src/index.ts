@@ -1,11 +1,13 @@
+import type { ProxyOptions, RsbuildPlugins } from '@rsbuild/core'
+import type { ComponentResolver } from 'unplugin-vue-components'
 import { defineConfig } from '@rsbuild/core'
 import { pluginVue } from '@rsbuild/plugin-vue'
 import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx'
-import type { ComponentResolver } from 'unplugin-vue-components'
-import { pluginLess } from '@rsbuild/plugin-less'
-import Components from 'unplugin-vue-components/rspack'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin'
+import { UnoCSSRspackPlugin } from '@unocss/webpack/rspack'
 import AutoImport from 'unplugin-auto-import/rspack'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/rspack'
 
 export function YyNaiveuiComponents(): ComponentResolver {
   const customComponent = new Set([
@@ -16,85 +18,80 @@ export function YyNaiveuiComponents(): ComponentResolver {
     'YyTreeSelect',
     'YyRangeDatePicker',
     'YyDatePicker',
-    '',
   ])
 
   return {
     type: 'component',
     resolve(componentName: string) {
       if (customComponent.has(componentName))
-        return { name: componentName, from: '@yy-admin/components-naive', sideEffects: '@yy-admin/components-naive/dist/style.css' }
+        return { name: componentName, from: '@yy-admin/components-naive' }
     },
   }
 }
 
-export default () => defineConfig({
-  source: {
-    entry: {
-      index: './src/main.ts',
-    },
-  },
-  performance: {
-    chunkSplit: {
-      strategy: 'custom',
-      splitChunks: {
-        cacheGroups: {
-          'vue': {
-            test: /node_modules[\\/](vue|vue-router|pinia)[\\/]/,
-            name: 'vue',
-            chunks: 'all',
-          },
-          'naive-ui': {
-            test: /node_modules[\\/](naive-ui)[\\/]/,
-            name: 'naive-ui',
-          },
-          'echarts': {
-            test: /node_modules[\\/](echarts|zrender)[\\/]/,
-            name: 'echarts',
-          },
-        },
+interface IRsBildOptions {
+  proxyApis?: [string, string][]
+  plugins?: RsbuildPlugins[]
+}
+
+export default (options?: IRsBildOptions) => {
+  const {
+    proxyApis = [],
+    plugins = [],
+  } = options || {}
+  return defineConfig({
+    source: {
+      entry: {
+        index: './src/main.ts',
       },
     },
-  },
-  tools: {
-    rspack: {
-      plugins: [
-        AutoImport({
-          imports: ['vue', 'vue-router', '@vueuse/core', {
-            'naive-ui': [
-              'useDialog',
-              'useMessage',
-              'useNotification',
-              'useLoadingBar',
+    performance: {
+      chunkSplit: {
+        strategy: 'split-by-module',
+      },
+    },
+    tools: {
+      rspack: {
+        plugins: [
+          AutoImport({
+            imports: ['vue', 'vue-router', '@vueuse/core', {
+              'naive-ui': [
+                'useDialog',
+                'useMessage',
+                'useNotification',
+                'useLoadingBar',
+              ],
+            }],
+            vueTemplate: true,
+          }),
+          Components({
+            dts: true,
+            resolvers: [
+              NaiveUiResolver(),
+              YyNaiveuiComponents(),
             ],
-          }],
-          vueTemplate: true,
-        }),
-        Components({
-          dts: true,
-          resolvers: [
-            NaiveUiResolver(),
-            YyNaiveuiComponents(),
-          ],
-        }),
-      ],
-    },
-  },
-  plugins: [
-    pluginVue(),
-    pluginVueJsx(),
-    pluginLess(),
-  ],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://110.41.161.81/',
-        pathRewrite: { '^/api': '' },
-        changeOrigin: true,
-      },
-      '/avatar': {
-        target: 'http://110.41.161.81/',
+          }),
+          UnoCSSRspackPlugin({
+          }),
+          ...plugins,
+        ],
       },
     },
-  },
-})
+    plugins: [
+      pluginVue({
+      }),
+      pluginVueJsx({
+      }),
+    ],
+    server: {
+      proxy: proxyApis.reduce((prev, [key, value]) => {
+        prev[key] = {
+          target: value,
+          pathRewrite: { [`^${key}`]: '' },
+          changeOrigin: true,
+        }
+        return prev
+      }, {} as Record<string, ProxyOptions>),
+    },
+  })
+}

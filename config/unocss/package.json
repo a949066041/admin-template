@@ -9,9 +9,14 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "esno scripts/svg2json.ts"
+  },
+  "dependencies": {
+    "@iconify/tools": "catalog:",
+    "@unocss/preset-uno": "catalog:",
+    "esno": "catalog:"
   },
   "devDependencies": {
-    "@unocss/preset-icons": "^0.61.6"
+    "@unocss/preset-icons": "catalog:"
   }
 }

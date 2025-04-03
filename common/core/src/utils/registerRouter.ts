@@ -1,6 +1,6 @@
-import type { Router } from 'vue-router'
 import type { IMenuBuild } from '@yy-admin/common-apis'
 import type { VNode } from 'vue'
+import type { Router } from 'vue-router'
 
 export type AsyncRouters = Record<string, (() => Promise<unknown>) | unknown | VNode[]>
 

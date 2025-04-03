@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { LogsApi } from '@yy-admin/common-apis'
 import type { ILogEntity } from '@yy-admin/common-apis'
-import { useTable } from '@yy-web/business-use'
-import { createColumn as cT } from '@yy-admin/components-naive'
 import type { YyTableColumns } from '@yy-admin/components-naive'
+import { LogsApi } from '@yy-admin/common-apis'
+import { createColumn as cT } from '@yy-admin/components-naive'
+import { useTable } from '@yy-web/use-curd-vue'
 import { computed } from 'vue'
 
 defineOptions({
@@ -12,9 +12,7 @@ defineOptions({
 
 const {
   dataSource,
-  limit,
-  current,
-  total,
+  pageConf,
   loading,
 } = useTable<{ id: number }, ILogEntity>({
   apiAction: params => LogsApi.page(params),
@@ -32,9 +30,9 @@ const columns = computed<YyTableColumns<keyof ILogEntity>[]>(() => ([
 
 <template>
   <YyTable
-    v-bind="{ total, loading, dataSource }"
-    v-model:current="current"
-    v-model:limit="limit"
+    v-bind="{ total: pageConf.total, loading, dataSource }"
+    v-model:current="pageConf.current"
+    v-model:limit="pageConf.limit"
     :columns="columns"
   >
     <template #time="{ text }">

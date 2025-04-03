@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import { nextTick, onMounted, ref, watch } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import { useRoute, useRouter } from 'vue-router'
-import { NTag } from 'naive-ui'
 import { useCurrentElement } from '@vueuse/core'
-import ScrollContent from '../../../scroll-content/index.vue'
+import { NTag } from 'naive-ui'
+import { nextTick, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useTagStore } from '../../../../store/tag.store'
+import ScrollContent from '../../../scroll-content/index.vue'
 import { useContextTag } from './useContextTag'
 
 defineOptions({
   name: 'RouteTags',
 })
 
-const tagStore = useTagStore()
+const { activeTag, addTag, tagList, closeTag } = useTagStore()
 const {
   bindDrop,
   handleOpenMenu,
@@ -22,7 +22,7 @@ const currentEl = useCurrentElement<HTMLElement>()
 const scrollContent = ref<InstanceType<typeof ScrollContent>>()
 const route = useRoute()
 const router = useRouter()
-watch(() => tagStore.activeTag, (tag) => {
+watch(activeTag, (tag) => {
   if (tag)
     router.push(tag)
   handleScrollTag()
@@ -37,11 +37,11 @@ function handleScrollTag() {
 }
 
 function handleAddTag(routeInfo: RouteLocationNormalizedLoaded) {
-  tagStore.addTag({ path: routeInfo.path, title: routeInfo.meta.title as string, affix: !!routeInfo.meta.affix, name: routeInfo.name as string })
+  addTag({ path: routeInfo.path, title: routeInfo.meta.title as string, affix: !!routeInfo.meta.affix, name: routeInfo.name as string })
 }
 
 function handleChangeTag(path: string) {
-  tagStore.activeTag = path
+  activeTag.value = path
 }
 
 onMounted(() => {
@@ -58,16 +58,16 @@ router.afterEach(handleAddTag)
   >
     <ScrollContent ref="scrollContent">
       <NTag
-        v-for="item of tagStore.tagList"
+        v-for="item of tagList"
         :key="item.path"
         :data-path="item.path"
-        :type="tagStore.activeTag === item.path ? 'success' : undefined" class=" cursor-pointer router-tab flex items-center mr-3 last:mr-0"
+        :type="activeTag === item.path ? 'success' : undefined" class=" cursor-pointer  flex items-center mr-3 last:mr-0"
         @contextmenu="handleOpenMenu($event, item)"
         @click="handleChangeTag(item.path)"
       >
-        <div class=" flex items-center">
+        <div class=" flex items-center group">
           <span>{{ item.title }}</span>
-          <i v-if="!item.affix" class="router-tab__icon text-0 cursor-pointer ml-2 transition-all duration-.3s i-carbon:close-outline" @click.stop="tagStore.closeTag(item.path)" />
+          <i v-if="!item.affix" class="group-hover:w-3 group-hover:h-3 text-0 cursor-pointer ml-2 transition-all duration-.3s i-carbon:close-outline" @click.stop="closeTag(item.path)" />
         </div>
       </NTag>
       <n-dropdown
@@ -77,13 +77,3 @@ router.afterEach(handleAddTag)
     </ScrollContent>
   </div>
 </template>
-
-<style scoped lang="less">
-.router-tab {
-  &:hover {
-    .router-tab__icon {
-      @apply w-3 h-3;
-    }
-  }
-}
-</style>

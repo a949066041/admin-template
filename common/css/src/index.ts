@@ -1,4 +1,4 @@
 import '@unocss/reset/sanitize/assets.css'
-import './style.css'
+import 'uno.css'
 
 export * from './icon'

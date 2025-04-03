@@ -1,0 +1,35 @@
+{
+  "name": "@yy-admin/new-docs",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "scripts": {
+    "dev": "rsbuild dev",
+    "build": "rsbuild build"
+  },
+  "dependencies": {
+    "@rsbuild/core": "catalog:",
+    "@rsbuild/plugin-mdx": "catalog:",
+    "@yy-admin/common-css": "workspace:^",
+    "@yy-admin/config-rsbuild-app": "workspace:^",
+    "@yy-admin/config-unocss": "workspace:^",
+    "echarts": "catalog:",
+    "github-markdown-css": "catalog:",
+    "remark-gfm": "catalog:",
+    "unified": "catalog:",
+    "unist-util-visit": "catalog:",
+    "vue-loader": "catalog:"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "catalog:",
+    "@vue/compiler-core": "catalog:",
+    "@yy-admin/common-apis": "workspace:^",
+    "@yy-admin/common-core": "workspace:^",
+    "@yy-admin/components-admin": "workspace:^",
+    "fs-extra": "catalog:",
+    "shiki": "catalog:"
+  }
+}

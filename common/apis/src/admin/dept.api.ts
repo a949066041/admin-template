@@ -1,5 +1,5 @@
-import { ApiInstance } from '../instance'
 import type { IDeptEntity, IDeptTree, IDeptTreeRecord } from './dept.type'
+import { ApiInstance } from '../instance'
 
 const baseApi = '/api/dept'
 

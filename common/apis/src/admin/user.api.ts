@@ -1,7 +1,7 @@
-import { ApiInstance } from '../instance'
 import type { UploadCb } from '../utils'
-import { uploadProgress } from '../utils'
 import type { EditUserData, IResetPwdData, IUserRecord } from './user.type'
+import { ApiInstance } from '../instance'
+import { uploadProgress } from '../utils'
 
 class UserApiInstance extends ApiInstance<IUserRecord> {
   baseApi = '/api/users'

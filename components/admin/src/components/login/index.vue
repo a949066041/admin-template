@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { useAnimate, useToggle } from '@vueuse/core'
 import type { LoginForm } from '@yy-admin/common-apis'
+import type { FormInst, FormItemRule } from 'naive-ui'
+import { useAnimate, useToggle } from '@vueuse/core'
 import { AuthApi } from '@yy-admin/common-apis'
 import { useConfigStore, useUserStore } from '@yy-admin/common-core'
-import type { FormInst, FormItemRule } from 'naive-ui'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import ThemeToggle from '../theme-toggle/index.vue'
 
@@ -40,7 +40,7 @@ const loginRules = ref<{ [P in keyof Partial<LoginForm>]: FormItemRule[] }>({
 })
 const codeImg = ref('')
 const configStore = useConfigStore()
-const userStore = useUserStore()
+const { loginAction } = useUserStore()
 
 function handleRefreshImg() {
   AuthApi.code().then(({ img, uuid }) => {
@@ -57,7 +57,7 @@ function handleLoadingAction() {
     if (!err) {
       toggleLoading(true)
       try {
-        await userStore.loginAction(loginForm.value)
+        await loginAction(loginForm.value)
         router.push('/')
       }
       catch {

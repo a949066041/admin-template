@@ -1,4 +1,5 @@
-import { DeptApi, type IDeptTreeRecord } from '@yy-admin/common-apis'
+import type { IDeptTreeRecord } from '@yy-admin/common-apis'
+import { DeptApi } from '@yy-admin/common-apis'
 import { recursiveLeafArr } from '@yy-admin/common-utils'
 
 export function useDeptTree(init = false) {

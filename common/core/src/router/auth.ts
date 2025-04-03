@@ -1,7 +1,8 @@
 import type { Router } from 'vue-router'
+import type { AsyncRouters } from '../utils/registerRouter'
 import { useUserStore } from '../store'
 import { tokenStorage } from '../utils'
-import { type AsyncRouters, addWebRouter } from '../utils/registerRouter'
+import { addWebRouter } from '../utils/registerRouter'
 
 const isLoginPage = (path: string) => path.includes('/login')
 
@@ -14,13 +15,14 @@ export function authRoute(router: Router, whiteList?: string[], mathRules?: Asyn
         next('/')
         return
       }
-      const userStore = useUserStore()
-      if (userStore.isLogin) {
+      const { isLogin, getUserInfo, setRenderMenuList } = useUserStore()
+      if (isLogin.value) {
         next()
         return
       }
-      const menuList = await userStore.getUserInfo()
-      userStore.setRenderMenuList(addWebRouter(router, menuList || [], mathRules), router)
+      const menuList = await getUserInfo()
+      // @ts-expect-error hii
+      setRenderMenuList(addWebRouter(router, menuList || [], mathRules), router)
       next({ ...to, replace: true })
       return
     }

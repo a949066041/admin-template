@@ -1,5 +1,5 @@
-import { addModulePageList } from '@yy-admin/components-admin'
 import type { AsyncRouters } from '@yy-admin/common-core'
+import { addModulePageList } from '@yy-admin/components-admin'
 
 export function monitorPageList() {
   const context = import.meta.webpackContext('./views', {

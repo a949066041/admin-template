@@ -1,6 +1,6 @@
 import request from '@yy-web/request'
 import axios from 'axios'
-import { $pinia, useRequestCache } from '../store'
+import { useRequestCache } from '../store'
 import { requestInterceptors } from './request.interceptors'
 import { responseInterceptors, responseInterceptorsError } from './response.interceptors'
 
@@ -11,7 +11,7 @@ const service = axios.create({
 service.interceptors.request.use(requestInterceptors)
 service.interceptors.response.use(responseInterceptors, responseInterceptorsError)
 
-const requestStore = useRequestCache($pinia)
+const requestStore = useRequestCache()
 const yyRequest = request(service, {
   getStore: requestStore.getStore,
   setStore: requestStore.setStore,

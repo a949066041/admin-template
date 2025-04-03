@@ -8,7 +8,7 @@ withDefaults(defineProps<{ size?: string, background?: string }>(), { size: '40p
   </div>
 </template>
 
-<style scoped lang="less">
+<style scoped lang="css">
 .lds-facebook {
   @apply inline-block relative w-20 h-20;
 

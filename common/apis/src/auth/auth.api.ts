@@ -1,5 +1,5 @@
-import { ApiInstance } from '../instance'
 import type { AuthCode, Login, LoginForm, UserInfo } from './auth.type'
+import { ApiInstance } from '../instance'
 
 const baseUrl = '/auth'
 

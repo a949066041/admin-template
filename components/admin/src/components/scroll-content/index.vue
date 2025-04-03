@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
 import { useCurrentElement, useElementSize, useToggle } from '@vueuse/core'
 import { NScrollbar } from 'naive-ui'
+import { ref, watch } from 'vue'
 
 defineOptions({
   name: 'ScrollContent',

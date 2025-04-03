@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { nextTick } from 'vue'
 import { useConfigStore } from '@yy-admin/common-core'
+import { nextTick } from 'vue'
 
 defineOptions({
   name: 'ThemeToggle',
@@ -30,7 +30,6 @@ function toggle(event?: MouseEvent) {
     Math.max(y, innerHeight - y),
   )
 
-  // @ts-expect-error: Transition API
   const transition = document.startViewTransition(async () => {
     configStore.handleSwitchTheme()
     await nextTick()
@@ -43,14 +42,14 @@ function toggle(event?: MouseEvent) {
     ]
     document.documentElement.animate(
       {
-        clipPath: configStore.isDark
+        clipPath: configStore.isDark.value
           ? [...clipPath].reverse()
           : clipPath,
       },
       {
         duration: 400,
         easing: 'ease-in',
-        pseudoElement: configStore.isDark
+        pseudoElement: configStore.isDark.value
           ? '::view-transition-old(root)'
           : '::view-transition-new(root)',
       },

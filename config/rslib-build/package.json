@@ -1,0 +1,22 @@
+{
+  "name": "@yy-admin/config-rslib",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare:build": "tsc"
+  },
+  "dependencies": {
+    "@rsbuild/core": "catalog:",
+    "@rsbuild/plugin-vue": "catalog:",
+    "@rsbuild/plugin-vue-jsx": "catalog:",
+    "@rslib/core": "catalog:",
+    "unplugin-vue-components": "catalog:"
+  }
+}

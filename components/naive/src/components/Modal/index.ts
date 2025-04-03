@@ -1,1 +1,5 @@
-export { default as YyModal } from './yy-modal.vue'
+import YyModal from './yy-modal.vue'
+
+export {
+  YyModal,
+}

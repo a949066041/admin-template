@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import { useColorMode, useResizeObserver } from '@vueuse/core'
 import * as echarts from 'echarts'
 import { computed, onActivated, ref, watch } from 'vue'
-import { useColorMode, useResizeObserver } from '@vueuse/core'
 
 defineOptions({
   name: 'EchartsView',

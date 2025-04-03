@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import { initFormObj, useCurdForm, useUserStore } from '@yy-admin/common-core'
-import type { NaiveFormRules } from '@yy-admin/components-naive'
 import type { IResetPwdData } from '@yy-admin/common-apis'
+import type { NaiveFormRules } from '@yy-admin/components-naive'
 import { UserApi } from '@yy-admin/common-apis'
+import { initFormObj, useCurdForm, useUserStore } from '@yy-admin/common-core'
 import { encrypt } from '@yy-admin/common-utils'
+import { useMessage } from 'naive-ui'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useMessage } from 'naive-ui'
 
 defineOptions({
   name: 'UserResetPwd',
 })
 
 const message = useMessage()
-const userStore = useUserStore()
+const { logout } = useUserStore()
 const router = useRouter()
 
 function initResetPwdForm() {
@@ -33,7 +33,7 @@ const { formModel, visible, handleInitForm, saveLoading, handleSaveForm, formRef
     message.success('密码修改成功，请重新登录', {
       duration: 1500,
       onAfterLeave() {
-        userStore.logout().then(() => {
+        logout().then(() => {
           router.push('/login')
         })
       },

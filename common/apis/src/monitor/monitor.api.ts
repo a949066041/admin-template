@@ -1,5 +1,5 @@
-import { ApiInstance } from '../instance'
 import type { IMonitorInfo } from './monitor.type'
+import { ApiInstance } from '../instance'
 
 const baseApi = '/api/monitor'
 

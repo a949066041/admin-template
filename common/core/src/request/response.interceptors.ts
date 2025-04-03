@@ -11,10 +11,10 @@ export function responseInterceptors(response: any) {
 
 export function responseInterceptorsError(error: any) {
   if (error.response) {
-    const useStore = useUserStore()
+    const { logout } = useUserStore()
     switch (error.response.status) {
       case 401:
-        useStore.logout().then(() => {
+        logout().then(() => {
           window.errorMsg('退出成功')
           setTimeout(() => {
             window.location.reload()

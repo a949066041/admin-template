@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { IMonitorInfo } from '@yy-admin/common-apis'
-import { MonitorApi } from '@yy-admin/common-apis'
 import type { ILineData } from '@yy-admin/components-chart'
+import { useIntervalFn, useToggle } from '@vueuse/core'
+import { MonitorApi } from '@yy-admin/common-apis'
 import { EchartsView, lineOption } from '@yy-admin/components-chart'
 import { computed, onMounted, ref } from 'vue'
-import { useIntervalFn, useToggle } from '@vueuse/core'
 
 defineOptions({
   name: 'ServerMonitor',

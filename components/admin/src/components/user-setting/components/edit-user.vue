@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { EditUserData } from '@yy-admin/common-apis'
+import type { NaiveFormRules } from '@yy-admin/components-naive'
 import { UserApi } from '@yy-admin/common-apis'
 import { initFormObj, useCurdForm, useUserStore } from '@yy-admin/common-core'
 import { isValidPhone } from '@yy-admin/common-utils'
-import type { NaiveFormRules } from '@yy-admin/components-naive'
 import { onMounted, ref } from 'vue'
 import { YyDictSelect } from '../../dict/index'
 
@@ -11,7 +11,7 @@ defineOptions({
   name: 'EditUser',
 })
 
-const userStore = useUserStore()
+const { getUserInfo, userValue } = useUserStore()
 function initResetPwdForm() {
   return initFormObj(['nickName', 'gender', 'phone', 'id'] as const) as EditUserData
 }
@@ -20,7 +20,7 @@ const { formModel, handleInitForm, saveLoading, handleSaveForm, formRef } = useC
   initFormFn: initResetPwdForm,
   saveAction: data => UserApi.editUser(data),
   afterSave() {
-    userStore.getUserInfo(true)
+    getUserInfo(true)
     saveLoading.value = false
   },
 })
@@ -49,10 +49,10 @@ const rules = ref<NaiveFormRules<ReturnType<typeof initResetPwdForm>>>({
 })
 
 onMounted(() => handleInitForm({
-  id: userStore.userValue?.id,
-  nickName: userStore.userValue!.nickName,
-  gender: userStore.userValue!.gender,
-  phone: userStore.userValue!.phone,
+  id: userValue.value?.id,
+  nickName: userValue.value!.nickName,
+  gender: userValue.value!.gender,
+  phone: userValue.value!.phone,
 }))
 </script>
 

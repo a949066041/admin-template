@@ -1,4 +1,4 @@
-import 'uno.css'
+import '@yy-admin/common-css'
 
 export * from './components'
 export * from './types'

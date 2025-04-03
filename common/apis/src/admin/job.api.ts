@@ -1,5 +1,5 @@
-import { ApiInstance } from '../instance'
 import type { IJobEntity } from './job.type'
+import { ApiInstance } from '../instance'
 
 class JobApiInstance extends ApiInstance<IJobEntity> {
   baseApi = '/api/job'

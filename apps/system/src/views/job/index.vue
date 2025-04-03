@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { JobApi } from '@yy-admin/common-apis'
 import type { IJobEntity, IJobRecord, IJobTableParams } from '@yy-admin/common-apis'
-import { useTable } from '@yy-web/business-use'
-import { createColumn as cT } from '@yy-admin/components-naive'
-import { YyDictSelect } from '@yy-admin/components-admin'
 import type { NaiveFormRules, YyTableColumns } from '@yy-admin/components-naive'
+import { JobApi } from '@yy-admin/common-apis'
 import { initFormObj, useCurdForm } from '@yy-admin/common-core'
+import { YyDictSelect } from '@yy-admin/components-admin'
+import { createColumn as cT } from '@yy-admin/components-naive'
+import { useTable } from '@yy-web/use-curd-vue'
 import { computed, ref } from 'vue'
 
 defineOptions({
@@ -14,16 +14,14 @@ defineOptions({
 
 const {
   dataSource,
-  limit,
-  current,
-  total,
+  pageConf,
   loading,
   searchForm,
   searchTable,
   resetTable,
   delDataRow,
   getTable,
-  confirmTable,
+  confirmSearch,
 } = useTable<IJobTableParams, IJobEntity>({
   apiAction: JobApi.page,
   delAction: JobApi.del,
@@ -62,7 +60,7 @@ const {
 })
 
 function handleUpdateEnabled(entity: IJobEntity) {
-  confirmTable(
+  confirmSearch(
     `确定${entity.enabled ? '禁用' : '启用'}该记录吗？`,
     () => JobApi.put({ enabled: !entity.enabled, id: entity.id }).then(getTable),
   )
@@ -79,9 +77,9 @@ const columns = computed<YyTableColumns<keyof IJobRecord>[]>(() => ([
 
 <template>
   <YyTable
-    v-bind="{ total, loading, dataSource }"
-    v-model:current="current"
-    v-model:limit="limit"
+    v-bind="{ total: pageConf.total, loading, dataSource }"
+    v-model:current="pageConf.current"
+    v-model:limit="pageConf.limit"
     :columns="columns"
   >
     <template #search>

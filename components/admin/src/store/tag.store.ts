@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
 import type { VNode } from 'vue'
+import { createGlobalState } from '@vueuse/core'
 import { computed, h, ref } from 'vue'
 
 const MAX_KEEP = 100
@@ -11,7 +11,7 @@ export interface IRouteTag {
   affix?: boolean
 }
 
-export const useTagStore = defineStore('admin-tag', () => {
+export const useTagStore = createGlobalState(() => {
   const tagList = ref<IRouteTag[]>(Array.from({ length: 0 }, (_, i) => ({ path: `/${i}`, title: `标签${i}`, name: `tag${i}` })))
   const activeTag = ref<IRouteTag['path']>('')
   const refreshing = ref<string | null>(null)
